@@ -1,0 +1,6 @@
+% This file contains the internal library dependencies in src/libraries
+% Lines starting with % are comments and will be ignored
+% To add a dependency, simply add a new line containing the name of the library
+% Example: HelloLib
+CVK_2
+CVK_AnSim

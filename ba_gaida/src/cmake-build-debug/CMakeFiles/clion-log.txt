@@ -1,0 +1,101 @@
+C:\Users\Dradozer\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\183.5429.37\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" E:\Desktop\Projekte\BA\ba_gaida\src
+EXTERNAL LIBRARY 'OpenGL3' FOUND
+EXTERNAL LIBRARY 'GLEW' FOUND
+CMake Warning (dev) at cmake/DefaultProject.cmake:17 (find_package):
+  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+  Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  Environment variable GLFW3_ROOT is set to:
+
+    C:\dependencies_win32/glfw-3.0.4.bin.WIN32
+
+  For compatibility, CMake is ignoring the variable.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+EXTERNAL LIBRARY 'GLFW3' FOUND
+CMake Warning (dev) at cmake/DefaultProject.cmake:18 (find_package):
+  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+  Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  Environment variable ASSIMP_ROOT is set to:
+
+    C:\dependencies_win32/assimp
+
+  For compatibility, CMake is ignoring the variable.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+EXTERNAL LIBRARY 'ASSIMP' FOUND
+CMake Warning (dev) at cmake/DefaultProject.cmake:19 (find_package):
+  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+  Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  Environment variable GLM_ROOT is set to:
+
+    C:\dependencies_win32/glm
+
+  For compatibility, CMake is ignoring the variable.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+EXTERNAL LIBRARY 'GLM' FOUND
+BUILD FOR 'CVK_2' GENERATED
+CMake Deprecation Warning at cmake/DefaultLibrary.cmake:3 (cmake_policy):
+  The OLD behavior for policy CMP0022 will be removed from a future version
+  of CMake.
+
+  The cmake-policies(7) manual explains that the OLD behaviors of all
+  policies are deprecated and that a policy should be set to OLD only under
+  specific short-term circumstances.  Projects should be ported to the NEW
+  behavior and not rely on setting a policy to OLD.
+Call Stack (most recent call first):
+  libraries/CVK_2/CMakeLists.txt:2 (include)
+
+
+CMake Deprecation Warning at cmake/DefaultLibrary.cmake:4 (cmake_policy):
+  The OLD behavior for policy CMP0038 will be removed from a future version
+  of CMake.
+
+  The cmake-policies(7) manual explains that the OLD behaviors of all
+  policies are deprecated and that a policy should be set to OLD only under
+  specific short-term circumstances.  Projects should be ported to the NEW
+  behavior and not rely on setting a policy to OLD.
+Call Stack (most recent call first):
+  libraries/CVK_2/CMakeLists.txt:2 (include)
+
+
+BUILD FOR 'ba_gaida' GENERATED
+CMake Deprecation Warning at cmake/DefaultExecutable.cmake:3 (cmake_policy):
+  The OLD behavior for policy CMP0022 will be removed from a future version
+  of CMake.
+
+  The cmake-policies(7) manual explains that the OLD behaviors of all
+  policies are deprecated and that a policy should be set to OLD only under
+  specific short-term circumstances.  Projects should be ported to the NEW
+  behavior and not rely on setting a policy to OLD.
+Call Stack (most recent call first):
+  executables/ba_gaida/CMakeLists.txt:2 (include)
+
+
+CMake Deprecation Warning at cmake/DefaultExecutable.cmake:4 (cmake_policy):
+  The OLD behavior for policy CMP0038 will be removed from a future version
+  of CMake.
+
+  The cmake-policies(7) manual explains that the OLD behaviors of all
+  policies are deprecated and that a policy should be set to OLD only under
+  specific short-term circumstances.  Projects should be ported to the NEW
+  behavior and not rely on setting a policy to OLD.
+Call Stack (most recent call first):
+  executables/ba_gaida/CMakeLists.txt:2 (include)
+
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug
