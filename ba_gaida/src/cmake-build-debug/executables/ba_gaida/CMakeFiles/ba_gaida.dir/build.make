@@ -127,7 +127,6 @@ bin/ba_gaida.exe: executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/FpsCounte
 bin/ba_gaida.exe: executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/ParticleSystem.cpp.obj
 bin/ba_gaida.exe: executables/ba_gaida/CMakeFiles/ba_gaida.dir/main.cpp.obj
 bin/ba_gaida.exe: executables/ba_gaida/CMakeFiles/ba_gaida.dir/build.make
-bin/ba_gaida.exe: lib/libCVK_2.a
 bin/ba_gaida.exe: C:/dependencies_win32/glfw-3.0.4.bin.WIN32/lib-mingw/libglfw3.a
 bin/ba_gaida.exe: C:/dependencies_win32/assimp/libMinGW/libassimp.dll
 bin/ba_gaida.exe: C:/dependencies_win32/OpenGL/lib/glew32s.lib

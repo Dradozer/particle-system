@@ -5,7 +5,7 @@
 		<Option title="SHADERS"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\libraries\;CMake Files\libraries\CVK_2\;CMake Files\cmake\;CMake Files\shaders\;CMake Files\executables\;CMake Files\executables\ba_gaida\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\shaders\;CMake Files\cmake\;CMake Files\executables\;CMake Files\executables\ba_gaida\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/shaders"/>
@@ -43,13 +43,10 @@
 		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/libraries/CVK_2/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\libraries\CVK_2\"/>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/shaders/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\shaders\"/>
 		</Unit>
 		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/DefaultExecutable.cmake">
-			<Option virtualFolder="CMake Files\cmake\"/>
-		</Unit>
-		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/DefaultLibrary.cmake">
 			<Option virtualFolder="CMake Files\cmake\"/>
 		</Unit>
 		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/DefaultProject.cmake">
@@ -75,9 +72,6 @@
 		</Unit>
 		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/macros.cmake">
 			<Option virtualFolder="CMake Files\cmake\"/>
-		</Unit>
-		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/shaders/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\shaders\"/>
 		</Unit>
 		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/ba_gaida/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\executables\ba_gaida\"/>

@@ -110,19 +110,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named CVK_2
-
-# Build rule for target.
-CVK_2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 CVK_2
-.PHONY : CVK_2
-
-# fast build rule for target.
-CVK_2/fast:
-	$(MAKE) -f libraries\CVK_2\CMakeFiles\CVK_2.dir\build.make libraries/CVK_2/CMakeFiles/CVK_2.dir/build
-.PHONY : CVK_2/fast
-
-#=============================================================================
 # Target rules for targets named ba_gaida
 
 # Build rule for target.
@@ -156,7 +143,6 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... CVK_2
 	@echo ... ba_gaida
 	@echo ... SHADERS
 .PHONY : help

@@ -46,31 +46,6 @@ Call Stack (most recent call first):
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
 EXTERNAL LIBRARY 'GLM' FOUND
-BUILD FOR 'CVK_2' GENERATED
-CMake Deprecation Warning at cmake/DefaultLibrary.cmake:3 (cmake_policy):
-  The OLD behavior for policy CMP0022 will be removed from a future version
-  of CMake.
-
-  The cmake-policies(7) manual explains that the OLD behaviors of all
-  policies are deprecated and that a policy should be set to OLD only under
-  specific short-term circumstances.  Projects should be ported to the NEW
-  behavior and not rely on setting a policy to OLD.
-Call Stack (most recent call first):
-  libraries/CVK_2/CMakeLists.txt:2 (include)
-
-
-CMake Deprecation Warning at cmake/DefaultLibrary.cmake:4 (cmake_policy):
-  The OLD behavior for policy CMP0038 will be removed from a future version
-  of CMake.
-
-  The cmake-policies(7) manual explains that the OLD behaviors of all
-  policies are deprecated and that a policy should be set to OLD only under
-  specific short-term circumstances.  Projects should be ported to the NEW
-  behavior and not rely on setting a policy to OLD.
-Call Stack (most recent call first):
-  libraries/CVK_2/CMakeLists.txt:2 (include)
-
-
 BUILD FOR 'ba_gaida' GENERATED
 CMake Deprecation Warning at cmake/DefaultExecutable.cmake:3 (cmake_policy):
   The OLD behavior for policy CMP0022 will be removed from a future version

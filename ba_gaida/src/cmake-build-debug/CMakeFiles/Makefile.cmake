@@ -37,7 +37,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.13.2/CMakeRCCompiler.cmake"
   "CMakeFiles/3.13.2/CMakeSystem.cmake"
   "../cmake/DefaultExecutable.cmake"
-  "../cmake/DefaultLibrary.cmake"
   "../cmake/DefaultProject.cmake"
   "../cmake/FindASSIMP.cmake"
   "../cmake/FindGLEW.cmake"
@@ -47,7 +46,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../cmake/doxygen.cmake"
   "../cmake/macros.cmake"
   "../executables/ba_gaida/CMakeLists.txt"
-  "../libraries/CVK_2/CMakeLists.txt"
   "../shaders/CMakeLists.txt"
   )
 
@@ -60,14 +58,12 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "libraries/CVK_2/CMakeFiles/CMakeDirectoryInformation.cmake"
   "executables/ba_gaida/CMakeFiles/CMakeDirectoryInformation.cmake"
   "shaders/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "libraries/CVK_2/CMakeFiles/CVK_2.dir/DependInfo.cmake"
   "executables/ba_gaida/CMakeFiles/ba_gaida.dir/DependInfo.cmake"
   "shaders/CMakeFiles/SHADERS.dir/DependInfo.cmake"
   )

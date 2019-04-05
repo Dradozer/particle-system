@@ -173,7 +173,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1400" />
@@ -247,11 +247,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.ba_gaida">
-    <configuration name="CVK_2" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ba_gaida" TARGET_NAME="CVK_2" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SHADERS" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ba_gaida" TARGET_NAME="SHADERS" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -264,7 +259,6 @@
     </configuration>
     <list>
       <item itemvalue="Application.ba_gaida" />
-      <item itemvalue="Application.CVK_2" />
       <item itemvalue="Application.SHADERS" />
     </list>
   </component>
