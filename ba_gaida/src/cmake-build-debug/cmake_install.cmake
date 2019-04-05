@@ -34,6 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+  include("E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/cmake_install.cmake")
   include("E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/ba_gaida/cmake_install.cmake")
   include("E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/shaders/cmake_install.cmake")
 

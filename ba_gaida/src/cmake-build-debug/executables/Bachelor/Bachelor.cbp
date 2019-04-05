@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Bachelor"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\executables\;CMake Files\executables\Bachelor\;CMake Files\executables\ba_gaida\;CMake Files\cmake\;CMake Files\shaders\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Bachelor">
+				<Option output="E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/bin/Bachelor.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSHADERS_PATH=&quot;E:/Desktop/Projekte/BA/ba_gaida/src/shaders&quot;"/>
+					<Add option="-DRESOURCES_PATH=&quot;E:/Desktop/Projekte/BA/ba_gaida/src/../resources&quot;"/>
+					<Add option="-DGLFW_INCLUDE_GLCOREARB"/>
+					<Add option="-DGLEW_STATIC"/>
+					<Add option="-DGL_DO_NOT_WARN_IF_MULTI_GL_VERSION_HEADERS_INCLUDED"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add option="-DGLM_FORCE_RADIANS"/>
+					<Add directory="C:/dependencies_win32/OpenGL/include"/>
+					<Add directory="C:/dependencies_win32/glfw-3.0.4.bin.WIN32/include"/>
+					<Add directory="C:/dependencies_win32/assimp/include"/>
+					<Add directory="C:/dependencies_win32/glm"/>
+					<Add directory="E:/Desktop/Projekte/BA/ba_gaida/src/libraries"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 Bachelor"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Bachelor/fast">
+				<Option output="E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/bin/Bachelor.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSHADERS_PATH=&quot;E:/Desktop/Projekte/BA/ba_gaida/src/shaders&quot;"/>
+					<Add option="-DRESOURCES_PATH=&quot;E:/Desktop/Projekte/BA/ba_gaida/src/../resources&quot;"/>
+					<Add option="-DGLFW_INCLUDE_GLCOREARB"/>
+					<Add option="-DGLEW_STATIC"/>
+					<Add option="-DGL_DO_NOT_WARN_IF_MULTI_GL_VERSION_HEADERS_INCLUDED"/>
+					<Add option="-DGLEW_NO_GLU"/>
+					<Add option="-DGLM_FORCE_RADIANS"/>
+					<Add directory="C:/dependencies_win32/OpenGL/include"/>
+					<Add directory="C:/dependencies_win32/glfw-3.0.4.bin.WIN32/include"/>
+					<Add directory="C:/dependencies_win32/assimp/include"/>
+					<Add directory="C:/dependencies_win32/glm"/>
+					<Add directory="E:/Desktop/Projekte/BA/ba_gaida/src/libraries"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
+					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 Bachelor/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/Camera.cpp">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/Camera.h">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/CameraTrackball.cpp">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/CameraTrackball.h">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/Engine.cpp">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/Engine.h">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/ParticleSystemParent.cpp">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/ParticleSystemParent.h">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/ParticleSystems/CPU/ParticleSystem_v1.cpp">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/ParticleSystems/CPU/ParticleSystem_v1.h">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/ParticleSystems/GPU/ParticleSystem_v1.cpp">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/ParticleSystems/GPU/ParticleSystem_v1.h">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/Shader.cpp">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/Include/Shader.h">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/main.cpp">
+			<Option target="Bachelor"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/Bachelor/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\executables\Bachelor\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/executables/ba_gaida/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\executables\ba_gaida\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/DefaultExecutable.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/DefaultProject.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/FindASSIMP.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/FindGLEW.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/FindGLFW3.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/FindGLM.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/FindOpenGL3.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/doxygen.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/cmake/macros.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="E:/Desktop/Projekte/BA/ba_gaida/src/shaders/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\shaders\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

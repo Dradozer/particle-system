@@ -1,5 +1,8 @@
 E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/CMakeFiles/edit_cache.dir
 E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir
+E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/CMakeFiles/edit_cache.dir
+E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/Bachelor/CMakeFiles/rebuild_cache.dir
 E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir
 E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/edit_cache.dir
 E:/Desktop/Projekte/BA/ba_gaida/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/rebuild_cache.dir

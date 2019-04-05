@@ -1,0 +1,3 @@
+C:\Users\Dradozer\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\191.6183.77\bin\cmake\win\bin\cmake.exe -E remove -f CMakeFiles\Bachelor.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\Bachelor.dir/objects.a @CMakeFiles\Bachelor.dir\objects1.rsp
+C:\MinGW\bin\g++.exe  -std=c++0x -g   -Wl,--whole-archive CMakeFiles\Bachelor.dir/objects.a -Wl,--no-whole-archive  -o ..\..\bin\Bachelor.exe -Wl,--out-implib,..\..\bin\libBachelor.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Bachelor.dir\linklibs.rsp
