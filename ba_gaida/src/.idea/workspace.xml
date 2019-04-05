@@ -3,7 +3,6 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="ba_gaida" targetName="ba_gaida" />
-      <config projectName="ba_gaida" targetName="CVK_2" />
       <config projectName="ba_gaida" targetName="SHADERS" />
     </generated>
   </component>
@@ -13,7 +12,65 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64991c4f-a01d-4bfe-8ed6-fabe82702352" name="Default Changelist" comment="" />
+    <list default="true" id="64991c4f-a01d-4bfe-8ed6-fabe82702352" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/bin/ba_gaida.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/bin/ba_gaida.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/Box.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/Emitter.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/Meteor.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/Particle.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/ShaderSkybox.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/Skybox.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/Terrain.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/World.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/includes_CXX.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/linklibs.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/main.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/objects.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/objects1.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/ParticleSystem.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/CMakeFiles/progress.marks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/ParticleSystem.cbp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ParticleSystem/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/ParticleSystem.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/ParticleSystem.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/main.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/objects.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/include/ParticleSystem.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/include/Shaders.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/includes_CXX.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/linklibs.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/main.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/objects.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/objects1.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/mayoGPU.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/CMakeFiles/progress.marks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/mayoGPU/mayoGPU.cbp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/main.cpp" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,63 +78,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/../../../Ansim/ParticleSystem2-master/src/executables/ParticleSystem/include/Camera.cpp">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="850">
-                    <caret line="50" column="71" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="71" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/../../../Ansim/ParticleSystem2-master/src/executables/ParticleSystem/include/Camera.h">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="51">
-                    <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-                    <folding>
-                      <element signature="e#179#196#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/../../../Ansim/ParticleSystem2-master/src/executables/ParticleSystem/include/ParticleSystem.h">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="307">
-                    <caret line="44" column="56" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/../../../Ansim/ParticleSystem2-master/src/executables/ParticleSystem/include/ParticleSystem.cpp">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="34">
-                    <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="331">
+              <caret line="140" column="51" selection-start-line="140" selection-start-column="51" selection-end-line="140" selection-end-column="51" />
               <folding>
                 <element signature="e#45#64#0" expanded="true" />
               </folding>
@@ -88,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2006">
-              <caret line="118" selection-start-line="118" selection-end-line="118" />
+            <state relative-caret-position="340">
+              <caret line="20" column="90" selection-start-line="20" selection-start-column="90" selection-end-line="20" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -97,10 +105,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="391">
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
               <folding>
-                <element signature="e#113#133#0" expanded="true" />
+                <element signature="e#393#623#0" />
+                <element signature="e#753#879#0" />
+                <element signature="e#933#1026#0" />
               </folding>
             </state>
           </provider>
@@ -109,7 +119,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="255">
               <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
               <folding>
                 <element signature="e#98#115#0" expanded="true" />
@@ -135,9 +145,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
               <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-              <folding>
-                <element signature="e#243#255#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -145,13 +152,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+            <state relative-caret-position="102">
+              <caret line="27" column="57" lean-forward="true" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>clear</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -163,22 +178,23 @@
         <option value="$PROJECT_DIR$/cmake/DefaultExecutable.cmake" />
         <option value="$PROJECT_DIR$/shaders/Projekt4/vertexShader.glsl" />
         <option value="$PROJECT_DIR$/shaders/Projekt4/fragmentShader.glsl" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/main.cpp" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.h" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/main.cpp" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="299" />
+    <option name="y" value="-15" />
     <option name="width" value="1400" />
     <option name="height" value="970" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -219,6 +235,12 @@
               <item name="ParticleSystem2-master" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="shaders" type="462c0819:PsiDirectoryNode" />
+              <item name="ParticleSystem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ParticleSystem2-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="shaders" type="462c0819:PsiDirectoryNode" />
               <item name="Projekt4" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -233,6 +255,11 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Desktop\Projekte\BA\ba_gaida\src\executables\ba_gaida\include" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -284,11 +311,16 @@
       <workItem from="1554289818820" duration="3076000" />
       <workItem from="1554461284617" duration="2494000" />
       <workItem from="1554463839551" duration="9313000" />
+      <workItem from="1554475241589" duration="161000" />
+      <workItem from="1554477728626" duration="1024000" />
+      <workItem from="1554478764544" duration="203000" />
+      <workItem from="1554479380774" duration="940000" />
+      <workItem from="1554480357410" duration="926000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16676000" />
+    <option name="totallyTimeSpent" value="19930000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -303,7 +335,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15724947" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18976545" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -314,11 +346,11 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32827735" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.33044422" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.34127843" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -332,20 +364,8 @@
     <entry file="file://$PROJECT_DIR$/executables/ParticleSystem/main.cpp" />
     <entry file="file://$PROJECT_DIR$/executables/ParticleSystem/World.cpp" />
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Shaders.cpp" />
-    <entry file="file://$PROJECT_DIR$/shaders/Projekt4/computeShaderPressure.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="66" column="24" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/CVK_2/CVK_Camera.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/Projekt4/computeShaderPressure.glsl" />
+    <entry file="file://$PROJECT_DIR$/libraries/CVK_2/CVK_Camera.h" />
     <entry file="file://$PROJECT_DIR$/cmake/Doxyfile.in">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -360,13 +380,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shaders/Projekt4/computeShaderAdvect.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="19" lean-forward="true" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/Projekt4/computeShaderAdvect.glsl" />
     <entry file="file://$PROJECT_DIR$/shaders/Projekt4/vertexShader.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -378,6 +392,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Ansim/ParticleSystem2-master/src/executables/ParticleSystem/include/Camera.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="71" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="71" />
         </state>
       </provider>
     </entry>
@@ -393,15 +414,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../Ansim/ParticleSystem2-master/src/executables/ParticleSystem/include/ParticleSystem.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
+        <state relative-caret-position="748">
           <caret line="44" column="56" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../Ansim/ParticleSystem2-master/src/executables/ParticleSystem/include/Camera.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="71" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="71" />
         </state>
       </provider>
     </entry>
@@ -412,19 +426,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
+    <entry file="file://$PROJECT_DIR$/shaders/ParticleSystem/fragmentShader.glsl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/ParticleSystem/vertexShader.glsl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Ansim/PascalsPartikelsystem/src/libraries/CVK_2/CVK_Camera.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        <state relative-caret-position="-579" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Ansim/PascalsPartikelsystem/src/libraries/CVK_2/CVK_Cube.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1429" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Ansim/PascalsPartikelsystem/src/libraries/CVK_2/CVK_Trackball.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1276" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Ansim/PascalsPartikelsystem/src/libraries/CVK_2/CVK_Trackball.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" selection-start-line="16" selection-end-line="21" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h">
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imconfig.h" />
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui_impl_glfw.cpp" />
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="255">
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
           <folding>
-            <element signature="e#113#133#0" expanded="true" />
+            <element signature="e#98#115#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -443,33 +480,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-          <folding>
-            <element signature="e#243#255#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-          <folding>
-            <element signature="e#98#115#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2006">
-          <caret line="118" selection-start-line="118" selection-end-line="118" />
+        <state relative-caret-position="340">
+          <caret line="20" column="90" selection-start-line="20" selection-start-column="90" selection-end-line="20" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="27" column="57" lean-forward="true" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#393#623#0" />
+            <element signature="e#753#879#0" />
+            <element signature="e#933#1026#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="331">
+          <caret line="140" column="51" selection-start-line="140" selection-start-column="51" selection-end-line="140" selection-end-column="51" />
           <folding>
             <element signature="e#45#64#0" expanded="true" />
           </folding>

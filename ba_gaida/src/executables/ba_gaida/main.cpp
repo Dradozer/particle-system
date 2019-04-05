@@ -10,6 +10,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+
 #include "include/FpsCounter.h"
 #include "include/ParticleSystem.h"
 
@@ -106,7 +107,6 @@ void handleInput(GLFWwindow *w, float deltaTime)
 
 int main()
 {
-
     glfwInit();
     window = glfwCreateWindow(WIDTH, HEIGTH, Title, 0, 0);
 
@@ -138,12 +138,13 @@ int main()
     ba_gaida::Camera camera = ba_gaida::Camera(glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f),
                                                glm::vec3(0.0f, 5.0f, 0.0f), WIDTH, HEIGTH);
     particleSystem = new ba_gaida::ParticleSystem(window, particleCount, &camera);
-    glClearColor(1.f, 1.f, 1.f, 0.f);
+    glClearColor(135/255.f, 206/255.f, 235/255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
 
     double time = glfwGetTime();
     while (!glfwWindowShouldClose(window))
     {
+
         double deltaTime = glfwGetTime() - time;
         time = glfwGetTime();
         ba_gaida::FpsCounter::update(deltaTime);

@@ -1,3 +1,0 @@
-C:\Users\Dradozer\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\183.5429.37\bin\cmake\win\bin\cmake.exe -E remove -f CMakeFiles\ParticleSystem.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\ParticleSystem.dir/objects.a @CMakeFiles\ParticleSystem.dir\objects1.rsp
-C:\MinGW\bin\g++.exe  -std=c++0x -g   -Wl,--whole-archive CMakeFiles\ParticleSystem.dir/objects.a -Wl,--no-whole-archive  -o ..\..\bin\ParticleSystem.exe -Wl,--out-implib,..\..\bin\libParticleSystem.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\ParticleSystem.dir\linklibs.rsp

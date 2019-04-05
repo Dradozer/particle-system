@@ -25,7 +25,7 @@ void ba_gaida::ParticleSystem::render(GLFWwindow *window)
 {
     //todo überarbeiten
 
-//    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 //    glUseProgram(m_rID);
 //
 //    glUniform3fv(m_uniform_camPos, 1, glm::value_ptr(m_camera->getCameraPos()));
@@ -42,10 +42,10 @@ void ba_gaida::ParticleSystem::render(GLFWwindow *window)
 //
 //
 //    glDrawArrays(GL_POINTS, 0, m_particleCount);
-//
-//    glUseProgram(0);
-//
-//    glfwSwapBuffers(window);
+
+    glUseProgram(0);
+
+    glfwSwapBuffers(window);
 
 }
 

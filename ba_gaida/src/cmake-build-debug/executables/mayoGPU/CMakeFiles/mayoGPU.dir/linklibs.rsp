@@ -1,1 +1,0 @@
-../../lib/libCVK_2.a C:/dependencies_win32/glfw-3.0.4.bin.WIN32/lib-mingw/libglfw3.a C:/dependencies_win32/assimp/libMinGW/libassimp.dll C:/dependencies_win32/OpenGL/lib/glew32s.lib -lOpenGL32 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

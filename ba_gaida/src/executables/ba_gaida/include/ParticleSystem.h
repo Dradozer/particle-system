@@ -20,13 +20,26 @@ namespace ba_gaida
         int m_particleCount;
         Camera *m_camera;
         float m_Boxsize;
+        /**
+        * Constructor of the ParticleSystem
+        * @param window The window of the ParticleSystem
+        * @param particleCount The number of the initial particle
+        * @param camera The corresponding camera
+        */
 
         ParticleSystem(const GLFWwindow *window, const int particleCount, Camera *camera);
 
         ~ParticleSystem();
 
+        /**
+         * Updates the ComputeShader of ParticleSystem
+         * @param deltaTime The time used for the frame
+         */
         void update(const double deltaTime);
-
+        /**
+         * Renderer the result
+         * @param window Render in this window
+         */
         void render(GLFWwindow *window);
 
         void setVariables(const int index, float value);

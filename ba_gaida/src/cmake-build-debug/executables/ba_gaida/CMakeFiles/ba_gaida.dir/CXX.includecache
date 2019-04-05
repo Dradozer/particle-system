@@ -784,10 +784,6 @@ C:/dependencies_win32/glm/glm/vector_relational.hpp
 detail/func_vector_relational.hpp
 C:/dependencies_win32/glm/glm/detail/func_vector_relational.hpp
 
-E:/Desktop/Projekte/BA/ba_gaida/src/executables/ba_gaida/include/Camera.cpp
-Camera.h
-E:/Desktop/Projekte/BA/ba_gaida/src/executables/ba_gaida/include/Camera.h
-
 E:/Desktop/Projekte/BA/ba_gaida/src/executables/ba_gaida/include/Camera.h
 math.h
 -
@@ -802,10 +798,6 @@ glm/gtc/matrix_transform.hpp
 glm/gtc/type_ptr.hpp
 -
 
-E:/Desktop/Projekte/BA/ba_gaida/src/executables/ba_gaida/include/FpsCounter.cpp
-FpsCounter.h
-E:/Desktop/Projekte/BA/ba_gaida/src/executables/ba_gaida/include/FpsCounter.h
-
 E:/Desktop/Projekte/BA/ba_gaida/src/executables/ba_gaida/include/FpsCounter.h
 time.h
 -
@@ -819,10 +811,6 @@ GL/glew.h
 -
 GLFW/glfw3.h
 -
-
-E:/Desktop/Projekte/BA/ba_gaida/src/executables/ba_gaida/include/ParticleSystem.cpp
-ParticleSystem.h
-E:/Desktop/Projekte/BA/ba_gaida/src/executables/ba_gaida/include/ParticleSystem.h
 
 E:/Desktop/Projekte/BA/ba_gaida/src/executables/ba_gaida/include/ParticleSystem.h
 GL/glew.h
