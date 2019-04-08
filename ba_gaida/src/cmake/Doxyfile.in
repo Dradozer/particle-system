@@ -576,8 +576,8 @@ SORT_BY_SCOPE_NAME     = NO
 STRICT_PROTO_MATCHING  = NO
 
 # The GENERATE_TODOLIST tag can be used to enable ( YES) or disable ( NO) the
-# todo list. This list is created by putting \todo commands in the
-# documentation.
+# todolist. This list is created by putting \todocommands in the
+# documentation. There is a spacebar needed, but it would cause a record in the list.
 # The default value is: YES.
 
 GENERATE_TODOLIST      = YES

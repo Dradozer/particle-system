@@ -3,13 +3,13 @@
 //
 
 #include <iostream>
+#include <stdio.h>
 #include <GL/glew.h>
 #include <string.h>
 #include <sstream>
 #include <GL/wglew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
-
 
 #include "include/FpsCounter.h"
 #include "include/ParticleSystem.h"
@@ -141,13 +141,12 @@ int main()
     glClearColor(135/255.f, 206/255.f, 235/255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
 
+
     double time = glfwGetTime();
     while (!glfwWindowShouldClose(window))
     {
-
         double deltaTime = glfwGetTime() - time;
         time = glfwGetTime();
-        ba_gaida::FpsCounter::update(deltaTime);
 
         particleSystem->update(deltaTime);
 
@@ -156,8 +155,11 @@ int main()
         particleSystem->m_camera->update(window, 0);
         particleSystem->render(window);
 
+        ba_gaida::FpsCounter::update(deltaTime);
+
         glfwPollEvents();
     }
+    //CleanUp
 
     glfwDestroyWindow(window);
     glfwTerminate();
