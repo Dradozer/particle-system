@@ -2,9 +2,8 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="ba_gaida" targetName="Bachelor" />
-      <config projectName="ba_gaida" targetName="ba_gaida" />
       <config projectName="ba_gaida" targetName="SHADERS" />
+      <config projectName="ba_gaida" targetName="ba_gaida" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -14,132 +13,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64991c4f-a01d-4bfe-8ed6-fabe82702352" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/ba_gaida.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/ba_gaida.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Dradozer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Dradozer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeRCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.4/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.4/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.4/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.4/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.4/CMakeRCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.4/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.4/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.13.4/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/Makefile2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/feature_tests.cxx.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/linklibs.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/objects.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/objects1.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeTmp/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ParticleSystem2-master.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/PascalsPartikelsystem.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ba_gaida.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/bin/ba_gaida.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/bin/libassimp.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/Bachelor.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/CXX.includecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/Camera.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/CameraTrackball.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/Engine.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/ParticleSystemParent.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/ParticleSystems/CPU/ParticleSystem_v1.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/ParticleSystems/GPU/ParticleSystem_v1.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/Shader.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/includes_CXX.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/linklibs.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/main.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/objects.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/objects1.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/Bachelor/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/CXX.includecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/Camera.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/FpsCounter.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/ParticleSystem.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/includes_CXX.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/linklibs.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/main.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/objects.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/objects1.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/executables/ba_gaida/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/CMakeFiles/SHADERS.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/CMakeFiles/SHADERS.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/CMakeFiles/SHADERS.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/CMakeFiles/SHADERS.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/SHADERS.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake/Doxyfile.in" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/Doxyfile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/Camera.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/Camera.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/CameraTrackball.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/CameraTrackball.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/Engine.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/Engine.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/ParticleSystemParent.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/ParticleSystemParent.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/ParticleSystems/CPU/ParticleSystem_v1.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/ParticleSystems/CPU/ParticleSystem_v1.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/ParticleSystems/GPU/ParticleSystem_v1.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/ParticleSystems/GPU/ParticleSystem_v1.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/Shader.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/Include/Shader.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/dependencies.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/Bachelor/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/executables/ba_gaida/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shaders/ParticleSystem/fragmentShader.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shaders/ParticleSystem/vertexShader.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shaders/Bachelor/fragmentShader.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shaders/Bachelor/vertexShader.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shaders/Projekt4/fragmentShader.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shaders/Projekt4/vertexShader.glsl" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -158,26 +59,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+            <state relative-caret-position="2448">
+              <caret line="144" column="46" selection-start-line="144" selection-start-column="46" selection-end-line="144" selection-end-column="46" />
+              <folding>
+                <element signature="e#45#64#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="90" selection-start-line="20" selection-start-column="90" selection-end-line="20" selection-end-column="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+            <state relative-caret-position="408">
+              <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
               <folding>
                 <element signature="e#114#134#0" expanded="true" />
               </folding>
@@ -186,10 +81,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+            <state relative-caret-position="459">
+              <caret line="27" column="88" selection-start-line="27" selection-start-column="88" selection-end-line="27" selection-end-column="88" />
               <folding>
                 <element signature="e#98#115#0" expanded="true" />
               </folding>
@@ -197,11 +101,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="472">
+              <caret line="29" column="21" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+            <state relative-caret-position="68">
+              <caret line="4" column="16" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -216,10 +129,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
+        <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Shader.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+            <state relative-caret-position="323">
+              <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Shader.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="21" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -249,23 +171,29 @@
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" />
         <option value="$PROJECT_DIR$/executables/Bachelor/Include/Engine.cpp" />
         <option value="$PROJECT_DIR$/cmake/Doxyfile.in" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/main.cpp" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ConsoleColor.h" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Shader.cpp" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Shader.h" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/main.cpp" />
+        <option value="$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="564" />
-    <option name="y" value="-13" />
-    <option name="width" value="1400" />
-    <option name="height" value="970" />
+    <option name="x" value="464" />
+    <option name="y" value="-8" />
+    <option name="width" value="974" />
+    <option name="height" value="1017" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -275,31 +203,26 @@
         <subPane>
           <expand>
             <path>
-              <item name="ParticleSystem2-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ParticleSystem2-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="executables" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ParticleSystem2-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="executables" type="462c0819:PsiDirectoryNode" />
               <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ParticleSystem2-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="executables" type="462c0819:PsiDirectoryNode" />
               <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
               <item name="include" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ParticleSystem2-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="shaders" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -322,6 +245,9 @@
       <recent name="E:\Desktop\Projekte\BA\ba_gaida\src\libraries" />
       <recent name="E:\Desktop\Projekte\BA\ba_gaida\src\executables\ba_gaida\include" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Desktop\Projekte\BA\ba_gaida\src\shaders\ba_gaida" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -336,11 +262,6 @@
     </option>
   </component>
   <component name="RunManager" selected="CMake Application.ba_gaida">
-    <configuration name="Bachelor" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ba_gaida" TARGET_NAME="Bachelor" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ba_gaida" RUN_TARGET_NAME="Bachelor">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SHADERS" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ba_gaida" TARGET_NAME="SHADERS" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -352,7 +273,6 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="CMake Application.Bachelor" />
       <item itemvalue="CMake Application.SHADERS" />
       <item itemvalue="CMake Application.ba_gaida" />
     </list>
@@ -398,11 +318,25 @@
       <workItem from="1554643278809" duration="970000" />
       <workItem from="1554655132337" duration="435000" />
       <workItem from="1554714082339" duration="55000" />
+      <workItem from="1554737199613" duration="32000" />
+      <workItem from="1554738005061" duration="2459000" />
+      <workItem from="1554807159067" duration="57000" />
+      <workItem from="1554807228393" duration="23000" />
+      <workItem from="1554807329650" duration="646000" />
+      <workItem from="1554814486409" duration="2130000" />
+      <workItem from="1554823961729" duration="161000" />
+      <workItem from="1554900566204" duration="373000" />
+      <workItem from="1554901457517" duration="1007000" />
+      <workItem from="1554905531857" duration="2861000" />
+      <workItem from="1554908454941" duration="1238000" />
+      <workItem from="1554909729071" duration="27000" />
+      <workItem from="1554909825477" duration="12000" />
+      <workItem from="1554909846090" duration="2000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26531000" />
+    <option name="totallyTimeSpent" value="37559000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -415,13 +349,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2196162" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25479743" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32922733" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32827735" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.1971831" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -432,7 +365,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.34019503" />
+      <window_info active="true" anchor="bottom" id="CMake" order="12" visible="true" weight="0.34019503" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -456,20 +389,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shaders/Projekt4/computeShaderAdvect.glsl" />
-    <entry file="file://$PROJECT_DIR$/shaders/Projekt4/vertexShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shaders/Projekt4/fragmentShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/Projekt4/vertexShader.glsl" />
+    <entry file="file://$PROJECT_DIR$/shaders/Projekt4/fragmentShader.glsl" />
     <entry file="file://$PROJECT_DIR$/../../../Ansim/ParticleSystem2-master/src/executables/ParticleSystem/include/Camera.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
@@ -533,53 +454,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/Bachelor/Include/Engine.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/Bachelor/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shaders/Bachelor/vertexShader.glsl">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/Bachelor/Include/Engine.cpp" />
+    <entry file="file://$PROJECT_DIR$/executables/Bachelor/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/shaders/Bachelor/vertexShader.glsl" />
     <entry file="file://$PROJECT_DIR$/libraries/imgui/imconfig.h" />
     <entry file="file://$PROJECT_DIR$/libraries/imgui/imgui.cpp" />
     <entry file="file://$PROJECT_DIR$/libraries/imgui/imgui.h" />
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="90" selection-start-line="20" selection-start-column="90" selection-end-line="20" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shaders/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.h">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="50" lean-forward="true" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Sphere/CVK_Defs.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Sphere/CVK_Geometry.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/Bachelor/fragmentShader.glsl" />
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Sphere/CVK_Sphere.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="14" column="44" lean-forward="true" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/vertexShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ConsoleColor.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2448">
+          <caret line="144" column="46" selection-start-line="144" selection-start-column="46" selection-end-line="144" selection-end-column="46" />
+          <folding>
+            <element signature="e#45#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding>
+            <element signature="e#114#134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="88" selection-start-line="27" selection-start-column="88" selection-end-line="27" selection-end-column="88" />
           <folding>
             <element signature="e#98#115#0" expanded="true" />
           </folding>
@@ -588,8 +547,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        <state relative-caret-position="68">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -600,27 +559,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Shader.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+        <state relative-caret-position="323">
+          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Shader.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="50" lean-forward="true" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
+        <state relative-caret-position="357">
+          <caret line="21" column="21" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h">
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-          <folding>
-            <element signature="e#114#134#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="472">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="21" />
         </state>
       </provider>
     </entry>

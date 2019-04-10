@@ -13,9 +13,10 @@
 
 #include "include/FpsCounter.h"
 #include "include/ParticleSystem.h"
+#include "include/Sphere/CVK_Sphere.h"
 
-//particleCount should  be a multiple of 128, because of better performance
-#define particleCount 8192
+//particleCount is multiplied by 128, keep it between 64 and 256 for now
+#define particleCount   64
 
 #define WIDTH 1024
 #define HEIGTH 768
@@ -138,8 +139,10 @@ int main()
     ba_gaida::Camera camera = ba_gaida::Camera(glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f),
                                                glm::vec3(0.0f, 5.0f, 0.0f), WIDTH, HEIGTH);
     particleSystem = new ba_gaida::ParticleSystem(window, particleCount, &camera);
-    glClearColor(135/255.f, 206/255.f, 235/255.f, 0.f);
+    glClearColor(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
+
+    CVK::Sphere(glm::vec3(0.0f, 2.0f, 0.0f), 1.f);
 
 
     double time = glfwGetTime();

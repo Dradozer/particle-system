@@ -11,6 +11,7 @@
 #include <iostream>
 #include <time.h>
 #include "Camera.h"
+#include "Shader.h"
 
 namespace ba_gaida
 {
@@ -20,6 +21,12 @@ namespace ba_gaida
         int m_particleCount;
         Camera *m_camera;
         float m_Boxsize;
+
+        GLuint m_renderID;
+        GLuint m_uniform_viewM;
+        GLuint m_uniform_projM;
+        GLuint m_uniform_camPos;
+
         /**
         * Constructor of the ParticleSystem
         * @param window The window of the ParticleSystem
@@ -36,6 +43,7 @@ namespace ba_gaida
          * @param deltaTime The time used for the frame
          */
         void update(const double deltaTime);
+
         /**
          * Renderer the result
          * @param window Render in this window

@@ -1,7 +1,5 @@
 ## Generated Executables
 *.exe
 ## ignore Build
-BA\ba_gaida\src\**[Bb]uild**
-BA\ba_gaida\src\cmake-build-debug*
-
+ba_gaida/src/cmake-build-debug
 ba_gaida/src/build/

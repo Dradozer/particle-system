@@ -10,76 +10,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9e2b760-0123-4e1e-8b2e-866a4a7e9f91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ba_gaida.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ba_gaida.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/dictionaries/Dradozer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/dictionaries/Dradozer.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.2/CMakeRCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.4/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.4/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.4/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.4/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.4/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/3.13.4/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/Makefile2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/feature_tests.cxx.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/linklibs.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/objects.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/objects1.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_017c5.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/CMakeTmp/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/ParticleSystem2-master.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/PascalsPartikelsystem.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/ba_gaida.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/ba_gaida.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/bin/ba_gaida.exe" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/bin/ba_gaida.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/Camera.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/CameraTrackball.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/Engine.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/ParticleSystemParent.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/ParticleSystems/CPU/ParticleSystem_v1.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/ParticleSystems/GPU/ParticleSystem_v1.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/Include/Shader.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/main.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/executables/Bachelor/CMakeFiles/Bachelor.dir/objects.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/Camera.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/Camera.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/FpsCounter.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/FpsCounter.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/ParticleSystem.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/include/ParticleSystem.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/main.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/executables/ba_gaida/CMakeFiles/ba_gaida.dir/objects.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/shaders/SHADERS.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/shaders/SHADERS.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake/Doxyfile.in" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake/Doxyfile.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Camera.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Camera.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/CameraTrackball.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/CameraTrackball.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Engine.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Engine.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystemParent.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystemParent.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystems/CPU/ParticleSystem_v1.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystems/CPU/ParticleSystem_v1.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystems/GPU/ParticleSystem_v1.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystems/GPU/ParticleSystem_v1.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Shader.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Shader.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/dependencies.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/ba_gaida/include/ParticleSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/executables/ba_gaida/include/ParticleSystem.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/ba_gaida/include/ParticleSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/executables/ba_gaida/include/ParticleSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/executables/ba_gaida/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/executables/ba_gaida/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shaders/ParticleSystem/fragmentShader.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shaders/ParticleSystem/vertexShader.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shaders/Bachelor/fragmentShader.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shaders/Bachelor/vertexShader.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shaders/Projekt4/fragmentShader.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shaders/Projekt4/vertexShader.glsl" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +47,19 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/executables/ba_gaida/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#45#64#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -134,6 +102,27 @@
               <item name="executables" type="462c0819:PsiDirectoryNode" />
               <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="executables" type="462c0819:PsiDirectoryNode" />
+              <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="shaders" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="shaders" type="462c0819:PsiDirectoryNode" />
+              <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -171,16 +160,17 @@
       <updated>1554713990105</updated>
       <workItem from="1554713992076" duration="40000" />
       <workItem from="1554714048352" duration="32000" />
+      <workItem from="1554908396601" duration="57000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72000" />
+    <option name="totallyTimeSpent" value="129000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -206,6 +196,15 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/executables/ba_gaida/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#45#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
