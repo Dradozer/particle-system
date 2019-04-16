@@ -72,8 +72,8 @@ void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods
 void handleInput(GLFWwindow *w, float deltaTime)
 {
     // normal WASD-movement in scene
-    glm::vec3 cameraPos = particleSystem->m_camera->getCamPos();
-    glm::vec3 cameraCenter = particleSystem->m_camera->getCenter();
+    glm::vec3 cameraPos = particleSystem->m_camera->getCameraPos();
+    glm::vec3 cameraCenter = particleSystem->m_camera->getCameraCenter();
     glm::vec3 dir = glm::normalize(cameraCenter - cameraPos);
     if (glfwGetKey(w, GLFW_KEY_W) == GLFW_PRESS)
     {
@@ -91,11 +91,7 @@ void handleInput(GLFWwindow *w, float deltaTime)
     {
         cameraCenter += glm::vec3(0.0f, -1.0f, 0.0f) * deltaTime * 2.0f;
     }
-    if (glfwGetKey(w, GLFW_KEY_R) == GLFW_PRESS)
-    {
-        cameraCenter = glm::vec3(0.0f);
-    }
-    particleSystem->m_camera->setCamPos(cameraCenter);
+    particleSystem->m_camera->setCenter(cameraCenter);
 
 //	double mX, mY;
 //	glfwGetCursorPos(w, &mX, &mY);
@@ -160,7 +156,7 @@ int main()
 
         handleInput(window, deltaTime);
 
-        particleSystem->m_camera->update(window, 0, deltaTime);
+        particleSystem->m_camera->update(window, 0);
         particleSystem->render(window);
 
         ba_gaida::FpsCounter::update(deltaTime);

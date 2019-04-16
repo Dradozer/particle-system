@@ -17,6 +17,7 @@ namespace ba_gaida
     class Camera
     {
     public:
+
         Camera(glm::vec3 center, glm::vec3 up, glm::vec3 camPos, int width, int height);
 
         ~Camera();
@@ -41,15 +42,19 @@ namespace ba_gaida
 
         void setCenter(const glm::vec3 &m_center);
 
+        const glm::vec3 &getUp() const;
+
 
     private:
         float m_sensitivity;
         float m_theta, m_phi;
         float m_oldX, m_oldY;
+        float m_radius;
 
         glm::vec3 m_cameraPos;
         glm::vec3 m_center;
         glm::vec3 m_up;
+
 
         glm::mat4 m_viewMatrix;
         glm::mat4 m_projectionMatrix;

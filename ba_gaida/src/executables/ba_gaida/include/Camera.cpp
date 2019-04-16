@@ -13,6 +13,7 @@ ba_gaida::Camera::Camera(glm::vec3 center, glm::vec3 up, glm::vec3 camPos, int w
     m_sensitivity = 0.01f;
     m_theta = glm::pi<float>() / 2.0f;
     m_phi = 0.f;
+    m_radius = 1.5;
 
     m_oldX = width / 2.f;
     m_oldY = height / 2.f;
@@ -34,38 +35,26 @@ void ba_gaida::Camera::update(GLFWwindow *window, GLuint uniform)
     glfwGetCursorPos(window, &x, &y);
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
     {
-        float changeX = ((float) x - m_oldX * m_sensitivity);
-        float changeY = ((float) y - m_oldY * m_sensitivity);
-
-        m_phi -= changeX;
-        if (m_phi < 0.f)
-        {
-            m_phi += 2 * glm::pi<float>();
-        } else if (m_phi > 2 * glm::pi<float>())
-        {
-            m_phi -= 2 * glm::pi<float>();
-        }
+        float changeX = ((float) x - m_oldX) * m_sensitivity;
+        float changeY = ((float) y - m_oldY) * m_sensitivity;
 
         m_theta -= changeY;
-        if (m_theta < 0.01f)
-        {
-            m_theta = 0.01f;
-        } else if (m_theta > glm::pi<float>() - 0.01f)
-        {
-            m_theta = glm::pi<float>() - 0.01f;
-        }
+        if (m_theta < 0.01f) m_theta = 0.01f;
+        else if (m_theta > glm::pi<float>() - 0.01f) m_theta = glm::pi<float>() - 0.01f;
+
+        m_phi -= changeX;
+        if (m_phi < 0) m_phi += 2*glm::pi<float>();
+        else if (m_phi > 2*glm::pi<float>()) m_phi -= 2*glm::pi<float>();
     }
 
     m_oldX = (float) x;
     m_oldY = (float) y;
 
-    m_cameraPos.x = m_center.x + sin(m_theta) * sin(m_phi);
-    m_cameraPos.y = m_center.y + cos(m_theta);
-    m_cameraPos.z = m_center.z + sin(m_theta) * cos(m_phi);
+    m_cameraPos.x = m_center.x + m_radius * sin(m_theta) * sin(m_phi);
+    m_cameraPos.y = m_center.y + m_radius * cos(m_theta);
+    m_cameraPos.z = m_center.z + m_radius * sin(m_theta) * cos(m_phi);
 
-    m_viewMatrix = glm::lookAt(m_cameraPos, m_center, m_up);
-    m_viewProjMatrix = m_projectionMatrix * m_viewMatrix;
-    glUniformMatrix4fv(uniform, 1, GL_FALSE, glm::value_ptr(m_viewProjMatrix));
+    m_viewMatrix = glm::lookAt( m_cameraPos, m_center, m_up);
 }
 
 void ba_gaida::Camera::lookAt(glm::vec3 center, glm::vec3 up, glm::vec3 camPos)
@@ -119,3 +108,9 @@ void ba_gaida::Camera::setCenter(const glm::vec3 &m_center)
 {
     Camera::m_center = m_center;
 }
+
+const glm::vec3 &ba_gaida::Camera::getUp() const
+{
+    return m_up;
+}
+

@@ -58,7 +58,7 @@ void ba_gaida::ParticleSystem::render(GLFWwindow *window)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(m_renderID);
 
-    glUniform3fv(m_uniform_camPos, 1, glm::value_ptr(m_camera->getCenter()));
+    glUniform3fv(m_uniform_camPos, 1, glm::value_ptr(m_camera->getCameraCenter()));
     glUniformMatrix4fv(m_uniform_viewM, 1, GL_FALSE, glm::value_ptr(m_camera->getViewMatrix()));
     glUniformMatrix4fv(m_uniform_projM, 1, GL_FALSE, glm::value_ptr(m_camera->getProjectionMatrix()));
 
