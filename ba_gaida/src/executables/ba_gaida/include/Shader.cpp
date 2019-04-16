@@ -37,10 +37,10 @@ GLuint ba_gaida::Shader::loadShader(GLenum type, const char *path)
             fileContent += line + "\n";
         }
         file.close();
-        std::cout << green << "Successfully loaded: " << path << white << std::endl;
+        std::cout << green << "Successfully loaded:\t" << path << white << std::endl;
     } else
     {
-        std::cout << red << "ERROR: Loading-Error with " << path << white << std::endl;
+        std::cout << red << "ERROR:\tLoading-Error with " << path << white << std::endl;
     }
     const char *source = fileContent.c_str();
     const GLint sourceSize = strlen(source);
@@ -64,14 +64,14 @@ void ba_gaida::Shader::validateShader(GLuint shader, const char *path)
         GLchar *strLog = new GLchar[logLength + 1];
         glGetShaderInfoLog(shader, logLength, NULL, strLog);
 
-        std::cout << red << "ERROR: Compile-Error with " << path << white << std::endl;
+        std::cout << red << "ERROR:\tCompile-Error with " << path << white << std::endl;
         std::cout << red << strLog << white << std::endl;
 
         delete[] strLog;
 
     } else if (status == GL_TRUE)
     {
-        std::cout << green << "Successfully compiled: " << path << white << std::endl;
+        std::cout << green << "Successfully compiled:\t" << path << white << std::endl;
     }
 }
 
@@ -87,7 +87,7 @@ void ba_gaida::Shader::validateProgram(GLuint program)
         GLchar *strLog = new GLchar[logLength + 1];
         glGetProgramInfoLog(program, logLength, NULL, strLog);
 
-        std::cout << red << "ERROR: Linking-Error" << white << std::endl;
+        std::cout << red << "ERROR:\tLinking-Error" << white << std::endl;
         std::cout << red << strLog << white << std::endl;
 
         delete[] strLog;
@@ -102,16 +102,16 @@ void ba_gaida::Shader::deleteShader(GLuint program)
 {
     GLint shaderCount = 0;
     glGetProgramiv(program, GL_ATTACHED_SHADERS, &shaderCount);
-
     if (shaderCount != 0)
     {
         GLuint *shader = new GLuint[shaderCount];
         glGetAttachedShaders(program, shaderCount, NULL, shader);
         for(int i = 0; i < shaderCount; i++)
         {
-            deleteShader(shader[i]);
+            glDeleteShader(shader[i]);
         }
         delete [] shader;
+        glDeleteProgram(program);
     }
     glGetError();
 }

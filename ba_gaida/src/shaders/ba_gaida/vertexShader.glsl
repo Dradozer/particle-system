@@ -1,4 +1,4 @@
-#version 430
+#version 450
 
 in layout (location = 0) vec4 position; 
 in layout (location = 1) vec4 velocity;

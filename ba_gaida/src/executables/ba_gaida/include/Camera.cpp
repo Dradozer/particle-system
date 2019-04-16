@@ -32,7 +32,7 @@ void ba_gaida::Camera::update(GLFWwindow *window, GLuint uniform)
     double x, y;
 
     glfwGetCursorPos(window, &x, &y);
-    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
+    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
     {
         float changeX = ((float) x - m_oldX * m_sensitivity);
         float changeY = ((float) y - m_oldY * m_sensitivity);

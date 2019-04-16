@@ -13,10 +13,11 @@
 
 #include "include/FpsCounter.h"
 #include "include/ParticleSystem.h"
-#include "include/Sphere/CVK_Sphere.h"
+#include "include/Objects/CVK_Sphere.h"
+#include "include/Objects/CVK_Cube.h"
 
 //particleCount is multiplied by 128, keep it between 64 and 256 for now
-#define particleCount   64
+#define particleCount   1
 
 #define WIDTH 1024
 #define HEIGTH 768
@@ -108,7 +109,13 @@ void handleInput(GLFWwindow *w, float deltaTime)
 
 int main()
 {
-    glfwInit();
+    if (!glfwInit())
+    {
+        std::cout << "Could not initialize GLFW!" << std::endl;
+    } else
+    {
+        std::cout << "GLFW  initialized" << std::endl;
+    }
     window = glfwCreateWindow(WIDTH, HEIGTH, Title, 0, 0);
 
     glfwSetWindowPos(window, 100, 50);
@@ -117,10 +124,10 @@ int main()
     glfwSetKeyCallback(window, keyCallback);
     glewInit();
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 5);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-    //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     glewExperimental = GL_TRUE;
 
@@ -138,12 +145,10 @@ int main()
     ba_gaida::FpsCounter::m_title = Title;
     ba_gaida::Camera camera = ba_gaida::Camera(glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f),
                                                glm::vec3(0.0f, 5.0f, 0.0f), WIDTH, HEIGTH);
-    particleSystem = new ba_gaida::ParticleSystem(window, particleCount, &camera);
+    srand(time(0));
+    particleSystem = new ba_gaida::ParticleSystem(window, particleCount, &camera, glm::uvec3(3));
     glClearColor(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
-
-    CVK::Sphere(glm::vec3(0.0f, 2.0f, 0.0f), 1.f);
-
 
     double time = glfwGetTime();
     while (!glfwWindowShouldClose(window))
@@ -163,7 +168,6 @@ int main()
         glfwPollEvents();
     }
     //CleanUp
-
     glfwDestroyWindow(window);
     glfwTerminate();
 

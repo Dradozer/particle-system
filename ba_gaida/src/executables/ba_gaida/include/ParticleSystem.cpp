@@ -4,10 +4,11 @@
 
 #include "ParticleSystem.h"
 
-ba_gaida::ParticleSystem::ParticleSystem(const GLFWwindow *window, const int particleCount, Camera *camera)
+ba_gaida::ParticleSystem::ParticleSystem(const GLFWwindow *window, const int particleCount, Camera *camera,
+                                         const glm::uvec3 boxSize)
 {
     m_particleCount = particleCount * 128;
-    m_Boxsize = 10.0f;
+    m_Boxsize = boxSize;
     m_camera = camera;
 
     Shader::attachShader(m_renderID, GL_VERTEX_SHADER, SHADERS_PATH "/ba_gaida/vertexShader.glsl");
@@ -17,16 +18,27 @@ ba_gaida::ParticleSystem::ParticleSystem(const GLFWwindow *window, const int par
     m_uniform_viewM = glGetUniformLocation(m_renderID, "viewMatrix");
     m_uniform_projM = glGetUniformLocation(m_renderID, "projMatrix");
     m_uniform_camPos = glGetUniformLocation(m_renderID, "cameraPos");
+
+    //create Particle at random Position without Velocity
+    m_particle_pos = NULL;
+    m_particle_vel = NULL;
+    init();
+
+    ComputeShader::createSSBO(m_ssbo_pos[0], 0, m_particleCount * sizeof(glm::vec4), &m_particle_pos[0]);
+    ComputeShader::createSSBO(m_ssbo_vel[0], 1, m_particleCount * sizeof(glm::vec4), &m_particle_vel[0]);
+
 }
 
 ba_gaida::ParticleSystem::~ParticleSystem()
 {
+    Shader::deleteShader(m_renderID);// remember to add all programID!
     delete m_camera;
 }
 
 void ba_gaida::ParticleSystem::update(const double deltaTime)
 {
     //todo executeComputeShader
+//    ComputeShader::updateComputeShader(id, deltaTime, m_particleCount);
 }
 
 void ba_gaida::ParticleSystem::render(GLFWwindow *window)
@@ -63,7 +75,23 @@ void ba_gaida::ParticleSystem::setVariables(const int index, float value)
 }
 
 void ba_gaida::ParticleSystem::init()
-{//todo spawn particle in box
+{
+    //init Particleposition
+    std::uniform_real_distribution<float> dist_x(0.0f, m_Boxsize.x);
+    std::uniform_real_distribution<float> dist_y(0.0f, m_Boxsize.y);
+    std::uniform_real_distribution<float> dist_z(0.0f, m_Boxsize.z);
+    std::default_random_engine rdm;
+
+    m_particle_pos = new glm::vec4[m_particleCount];
+    m_particle_vel = new glm::vec4[m_particleCount];
+
+    for (int i = 0; i < m_particleCount; i++)
+    {
+        m_particle_pos[i] = glm::vec4(dist_x(rdm), dist_y(rdm), dist_z(rdm), 0.0f);
+        std::cout << "Pos[" << i << "]:( " << m_particle_pos[i].x << ", " << m_particle_pos[i].y << ", "
+                  << m_particle_pos[i].z << ")" << std::endl;
+        m_particle_vel[i] = glm::vec4(0.0f);
+    }
 
 }
 

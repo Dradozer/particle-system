@@ -9,8 +9,10 @@
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <random>
 #include <time.h>
 #include "Camera.h"
+#include "ComputeShader.h"
 #include "Shader.h"
 
 namespace ba_gaida
@@ -20,12 +22,18 @@ namespace ba_gaida
     public:
         int m_particleCount;
         Camera *m_camera;
-        float m_Boxsize;
+        glm::uvec3 m_Boxsize;
 
         GLuint m_renderID;
         GLuint m_uniform_viewM;
         GLuint m_uniform_projM;
         GLuint m_uniform_camPos;
+
+        glm::vec4 *m_particle_pos;
+        glm::vec4 *m_particle_vel;
+
+        GLuint m_ssbo_pos[2];
+        GLuint m_ssbo_vel[2];
 
         /**
         * Constructor of the ParticleSystem
@@ -34,7 +42,7 @@ namespace ba_gaida
         * @param camera The corresponding camera
         */
 
-        ParticleSystem(const GLFWwindow *window, const int particleCount, Camera *camera);
+        ParticleSystem(const GLFWwindow *window, const int particleCount, Camera *camera, const glm::uvec3 boxSize);
 
         ~ParticleSystem();
 
@@ -54,6 +62,7 @@ namespace ba_gaida
 
     private:
         void init();
+        glm::vec3 random();
     };
 }
 #endif //BA_GAIDA_PARTIKELSYSTEM_H
