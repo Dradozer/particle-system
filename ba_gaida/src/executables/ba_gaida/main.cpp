@@ -17,7 +17,7 @@
 #include "include/Objects/CVK_Cube.h"
 
 //particleCount is multiplied by 128, keep it between 64 and 256 for now
-#define particleCount   1
+#define particleCount   32
 
 #define WIDTH 1024
 #define HEIGTH 768
@@ -72,8 +72,8 @@ void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods
 void handleInput(GLFWwindow *w, float deltaTime)
 {
     // normal WASD-movement in scene
-    glm::vec3 cameraPos = particleSystem->m_camera->getCameraPos();
-    glm::vec3 cameraCenter = particleSystem->m_camera->getCameraCenter();
+    glm::vec3 cameraPos = particleSystem->m_camera->getCamPos();
+    glm::vec3 cameraCenter = particleSystem->m_camera->getCenter();
     glm::vec3 dir = glm::normalize(cameraCenter - cameraPos);
     if (glfwGetKey(w, GLFW_KEY_W) == GLFW_PRESS)
     {
@@ -95,7 +95,7 @@ void handleInput(GLFWwindow *w, float deltaTime)
     {
         cameraCenter = glm::vec3(0.0f);
     }
-    particleSystem->m_camera->setCenter(cameraCenter);
+    particleSystem->m_camera->setCamPos(cameraCenter);
 
 //	double mX, mY;
 //	glfwGetCursorPos(w, &mX, &mY);
@@ -146,7 +146,7 @@ int main()
     ba_gaida::Camera camera = ba_gaida::Camera(glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f),
                                                glm::vec3(0.0f, 5.0f, 0.0f), WIDTH, HEIGTH);
     srand(time(0));
-    particleSystem = new ba_gaida::ParticleSystem(window, particleCount, &camera, glm::uvec3(3));
+    particleSystem = new ba_gaida::ParticleSystem(window, particleCount, &camera, glm::uvec3(5));
     glClearColor(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
 
@@ -160,7 +160,7 @@ int main()
 
         handleInput(window, deltaTime);
 
-        particleSystem->m_camera->update(window, 0);
+        particleSystem->m_camera->update(window, 0, deltaTime);
         particleSystem->render(window);
 
         ba_gaida::FpsCounter::update(deltaTime);

@@ -24,16 +24,6 @@ namespace ba_gaida
         Camera *m_camera;
         glm::uvec3 m_Boxsize;
 
-        GLuint m_renderID;
-        GLuint m_uniform_viewM;
-        GLuint m_uniform_projM;
-        GLuint m_uniform_camPos;
-
-        glm::vec4 *m_particle_pos;
-        glm::vec4 *m_particle_vel;
-
-        GLuint m_ssbo_pos[2];
-        GLuint m_ssbo_vel[2];
 
         /**
         * Constructor of the ParticleSystem
@@ -60,9 +50,24 @@ namespace ba_gaida
 
         void setVariables(const int index, float value);
 
+        template<typename T>
+        void createSSBO(GLuint &id, int bindingID, int size, T *data);
+
     private:
         void init();
-        glm::vec3 random();
+
+        GLuint m_renderID;
+        GLuint m_uniform_viewM;
+        GLuint m_uniform_projM;
+        GLuint m_uniform_camPos;
+
+        glm::vec4 *m_particle_pos;
+        glm::vec4 *m_particle_vel;
+
+        GLuint m_ssbo_pos_id[2];
+        GLuint m_ssbo_vel_id[2];
+
+        glm::vec3 m_boxCenter;
     };
 }
 #endif //BA_GAIDA_PARTIKELSYSTEM_H

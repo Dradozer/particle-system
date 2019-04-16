@@ -4,7 +4,7 @@
 
 #include "ComputeShader.h"
 
-void ba_gaida::ComputeShader::createComputeShader(GLuint &id, const char *path)
+ ba_gaida::ComputeShader::ComputeShader(GLuint &id, const char *path)
 {
     Shader::attachShader(id, GL_COMPUTE_SHADER, path);
     Shader::linkShader(id);
@@ -21,13 +21,4 @@ void ba_gaida::ComputeShader::updateComputeShader(GLuint *id, const float deltaT
         glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
     }
     glUseProgram(0);
-}
-
-template<typename T>
-void ba_gaida::ComputeShader::createSSBO(GLuint &id, int bindingID, int size, T *data)
-{
-    glCreateBuffers(1, &id);
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER,id);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, bindingID, id);
-    glBufferData(GL_SHADER_STORAGE_BUFFER, size, data, GL_DYNAMIC_DRAW);
 }
