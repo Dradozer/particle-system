@@ -33,7 +33,7 @@ namespace ba_gaida
         * @param camera The corresponding camera
         */
 
-        ParticleSystem(const GLFWwindow *window, const int particleCount, Camera *camera, const glm::uvec3 boxSize);
+        ParticleSystem(const GLFWwindow *window, const int particleCount, const int WIDTH, const int HEIGTH, const glm::uvec3 boxSize);
 
         ~ParticleSystem();
 

@@ -4,21 +4,21 @@
 
 #include "Camera.h"
 
-ba_gaida::Camera::Camera(glm::vec3 center, glm::vec3 up, glm::vec3 camPos, int width, int height)
+ba_gaida::Camera::Camera(glm::vec3 center, glm::vec3 up, int width, int height)
 {
+    m_radius = center.z * 5.0f;
     m_center = center;
-    m_cameraPos = camPos;
+    m_cameraPos = center + glm::vec3(0.0f,0.0f, m_radius);
     m_up = up;
 
     m_sensitivity = 0.01f;
     m_theta = glm::pi<float>() / 2.0f;
     m_phi = 0.f;
-    m_radius = 1.5;
 
     m_oldX = width / 2.f;
     m_oldY = height / 2.f;
 
-    lookAt(center, up, camPos);
+    lookAt(m_cameraPos,m_center, m_up);
     m_projectionMatrix = glm::perspective(glm::radians(60.f), (float) width / height, 0.01f, 50.f);
     m_viewProjMatrix = m_viewMatrix * m_projectionMatrix;
 }
@@ -54,13 +54,17 @@ void ba_gaida::Camera::update(GLFWwindow *window, GLuint uniform)
     m_cameraPos.y = m_center.y + m_radius * cos(m_theta);
     m_cameraPos.z = m_center.z + m_radius * sin(m_theta) * cos(m_phi);
 
+//    std::cout <<"Center: " << m_center.x <<", " << m_center.y <<", " << m_center.z << std::endl;
+//    std::cout <<"Campos: " <<m_cameraPos.x <<", " << m_cameraPos.y <<", " << m_cameraPos.z << std::endl;
+
     m_viewMatrix = glm::lookAt( m_cameraPos, m_center, m_up);
 }
 
-void ba_gaida::Camera::lookAt(glm::vec3 center, glm::vec3 up, glm::vec3 camPos)
+void ba_gaida::Camera::lookAt(glm::vec3 camPos,glm::vec3 center, glm::vec3 up)
 {
-    m_center = center;
     m_cameraPos = camPos;
+    m_center = center;
+
     m_up = up;
 
     m_viewMatrix = glm::lookAt(camPos, center, up);

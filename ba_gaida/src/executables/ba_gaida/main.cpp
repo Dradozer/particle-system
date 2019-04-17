@@ -17,7 +17,7 @@
 #include "include/Objects/CVK_Cube.h"
 
 //particleCount is multiplied by 128, keep it between 64 and 256 for now
-#define particleCount   32
+#define particleCount   16
 
 #define WIDTH 1024
 #define HEIGTH 768
@@ -116,10 +116,9 @@ int main()
     ba_gaida::FpsCounter();
     ba_gaida::FpsCounter::m_window = window;
     ba_gaida::FpsCounter::m_title = Title;
-    ba_gaida::Camera camera = ba_gaida::Camera(glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f),
-                                               glm::vec3(0.0f, 5.0f, 0.0f), WIDTH, HEIGTH);
+
     srand(time(0));
-    particleSystem = new ba_gaida::ParticleSystem(window, particleCount, &camera, glm::uvec3(5));
+    particleSystem = new ba_gaida::ParticleSystem(window, particleCount, WIDTH, HEIGTH, glm::uvec3(5));
     glClearColor(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
 

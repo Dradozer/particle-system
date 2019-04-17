@@ -5,6 +5,7 @@
 #ifndef BA_GAIDA_CAMERA_H
 #define BA_GAIDA_CAMERA_H
 
+#include <iostream>
 #include <math.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -18,7 +19,7 @@ namespace ba_gaida
     {
     public:
 
-        Camera(glm::vec3 center, glm::vec3 up, glm::vec3 camPos, int width, int height);
+        Camera(glm::vec3 center, glm::vec3 up, int width, int height);
 
         ~Camera();
 
