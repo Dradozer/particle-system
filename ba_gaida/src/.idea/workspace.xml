@@ -14,10 +14,6 @@
   <component name="ChangeListManager">
     <list default="true" id="64991c4f-a01d-4bfe-8ed6-fabe82702352" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/executables/ba_gaida/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -34,23 +30,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="69" column="5" lean-forward="true" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
+            <state relative-caret-position="340">
+              <caret line="110" column="5" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
               <folding>
                 <element signature="e#45#64#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="34" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -94,15 +81,15 @@
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/main.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/main.cpp" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="false" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="161" />
-    <option name="y" value="-18" />
+    <option name="x" value="442" />
+    <option name="y" value="-8" />
     <option name="width" value="1484" />
     <option name="height" value="996" />
   </component>
@@ -114,6 +101,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -154,7 +142,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -285,11 +272,14 @@
       <workItem from="1555434755131" duration="1070000" />
       <workItem from="1555511192203" duration="1171000" />
       <workItem from="1555512520833" duration="3088000" />
+      <workItem from="1555517290679" duration="216000" />
+      <workItem from="1555517524599" duration="477000" />
+      <workItem from="1555520408479" duration="5000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68753000" />
+    <option name="totallyTimeSpent" value="69451000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -302,9 +292,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.336887" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.34808102" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -319,7 +308,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.34019503" />
+      <window_info active="true" anchor="bottom" id="CMake" order="12" visible="true" weight="0.34019503" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -571,20 +560,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="69" column="5" lean-forward="true" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
-          <folding>
-            <element signature="e#45#64#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="425">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="34" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="34" />
+        <state relative-caret-position="340">
+          <caret line="110" column="5" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
+          <folding>
+            <element signature="e#45#64#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -87,8 +87,9 @@ int main()
         std::cout << "Could not initialize GLFW!" << std::endl;
     } else
     {
-        std::cout << "GLFW  initialized" << std::endl;
+        std::cout << "GLFW " << glfwGetVersionString() << " initialized" << std::endl;
     }
+
     window = glfwCreateWindow(WIDTH, HEIGTH, Title, 0, 0);
 
     glfwSetWindowPos(window, 100, 50);
@@ -103,6 +104,14 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     glewExperimental = GL_TRUE;
+    if (glGetString(GL_VERSION) == NULL)
+    {
+        std::cout << "Could not initialize OpenGL!" << std::endl;
+    } else
+    {
+        std::cout << "OpenGL " << glGetString(GL_VERSION) << " initialized" << std::endl;
+    }
+
 
     //VSync, parameter must be 0 or 1, 0 -> disabled , 1 -> enabled
     glfwSwapInterval(1);
@@ -121,6 +130,7 @@ int main()
     particleSystem = new ba_gaida::ParticleSystem(window, particleCount, WIDTH, HEIGTH, glm::uvec3(5));
     glClearColor(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
+
 
     double time = glfwGetTime();
     while (!glfwWindowShouldClose(window))
