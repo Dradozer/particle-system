@@ -27,8 +27,8 @@ ba_gaida::ParticleSystem::ParticleSystem(const GLFWwindow *window, const int par
 
     init();
 
-    createSSBO(m_ssbo_pos_id[0], 0, m_particleCount * sizeof(glm::vec4), &m_particle_pos[0]);
-    createSSBO(m_ssbo_vel_id[0], 1, m_particleCount * sizeof(glm::vec4), &m_particle_vel[0]);
+    SSBO::createSSBO(m_ssbo_pos_id[0], 0, m_particleCount * sizeof(glm::vec4), &m_particle_pos[0]);
+    SSBO::createSSBO(m_ssbo_vel_id[0], 1, m_particleCount * sizeof(glm::vec4), &m_particle_vel[0]);
 
 }
 
@@ -66,7 +66,7 @@ void ba_gaida::ParticleSystem::render(GLFWwindow *window)
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
     glEnableVertexAttribArray(0);
 
-    //glBindBuffer(GL_ARRAY_BUFFER, m_ssbo_vel_id[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, m_ssbo_vel_id[0]);
     glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, 0);
     glEnableVertexAttribArray(1);
 
@@ -76,15 +76,6 @@ void ba_gaida::ParticleSystem::render(GLFWwindow *window)
 
     glfwSwapBuffers(window);
 
-}
-
-template<typename T>
-void ba_gaida::ParticleSystem::createSSBO(GLuint &id, int bindingID, int size, T *data)
-{
-    glCreateBuffers(1, &id);
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER,id);
-    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, bindingID, id);
-    glBufferData(GL_SHADER_STORAGE_BUFFER, size, data, GL_DYNAMIC_DRAW);
 }
 
 void ba_gaida::ParticleSystem::setVariables(const int index, float value)

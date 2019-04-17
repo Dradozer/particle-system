@@ -26,21 +26,6 @@
 ba_gaida::ParticleSystem *particleSystem;
 GLFWwindow *window;
 
-int index = 0;
-//float factor = 0.1f;
-//bool gravity = true;
-
-// default parameters for substance
-//float honey[9] = {2.8f,		// linear viscosity
-//				  1.5f, 	// quadratic viscosity
-//				  25.0f, 	// rest density
-//				  2.5f, 	// stiffness
-//				  1.0f, 	// near stiffness
-//				  -9.81f,	// gravity
-//				  255.0f,	// red
-//				  165.0f,	// green
-//				  0.0f};	// blue
-
 void resizeCallback(GLFWwindow *window, int w, int h)
 {
     particleSystem->m_camera->updateWidthHeight(w, h);
@@ -92,14 +77,6 @@ void handleInput(GLFWwindow *w, float deltaTime)
         cameraCenter += glm::vec3(0.0f, -1.0f, 0.0f) * deltaTime * 2.0f;
     }
     particleSystem->m_camera->setCenter(cameraCenter);
-
-//	double mX, mY;
-//	glfwGetCursorPos(w, &mX, &mY);
-//	if (glfwGetMouseButton(w, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS && mX < WIDTH && mX > 0) {
-//		// scale coordinates [0, width] -> [-2, 6] limits of right boundary
-//		float limit = (-2.0f) + (mX / WIDTH) * 8.0f;
-//		particleSystem->setVariables(9, limit);
-//	}
 }
 
 

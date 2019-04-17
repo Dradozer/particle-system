@@ -14,6 +14,7 @@
 #include "Camera.h"
 #include "ComputeShader.h"
 #include "Shader.h"
+#include "SSBO.h"
 
 namespace ba_gaida
 {
