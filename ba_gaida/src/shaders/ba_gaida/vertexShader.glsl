@@ -7,6 +7,7 @@ uniform mat4 viewMatrix;
 uniform mat4 projMatrix;
 uniform vec3 cameraPos;
 
+out float speed;
 out vec4 pos;
 
 void main()
@@ -19,5 +20,6 @@ void main()
 		dist = 0.0000001; //no devision by 0 exeption
 	
 	gl_PointSize = (175 / dist); //175 size of particle
+	speed = length(velocity.xyz);
 	pos = position;
 }

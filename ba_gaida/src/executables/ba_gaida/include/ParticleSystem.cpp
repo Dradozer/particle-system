@@ -12,6 +12,10 @@ ba_gaida::ParticleSystem::ParticleSystem(const GLFWwindow *window, const int par
     m_boxCenter = glm::vec3(boxSize.x / 2, boxSize.y / 2, boxSize.z / 2);
     m_camera = new ba_gaida::Camera(m_boxCenter,
                                     glm::vec3(0.0f, 1.0f, 0.0f), WIDTH, HEIGTH);
+    //create Particle at random Position without Velocity
+    m_particle_pos = NULL;
+    m_particle_vel = NULL;
+    init();
 
     Shader::attachShader(m_renderID, GL_VERTEX_SHADER, SHADERS_PATH "/ba_gaida/vertexShader.glsl");
     Shader::attachShader(m_renderID, GL_FRAGMENT_SHADER, SHADERS_PATH "/ba_gaida/fragmentShader.glsl");
@@ -21,14 +25,12 @@ ba_gaida::ParticleSystem::ParticleSystem(const GLFWwindow *window, const int par
     m_uniform_projM = glGetUniformLocation(m_renderID, "projMatrix");
     m_uniform_camPos = glGetUniformLocation(m_renderID, "cameraPos");
 
-    //create Particle at random Position without Velocity
-    m_particle_pos = NULL;
-    m_particle_vel = NULL;
-    init();
-
     SSBO::createSSBO(m_ssbo_pos_id[0], 0, m_particleCount * sizeof(glm::vec4), &m_particle_pos[0]);
     SSBO::createSSBO(m_ssbo_vel_id[0], 1, m_particleCount * sizeof(glm::vec4), &m_particle_vel[0]);
 
+    ComputeShader::createComputeShader(m_externalForceID[0], SHADERS_PATH "/ba_gaida/externalForcesComputeShader.glsl");
+
+    setUniform(m_externalForceID, m_particleCount);
 }
 
 ba_gaida::ParticleSystem::~ParticleSystem()
@@ -47,7 +49,7 @@ ba_gaida::ParticleSystem::~ParticleSystem()
 void ba_gaida::ParticleSystem::update(const double deltaTime)
 {
     //todo executeComputeShader
-//    ComputeShader::updateComputeShader(id, deltaTime, m_particleCount);
+    ComputeShader::updateComputeShader(m_externalForceID, deltaTime, m_particleCount);
 }
 
 void ba_gaida::ParticleSystem::render(GLFWwindow *window)
@@ -77,11 +79,6 @@ void ba_gaida::ParticleSystem::render(GLFWwindow *window)
 
 }
 
-void ba_gaida::ParticleSystem::setVariables(const int index, float value)
-{
-
-}
-
 void ba_gaida::ParticleSystem::init()
 {
     //init Particleposition
@@ -104,5 +101,18 @@ void ba_gaida::ParticleSystem::init()
             std::cout << "Successfully generated: \t" << m_particleCount << " Particle" << std::endl;
         }
     }
+}
+
+void ba_gaida::ParticleSystem::setUniform(GLuint *id, const int particleCount)
+{
+    id[1]= glGetUniformLocation(id[0], "deltaTime");
+    id[2]= glGetUniformLocation(id[0], "particleCount");
+    glUniform1f(id[1], 0.0f);
+    glUniform1f(id[2],particleCount);
+}
+
+void ba_gaida::ParticleSystem::reset()
+{
+    init();
 }
 

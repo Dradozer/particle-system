@@ -16,12 +16,14 @@
 #include "include/Objects/CVK_Sphere.h"
 #include "include/Objects/CVK_Cube.h"
 
+#define debug
 //particleCount is multiplied by 128, keep it between 64 and 256 for now
-#define particleCount   16
-
+#define particleCount   64
+#define Title "ba_gaida"
 #define WIDTH 1024
 #define HEIGTH 768
-#define Title "ba_gaida"
+//VSync, parameter must be 0 or 1, 0 -> disabled , 1 -> enabled
+#define VSync FALSE
 
 ba_gaida::ParticleSystem *particleSystem;
 GLFWwindow *window;
@@ -30,19 +32,6 @@ void resizeCallback(GLFWwindow *window, int w, int h)
 {
     particleSystem->m_camera->updateWidthHeight(w, h);
     glViewport(0, 0, w, h);
-}
-
-void setAllUniforms(float v[6])
-{
-    particleSystem->setVariables(0, v[0]); // lin vis
-    particleSystem->setVariables(1, v[1]); // quad vis
-    particleSystem->setVariables(2, v[2]); // rest dens
-    particleSystem->setVariables(3, v[3]); // k
-    particleSystem->setVariables(4, v[4]); // near k
-//	particleSystem->setVariables(5, v[5]); // g
-    particleSystem->setVariables(6, v[6]); // red
-    particleSystem->setVariables(7, v[7]); // green
-    particleSystem->setVariables(8, v[8]); // blue
 }
 
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
@@ -54,42 +43,50 @@ void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods
 //	}
 }
 
-void handleInput(GLFWwindow *w, float deltaTime)
+void handleInput(GLFWwindow *window, float deltaTime)
 {
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, GL_TRUE);
+    }
     // normal WASD-movement in scene
     glm::vec3 cameraPos = particleSystem->m_camera->getCameraPos();
     glm::vec3 cameraCenter = particleSystem->m_camera->getCameraCenter();
     glm::vec3 dir = glm::normalize(cameraCenter - cameraPos);
-    if (glfwGetKey(w, GLFW_KEY_W) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
     {
         cameraCenter += dir * deltaTime * 2.0f;
     }
-    if (glfwGetKey(w, GLFW_KEY_S) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
     {
         cameraCenter -= dir * deltaTime * 2.0f;
     }
-    if (glfwGetKey(w, GLFW_KEY_SPACE) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
     {
         cameraCenter += glm::vec3(0.0f, 1.0f, 0.0f) * deltaTime * 2.0f;
     }
-    if (glfwGetKey(w, GLFW_KEY_F) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
     {
         cameraCenter += glm::vec3(0.0f, -1.0f, 0.0f) * deltaTime * 2.0f;
     }
     particleSystem->m_camera->setCenter(cameraCenter);
+
+
 }
 
 
 int main()
 {
-    if (!glfwInit())
+    glfwInit();
+#ifdef debug
+    if (glfwInit()== FALSE)
     {
         std::cout << "Could not initialize GLFW!" << std::endl;
     } else
     {
         std::cout << "GLFW " << glfwGetVersionString() << " initialized" << std::endl;
     }
-
+#endif
     window = glfwCreateWindow(WIDTH, HEIGTH, Title, 0, 0);
 
     glfwSetWindowPos(window, 100, 50);
@@ -104,6 +101,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     glewExperimental = GL_TRUE;
+#ifdef debug
     if (glGetString(GL_VERSION) == NULL)
     {
         std::cout << "Could not initialize OpenGL!" << std::endl;
@@ -112,9 +110,13 @@ int main()
         std::cout << "OpenGL " << glGetString(GL_VERSION) << " initialized" << std::endl;
     }
 
-
-    //VSync, parameter must be 0 or 1, 0 -> disabled , 1 -> enabled
-    glfwSwapInterval(1);
+    GLenum glError;
+    if((glError= glGetError()) != GL_NO_ERROR)
+    {
+        std::cout <<"1.OpenGL-Error: " << glError << std::endl;
+    }
+#endif
+    glfwSwapInterval(VSync);
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
@@ -130,8 +132,12 @@ int main()
     particleSystem = new ba_gaida::ParticleSystem(window, particleCount, WIDTH, HEIGTH, glm::uvec3(5));
     glClearColor(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
-
-
+#ifdef debug
+    if((glError= glGetError()) != GL_NO_ERROR)
+    {
+        std::cout <<"2.OpenGL-Error: " << glError << std::endl;
+    }
+#endif
     double time = glfwGetTime();
     while (!glfwWindowShouldClose(window))
     {
@@ -139,16 +145,21 @@ int main()
         time = glfwGetTime();
 
         particleSystem->update(deltaTime);
+        ba_gaida::FpsCounter::update(deltaTime);
 
         handleInput(window, deltaTime);
 
         particleSystem->m_camera->update(window, 0);
         particleSystem->render(window);
 
-        ba_gaida::FpsCounter::update(deltaTime);
-
         glfwPollEvents();
     }
+#ifdef debug
+    if((glError= glGetError()) != GL_NO_ERROR)
+    {
+        std::cout <<"3.OpenGL-Error: " << glError << std::endl;
+    }
+#endif
     //CleanUp
     glfwDestroyWindow(window);
     glfwTerminate();

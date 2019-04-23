@@ -49,13 +49,15 @@ namespace ba_gaida
          */
         void render(GLFWwindow *window);
 
-        void setVariables(const int index, float value);
+        void reset();
 
-        template<typename T>
-        void createSSBO(GLuint &id, int bindingID, int size, T *data);
+        void setVariables(const int index, float value);
 
     private:
         void init();
+        void setUniform(GLuint *id, const int particleCount);
+
+        GLuint m_externalForceID[3];
 
         GLuint m_renderID;
         GLuint m_uniform_viewM;
