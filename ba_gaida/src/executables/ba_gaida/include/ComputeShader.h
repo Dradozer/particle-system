@@ -12,11 +12,24 @@ namespace ba_gaida
     class ComputeShader
     {
     public:
-        ComputeShader(GLuint &id, const char *path);
+       static void createComputeShader(GLuint &id, const char *path)
+        {
+            Shader::attachShader(id, GL_COMPUTE_SHADER, path);
+            Shader::linkShader(id);
+        }
 
-        void updateComputeShader(GLuint *id, const float deltaTime, const int particleCount);
+        static void updateComputeShader(GLuint *id, const float deltaTime, const int particleCount)
+        {
+            glUseProgram(id[0]);
+            {
+                glUniform1f(id[1],deltaTime);
+                glUniform1f(id[2],particleCount);
 
-    private:
+                glDispatchCompute(particleCount/128,1,1);
+                glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+            }
+            glUseProgram(0);
+        }
     };
 }
 
