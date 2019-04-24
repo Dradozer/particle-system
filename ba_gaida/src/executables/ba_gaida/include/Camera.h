@@ -23,7 +23,7 @@ namespace ba_gaida
 
         ~Camera();
 
-        void update(GLFWwindow *window, GLuint uniform);
+        void update(GLFWwindow *window);
 
         void updateWidthHeight(int width, int heigth);
 

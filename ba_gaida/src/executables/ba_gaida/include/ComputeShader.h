@@ -23,7 +23,7 @@ namespace ba_gaida
             glUseProgram(id[0]);
             {
                 glUniform1f(id[1],deltaTime);
-                glUniform1f(id[2],particleCount);
+                glUniform1i(id[2],particleCount);
 
                 glDispatchCompute(particleCount/128,1,1);
                 glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);

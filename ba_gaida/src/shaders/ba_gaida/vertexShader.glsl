@@ -1,7 +1,7 @@
 #version 450
 
 in layout (location = 0) vec4 position; 
-in layout (location = 1) vec4 velocity;
+//in layout (location = 1) vec4 velocity;
 
 uniform mat4 viewMatrix;
 uniform mat4 projMatrix;
@@ -20,6 +20,6 @@ void main()
 		dist = 0.0000001; //no devision by 0 exeption
 	
 	gl_PointSize = (175 / dist); //175 size of particle
-	speed = length(velocity.xyz);
+//	speed = length(velocity.xyz);
 	pos = position;
 }

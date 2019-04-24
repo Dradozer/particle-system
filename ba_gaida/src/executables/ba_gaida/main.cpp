@@ -11,12 +11,10 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-#include "include/FpsCounter.h"
 #include "include/ParticleSystem.h"
 #include "include/Objects/CVK_Sphere.h"
 #include "include/Objects/CVK_Cube.h"
 
-#define debug
 //particleCount is multiplied by 128, keep it between 64 and 256 for now
 #define particleCount   64
 #define Title "ba_gaida"
@@ -78,7 +76,6 @@ void handleInput(GLFWwindow *window, float deltaTime)
 int main()
 {
     glfwInit();
-#ifdef debug
     if (glfwInit()== FALSE)
     {
         std::cout << "Could not initialize GLFW!" << std::endl;
@@ -86,7 +83,6 @@ int main()
     {
         std::cout << "GLFW " << glfwGetVersionString() << " initialized" << std::endl;
     }
-#endif
     window = glfwCreateWindow(WIDTH, HEIGTH, Title, 0, 0);
 
     glfwSetWindowPos(window, 100, 50);
@@ -101,7 +97,6 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     glewExperimental = GL_TRUE;
-#ifdef debug
     if (glGetString(GL_VERSION) == NULL)
     {
         std::cout << "Could not initialize OpenGL!" << std::endl;
@@ -115,7 +110,6 @@ int main()
     {
         std::cout <<"1.OpenGL-Error: " << glError << std::endl;
     }
-#endif
     glfwSwapInterval(VSync);
 
     glEnable(GL_DEPTH_TEST);
@@ -124,20 +118,15 @@ int main()
     glEnable(GL_POINT_SMOOTH);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    ba_gaida::FpsCounter();
-    ba_gaida::FpsCounter::m_window = window;
-    ba_gaida::FpsCounter::m_title = Title;
-
     srand(time(0));
     particleSystem = new ba_gaida::ParticleSystem(window, particleCount, WIDTH, HEIGTH, glm::uvec3(5));
+    particleSystem->m_fps->setTitle(Title);
     glClearColor(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
-#ifdef debug
     if((glError= glGetError()) != GL_NO_ERROR)
     {
         std::cout <<"2.OpenGL-Error: " << glError << std::endl;
     }
-#endif
     double time = glfwGetTime();
     while (!glfwWindowShouldClose(window))
     {
@@ -145,21 +134,17 @@ int main()
         time = glfwGetTime();
 
         particleSystem->update(deltaTime);
-        ba_gaida::FpsCounter::update(deltaTime);
 
         handleInput(window, deltaTime);
 
-        particleSystem->m_camera->update(window, 0);
         particleSystem->render(window);
 
         glfwPollEvents();
     }
-#ifdef debug
     if((glError= glGetError()) != GL_NO_ERROR)
     {
-        std::cout <<"3.OpenGL-Error: " << glError << std::endl;
+        std::cout <<"5.OpenGL-Error: " << glError << std::endl;
     }
-#endif
     //CleanUp
     glfwDestroyWindow(window);
     glfwTerminate();

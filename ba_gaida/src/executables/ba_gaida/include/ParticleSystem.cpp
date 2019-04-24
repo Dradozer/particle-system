@@ -4,14 +4,17 @@
 
 #include "ParticleSystem.h"
 
-ba_gaida::ParticleSystem::ParticleSystem(const GLFWwindow *window, const int particleCount, const int WIDTH,
+ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH,
                                          const int HEIGTH, const glm::uvec3 boxSize)
 {
+    m_window = window;
     m_particleCount = particleCount * 128;
     m_Boxsize = boxSize;
     m_boxCenter = glm::vec3(boxSize.x / 2, boxSize.y / 2, boxSize.z / 2);
     m_camera = new ba_gaida::Camera(m_boxCenter,
                                     glm::vec3(0.0f, 1.0f, 0.0f), WIDTH, HEIGTH);
+    m_fps = new ba_gaida::FpsCounter(window);
+
     //create Particle at random Position without Velocity
     m_particle_pos = NULL;
     m_particle_vel = NULL;
@@ -36,6 +39,7 @@ ba_gaida::ParticleSystem::ParticleSystem(const GLFWwindow *window, const int par
 ba_gaida::ParticleSystem::~ParticleSystem()
 {
     delete m_camera;
+    delete m_fps;
     Shader::deleteShader(m_renderID);// remember to add all programID!
     //delete BufferObjects
     for (int i = 0; i < 2; i++)
@@ -48,14 +52,14 @@ ba_gaida::ParticleSystem::~ParticleSystem()
 
 void ba_gaida::ParticleSystem::update(const double deltaTime)
 {
-    //todo executeComputeShader
     ComputeShader::updateComputeShader(m_externalForceID, deltaTime, m_particleCount);
+
+    m_camera->update(m_window);
+    m_fps->update(deltaTime);
 }
 
 void ba_gaida::ParticleSystem::render(GLFWwindow *window)
 {
-    //todo überarbeiten
-
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(m_renderID);
 
@@ -107,12 +111,6 @@ void ba_gaida::ParticleSystem::setUniform(GLuint *id, const int particleCount)
 {
     id[1]= glGetUniformLocation(id[0], "deltaTime");
     id[2]= glGetUniformLocation(id[0], "particleCount");
-    glUniform1f(id[1], 0.0f);
-    glUniform1f(id[2],particleCount);
 }
 
-void ba_gaida::ParticleSystem::reset()
-{
-    init();
-}
 

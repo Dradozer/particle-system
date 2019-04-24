@@ -28,7 +28,7 @@ ba_gaida::Camera::~Camera()
 
 }
 
-void ba_gaida::Camera::update(GLFWwindow *window, GLuint uniform)
+void ba_gaida::Camera::update(GLFWwindow *window)
 {
     double x, y;
 

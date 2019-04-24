@@ -17,13 +17,18 @@ namespace ba_gaida
     class FpsCounter
     {
     public:
-        static void update(double deltaTime);
+        FpsCounter(GLFWwindow *window);
+        void update(double deltaTime);
 
-        static GLFWwindow *m_window;
-        static std::string m_title;
     private:
-        static double m_timePerFrame;
-        static int m_Fps;
+        GLFWwindow *m_window;
+        std::string m_title;
+    public:
+        void setTitle(const std::string &Title);
+
+    private:
+        double m_timePerFrame;
+        int m_Fps;
     };
 }
 #endif //BA_GAIDA_FPSCOUNTER_H

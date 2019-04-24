@@ -4,10 +4,12 @@
 
 #include "FpsCounter.h"
 
-std::string ba_gaida::FpsCounter::m_title;
-double ba_gaida::FpsCounter::m_timePerFrame;
-int ba_gaida::FpsCounter::m_Fps;
-GLFWwindow *ba_gaida::FpsCounter::m_window;
+ba_gaida::FpsCounter::FpsCounter(GLFWwindow *window)
+{
+    m_window = window;
+    m_timePerFrame = 0.0f;
+    m_Fps = 0;
+}
 
 template<typename T>
 std::string ToString(T &value)
@@ -29,3 +31,10 @@ void ba_gaida::FpsCounter::update(double deltaTime)
         m_timePerFrame = 0.0f;
     }
 }
+
+void ba_gaida::FpsCounter::setTitle(const std::string &Title)
+{
+    m_title = Title;
+}
+
+

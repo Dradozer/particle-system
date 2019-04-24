@@ -15,6 +15,7 @@
 #include "ComputeShader.h"
 #include "Shader.h"
 #include "SSBO.h"
+#include "FpsCounter.h"
 
 namespace ba_gaida
 {
@@ -23,6 +24,7 @@ namespace ba_gaida
     public:
         int m_particleCount;
         Camera *m_camera;
+        FpsCounter *m_fps;
         glm::uvec3 m_Boxsize;
 
 
@@ -33,7 +35,7 @@ namespace ba_gaida
         * @param camera The corresponding camera
         */
 
-        ParticleSystem(const GLFWwindow *window, const int particleCount, const int WIDTH, const int HEIGTH, const glm::uvec3 boxSize);
+        ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH, const int HEIGTH, const glm::uvec3 boxSize);
 
         ~ParticleSystem();
 
@@ -49,13 +51,13 @@ namespace ba_gaida
          */
         void render(GLFWwindow *window);
 
-        void reset();
-
         void setVariables(const int index, float value);
 
     private:
         void init();
         void setUniform(GLuint *id, const int particleCount);
+
+        GLFWwindow *m_window;
 
         GLuint m_externalForceID[3];
 
