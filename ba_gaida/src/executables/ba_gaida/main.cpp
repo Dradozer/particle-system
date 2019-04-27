@@ -127,25 +127,27 @@ int main()
     {
         std::cout <<"2.OpenGL-Error: " << glError << std::endl;
     }
+
     double time = glfwGetTime();
     while (!glfwWindowShouldClose(window))
     {
+        glfwPollEvents();
+
         double deltaTime = glfwGetTime() - time;
         time = glfwGetTime();
 
         particleSystem->update(deltaTime);
 
         handleInput(window, deltaTime);
-
         particleSystem->render(window);
 
-        glfwPollEvents();
     }
     if((glError= glGetError()) != GL_NO_ERROR)
     {
         std::cout <<"5.OpenGL-Error: " << glError << std::endl;
     }
     //CleanUp
+
     glfwDestroyWindow(window);
     glfwTerminate();
 

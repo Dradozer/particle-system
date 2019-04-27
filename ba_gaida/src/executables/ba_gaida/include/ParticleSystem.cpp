@@ -13,7 +13,6 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_boxCenter = glm::vec3(boxSize.x / 2, boxSize.y / 2, boxSize.z / 2);
     m_camera = new ba_gaida::Camera(m_boxCenter,
                                     glm::vec3(0.0f, 1.0f, 0.0f), WIDTH, HEIGTH);
-    m_fps = new ba_gaida::FpsCounter(window);
 
     //create Particle at random Position without Velocity
     m_particle_pos = NULL;
@@ -34,10 +33,28 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     ComputeShader::createComputeShader(m_externalForceID[0], SHADERS_PATH "/ba_gaida/externalForcesComputeShader.glsl");
 
     setUniform(m_externalForceID, m_particleCount);
+
+#ifndef maxFPS
+    ImGui::CreateContext();
+    ImGui::StyleColorsDark();
+    ImGui_ImplGlfw_InitForOpenGL(m_window, true);
+    const char* glsl_version = "#version 450";
+    ImGui_ImplOpenGL3_Init(glsl_version);
+    m_clear_color = ImVec4(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
+#else
+    m_fps = new ba_gaida::FpsCounter(window);
+#endif
 }
 
 ba_gaida::ParticleSystem::~ParticleSystem()
 {
+#ifndef maxFPS
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+#endif
+
+
     delete m_camera;
     delete m_fps;
     Shader::deleteShader(m_renderID);// remember to add all programID!
@@ -55,7 +72,9 @@ void ba_gaida::ParticleSystem::update(const double deltaTime)
     ComputeShader::updateComputeShader(m_externalForceID, deltaTime, m_particleCount);
 
     m_camera->update(m_window);
+#ifdef maxFPS
     m_fps->update(deltaTime);
+#endif
 }
 
 void ba_gaida::ParticleSystem::render(GLFWwindow *window)
@@ -78,6 +97,29 @@ void ba_gaida::ParticleSystem::render(GLFWwindow *window)
     glDrawArrays(GL_POINTS, 0, m_particleCount);
 
     glUseProgram(0);
+
+#ifndef maxFPS
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+    bool show_demo_window = false;
+    { //imgui window
+        static float f = 0.0f;
+
+        ImGui::Begin("Debug| ParticleSystem");
+
+        ImGui::Text("Warning! This makes the ParticleSystem slower");
+        ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+        ImGui::ColorEdit3("clear color", (float*)&m_clear_color); // Edit 3 floats representing a color
+
+
+        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+        ImGui::End();
+    }
+    glClearColor(m_clear_color.x, m_clear_color.y, m_clear_color.z, m_clear_color.w);
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+#endif
 
     glfwSwapBuffers(window);
 

@@ -5,6 +5,9 @@
 #ifndef BA_GAIDA_PARTICLESYSTEM_H
 #define BA_GAIDA_PARTICLESYSTEM_H
 
+//#define maxFPS
+
+#include <stdio.h>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
@@ -16,6 +19,11 @@
 #include "Shader.h"
 #include "SSBO.h"
 #include "FpsCounter.h"
+
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
+
 
 namespace ba_gaida
 {
@@ -73,6 +81,9 @@ namespace ba_gaida
         GLuint m_ssbo_vel_id[2];
 
         glm::vec3 m_boxCenter;
+#ifndef maxFPS
+        ImVec4 m_clear_color;
+#endif
     };
 }
 #endif //BA_GAIDA_PARTIKELSYSTEM_H

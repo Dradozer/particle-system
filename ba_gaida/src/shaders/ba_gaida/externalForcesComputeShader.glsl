@@ -15,7 +15,7 @@ buffer_inVelocity
 
 uniform float deltaTime;
 uniform int particleCount;
-#define gravity  -9.81
+#define gravity  (-9.81/10)
 
 void main(void) {
     uint index = gl_GlobalInvocationID.x;
