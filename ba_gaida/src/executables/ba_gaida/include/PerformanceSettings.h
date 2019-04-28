@@ -1,0 +1,10 @@
+//
+// Created by Dradozer on 28.04.2019.
+//
+
+#ifndef BA_GAIDA_PERFORMANCESETTINGS_H
+#define BA_GAIDA_PERFORMANCESETTINGS_H
+
+//#define maxFPS
+
+#endif //BA_GAIDA_PERFORMANCESETTINGS_H

@@ -51,6 +51,8 @@ namespace ba_gaida
         float m_theta, m_phi;
         float m_oldX, m_oldY;
         float m_radius;
+        float m_changeX;
+        float m_changeY;
 
         glm::vec3 m_cameraPos;
         glm::vec3 m_center;

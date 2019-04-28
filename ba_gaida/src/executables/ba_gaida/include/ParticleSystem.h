@@ -5,8 +5,6 @@
 #ifndef BA_GAIDA_PARTICLESYSTEM_H
 #define BA_GAIDA_PARTICLESYSTEM_H
 
-//#define maxFPS
-
 #include <stdio.h>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -19,21 +17,19 @@
 #include "Shader.h"
 #include "SSBO.h"
 #include "FpsCounter.h"
+#include "PerformanceSettings.h"
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
-
 
 namespace ba_gaida
 {
     class ParticleSystem
     {
     public:
-        int m_particleCount;
         Camera *m_camera;
         FpsCounter *m_fps;
-        glm::uvec3 m_Boxsize;
 
 
         /**
@@ -43,7 +39,8 @@ namespace ba_gaida
         * @param camera The corresponding camera
         */
 
-        ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH, const int HEIGTH, const glm::uvec3 boxSize);
+        ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH, const int HEIGTH,
+                       const glm::uvec3 boxSize);
 
         ~ParticleSystem();
 
@@ -57,12 +54,13 @@ namespace ba_gaida
          * Renderer the result
          * @param window Render in this window
          */
-        void render(GLFWwindow *window);
+        void render();
 
         void setVariables(const int index, float value);
 
     private:
         void init();
+
         void setUniform(GLuint *id, const int particleCount);
 
         GLFWwindow *m_window;
@@ -81,8 +79,13 @@ namespace ba_gaida
         GLuint m_ssbo_vel_id[2];
 
         glm::vec3 m_boxCenter;
+
+        int m_particleCount;
+        glm::uvec3 m_Boxsize;
 #ifndef maxFPS
-        ImVec4 m_clear_color;
+        bool m_imgui_once;
+        float m_f = 0.0f; // FloatingSlideBar >> no use
+        ImVec4 m_imgui_clear_color; // ClearColor >> sets background color
 #endif
     };
 }

@@ -33,16 +33,16 @@ void ba_gaida::Camera::update(GLFWwindow *window)
     double x, y;
 
     glfwGetCursorPos(window, &x, &y);
-    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
     {
-        float changeX = ((float) x - m_oldX) * m_sensitivity;
-        float changeY = ((float) y - m_oldY) * m_sensitivity;
+        m_changeX = ((float) x - m_oldX) * m_sensitivity;
+        m_changeY = ((float) y - m_oldY) * m_sensitivity;
 
-        m_theta -= changeY;
+        m_theta -= m_changeY;
         if (m_theta < 0.01f) m_theta = 0.01f;
         else if (m_theta > glm::pi<float>() - 0.01f) m_theta = glm::pi<float>() - 0.01f;
 
-        m_phi -= changeX;
+        m_phi -= m_changeX;
         if (m_phi < 0) m_phi += 2*glm::pi<float>();
         else if (m_phi > 2*glm::pi<float>()) m_phi -= 2*glm::pi<float>();
     }
@@ -53,9 +53,6 @@ void ba_gaida::Camera::update(GLFWwindow *window)
     m_cameraPos.x = m_center.x + m_radius * sin(m_theta) * sin(m_phi);
     m_cameraPos.y = m_center.y + m_radius * cos(m_theta);
     m_cameraPos.z = m_center.z + m_radius * sin(m_theta) * cos(m_phi);
-
-//    std::cout <<"Center: " << m_center.x <<", " << m_center.y <<", " << m_center.z << std::endl;
-//    std::cout <<"Campos: " <<m_cameraPos.x <<", " << m_cameraPos.y <<", " << m_cameraPos.z << std::endl;
 
     m_viewMatrix = glm::lookAt( m_cameraPos, m_center, m_up);
 }

@@ -35,14 +35,18 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     setUniform(m_externalForceID, m_particleCount);
 
 #ifndef maxFPS
+    // init imgui
     ImGui::CreateContext();
     ImGui::StyleColorsDark();
     ImGui_ImplGlfw_InitForOpenGL(m_window, true);
-    const char* glsl_version = "#version 450";
+    // set glsl version | default: 150
+    const char *glsl_version = "#version 450";
     ImGui_ImplOpenGL3_Init(glsl_version);
-    m_clear_color = ImVec4(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
+    m_imgui_once = false; //pos and resize just once, look usage
+
+    m_imgui_clear_color = ImVec4(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
 #else
-    m_fps = new ba_gaida::FpsCounter(window);
+    m_fps = new ba_gaida::FpsCounter(m_window);
 #endif
 }
 
@@ -69,15 +73,17 @@ ba_gaida::ParticleSystem::~ParticleSystem()
 
 void ba_gaida::ParticleSystem::update(const double deltaTime)
 {
+    m_camera->update(m_window);
+
     ComputeShader::updateComputeShader(m_externalForceID, deltaTime, m_particleCount);
 
-    m_camera->update(m_window);
 #ifdef maxFPS
     m_fps->update(deltaTime);
 #endif
+    render();
 }
 
-void ba_gaida::ParticleSystem::render(GLFWwindow *window)
+void ba_gaida::ParticleSystem::render()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(m_renderID);
@@ -98,31 +104,47 @@ void ba_gaida::ParticleSystem::render(GLFWwindow *window)
 
     glUseProgram(0);
 
-#ifndef maxFPS
+#ifndef maxFPS //go to PerformanceSettings.h and #define maxFps for better performance(disables imgui and debug, enables simple FpsCounter in title)
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
-    bool show_demo_window = false;
     { //imgui window
-        static float f = 0.0f;
-
-        ImGui::Begin("Debug| ParticleSystem");
+        ImGui::Begin("Debug | ParticleSystem");
+        if (m_imgui_once != true)
+        {
+            ImGui::SetWindowPos(ImVec2(0.f, 0.f), 0); // x, y, condition
+            m_imgui_once = true;
+        }
 
         ImGui::Text("Warning! This makes the ParticleSystem slower");
-        ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-        ImGui::ColorEdit3("clear color", (float*)&m_clear_color); // Edit 3 floats representing a color
-
-
-        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+        ImGui::Text("Running with %.i Particles", m_particleCount);
+        ImGui::SliderFloat("float", &m_f, 0.0f, 1.0f);
+        if (ImGui::CollapsingHeader("Controls"))
+        {
+            ImGui::SetWindowSize(ImVec2(350, 300), 0);
+            ImGui::Text("Controls:\n"
+                        "ALT + LeftMouseButton: moves viewport\n"
+                        "W: moves to iew-direction\n"
+                        "S: moves away from view-direction\n"
+                        "Spacebar: moves up in world-space\n"
+                        "F: moves down in world-space\n");
+            ImGui::Text("-----------------------------------------------\n"
+                        "ClearColor: \n");
+            ImGui::ColorEdit3("clear color", (float *) &m_imgui_clear_color);
+            ImGui::Text("-----------------------------------------------");
+        }else{
+            ImGui::SetWindowSize(ImVec2(350, 150), 0);
+        }
+        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,
+                    ImGui::GetIO().Framerate);
         ImGui::End();
     }
-    glClearColor(m_clear_color.x, m_clear_color.y, m_clear_color.z, m_clear_color.w);
+    glClearColor(m_imgui_clear_color.x, m_imgui_clear_color.y, m_imgui_clear_color.z, m_imgui_clear_color.w);
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 #endif
 
-    glfwSwapBuffers(window);
-
+    glfwSwapBuffers(m_window);
 }
 
 void ba_gaida::ParticleSystem::init()
@@ -151,8 +173,8 @@ void ba_gaida::ParticleSystem::init()
 
 void ba_gaida::ParticleSystem::setUniform(GLuint *id, const int particleCount)
 {
-    id[1]= glGetUniformLocation(id[0], "deltaTime");
-    id[2]= glGetUniformLocation(id[0], "particleCount");
+    id[1] = glGetUniformLocation(id[0], "deltaTime");
+    id[2] = glGetUniformLocation(id[0], "particleCount");
 }
 
 

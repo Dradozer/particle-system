@@ -11,6 +11,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+#include "include/PerformanceSettings.h"
 #include "include/ParticleSystem.h"
 #include "include/Objects/CVK_Sphere.h"
 #include "include/Objects/CVK_Cube.h"
@@ -30,7 +31,7 @@ void resizeCallback(GLFWwindow *window, int w, int h)
 {
     particleSystem->m_camera->updateWidthHeight(w, h);
     glViewport(0, 0, w, h);
-}
+    }
 
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
@@ -76,7 +77,7 @@ void handleInput(GLFWwindow *window, float deltaTime)
 int main()
 {
     glfwInit();
-    if (glfwInit()== FALSE)
+    if (glfwInit() == FALSE)
     {
         std::cout << "Could not initialize GLFW!" << std::endl;
     } else
@@ -106,9 +107,9 @@ int main()
     }
 
     GLenum glError;
-    if((glError= glGetError()) != GL_NO_ERROR)
+    if ((glError = glGetError()) != GL_NO_ERROR)
     {
-        std::cout <<"1.OpenGL-Error: " << glError << std::endl;
+        std::cout << "1.OpenGL-Error: " << glError << std::endl;
     }
     glfwSwapInterval(VSync);
 
@@ -120,31 +121,32 @@ int main()
 
     srand(time(0));
     particleSystem = new ba_gaida::ParticleSystem(window, particleCount, WIDTH, HEIGTH, glm::uvec3(5));
+#ifdef maxFPS
     particleSystem->m_fps->setTitle(Title);
+#endif
     glClearColor(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
-    if((glError= glGetError()) != GL_NO_ERROR)
+    if ((glError = glGetError()) != GL_NO_ERROR)
     {
-        std::cout <<"2.OpenGL-Error: " << glError << std::endl;
+        std::cout << "2.OpenGL-Error: " << glError << std::endl;
     }
 
     double time = glfwGetTime();
+    double deltaTime;
+
     while (!glfwWindowShouldClose(window))
     {
-        glfwPollEvents();
-
-        double deltaTime = glfwGetTime() - time;
+        deltaTime = glfwGetTime() - time;
         time = glfwGetTime();
+        glfwPollEvents();
+        handleInput(window, deltaTime);
 
         particleSystem->update(deltaTime);
-
-        handleInput(window, deltaTime);
-        particleSystem->render(window);
-
     }
-    if((glError= glGetError()) != GL_NO_ERROR)
+
+    if ((glError = glGetError()) != GL_NO_ERROR)
     {
-        std::cout <<"5.OpenGL-Error: " << glError << std::endl;
+        std::cout << "3.OpenGL-Error: " << glError << std::endl;
     }
     //CleanUp
 
