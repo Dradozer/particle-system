@@ -80,6 +80,8 @@ namespace ba_gaida
 
         glm::vec3 m_boxCenter;
 
+        int m_heigth;
+        int m_width;
         int m_particleCount;
         glm::uvec3 m_Boxsize;
 #ifndef maxFPS

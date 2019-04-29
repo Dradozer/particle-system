@@ -13,7 +13,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64991c4f-a01d-4bfe-8ed6-fabe82702352" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/PerformanceSettings.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/PerformanceSettings.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/Shader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/Shader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/Shader.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/Shader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -29,27 +43,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="42" column="1" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
-              <folding>
-                <element signature="e#45#64#0" expanded="true" />
-                <element signature="e#3573#3612#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
-              <caret line="85" column="25" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
-              <folding>
-                <element signature="e#114#132#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="497">
+              <caret line="68" column="36" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -57,17 +55,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="114" column="72" selection-start-line="114" selection-start-column="72" selection-end-line="114" selection-end-column="72" />
+            <state relative-caret-position="187">
+              <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+              <folding>
+                <element signature="e#1991#2034#0" expanded="true" />
+                <element signature="e#2682#2707#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/PerformanceSettings.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="59" lean-forward="true" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
+            <state relative-caret-position="238">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -96,6 +98,8 @@
       <find>position</find>
       <find>re</find>
       <find>setnextwindowsize</find>
+      <find>glvertex</find>
+      <find>0f</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,11 +122,8 @@
         <option value="$PROJECT_DIR$/cmake/Doxyfile.in" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/ConsoleColor.h" />
-        <option value="$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Shader.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/SSBO.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.cpp" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp" />
         <option value="$PROJECT_DIR$/shaders/ba_gaida/externalForcesComputeShader.glsl" />
         <option value="$PROJECT_DIR$/shaders/ba_gaida/vertexShader.glsl" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/imgui/importImgui.h" />
@@ -130,16 +131,20 @@
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui_impl_opengl3.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui_impl_glfw.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui_impl_opengl3.h" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.h" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Shader.h" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/SSBO.h" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/PeformanceSettings.h" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/main.cpp" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui.cpp" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Config.h" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Shader.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui.cpp" />
+        <option value="$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/main.cpp" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Shader.h" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/PerformanceSettings.h" />
       </list>
@@ -147,10 +152,10 @@
   </component>
   <component name="OCFindUsagesOptions" text="false" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-22" />
-    <option name="y" value="-14" />
-    <option name="width" value="1484" />
-    <option name="height" value="996" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -160,7 +165,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -189,14 +193,6 @@
             <path>
               <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="executables" type="462c0819:PsiDirectoryNode" />
-              <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-              <item name="imgui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="shaders" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -209,6 +205,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -366,11 +363,22 @@
       <workItem from="1556447291643" duration="3000" />
       <workItem from="1556447323070" duration="8477000" />
       <workItem from="1556470812680" duration="427000" />
+      <workItem from="1556556611517" duration="3987000" />
+      <workItem from="1556560838306" duration="11000" />
+      <workItem from="1556561357482" duration="4000" />
+      <workItem from="1556562257119" duration="86000" />
+      <workItem from="1556562353887" duration="135000" />
+      <workItem from="1556562502038" duration="5000" />
+      <workItem from="1556562528156" duration="330000" />
+      <workItem from="1556562910979" duration="33000" />
+      <workItem from="1556562959088" duration="15000" />
+      <workItem from="1556563036892" duration="8000" />
+      <workItem from="1556572115835" duration="926000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102570000" />
+    <option name="totallyTimeSpent" value="108191000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -385,22 +393,22 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19989339" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22334754" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32827735" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.28602383" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.33152762" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.33044422" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32936078" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.31310943" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.3109426" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -411,7 +419,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/libraries/imgui/imgui.cpp" />
     <entry file="file://$PROJECT_DIR$/libraries/imgui/imgui.h" />
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor" />
@@ -502,13 +509,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/SSBO.cpp" />
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.cpp" />
-    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/vertexShader.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -667,13 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui_impl_glfw.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui_impl_opengl3.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -695,88 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-          <folding>
-            <element signature="e#106#123#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Shader.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-          <folding>
-            <element signature="e#160#178#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/SSBO.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ConsoleColor.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
-          <folding>
-            <element signature="e#112#131#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Shader.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="115" column="4" selection-start-line="115" selection-start-column="4" selection-end-line="115" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="57" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
-          <folding>
-            <element signature="e#98#117#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="6357" column="52" selection-start-line="6357" selection-start-column="52" selection-end-line="6357" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imconfig.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-746" />
@@ -789,38 +700,135 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
+    <entry file="file://$PROJECT_DIR$/../../../Pascal_ba/bachelorarbeit/src/executables/Bachelor/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui_impl_glfw.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="1" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
+        <state relative-caret-position="209">
+          <caret line="203" column="5" selection-start-line="203" selection-start-column="5" selection-end-line="203" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="3075" column="46" selection-start-line="3075" selection-start-column="46" selection-end-line="3075" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/SSBO.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Shader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Shader.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
           <folding>
-            <element signature="e#45#64#0" expanded="true" />
-            <element signature="e#3573#3612#0" expanded="true" />
+            <element signature="e#106#123#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ConsoleColor.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+          <folding>
+            <element signature="e#112#131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding>
+            <element signature="e#112#131#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="85" column="25" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
+        <state relative-caret-position="706">
+          <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
           <folding>
             <element signature="e#114#132#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="37" column="74" selection-start-line="37" selection-start-column="74" selection-end-line="37" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding>
+            <element signature="e#98#117#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="114" column="72" selection-start-line="114" selection-start-column="72" selection-end-line="114" selection-end-column="72" />
+        <state relative-caret-position="187">
+          <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+          <folding>
+            <element signature="e#1991#2034#0" expanded="true" />
+            <element signature="e#2682#2707#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/PerformanceSettings.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="59" lean-forward="true" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="68" column="36" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
         </state>
       </provider>
     </entry>

@@ -4,15 +4,17 @@
 
 #include "Camera.h"
 
-ba_gaida::Camera::Camera(glm::vec3 center, glm::vec3 up, int width, int height)
+ba_gaida::Camera::Camera(GLFWwindow *window,glm::vec3 center, glm::vec3 up, int width, int height)
 {
-    m_radius = center.z * 5.0f;
+
+    m_window = window;
+    m_radius = center.z * 5.f;
     m_center = center;
-    m_cameraPos = center + glm::vec3(0.0f,0.0f, m_radius);
+    m_cameraPos = center + glm::vec3(0.f,0.f, m_radius);
     m_up = up;
 
     m_sensitivity = 0.01f;
-    m_theta = glm::pi<float>() / 2.0f;
+    m_theta = glm::pi<float>() / 2.f;
     m_phi = 0.f;
 
     m_oldX = width / 2.f;
@@ -28,12 +30,12 @@ ba_gaida::Camera::~Camera()
 
 }
 
-void ba_gaida::Camera::update(GLFWwindow *window)
+void ba_gaida::Camera::update()
 {
     double x, y;
 
-    glfwGetCursorPos(window, &x, &y);
-    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS)
+    glfwGetCursorPos(m_window, &x, &y);
+    if (glfwGetMouseButton(m_window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
     {
         m_changeX = ((float) x - m_oldX) * m_sensitivity;
         m_changeY = ((float) y - m_oldY) * m_sensitivity;

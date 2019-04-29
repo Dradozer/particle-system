@@ -19,11 +19,11 @@ namespace ba_gaida
     {
     public:
 
-        Camera(glm::vec3 center, glm::vec3 up, int width, int height);
+        Camera(GLFWwindow *window, glm::vec3 center, glm::vec3 up, int width, int height);
 
         ~Camera();
 
-        void update(GLFWwindow *window);
+        void update();
 
         void updateWidthHeight(int width, int heigth);
 
@@ -53,6 +53,8 @@ namespace ba_gaida
         float m_radius;
         float m_changeX;
         float m_changeY;
+
+        GLFWwindow *m_window;
 
         glm::vec3 m_cameraPos;
         glm::vec3 m_center;

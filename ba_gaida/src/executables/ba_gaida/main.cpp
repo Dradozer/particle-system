@@ -31,7 +31,7 @@ void resizeCallback(GLFWwindow *window, int w, int h)
 {
     particleSystem->m_camera->updateWidthHeight(w, h);
     glViewport(0, 0, w, h);
-    }
+}
 
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
@@ -54,19 +54,19 @@ void handleInput(GLFWwindow *window, float deltaTime)
     glm::vec3 dir = glm::normalize(cameraCenter - cameraPos);
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
     {
-        cameraCenter += dir * deltaTime * 2.0f;
+        cameraCenter += dir * deltaTime * 2.f;
     }
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
     {
-        cameraCenter -= dir * deltaTime * 2.0f;
+        cameraCenter -= dir * deltaTime * 2.f;
     }
     if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
     {
-        cameraCenter += glm::vec3(0.0f, 1.0f, 0.0f) * deltaTime * 2.0f;
+        cameraCenter += glm::vec3(0.f, 1.f, 0.f) * deltaTime * 2.f;
     }
     if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
     {
-        cameraCenter += glm::vec3(0.0f, -1.0f, 0.0f) * deltaTime * 2.0f;
+        cameraCenter += glm::vec3(0.f, -1.f, 0.f) * deltaTime * 2.f;
     }
     particleSystem->m_camera->setCenter(cameraCenter);
 
@@ -146,10 +146,10 @@ int main()
 
     if ((glError = glGetError()) != GL_NO_ERROR)
     {
-        std::cout << "3.OpenGL-Error: " << glError << std::endl;
+        std::cout << "7.OpenGL-Error: " << glError << std::endl;
     }
     //CleanUp
-
+    delete particleSystem;
     glfwDestroyWindow(window);
     glfwTerminate();
 

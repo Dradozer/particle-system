@@ -9,10 +9,12 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
 {
     m_window = window;
     m_particleCount = particleCount * 128;
+    m_width = WIDTH;
+    m_heigth = HEIGTH;
     m_Boxsize = boxSize;
     m_boxCenter = glm::vec3(boxSize.x / 2, boxSize.y / 2, boxSize.z / 2);
-    m_camera = new ba_gaida::Camera(m_boxCenter,
-                                    glm::vec3(0.0f, 1.0f, 0.0f), WIDTH, HEIGTH);
+    m_camera = new ba_gaida::Camera(m_window, m_boxCenter,
+                                    glm::vec3(0.f, 1.f, 0.f), m_width, m_heigth);
 
     //create Particle at random Position without Velocity
     m_particle_pos = NULL;
@@ -58,7 +60,6 @@ ba_gaida::ParticleSystem::~ParticleSystem()
     ImGui::DestroyContext();
 #endif
 
-
     delete m_camera;
     delete m_fps;
     Shader::deleteShader(m_renderID);// remember to add all programID!
@@ -73,13 +74,14 @@ ba_gaida::ParticleSystem::~ParticleSystem()
 
 void ba_gaida::ParticleSystem::update(const double deltaTime)
 {
-    m_camera->update(m_window);
+    m_camera->update();
 
     ComputeShader::updateComputeShader(m_externalForceID, deltaTime, m_particleCount);
 
 #ifdef maxFPS
     m_fps->update(deltaTime);
 #endif
+
     render();
 }
 
@@ -116,14 +118,14 @@ void ba_gaida::ParticleSystem::render()
             m_imgui_once = true;
         }
 
-        ImGui::Text("Warning! This makes the ParticleSystem slower");
+        ImGui::Text("Warning! This Settings makes the ParticleSystem slower\n");
+        ImGui::Text("Change Settings in the PerformanceSettings.h \nand compile again\n");
         ImGui::Text("Running with %.i Particles", m_particleCount);
-        ImGui::SliderFloat("float", &m_f, 0.0f, 1.0f);
         if (ImGui::CollapsingHeader("Controls"))
         {
-            ImGui::SetWindowSize(ImVec2(350, 300), 0);
+            ImGui::SetWindowSize(ImVec2(400, 300), 0);
             ImGui::Text("Controls:\n"
-                        "ALT + LeftMouseButton: moves viewport\n"
+                        "LeftMouseButton: moves viewport\n"
                         "W: moves to iew-direction\n"
                         "S: moves away from view-direction\n"
                         "Spacebar: moves up in world-space\n"
@@ -132,10 +134,11 @@ void ba_gaida::ParticleSystem::render()
                         "ClearColor: \n");
             ImGui::ColorEdit3("clear color", (float *) &m_imgui_clear_color);
             ImGui::Text("-----------------------------------------------");
-        }else{
-            ImGui::SetWindowSize(ImVec2(350, 150), 0);
+        } else
+        {
+            ImGui::SetWindowSize(ImVec2(400, 150), 0);
         }
-        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,
+        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.f / ImGui::GetIO().Framerate,
                     ImGui::GetIO().Framerate);
         ImGui::End();
     }
@@ -150,9 +153,9 @@ void ba_gaida::ParticleSystem::render()
 void ba_gaida::ParticleSystem::init()
 {
     //init Particleposition
-    std::uniform_real_distribution<float> dist_x(0.0f, m_Boxsize.x);
-    std::uniform_real_distribution<float> dist_y(0.0f, m_Boxsize.y);
-    std::uniform_real_distribution<float> dist_z(0.0f, m_Boxsize.z);
+    std::uniform_real_distribution<float> dist_x(0.f, m_Boxsize.x);
+    std::uniform_real_distribution<float> dist_y(0.f, m_Boxsize.y);
+    std::uniform_real_distribution<float> dist_z(0.f, m_Boxsize.z);
     std::default_random_engine rdm;
 
     m_particle_pos = new glm::vec4[m_particleCount];
@@ -160,10 +163,10 @@ void ba_gaida::ParticleSystem::init()
 
     for (int i = 0; i < m_particleCount; i++)
     {
-        m_particle_pos[i] = glm::vec4(dist_x(rdm), dist_y(rdm), dist_z(rdm), 0.0f);
+        m_particle_pos[i] = glm::vec4(dist_x(rdm), dist_y(rdm), dist_z(rdm), 0.f);
 //        std::cout << "Pos[" << i << "]:( " << m_particle_pos[i].x << ", " << m_particle_pos[i].y << ", "
 //                  << m_particle_pos[i].z << ")" << std::endl;
-        m_particle_vel[i] = glm::vec4(0.0f);
+        m_particle_vel[i] = glm::vec4(0.f);
         if (i == m_particleCount - 1)
         {
             std::cout << "Successfully generated: \t" << m_particleCount << " Particle" << std::endl;

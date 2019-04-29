@@ -7,7 +7,7 @@
 ba_gaida::FpsCounter::FpsCounter(GLFWwindow *window)
 {
     m_window = window;
-    m_timePerFrame = 0.0f;
+    m_timePerFrame = 0.f;
     m_Fps = 0;
 }
 
@@ -23,12 +23,12 @@ void ba_gaida::FpsCounter::update(double deltaTime)
 {
     m_timePerFrame += deltaTime;
     m_Fps++;
-    if (m_timePerFrame >= 1.0f)
+    if (m_timePerFrame >= 1.f)
     {
         std::string title = m_title + " | FPS: " + ToString(m_Fps);
         glfwSetWindowTitle(m_window, title.c_str());
         m_Fps = 0;
-        m_timePerFrame = 0.0f;
+        m_timePerFrame = 0.f;
     }
 }
 

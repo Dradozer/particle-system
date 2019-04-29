@@ -10,32 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9e2b760-0123-4e1e-8b2e-866a4a7e9f91" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Camera.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Camera.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/CameraTrackball.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/CameraTrackball.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Engine.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Engine.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystemParent.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystemParent.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystems/CPU/ParticleSystem_v1.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystems/CPU/ParticleSystem_v1.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystems/GPU/ParticleSystem_v1.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/ParticleSystems/GPU/ParticleSystem_v1.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Shader.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/Include/Shader.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/dependencies.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/executables/Bachelor/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/ba_gaida/include/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/executables/ba_gaida/include/Camera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/ba_gaida/include/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/executables/ba_gaida/include/Camera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/ba_gaida/include/ComputeShader.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/executables/ba_gaida/include/ComputeShader.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/executables/ba_gaida/include/ParticleSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/executables/ba_gaida/include/ParticleSystem.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/executables/ba_gaida/include/ParticleSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/executables/ba_gaida/include/ParticleSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/ba_gaida/include/PerformanceSettings.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/executables/ba_gaida/include/PerformanceSettings.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/executables/ba_gaida/include/Shader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/executables/ba_gaida/include/Shader.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/executables/ba_gaida/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/executables/ba_gaida/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shaders/Bachelor/fragmentShader.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shaders/Bachelor/vertexShader.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shaders/Projekt4/fragmentShader.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shaders/Projekt4/vertexShader.glsl" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,16 +32,10 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/executables/ba_gaida/main.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#45#64#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -65,10 +44,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="244" />
-    <option name="y" value="-13" />
-    <option name="width" value="1400" />
-    <option name="height" value="970" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -76,7 +55,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -106,27 +84,13 @@
               <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
               <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="executables" type="462c0819:PsiDirectoryNode" />
-              <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
-              <item name="include" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="shaders" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ba_gaida" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="shaders" type="462c0819:PsiDirectoryNode" />
-              <item name="ba_gaida" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -161,16 +125,19 @@
       <workItem from="1554713992076" duration="40000" />
       <workItem from="1554714048352" duration="32000" />
       <workItem from="1554908396601" duration="57000" />
+      <workItem from="1556561171542" duration="9000" />
+      <workItem from="1556562508018" duration="19000" />
+      <workItem from="1556563029339" duration="7000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129000" />
+    <option name="totallyTimeSpent" value="164000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26439232" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -198,13 +165,7 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/executables/ba_gaida/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#45#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

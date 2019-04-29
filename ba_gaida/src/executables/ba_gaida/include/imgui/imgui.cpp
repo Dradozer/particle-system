@@ -3073,6 +3073,7 @@ void ImGui::DestroyContext(ImGuiContext* ctx)
     if (GImGui == ctx)
         SetCurrentContext(NULL);
     IM_DELETE(ctx);
+    printf("Successfully deleted ImGui-Context");
 }
 
 ImGuiIO& ImGui::GetIO()
