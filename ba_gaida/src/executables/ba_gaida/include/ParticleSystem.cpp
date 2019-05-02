@@ -47,6 +47,8 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_imgui_once = false; //pos and resize just once, look usage
 
     m_imgui_clear_color = ImVec4(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
+    for(int i = 0; i <= (sizeof(m_timeStamps)/ sizeof(*m_timeStamps)); i++)
+        m_timeStamps[i] = 0.f;
 #else
     m_fps = new ba_gaida::FpsCounter(m_window);
 #endif
@@ -61,7 +63,9 @@ ba_gaida::ParticleSystem::~ParticleSystem()
 #endif
 
     delete m_camera;
+#ifdef maxFPS
     delete m_fps;
+#endif
     Shader::deleteShader(m_renderID);// remember to add all programID!
     //delete BufferObjects
     for (int i = 0; i < 2; i++)
@@ -71,18 +75,33 @@ ba_gaida::ParticleSystem::~ParticleSystem()
     }
 
 }
+#ifndef maxFPS
+template <class T> const T& max (const T& a, const T& b) {
+    return (a<b)?b:a;     // or: return comp(a,b)?b:a; for version (2)
+}
+#endif
 
 void ba_gaida::ParticleSystem::update(const double deltaTime)
 {
+#ifndef maxFPS
+    resetTime();
+#endif
     m_camera->update();
-
+#ifndef maxFPS
+    m_timeStamps[0] = max(m_timeStamps[0], getTimeStamp());
+#endif
     ComputeShader::updateComputeShader(m_externalForceID, deltaTime, m_particleCount);
-
+#ifndef maxFPS
+    m_timeStamps[1] = max(m_timeStamps[1], getTimeStamp());
+#endif
 #ifdef maxFPS
     m_fps->update(deltaTime);
 #endif
 
     render();
+#ifndef maxFPS
+    m_timeStamps[2] = max(m_timeStamps[2], getTimeStamp());
+#endif
 }
 
 void ba_gaida::ParticleSystem::render()
@@ -134,9 +153,18 @@ void ba_gaida::ParticleSystem::render()
                         "ClearColor: \n");
             ImGui::ColorEdit3("clear color", (float *) &m_imgui_clear_color);
             ImGui::Text("-----------------------------------------------");
+        } else if (ImGui::CollapsingHeader("Computingtimes"))
+        {
+            ImGui::SetWindowSize(ImVec2(400, 300), 0);
+            ImGui::Text("Max computingtime for segment:\n"
+                        "CameraUpdate: %.4f ms\n"
+                        "CS Gravity: %.4f ms\n"
+                        "Renderer: %.4f ms\n",
+                        m_timeStamps[0] * 1000, m_timeStamps[1] * 1000, m_timeStamps[2] * 1000);
+            ImGui::Text("-----------------------------------------------");
         } else
         {
-            ImGui::SetWindowSize(ImVec2(400, 150), 0);
+            ImGui::SetWindowSize(ImVec2(400, 170), 0);
         }
         ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.f / ImGui::GetIO().Framerate,
                     ImGui::GetIO().Framerate);
@@ -178,6 +206,19 @@ void ba_gaida::ParticleSystem::setUniform(GLuint *id, const int particleCount)
 {
     id[1] = glGetUniformLocation(id[0], "deltaTime");
     id[2] = glGetUniformLocation(id[0], "particleCount");
+
 }
 
+#ifndef maxFPS
+void ba_gaida::ParticleSystem::resetTime()
+{
+    m_startTimer = glfwGetTime();
+}
 
+float ba_gaida::ParticleSystem::getTimeStamp()
+{
+    m_usedTime = glfwGetTime() - m_startTimer;
+    m_startTimer = glfwGetTime();
+    return m_usedTime;
+}
+#endif

@@ -29,9 +29,9 @@ namespace ba_gaida
     {
     public:
         Camera *m_camera;
-        FpsCounter *m_fps;
-
-
+#ifdef maxFPS
+      FpsCounter  *m_fps;
+#endif
         /**
         * Constructor of the ParticleSystem
         * @param window The window of the ParticleSystem
@@ -50,15 +50,15 @@ namespace ba_gaida
          */
         void update(const double deltaTime);
 
-        /**
-         * Renderer the result
-         * @param window Render in this window
-         */
-        void render();
-
         void setVariables(const int index, float value);
 
     private:
+
+        /**
+         * Renderer the result
+         */
+        void render();
+
         void init();
 
         void setUniform(GLuint *id, const int particleCount);
@@ -85,10 +85,15 @@ namespace ba_gaida
         int m_particleCount;
         glm::uvec3 m_Boxsize;
 #ifndef maxFPS
+        void resetTime();
+        float getTimeStamp();
+        float m_startTimer;
+        float m_usedTime;
+        float m_timeStamps[3]; // Array with TimeStamps
         bool m_imgui_once;
-        float m_f = 0.0f; // FloatingSlideBar >> no use
         ImVec4 m_imgui_clear_color; // ClearColor >> sets background color
 #endif
+
     };
 }
 #endif //BA_GAIDA_PARTIKELSYSTEM_H

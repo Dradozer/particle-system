@@ -19,14 +19,12 @@ namespace ba_gaida
     public:
         FpsCounter(GLFWwindow *window);
         void update(double deltaTime);
+        void setTitle(const std::string &Title);
 
     private:
         GLFWwindow *m_window;
         std::string m_title;
-    public:
-        void setTitle(const std::string &Title);
 
-    private:
         double m_timePerFrame;
         int m_Fps;
     };
