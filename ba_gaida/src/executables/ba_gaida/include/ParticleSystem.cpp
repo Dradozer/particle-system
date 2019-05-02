@@ -13,6 +13,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_heigth = HEIGTH;
     m_Boxsize = boxSize;
     m_boxCenter = glm::vec3(boxSize.x / 2, boxSize.y / 2, boxSize.z / 2);
+    m_fps = new ba_gaida::FpsCounter(m_window);
     m_camera = new ba_gaida::Camera(m_window, m_boxCenter,
                                     glm::vec3(0.f, 1.f, 0.f), m_width, m_heigth);
 
@@ -45,12 +46,9 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     const char *glsl_version = "#version 450";
     ImGui_ImplOpenGL3_Init(glsl_version);
     m_imgui_once = false; //pos and resize just once, look usage
-
+    m_imgui_applications = 0.f;
     m_imgui_clear_color = ImVec4(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
-    for(int i = 0; i <= (sizeof(m_timeStamps)/ sizeof(*m_timeStamps)); i++)
-        m_timeStamps[i] = 0.f;
-#else
-    m_fps = new ba_gaida::FpsCounter(m_window);
+    m_timeStamps = new ba_gaida::FpsCounter(3);
 #endif
 }
 
@@ -60,12 +58,11 @@ ba_gaida::ParticleSystem::~ParticleSystem()
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
+    delete m_timeStamps;
 #endif
 
     delete m_camera;
-#ifdef maxFPS
     delete m_fps;
-#endif
     Shader::deleteShader(m_renderID);// remember to add all programID!
     //delete BufferObjects
     for (int i = 0; i < 2; i++)
@@ -75,33 +72,25 @@ ba_gaida::ParticleSystem::~ParticleSystem()
     }
 
 }
-#ifndef maxFPS
-template <class T> const T& max (const T& a, const T& b) {
-    return (a<b)?b:a;     // or: return comp(a,b)?b:a; for version (2)
-}
-#endif
 
 void ba_gaida::ParticleSystem::update(const double deltaTime)
 {
 #ifndef maxFPS
-    resetTime();
+    m_timeStamps->resetTimestamp();
 #endif
     m_camera->update();
 #ifndef maxFPS
-    m_timeStamps[0] = max(m_timeStamps[0], getTimeStamp());
+    m_timeStamps->setTimestamp(0);
 #endif
     ComputeShader::updateComputeShader(m_externalForceID, deltaTime, m_particleCount);
 #ifndef maxFPS
-    m_timeStamps[1] = max(m_timeStamps[1], getTimeStamp());
+    m_timeStamps->setTimestamp(1);
 #endif
-#ifdef maxFPS
-    m_fps->update(deltaTime);
-#endif
-
     render();
 #ifndef maxFPS
-    m_timeStamps[2] = max(m_timeStamps[2], getTimeStamp());
+    m_timeStamps->setTimestamp(2);
 #endif
+    m_fps->update(deltaTime);
 }
 
 void ba_gaida::ParticleSystem::render()
@@ -124,25 +113,24 @@ void ba_gaida::ParticleSystem::render()
     glDrawArrays(GL_POINTS, 0, m_particleCount);
 
     glUseProgram(0);
-
 #ifndef maxFPS //go to PerformanceSettings.h and #define maxFps for better performance(disables imgui and debug, enables simple FpsCounter in title)
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
     { //imgui window
         ImGui::Begin("Debug | ParticleSystem");
+        m_imgui_applications = 0;
         if (m_imgui_once != true)
         {
             ImGui::SetWindowPos(ImVec2(0.f, 0.f), 0); // x, y, condition
             m_imgui_once = true;
         }
-
         ImGui::Text("Warning! This Settings makes the ParticleSystem slower\n");
-        ImGui::Text("Change Settings in the PerformanceSettings.h \nand compile again\n");
+        ImGui::Text("This UI-Settings consume about 0.1 - 0.2 ms\n");
         ImGui::Text("Running with %.i Particles", m_particleCount);
         if (ImGui::CollapsingHeader("Controls"))
         {
-            ImGui::SetWindowSize(ImVec2(400, 300), 0);
+            m_imgui_applications++;
             ImGui::Text("Controls:\n"
                         "LeftMouseButton: moves viewport\n"
                         "W: moves to iew-direction\n"
@@ -152,29 +140,27 @@ void ba_gaida::ParticleSystem::render()
             ImGui::Text("-----------------------------------------------\n"
                         "ClearColor: \n");
             ImGui::ColorEdit3("clear color", (float *) &m_imgui_clear_color);
-            ImGui::Text("-----------------------------------------------");
-        } else if (ImGui::CollapsingHeader("Computingtimes"))
-        {
-            ImGui::SetWindowSize(ImVec2(400, 300), 0);
-            ImGui::Text("Max computingtime for segment:\n"
-                        "CameraUpdate: %.4f ms\n"
-                        "CS Gravity: %.4f ms\n"
-                        "Renderer: %.4f ms\n",
-                        m_timeStamps[0] * 1000, m_timeStamps[1] * 1000, m_timeStamps[2] * 1000);
-            ImGui::Text("-----------------------------------------------");
-        } else
-        {
-            ImGui::SetWindowSize(ImVec2(400, 170), 0);
         }
-        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.f / ImGui::GetIO().Framerate,
-                    ImGui::GetIO().Framerate);
+        if (ImGui::CollapsingHeader("Computingtimes"))
+        {
+            m_imgui_applications = m_imgui_applications +0.5f;
+            ImGui::Text("Avg. computingtime for segment:\n"
+                        "CameraUpdate: \t%.8f ms\n"
+                        "CS Gravity:   \t%.8f ms\n"
+                        "Renderer:     \t%.8f ms\n",
+                        m_timeStamps->getTimestamp(0) * 1000, m_timeStamps->getTimestamp(1) * 1000, m_timeStamps->getTimestamp(2) * 1000);
+            ImGui::Text("-----------------------------------------------");
+        }
+
+        ImGui::SetWindowSize(ImVec2(400, 170 + 150 * m_imgui_applications), 0);
+        ImGui::Text("Application average %.4f ms/frame (%.i FPS)", 1000.f / m_fps->getFPS(),
+                    m_fps->getFPS());
         ImGui::End();
     }
     glClearColor(m_imgui_clear_color.x, m_imgui_clear_color.y, m_imgui_clear_color.z, m_imgui_clear_color.w);
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 #endif
-
     glfwSwapBuffers(m_window);
 }
 
@@ -208,17 +194,3 @@ void ba_gaida::ParticleSystem::setUniform(GLuint *id, const int particleCount)
     id[2] = glGetUniformLocation(id[0], "particleCount");
 
 }
-
-#ifndef maxFPS
-void ba_gaida::ParticleSystem::resetTime()
-{
-    m_startTimer = glfwGetTime();
-}
-
-float ba_gaida::ParticleSystem::getTimeStamp()
-{
-    m_usedTime = glfwGetTime() - m_startTimer;
-    m_startTimer = glfwGetTime();
-    return m_usedTime;
-}
-#endif

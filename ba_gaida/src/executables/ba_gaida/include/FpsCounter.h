@@ -18,15 +18,27 @@ namespace ba_gaida
     {
     public:
         FpsCounter(GLFWwindow *window);
-        void update(double deltaTime);
+        FpsCounter(const int timerQuantity);
+        void update(const double deltaTime);
+        int getFPS();
         void setTitle(const std::string &Title);
+
+        void resetTimestamp();
+        void setTimestamp( const int index);
+        float getTimestamp(const int index);
 
     private:
         GLFWwindow *m_window;
         std::string m_title;
-
-        double m_timePerFrame;
+        float m_timePerFrame;
         int m_Fps;
+        int m_lastFPS;
+
+        float m_lastTimer;
+        int *m_iterations;
+        float *m_timeStamps;
+        float *m_timeCounter;
+
     };
 }
 #endif //BA_GAIDA_FPSCOUNTER_H

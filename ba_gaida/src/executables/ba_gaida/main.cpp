@@ -121,9 +121,7 @@ int main()
 
     srand(time(0));
     particleSystem = new ba_gaida::ParticleSystem(window, particleCount, WIDTH, HEIGTH, glm::uvec3(5));
-#ifdef maxFPS
     particleSystem->m_fps->setTitle(Title);
-#endif
     glClearColor(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
     if ((glError = glGetError()) != GL_NO_ERROR)

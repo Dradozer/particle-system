@@ -29,9 +29,7 @@ namespace ba_gaida
     {
     public:
         Camera *m_camera;
-#ifdef maxFPS
-      FpsCounter  *m_fps;
-#endif
+        FpsCounter  *m_fps;
         /**
         * Constructor of the ParticleSystem
         * @param window The window of the ParticleSystem
@@ -85,12 +83,9 @@ namespace ba_gaida
         int m_particleCount;
         glm::uvec3 m_Boxsize;
 #ifndef maxFPS
-        void resetTime();
-        float getTimeStamp();
-        float m_startTimer;
-        float m_usedTime;
-        float m_timeStamps[3]; // Array with TimeStamps
+        FpsCounter  *m_timeStamps;
         bool m_imgui_once;
+        float m_imgui_applications;
         ImVec4 m_imgui_clear_color; // ClearColor >> sets background color
 #endif
 

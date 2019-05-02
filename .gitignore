@@ -2,4 +2,6 @@
 *.exe
 ## ignore Build
 ba_gaida/src/cmake-build-debug
-ba_gaida/src/build/
+ba_gaida/src/build
+ba_gaida/src/build_debug
+ba_gaida/src/build_release
