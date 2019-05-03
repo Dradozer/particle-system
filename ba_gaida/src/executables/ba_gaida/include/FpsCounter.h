@@ -17,8 +17,10 @@ namespace ba_gaida
     class FpsCounter
     {
     public:
+        FpsCounter(GLFWwindow *window ,const int timerQuantity);
         FpsCounter(GLFWwindow *window);
         FpsCounter(const int timerQuantity);
+        ~FpsCounter();
         void update(const double deltaTime);
         int getFPS();
         void setTitle(const std::string &Title);

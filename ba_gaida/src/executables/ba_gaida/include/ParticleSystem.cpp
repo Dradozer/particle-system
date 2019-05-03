@@ -13,7 +13,6 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_heigth = HEIGTH;
     m_Boxsize = boxSize;
     m_boxCenter = glm::vec3(boxSize.x / 2, boxSize.y / 2, boxSize.z / 2);
-    m_fps = new ba_gaida::FpsCounter(m_window);
     m_camera = new ba_gaida::Camera(m_window, m_boxCenter,
                                     glm::vec3(0.f, 1.f, 0.f), m_width, m_heigth);
 
@@ -48,7 +47,9 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_imgui_once = false; //pos and resize just once, look usage
     m_imgui_applications = 0.f;
     m_imgui_clear_color = ImVec4(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
-    m_timeStamps = new ba_gaida::FpsCounter(3);
+    m_fps = new ba_gaida::FpsCounter(m_window,3);
+#else
+    m_fps = new ba_gaida::FpsCounter(m_window);
 #endif
 }
 
@@ -58,9 +59,7 @@ ba_gaida::ParticleSystem::~ParticleSystem()
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
-    delete m_timeStamps;
 #endif
-
     delete m_camera;
     delete m_fps;
     Shader::deleteShader(m_renderID);// remember to add all programID!
@@ -70,25 +69,24 @@ ba_gaida::ParticleSystem::~ParticleSystem()
         glDeleteBuffers(1, &m_ssbo_pos_id[i]);
         glDeleteBuffers(1, &m_ssbo_vel_id[i]);
     }
-
 }
 
 void ba_gaida::ParticleSystem::update(const double deltaTime)
 {
 #ifndef maxFPS
-    m_timeStamps->resetTimestamp();
+    m_fps->resetTimestamp();
 #endif
     m_camera->update();
 #ifndef maxFPS
-    m_timeStamps->setTimestamp(0);
+    m_fps->setTimestamp(0);
 #endif
     ComputeShader::updateComputeShader(m_externalForceID, deltaTime, m_particleCount);
 #ifndef maxFPS
-    m_timeStamps->setTimestamp(1);
+    m_fps->setTimestamp(1);
 #endif
     render();
 #ifndef maxFPS
-    m_timeStamps->setTimestamp(2);
+    m_fps->setTimestamp(2);
 #endif
     m_fps->update(deltaTime);
 }
@@ -144,11 +142,11 @@ void ba_gaida::ParticleSystem::render()
         if (ImGui::CollapsingHeader("Computingtimes"))
         {
             m_imgui_applications = m_imgui_applications +0.5f;
-            ImGui::Text("Avg. computingtime for segment:\n"
+            ImGui::Text("Avg. computingtime for segmenta:\n"
                         "CameraUpdate: \t%.8f ms\n"
                         "CS Gravity:   \t%.8f ms\n"
                         "Renderer:     \t%.8f ms\n",
-                        m_timeStamps->getTimestamp(0) * 1000, m_timeStamps->getTimestamp(1) * 1000, m_timeStamps->getTimestamp(2) * 1000);
+                        m_fps->getTimestamp(0) * 1000, m_fps->getTimestamp(1) * 1000, m_fps->getTimestamp(2) * 1000);
             ImGui::Text("-----------------------------------------------");
         }
 
@@ -192,5 +190,4 @@ void ba_gaida::ParticleSystem::setUniform(GLuint *id, const int particleCount)
 {
     id[1] = glGetUniformLocation(id[0], "deltaTime");
     id[2] = glGetUniformLocation(id[0], "particleCount");
-
 }

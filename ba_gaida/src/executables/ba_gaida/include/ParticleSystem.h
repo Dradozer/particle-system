@@ -83,7 +83,6 @@ namespace ba_gaida
         int m_particleCount;
         glm::uvec3 m_Boxsize;
 #ifndef maxFPS
-        FpsCounter  *m_timeStamps;
         bool m_imgui_once;
         float m_imgui_applications;
         ImVec4 m_imgui_clear_color; // ClearColor >> sets background color

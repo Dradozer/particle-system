@@ -3,6 +3,18 @@
 //
 
 #include "FpsCounter.h"
+ba_gaida::FpsCounter::FpsCounter(GLFWwindow *window ,const int timerQuantity)
+{
+    m_window = window;
+    m_timePerFrame = 0.f;
+    m_Fps = 0;
+    m_lastFPS = 0;
+
+    m_lastTimer = 0.0f;
+    m_iterations = new int [timerQuantity]{0};
+    m_timeStamps = new float [timerQuantity]{0.f};
+    m_timeCounter = new float [timerQuantity]{0.f};
+}
 
 ba_gaida::FpsCounter::FpsCounter(GLFWwindow *window)
 {
@@ -72,4 +84,11 @@ void ba_gaida::FpsCounter::setTimestamp( const int index)
 float ba_gaida::FpsCounter::getTimestamp(const int index)
 {
     return m_timeStamps[index];
+}
+
+ba_gaida::FpsCounter::~FpsCounter()
+{
+    delete m_iterations;
+    delete m_timeStamps;
+    delete m_timeCounter;
 }
