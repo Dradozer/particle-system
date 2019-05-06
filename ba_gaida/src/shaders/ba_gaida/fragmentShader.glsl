@@ -3,6 +3,7 @@
 out vec4 FragColor;
 
 in vec4 pos;
+in vec4 vel;
 uniform vec3 cameraPos;
 #define red 179
 #define green 20
@@ -17,5 +18,5 @@ void main()
     float g = green / 255.f;
     float b = blue / 255.f;
 
-    FragColor = vec4(r, g, b, 1.0f);
+    FragColor = vec4 (r,g,b,1.f);
 }

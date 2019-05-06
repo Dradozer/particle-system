@@ -8,7 +8,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
                                          const int HEIGTH, const glm::uvec3 boxSize)
 {
     m_window = window;
-    m_particleCount = particleCount * 128;
+    m_particleCount = (particleCount * 32);
     m_width = WIDTH;
     m_heigth = HEIGTH;
     m_Boxsize = boxSize;
@@ -17,8 +17,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
                                     glm::vec3(0.f, 1.f, 0.f), m_width, m_heigth);
 
     //create Particle at random Position without Velocity
-    m_particle_pos = NULL;
-    m_particle_vel = NULL;
+    m_particle = nullptr;
     init();
 
     Shader::attachShader(m_renderID, GL_VERTEX_SHADER, SHADERS_PATH "/ba_gaida/vertexShader.glsl");
@@ -29,8 +28,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_uniform_projM = glGetUniformLocation(m_renderID, "projMatrix");
     m_uniform_camPos = glGetUniformLocation(m_renderID, "cameraPos");
 
-    SSBO::createSSBO(m_ssbo_pos_id[0], 0, m_particleCount * sizeof(glm::vec4), &m_particle_pos[0]);
-    SSBO::createSSBO(m_ssbo_vel_id[0], 1, m_particleCount * sizeof(glm::vec4), &m_particle_vel[0]);
+    SSBO::createSSBO(m_ssbo_particleId[0], 0, m_particleCount * sizeof(Particle), &m_particle[0]);
 
     ComputeShader::createComputeShader(m_externalForceID[0], SHADERS_PATH "/ba_gaida/externalForcesComputeShader.glsl");
 
@@ -63,11 +61,11 @@ ba_gaida::ParticleSystem::~ParticleSystem()
     delete m_camera;
     delete m_fps;
     Shader::deleteShader(m_renderID);// remember to add all programID!
+    Shader::deleteShader(m_externalForceID[0]);
     //delete BufferObjects
     for (int i = 0; i < 2; i++)
     {
-        glDeleteBuffers(1, &m_ssbo_pos_id[i]);
-        glDeleteBuffers(1, &m_ssbo_vel_id[i]);
+        glDeleteBuffers(1, &m_ssbo_particleId[i]);
     }
 }
 
@@ -100,12 +98,12 @@ void ba_gaida::ParticleSystem::render()
     glUniformMatrix4fv(m_uniform_viewM, 1, GL_FALSE, glm::value_ptr(m_camera->getViewMatrix()));
     glUniformMatrix4fv(m_uniform_projM, 1, GL_FALSE, glm::value_ptr(m_camera->getProjectionMatrix()));
 
-    glBindBuffer(GL_ARRAY_BUFFER, m_ssbo_pos_id[0]);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, m_ssbo_particleId[0]);
+    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*) offsetof(Particle,position));
     glEnableVertexAttribArray(0);
 
-    glBindBuffer(GL_ARRAY_BUFFER, m_ssbo_vel_id[0]);
-    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, m_ssbo_particleId[0]);
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*) offsetof(Particle,velocity));
     glEnableVertexAttribArray(1);
 
     glDrawArrays(GL_POINTS, 0, m_particleCount);
@@ -128,7 +126,7 @@ void ba_gaida::ParticleSystem::render()
         ImGui::Text("Running with %.i Particles", m_particleCount);
         if (ImGui::CollapsingHeader("Controls"))
         {
-            m_imgui_applications++;
+            m_imgui_applications = m_imgui_applications +0.8f;
             ImGui::Text("Controls:\n"
                         "LeftMouseButton: moves viewport\n"
                         "W: moves to iew-direction\n"
@@ -164,21 +162,24 @@ void ba_gaida::ParticleSystem::render()
 
 void ba_gaida::ParticleSystem::init()
 {
+    initParticle();
+    //initGrid();
+}
+
+void ba_gaida::ParticleSystem::initParticle()
+{
     //init Particleposition
     std::uniform_real_distribution<float> dist_x(0.f, m_Boxsize.x);
     std::uniform_real_distribution<float> dist_y(0.f, m_Boxsize.y);
     std::uniform_real_distribution<float> dist_z(0.f, m_Boxsize.z);
     std::default_random_engine rdm;
 
-    m_particle_pos = new glm::vec4[m_particleCount];
-    m_particle_vel = new glm::vec4[m_particleCount];
+    m_particle = new Particle[m_particleCount];
 
     for (int i = 0; i < m_particleCount; i++)
     {
-        m_particle_pos[i] = glm::vec4(dist_x(rdm), dist_y(rdm), dist_z(rdm), 0.f);
-//        std::cout << "Pos[" << i << "]:( " << m_particle_pos[i].x << ", " << m_particle_pos[i].y << ", "
-//                  << m_particle_pos[i].z << ")" << std::endl;
-        m_particle_vel[i] = glm::vec4(0.f);
+        m_particle[i].position = glm::vec4(dist_x(rdm), dist_y(rdm), dist_z(rdm), 0.f);
+        m_particle[i].velocity = glm::vec4(0.f,0.f,0.f,0.f);
         if (i == m_particleCount - 1)
         {
             std::cout << "Successfully generated: \t" << m_particleCount << " Particle" << std::endl;

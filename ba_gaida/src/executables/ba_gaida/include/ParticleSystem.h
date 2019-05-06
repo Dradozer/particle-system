@@ -18,7 +18,7 @@
 #include "SSBO.h"
 #include "FpsCounter.h"
 #include "PerformanceSettings.h"
-
+#include "Particle.h"
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
@@ -30,16 +30,22 @@ namespace ba_gaida
     public:
         Camera *m_camera;
         FpsCounter  *m_fps;
+
         /**
         * Constructor of the ParticleSystem
         * @param window The window of the ParticleSystem
         * @param particleCount The number of the initial particle
         * @param camera The corresponding camera
+        * @param WIDTH Window width
+        * @param HEIGTH Window height
+        * @param boxSize size of the box the particle are spawned in
         */
-
         ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH, const int HEIGTH,
                        const glm::uvec3 boxSize);
 
+        /**
+         * Destroys all context of the Particlesystem
+         */
         ~ParticleSystem();
 
         /**
@@ -57,8 +63,21 @@ namespace ba_gaida
          */
         void render();
 
+        /**
+         * Runs all inits
+         */
         void init();
 
+        /**
+         * initializes the Particle Position
+         */
+        void initParticle();
+
+        /**
+         *
+         * @param id The ShaderID-Pointer
+         * @param particleCount
+         */
         void setUniform(GLuint *id, const int particleCount);
 
         GLFWwindow *m_window;
@@ -70,11 +89,9 @@ namespace ba_gaida
         GLuint m_uniform_projM;
         GLuint m_uniform_camPos;
 
-        glm::vec4 *m_particle_pos;
-        glm::vec4 *m_particle_vel;
+        Particle *m_particle;
 
-        GLuint m_ssbo_pos_id[2];
-        GLuint m_ssbo_vel_id[2];
+        GLuint m_ssbo_particleId[2];
 
         glm::vec3 m_boxCenter;
 

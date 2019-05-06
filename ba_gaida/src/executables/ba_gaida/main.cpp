@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include <GL/glew.h>
 #include <string.h>
 #include <sstream>
@@ -16,8 +18,8 @@
 #include "include/Objects/CVK_Sphere.h"
 #include "include/Objects/CVK_Cube.h"
 
-//particleCount is multiplied by 128, keep it between 64 and 256 for now
-#define particleCount   64
+//particleCount is multiplied by 32, keep it between 64 and 512 for now
+#define particleCount   512
 #define Title "ba_gaida"
 #define WIDTH 1024
 #define HEIGTH 768
@@ -69,8 +71,6 @@ void handleInput(GLFWwindow *window, float deltaTime)
         cameraCenter += glm::vec3(0.f, -1.f, 0.f) * deltaTime * 2.f;
     }
     particleSystem->m_camera->setCenter(cameraCenter);
-
-
 }
 
 
