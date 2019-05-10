@@ -19,6 +19,7 @@
 #include "FpsCounter.h"
 #include "PerformanceSettings.h"
 #include "Particle.h"
+#include "Grid.h"
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
@@ -29,7 +30,7 @@ namespace ba_gaida
     {
     public:
         Camera *m_camera;
-        FpsCounter  *m_fps;
+        FpsCounter *m_fps;
 
         /**
         * Constructor of the ParticleSystem
@@ -74,15 +75,22 @@ namespace ba_gaida
         void initParticle();
 
         /**
-         *
+         * initalize the Grid-Structure
+         * @param dimensions the dimensions of the grid (x^3)
+         */
+        void initGrid(const unsigned int dimensions);
+
+        /**
+         * sets the Id depending on the grid dimensions: x * dimensions^2 + y * dimensions + z
          * @param id The ShaderID-Pointer
          * @param particleCount
          */
-        void setUniform(GLuint *id, const int particleCount);
+        void setUniform(GLuint *id);
 
         GLFWwindow *m_window;
 
-        GLuint m_externalForceID[3];
+        GLuint m_externalForceID[4];
+        GLuint m_updateForceID[4];
 
         GLuint m_renderID;
         GLuint m_uniform_viewM;
@@ -90,14 +98,17 @@ namespace ba_gaida
         GLuint m_uniform_camPos;
 
         Particle *m_particle;
+        Grid *m_eulerianGrid;
 
         GLuint m_ssbo_particleId[2];
+        GLuint m_ssbo_gridId;
 
         glm::vec3 m_boxCenter;
 
         int m_heigth;
         int m_width;
-        int m_particleCount;
+        unsigned int m_particleCount;
+        unsigned int m_dimensions;
         glm::uvec3 m_Boxsize;
 #ifndef maxFPS
         bool m_imgui_once;

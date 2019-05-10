@@ -1,5 +1,7 @@
 #version 450
-
+/*
+ * 2.1 VertexShader
+ */
 in layout (location = 0) vec4 position;
 in layout (location = 1) vec4 velocity;
 

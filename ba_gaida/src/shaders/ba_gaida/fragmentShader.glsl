@@ -1,5 +1,7 @@
 #version 450
-
+/*
+ * 2.2 FragmentShader
+ */
 out vec4 FragColor;
 
 in vec4 pos;
@@ -17,6 +19,6 @@ void main()
     float r = red / 255.f;
     float g = green / 255.f;
     float b = blue / 255.f;
-
-    FragColor = vec4 (r,g,b,1.f);
+    float length = floor(pos.x)+floor(pos.y)+floor(pos.z);
+    FragColor = vec4 (pos.x/length,pos.y/length,pos.z/length,1.f);
 }

@@ -19,7 +19,7 @@ namespace ba_gaida
             Shader::linkShader(id);
         }
 
-        static void updateComputeShader(GLuint *id, const float deltaTime, const int particleCount)
+        static void updateComputeShader(GLuint *id, const float deltaTime, const unsigned int particleCount, const unsigned int gridSize)
         {
 #ifndef maxFPS
             GLenum glError;
@@ -31,9 +31,10 @@ namespace ba_gaida
             glUseProgram(id[0]);
             {
                 glUniform1f(id[1], deltaTime);
-                glUniform1i(id[2], particleCount);
+                glUniform1ui(id[2], particleCount);
+                glUniform1ui(id[3], gridSize);
 
-                glDispatchCompute(particleCount / 16, 1, 1); // shader layout
+                glDispatchCompute(particleCount / 64, 1, 1); // shader layout
                 glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
             }
             glUseProgram(0);

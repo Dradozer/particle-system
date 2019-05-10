@@ -37,10 +37,10 @@ GLuint ba_gaida::Shader::loadShader(GLenum type, const char *path)
             fileContent += line + "\n";
         }
         file.close();
-        std::cout << green << "Successfully loaded:\t\t" << path << white << std::endl;
+        std::cout << "Successfully loaded:\t\t" << path << std::endl;
     } else
     {
-        std::cout << red << "ERROR:\t\tLoading-Error with " << path << white << std::endl;
+        std::cout << "ERROR:\t\tLoading-Error with " << path << std::endl;
     }
     const char *source = fileContent.c_str();
     const GLint sourceSize = strlen(source);
@@ -64,14 +64,14 @@ void ba_gaida::Shader::validateShader(GLuint shader, const char *path)
         GLchar *strLog = new GLchar[logLength + 1];
         glGetShaderInfoLog(shader, logLength, NULL, strLog);
 
-        std::cout << red << "ERROR:\t\tCompile-Error with " << path << white << std::endl;
-        std::cout << red << strLog << white << std::endl;
+        std::cout  << "ERROR:\t\tCompile-Error with " << path << std::endl;
+        std::cout  << strLog  << std::endl;
 
         delete[] strLog;
 
     } else if (status == GL_TRUE)
     {
-        std::cout << green << "Successfully compiled:\t\t" << path << white << std::endl;
+        std::cout  << "Successfully compiled:\t\t" << path << std::endl;
     }
 }
 
@@ -87,8 +87,8 @@ void ba_gaida::Shader::validateProgram(GLuint program)
         GLchar *strLog = new GLchar[logLength + 1];
         glGetProgramInfoLog(program, logLength, NULL, strLog);
 
-        std::cout << red << "ERROR:\t\tLinking-Error" << white << std::endl;
-        std::cout << red << strLog << white << std::endl;
+        std::cout << "ERROR:\t\tLinking-Error" << std::endl;
+        std::cout << strLog << std::endl;
 
         delete[] strLog;
 

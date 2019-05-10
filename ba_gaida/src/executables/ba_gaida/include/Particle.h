@@ -10,6 +10,8 @@
 struct Particle{
     glm::vec4 position;
     glm::vec4 velocity;
+    unsigned int gridID;
+    int pad1,pad2,pad3;
 };
 
 #endif //BA_GAIDA_PARTICLE_H

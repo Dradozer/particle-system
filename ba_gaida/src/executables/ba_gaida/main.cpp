@@ -20,7 +20,9 @@
 
 //particleCount is multiplied by 32, keep it between 64 and 512 for now
 #define particleCount   512
+//Title title of the displayed window
 #define Title "ba_gaida"
+//Window dimensions Width x Heigth
 #define WIDTH 1024
 #define HEIGTH 768
 //VSync, parameter must be 0 or 1, 0 -> disabled , 1 -> enabled
@@ -37,10 +39,9 @@ void resizeCallback(GLFWwindow *window, int w, int h)
 
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
-    // modes
 //	if(key == GLFW_KEY_F1 && action == GLFW_PRESS) {
-//		setAllUniforms(honey);
-//		std::cout << "Parameters set to Honey." << std::endl;
+//		setAllUniforms();
+//		std::cout << "u pressed a key, good job team." << std::endl;
 //	}
 }
 
