@@ -9,6 +9,7 @@ ba_gaida::Camera::Camera(GLFWwindow *window,glm::vec3 center, glm::vec3 up, int 
 
     m_window = window;
     m_radius = center.z * 5.f;
+    m_maxRadius = m_radius *1.5f;
     m_center = center;
     m_cameraPos = center + glm::vec3(0.f,0.f, m_radius);
     m_up = up;
@@ -21,7 +22,7 @@ ba_gaida::Camera::Camera(GLFWwindow *window,glm::vec3 center, glm::vec3 up, int 
     m_oldY = height / 2.f;
 
     lookAt(m_cameraPos,m_center, m_up);
-    m_projectionMatrix = glm::perspective(glm::radians(60.f), (float) width / height, 0.01f, 50.f);
+    m_projectionMatrix = glm::perspective(glm::radians(60.f), (float) width / height, 0.01f, 100.f);
     m_viewProjMatrix = m_viewMatrix * m_projectionMatrix;
 }
 
@@ -77,7 +78,7 @@ glm::mat4 ba_gaida::Camera::GetViewProjMatrix() const
 
 void ba_gaida::Camera::updateWidthHeight(int width, int height)
 {
-    m_projectionMatrix = glm::perspective(glm::radians(60.f), (float) width / height, 0.01f, 50.f);
+    m_projectionMatrix = glm::perspective(glm::radians(60.f), (float) width / height, 0.01f, 100.f);
     m_viewProjMatrix = m_viewMatrix * m_projectionMatrix;
 }
 
@@ -110,6 +111,19 @@ const glm::vec3 &ba_gaida::Camera::getCameraCenter() const
 void ba_gaida::Camera::setCenter(const glm::vec3 &m_center)
 {
     Camera::m_center = m_center;
+}
+
+void ba_gaida::Camera::setRadius(const float &radius)
+{
+    Camera::m_radius -= radius;
+    if(m_radius < 1.f)
+    {
+        m_radius = 1.f;
+    }
+    else if(m_radius > m_maxRadius)
+    {
+        m_radius = m_maxRadius;
+    }
 }
 
 const glm::vec3 &ba_gaida::Camera::getUp() const

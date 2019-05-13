@@ -1,7 +1,7 @@
 #version 450
 /*
- * 2.2 ComputeShader
- * Updates the Forces
+ * 1.2 ComputeShader
+ * Calculates the Gravity
  */
 layout( local_size_x = 64, local_size_y = 1, local_size_z = 1) in;
 
@@ -26,6 +26,8 @@ uniform float deltaTime;
 uniform uint particleCount;
 uniform uint gridSize;
 
+#define gravity  (-9.81)
+
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
     if(id >= particleCount)
@@ -33,7 +35,7 @@ void main(void) {
         return;
     } else
     {
-        particle1[id].position = particle2[id].position +  particle2[id].velocity * deltaTime;
-        particle1[id].velocity = particle2[id].velocity;
+        particle1[id]= particle2[id];
+        particle1[id].velocity.y = particle2[id].velocity.y +  gravity * deltaTime;
     }
 }

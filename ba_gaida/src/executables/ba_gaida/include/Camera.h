@@ -43,6 +43,8 @@ namespace ba_gaida
 
         void setCenter(const glm::vec3 &m_center);
 
+        void setRadius(const float &radius);
+
         const glm::vec3 &getUp() const;
 
 
@@ -51,6 +53,7 @@ namespace ba_gaida
         float m_theta, m_phi;
         float m_oldX, m_oldY;
         float m_radius;
+        float m_maxRadius;
         float m_changeX;
         float m_changeY;
 

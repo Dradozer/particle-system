@@ -20,5 +20,9 @@ void main()
     float g = green / 255.f;
     float b = blue / 255.f;
     float length = floor(pos.x)+floor(pos.y)+floor(pos.z);
-    FragColor = vec4 (pos.x/length,pos.y/length,pos.z/length,1.f);
+    if(length == 0.f)
+    {
+        length = 0.001f;
+    }
+    FragColor = vec4 (r,g,b,1.f);
 }

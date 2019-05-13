@@ -37,6 +37,11 @@ void resizeCallback(GLFWwindow *window, int w, int h)
     glViewport(0, 0, w, h);
 }
 
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    particleSystem->m_camera->setRadius(yoffset);
+}
+
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
 //	if(key == GLFW_KEY_F1 && action == GLFW_PRESS) {
@@ -121,7 +126,7 @@ int main()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     srand(time(0));
-    particleSystem = new ba_gaida::ParticleSystem(window, particleCount, WIDTH, HEIGTH, glm::uvec3(5));
+    particleSystem = new ba_gaida::ParticleSystem(window, particleCount, WIDTH, HEIGTH, glm::uvec3(2));
     particleSystem->m_fps->setTitle(Title);
     glClearColor(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
@@ -139,6 +144,7 @@ int main()
         time = glfwGetTime();
         glfwPollEvents();
         handleInput(window, deltaTime);
+        glfwSetScrollCallback(window, scroll_callback);
 
         particleSystem->update(deltaTime);
     }

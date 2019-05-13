@@ -78,7 +78,7 @@ namespace ba_gaida
          * initalize the Grid-Structure
          * @param dimensions the dimensions of the grid (x^3)
          */
-        void initGrid(const unsigned int dimensions);
+        void initGrid();
 
         /**
          * sets the Id depending on the grid dimensions: x * dimensions^2 + y * dimensions + z
@@ -89,10 +89,12 @@ namespace ba_gaida
 
         GLFWwindow *m_window;
 
+        GLuint m_lableParticleID[4];
         GLuint m_externalForceID[4];
         GLuint m_updateForceID[4];
-
+        GLuint m_collisionID[4];
         GLuint m_renderID;
+
         GLuint m_uniform_viewM;
         GLuint m_uniform_projM;
         GLuint m_uniform_camPos;
@@ -109,7 +111,7 @@ namespace ba_gaida
         int m_width;
         unsigned int m_particleCount;
         unsigned int m_dimensions;
-        glm::uvec3 m_Boxsize;
+        glm::uvec3 m_boxSize;
 #ifndef maxFPS
         bool m_imgui_once;
         float m_imgui_applications;
