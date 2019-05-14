@@ -24,7 +24,7 @@ layout( std430, binding = 1) writeonly buffer buffer_particle2
 
 uniform float deltaTime;
 uniform uint particleCount;
-uniform uint gridSize;
+uniform ivec4 gridSize;
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
@@ -34,6 +34,6 @@ void main(void) {
     } else
     {
         particle2[id] = particle1[id];
-        particle2[id].gridID = int(particle1[id].position.x * gridSize * gridSize + particle1[id].position.y * gridSize + particle1[id].position.z);
+        particle2[id].gridID = int(particle1[id].position.x * gridSize.x * gridSize.x + particle1[id].position.y * gridSize.y + particle1[id].position.z);
     }
 }

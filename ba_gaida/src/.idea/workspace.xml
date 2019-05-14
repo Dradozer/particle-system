@@ -15,10 +15,16 @@
   <component name="ChangeListManager">
     <list default="true" id="64991c4f-a01d-4bfe-8ed6-fabe82702352" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shaders/ba_gaida/collisionShader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/ba_gaida/collisionShader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shaders/ba_gaida/externalForcesShader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/ba_gaida/externalForcesShader.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shaders/ba_gaida/lableParticleShader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/ba_gaida/lableParticleShader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shaders/ba_gaida/updateForcesShader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/ba_gaida/updateForcesShader.glsl" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -54,7 +60,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-102">
+            <state relative-caret-position="-340">
               <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
               <folding>
                 <element signature="e#45#64#0" expanded="true" />
@@ -63,29 +69,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="177" column="51" selection-start-line="177" selection-start-column="51" selection-end-line="177" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="76" column="57" selection-start-line="76" selection-start-column="57" selection-end-line="76" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/lableParticleShader.glsl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="35" lean-forward="true" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+            <state relative-caret-position="153">
+              <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -153,34 +150,34 @@
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/Shader.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/Particle.h" />
         <option value="$PROJECT_DIR$/shaders/ba_gaida/vertexShader.glsl" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h" />
         <option value="$PROJECT_DIR$/shaders/ba_gaida/updateForces.glsl" />
         <option value="$PROJECT_DIR$/shaders/ba_gaida/externalForcesComputeShader.glsl" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/Grid.h" />
         <option value="$PROJECT_DIR$/shaders/ba_gaida/lableParticle.glsl" />
-        <option value="$PROJECT_DIR$/shaders/ba_gaida/updateForcesShader.glsl" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/SSBO.h" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.h" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/PerformanceSettings.h" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/main.cpp" />
-        <option value="$PROJECT_DIR$/shaders/ba_gaida/externalForcesShader.glsl" />
         <option value="$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h" />
         <option value="$PROJECT_DIR$/shaders/ba_gaida/collisionShader.glsl" />
         <option value="$PROJECT_DIR$/shaders/ba_gaida/lableParticleShader.glsl" />
-        <option value="$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp" />
+        <option value="$PROJECT_DIR$/shaders/ba_gaida/updateForcesShader.glsl" />
+        <option value="$PROJECT_DIR$/shaders/ba_gaida/externalForcesShader.glsl" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.h" />
+        <option value="$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp" />
         <option value="$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="false" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="-31" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1694" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -442,11 +439,13 @@
       <workItem from="1557831611044" duration="505000" />
       <workItem from="1557832651976" duration="603000" />
       <workItem from="1557836622805" duration="386000" />
+      <workItem from="1557837075768" duration="1300000" />
+      <workItem from="1557845662378" duration="3429000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167524000" />
+    <option name="totallyTimeSpent" value="172253000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -461,18 +460,18 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33582088" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16151386" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32827735" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.28602383" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.29469123" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.33694476" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.33586133" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32922733" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32936078" />
@@ -495,157 +494,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/importImgui.h" />
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui_widgets.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="2956" column="12" selection-start-line="2956" selection-start-column="12" selection-end-line="2956" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/dependencies_win32/OpenGL/include/GL/glcorearb.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#1605#1690#0" expanded="true" />
-            <element signature="e#1716#1732#0" expanded="true" />
-            <element signature="e#6968#10350#0" expanded="true" />
-            <element signature="e#10410#23571#0" expanded="true" />
-            <element signature="e#23624#26890#0" expanded="true" />
-            <element signature="e#26943#32648#0" expanded="true" />
-            <element signature="e#32701#35706#0" expanded="true" />
-            <element signature="e#35759#40279#0" expanded="true" />
-            <element signature="e#40332#60569#0" expanded="true" />
-            <element signature="e#60622#62940#0" expanded="true" />
-            <element signature="e#62993#89281#0" expanded="true" />
-            <element signature="e#89334#95291#0" expanded="true" />
-            <element signature="e#95344#104047#0" expanded="true" />
-            <element signature="e#104100#110398#0" expanded="true" />
-            <element signature="e#110451#123578#0" expanded="true" />
-            <element signature="e#123631#144864#0" expanded="true" />
-            <element signature="e#144917#153597#0" expanded="true" />
-            <element signature="e#153650#177680#0" expanded="true" />
-            <element signature="e#177733#180963#0" expanded="true" />
-            <element signature="e#181026#181060#0" expanded="true" />
-            <element signature="e#181133#181167#0" expanded="true" />
-            <element signature="e#181239#181272#0" expanded="true" />
-            <element signature="e#181340#181370#0" expanded="true" />
-            <element signature="e#181438#184520#0" expanded="true" />
-            <element signature="e#184594#184630#0" expanded="true" />
-            <element signature="e#184702#184733#0" expanded="true" />
-            <element signature="e#184794#185247#0" expanded="true" />
-            <element signature="e#185313#185349#0" expanded="true" />
-            <element signature="e#185420#185450#0" expanded="true" />
-            <element signature="e#185534#185583#0" expanded="true" />
-            <element signature="e#185668#185752#0" expanded="true" />
-            <element signature="e#185832#186502#0" expanded="true" />
-            <element signature="e#186586#186621#0" expanded="true" />
-            <element signature="e#186689#186815#0" expanded="true" />
-            <element signature="e#186875#186902#0" expanded="true" />
-            <element signature="e#186963#189441#0" expanded="true" />
-            <element signature="e#189510#189545#0" expanded="true" />
-            <element signature="e#189613#189641#0" expanded="true" />
-            <element signature="e#189709#190544#0" expanded="true" />
-            <element signature="e#190626#190668#0" expanded="true" />
-            <element signature="e#190745#190775#0" expanded="true" />
-            <element signature="e#190843#190876#0" expanded="true" />
-            <element signature="e#190955#190996#0" expanded="true" />
-            <element signature="e#191084#191126#0" expanded="true" />
-            <element signature="e#191216#191259#0" expanded="true" />
-            <element signature="e#191347#191387#0" expanded="true" />
-            <element signature="e#191475#191518#0" expanded="true" />
-            <element signature="e#191601#191636#0" expanded="true" />
-            <element signature="e#191709#191742#0" expanded="true" />
-            <element signature="e#191815#191850#0" expanded="true" />
-            <element signature="e#191918#191946#0" expanded="true" />
-            <element signature="e#192011#192043#0" expanded="true" />
-            <element signature="e#192114#192148#0" expanded="true" />
-            <element signature="e#192211#192333#0" expanded="true" />
-            <element signature="e#192398#193204#0" expanded="true" />
-            <element signature="e#193282#193319#0" expanded="true" />
-            <element signature="e#193399#193486#0" expanded="true" />
-            <element signature="e#193564#193599#0" expanded="true" />
-            <element signature="e#193676#193713#0" expanded="true" />
-            <element signature="e#193788#193821#0" expanded="true" />
-            <element signature="e#193886#193913#0" expanded="true" />
-            <element signature="e#193981#194017#0" expanded="true" />
-            <element signature="e#194091#194124#0" expanded="true" />
-            <element signature="e#194202#194242#0" expanded="true" />
-            <element signature="e#194320#194353#0" expanded="true" />
-            <element signature="e#194427#194463#0" expanded="true" />
-            <element signature="e#194550#194596#0" expanded="true" />
-            <element signature="e#194674#196911#0" expanded="true" />
-            <element signature="e#197090#197383#0" expanded="true" />
-            <element signature="e#197451#197483#0" expanded="true" />
-            <element signature="e#197554#197588#0" expanded="true" />
-            <element signature="e#197672#197717#0" expanded="true" />
-            <element signature="e#197807#197847#0" expanded="true" />
-            <element signature="e#197931#197970#0" expanded="true" />
-            <element signature="e#198050#198086#0" expanded="true" />
-            <element signature="e#198166#198205#0" expanded="true" />
-            <element signature="e#198283#198317#0" expanded="true" />
-            <element signature="e#198396#198436#0" expanded="true" />
-            <element signature="e#198515#198549#0" expanded="true" />
-            <element signature="e#198621#198654#0" expanded="true" />
-            <element signature="e#198730#198768#0" expanded="true" />
-            <element signature="e#198856#198901#0" expanded="true" />
-            <element signature="e#198985#199019#0" expanded="true" />
-            <element signature="e#199099#199140#0" expanded="true" />
-            <element signature="e#199227#200817#0" expanded="true" />
-            <element signature="e#200904#200945#0" expanded="true" />
-            <element signature="e#201022#202023#0" expanded="true" />
-            <element signature="e#202093#202127#0" expanded="true" />
-            <element signature="e#202187#202208#0" expanded="true" />
-            <element signature="e#202270#202306#0" expanded="true" />
-            <element signature="e#202391#202435#0" expanded="true" />
-            <element signature="e#202521#202558#0" expanded="true" />
-            <element signature="e#202641#202898#0" expanded="true" />
-            <element signature="e#202985#203026#0" expanded="true" />
-            <element signature="e#203111#203511#0" expanded="true" />
-            <element signature="e#203586#203789#0" expanded="true" />
-            <element signature="e#203870#203915#0" expanded="true" />
-            <element signature="e#204001#204037#0" expanded="true" />
-            <element signature="e#204115#204152#0" expanded="true" />
-            <element signature="e#204228#204262#0" expanded="true" />
-            <element signature="e#204328#204355#0" expanded="true" />
-            <element signature="e#204422#204457#0" expanded="true" />
-            <element signature="e#204530#204563#0" expanded="true" />
-            <element signature="e#204633#204665#0" expanded="true" />
-            <element signature="e#204746#204790#0" expanded="true" />
-            <element signature="e#204871#204903#0" expanded="true" />
-            <element signature="e#204969#204998#0" expanded="true" />
-            <element signature="e#205060#205088#0" expanded="true" />
-            <element signature="e#205157#205291#0" expanded="true" />
-            <element signature="e#205368#205404#0" expanded="true" />
-            <element signature="e#205490#205535#0" expanded="true" />
-            <element signature="e#205623#205831#0" expanded="true" />
-            <element signature="e#205908#205942#0" expanded="true" />
-            <element signature="e#206017#206053#0" expanded="true" />
-            <element signature="e#206130#206166#0" expanded="true" />
-            <element signature="e#206245#206283#0" expanded="true" />
-            <element signature="e#206370#206414#0" expanded="true" />
-            <element signature="e#206506#206549#0" expanded="true" />
-            <element signature="e#206628#206659#0" expanded="true" />
-            <element signature="e#206717#206739#0" expanded="true" />
-            <element signature="e#206811#208321#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui_impl_glfw.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imgui_impl_opengl3.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/imgui/imconfig.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-746" />
@@ -808,13 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/vertexShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Particle.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -826,16 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="123" selection-start-line="21" selection-start-column="123" selection-end-line="21" selection-end-column="123" />
-          <folding>
-            <element signature="e#112#131#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -871,10 +702,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="60" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="76" column="57" selection-start-line="76" selection-start-column="57" selection-end-line="76" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ComputeShader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11">
+          <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+          <folding>
+            <element signature="e#112#131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/dependencies_win32/glm/glm/detail/type_vec3.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="403" selection-start-line="403" selection-end-line="403" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/dependencies_win32/glm/glm/ext/vector_bool3.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/dependencies_win32/glm/glm/vec3.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#51#84#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/dependencies_win32/glm/glm/glm.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/vertexShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/lableParticleShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/updateForcesShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/externalForcesShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/collisionShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="15" lean-forward="true" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/dependencies_win32/glm/glm/detail/qualifier.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="35" column="80" selection-start-line="35" selection-start-column="80" selection-end-line="35" selection-end-column="80" />
+          <folding>
+            <element signature="e#1818#1878#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="55" selection-start-line="55" selection-end-line="55" selection-end-column="26" />
+        <state relative-caret-position="314">
+          <caret line="21" column="97" selection-start-line="21" selection-start-column="97" selection-end-line="21" selection-end-column="97" />
           <folding>
             <element signature="e#98#117#0" expanded="true" />
           </folding>
@@ -883,52 +814,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/Camera.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="24" column="96" selection-start-line="24" selection-start-column="96" selection-end-line="24" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/externalForcesShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/updateForcesShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/fragmentShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="60" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/collisionShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="68" column="50" selection-start-line="68" selection-start-column="50" selection-end-line="68" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="61" column="11" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
-          <folding>
-            <element signature="e#114#132#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="986">
+          <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
+        <state relative-caret-position="-340">
           <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
           <folding>
             <element signature="e#45#64#0" expanded="true" />
@@ -936,24 +829,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/FpsCounter.cpp">
+    <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="76" column="57" selection-start-line="76" selection-start-column="57" selection-end-line="76" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shaders/ba_gaida/lableParticleShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="35" lean-forward="true" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/executables/ba_gaida/include/ParticleSystem.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="177" column="51" selection-start-line="177" selection-start-column="51" selection-end-line="177" selection-end-column="51" />
+        <state relative-caret-position="153">
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
         </state>
       </provider>
     </entry>

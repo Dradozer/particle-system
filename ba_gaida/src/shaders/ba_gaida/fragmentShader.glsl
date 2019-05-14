@@ -24,5 +24,5 @@ void main()
     {
         length = 0.001f;
     }
-    FragColor = vec4 (r,g,b,1.f);
+    FragColor = vec4 (pos.x/length,pos.y/length,pos.z/length,0.8f);
 }

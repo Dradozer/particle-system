@@ -4,14 +4,14 @@
 
 #include "Camera.h"
 
-ba_gaida::Camera::Camera(GLFWwindow *window,glm::vec3 center, glm::vec3 up, int width, int height)
+ba_gaida::Camera::Camera(GLFWwindow *window,const glm::vec3 center, const glm::vec3 up,const int width,const int height)
 {
 
     m_window = window;
-    m_radius = center.z * 5.f;
+    m_center = glm::vec3(center.x +1, center.y +1 , center.z+1);
+    m_radius = (center.x + center.y + center.z)/3 * 5.f ;
     m_maxRadius = m_radius *1.5f;
-    m_center = center;
-    m_cameraPos = center + glm::vec3(0.f,0.f, m_radius);
+    m_cameraPos = center + glm::vec3(0.f ,0.f, 0.f);
     m_up = up;
 
     m_sensitivity = 0.01f;
@@ -21,7 +21,7 @@ ba_gaida::Camera::Camera(GLFWwindow *window,glm::vec3 center, glm::vec3 up, int 
     m_oldX = width / 2.f;
     m_oldY = height / 2.f;
 
-    lookAt(m_cameraPos,m_center, m_up);
+    m_viewMatrix = glm::lookAt( m_cameraPos, m_center, m_up);
     m_projectionMatrix = glm::perspective(glm::radians(60.f), (float) width / height, 0.01f, 100.f);
     m_viewProjMatrix = m_viewMatrix * m_projectionMatrix;
 }
@@ -36,7 +36,7 @@ void ba_gaida::Camera::update()
     double x, y;
 
     glfwGetCursorPos(m_window, &x, &y);
-    if (glfwGetMouseButton(m_window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+    if (glfwGetMouseButton(m_window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
     {
         m_changeX = ((float) x - m_oldX) * m_sensitivity;
         m_changeY = ((float) y - m_oldY) * m_sensitivity;
@@ -58,13 +58,13 @@ void ba_gaida::Camera::update()
     m_cameraPos.z = m_center.z + m_radius * sin(m_theta) * cos(m_phi);
 
     m_viewMatrix = glm::lookAt( m_cameraPos, m_center, m_up);
+    m_viewProjMatrix = m_projectionMatrix * m_viewMatrix;
 }
 
 void ba_gaida::Camera::lookAt(glm::vec3 camPos,glm::vec3 center, glm::vec3 up)
 {
     m_cameraPos = camPos;
     m_center = center;
-
     m_up = up;
 
     m_viewMatrix = glm::lookAt(camPos, center, up);

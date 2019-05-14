@@ -110,12 +110,11 @@ namespace ba_gaida
         int m_heigth;
         int m_width;
         unsigned int m_particleCount;
-        unsigned int m_dimensions;
+        glm::ivec4 m_dimensions;
         glm::uvec3 m_boxSize;
 #ifndef maxFPS
         bool m_imgui_once;
         float m_imgui_applications;
-        ImVec4 m_imgui_clear_color; // ClearColor >> sets background color
 #endif
 
     };

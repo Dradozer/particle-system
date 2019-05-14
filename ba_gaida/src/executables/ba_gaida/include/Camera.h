@@ -19,7 +19,7 @@ namespace ba_gaida
     {
     public:
 
-        Camera(GLFWwindow *window, glm::vec3 center, glm::vec3 up, int width, int height);
+        Camera(GLFWwindow *window,const glm::vec3 center,const glm::vec3 up,const int width,const int height);
 
         ~Camera();
 

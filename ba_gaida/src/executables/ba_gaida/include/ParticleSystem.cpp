@@ -7,13 +7,13 @@
 ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH,
                                          const int HEIGTH, const glm::uvec3 boxSize)
 {
-    m_dimensions = 25;
+    m_dimensions = glm::ivec4(10,10,10,1);
     m_window = window;
     m_particleCount = (particleCount * 32);
     m_width = WIDTH;
     m_heigth = HEIGTH;
     m_boxSize = boxSize;
-    m_boxCenter = glm::vec3(m_dimensions / 2, m_dimensions / 2,m_dimensions / 2);
+    m_boxCenter = glm::vec3(m_dimensions.x / 2, m_dimensions.y / 2,m_dimensions.z / 2);
     m_camera = new ba_gaida::Camera(m_window, m_boxCenter,
                                     glm::vec3(0.f, 1.f, 0.f), m_width, m_heigth);
 
@@ -54,7 +54,6 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     ImGui_ImplOpenGL3_Init(glsl_version);
     m_imgui_once = false; //pos and resize just once, look usage
     m_imgui_applications = 0.f;
-    m_imgui_clear_color = ImVec4(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     m_fps = new ba_gaida::FpsCounter(m_window, 6);
 #else
     m_fps = new ba_gaida::FpsCounter(m_window);
@@ -152,19 +151,18 @@ void ba_gaida::ParticleSystem::render()
         }
         ImGui::Text("Warning! This Settings makes the ParticleSystem slower\n");
         ImGui::Text("This UI-Settings consume about 0.1 - 0.2 ms\n");
-        ImGui::Text("Running with %.i Particles", m_particleCount);
+        ImGui::Text("Particles: %.i\n", m_particleCount);
+        ImGui::Text("Gridsize: %.ix%.ix%.i \n", m_dimensions.x,m_dimensions.y,m_dimensions.z);
         if (ImGui::CollapsingHeader("Controls"))
         {
             m_imgui_applications = m_imgui_applications + 0.85f;
             ImGui::Text("Controls:\n"
                         "LeftMouseButton: moves viewport\n"
-                        "W: moves to iew-direction\n"
+                        "W: moves to view-direction\n"
                         "S: moves away from view-direction\n"
                         "Spacebar: moves up in world-space\n"
-                        "F: moves down in world-space\n");
-            ImGui::Text("-----------------------------------------------\n"
-                        "ClearColor: \n");
-            ImGui::ColorEdit3("clear color", (float *) &m_imgui_clear_color);
+                        "F: moves down in world-space\n"
+                        "ScrollWheel: zoom to center\n");
         }
         if (ImGui::CollapsingHeader("Computingtimes"))
         {
@@ -186,7 +184,6 @@ void ba_gaida::ParticleSystem::render()
                     m_fps->getFPS());
         ImGui::End();
     }
-    glClearColor(m_imgui_clear_color.x, m_imgui_clear_color.y, m_imgui_clear_color.z, m_imgui_clear_color.w);
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 #endif
@@ -202,12 +199,12 @@ void ba_gaida::ParticleSystem::init()
 void ba_gaida::ParticleSystem::initParticle()
 {
     //init Particleposition
-    std::uniform_real_distribution<float> pos_x(m_dimensions/2 - m_boxSize.x,m_dimensions/2 + m_boxSize.x);
-    std::uniform_real_distribution<float> pos_y(m_dimensions/2 - m_boxSize.y,m_dimensions/2 + m_boxSize.y);
-    std::uniform_real_distribution<float> pos_z(m_dimensions/2 - m_boxSize.z,m_dimensions/2 + m_boxSize.z);
-    std::uniform_real_distribution<float> vel_x(-8.f,8.f);
-    std::uniform_real_distribution<float> vel_y(-8.f,8.f);
-    std::uniform_real_distribution<float> vel_z(-8.f,8.f);
+    std::uniform_real_distribution<float> pos_x(m_dimensions.x/2 - m_boxSize.x,m_dimensions.x/2 + m_boxSize.x);
+    std::uniform_real_distribution<float> pos_y(m_dimensions.y/2 - m_boxSize.y,m_dimensions.y/2 + m_boxSize.y);
+    std::uniform_real_distribution<float> pos_z(m_dimensions.z/2 - m_boxSize.z,m_dimensions.z/2 + m_boxSize.z);
+    std::uniform_real_distribution<float> vel_x(-2.f,2.f);
+    std::uniform_real_distribution<float> vel_y(-10.f,10.f);
+    std::uniform_real_distribution<float> vel_z(-2.f,2.f);
     std::default_random_engine rdm;
 
     m_particle = new Particle[m_particleCount];
@@ -226,14 +223,14 @@ void ba_gaida::ParticleSystem::initParticle()
 void ba_gaida::ParticleSystem::initGrid()
 {
     int i = 0;
-    m_eulerianGrid = new Grid[m_dimensions * m_dimensions * m_dimensions];
-    for (int x = 0; x < m_dimensions; x++)
+    m_eulerianGrid = new Grid[m_dimensions.x * m_dimensions.y * m_dimensions.z];
+    for (int x = 0; x < m_dimensions.x; x++)
     {
-        for(int y = 0; y < m_dimensions; y++)
+        for(int y = 0; y < m_dimensions.y; y++)
         {
-            for(int z = 0; z < m_dimensions; z++)
+            for(int z = 0; z < m_dimensions.z; z++)
             {
-                m_eulerianGrid[i].id = x * m_dimensions * m_dimensions + y * m_dimensions + z;
+                m_eulerianGrid[i].id = x * m_dimensions.x * m_dimensions.x + y * m_dimensions.y + z;
                 m_eulerianGrid[i].particlescount = 2;
                 i++;
             }

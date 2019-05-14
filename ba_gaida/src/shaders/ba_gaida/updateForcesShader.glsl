@@ -24,7 +24,7 @@ layout( std430, binding = 1) readonly buffer buffer_particle2
 
 uniform float deltaTime;
 uniform uint particleCount;
-uniform uint gridSize;
+uniform ivec4 gridSize;
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;

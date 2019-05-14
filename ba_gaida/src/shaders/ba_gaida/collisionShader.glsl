@@ -24,9 +24,11 @@ layout( std430, binding = 1) writeonly buffer buffer_particle2
 
 uniform float deltaTime;
 uniform uint particleCount;
-uniform uint gridSize;
+uniform ivec4 gridSize;
 
-#define energyloss 0.5
+uint lowBoundary = 1;
+
+#define energyloss 0.6f
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
@@ -37,33 +39,33 @@ void main(void) {
     {
         particle2[id] = particle1[id];
         //collisition X-Axis
-        if(particle1[id].position.x > gridSize)
+        if(particle1[id].position.x > gridSize.x)
         {
-         particle2[id].position.x = gridSize;
+         particle2[id].position.x = gridSize.x;
          particle2[id].velocity = vec4(reflect(particle1[id].velocity.xyz,vec3(-1.f,0.f,0.f)),1.f) * energyloss;
-        }else if(particle1[id].position.x < 0)
+        }else if(particle1[id].position.x < lowBoundary)
         {
-            particle2[id].position.x = 0;
+            particle2[id].position.x = lowBoundary;
             particle2[id].velocity = vec4(reflect(particle1[id].velocity.xyz,vec3(1.f,0.f,0.f)),1.f) * energyloss;
         }
         //collisition Y-Axis
-        if(particle1[id].position.y > gridSize)
+        if(particle1[id].position.y > gridSize.y)
         {
-            particle2[id].position.y = gridSize;
+            particle2[id].position.y = gridSize.y;
             particle2[id].velocity = vec4(reflect(particle1[id].velocity.xyz,vec3(0.f,-1.f,0.f)),1.f) * energyloss;
-        }else if(particle1[id].position.y < 0)
+        }else if(particle1[id].position.y < lowBoundary)
         {
-            particle2[id].position.y = 0;
+            particle2[id].position.y = lowBoundary;
             particle2[id].velocity = vec4(reflect(particle1[id].velocity.xyz,vec3(0.f,1.f,0.f)),1.f) * energyloss;
         }
         //collisition Z-Axis
-        if(particle1[id].position.z > gridSize)
+        if(particle1[id].position.z > gridSize.z)
         {
-            particle2[id].position.z = gridSize;
+            particle2[id].position.z = gridSize.z;
             particle2[id].velocity = vec4(reflect(particle1[id].velocity.xyz,vec3(0.f,0.f,-1.f)),1.f) * energyloss;
-        }else if(particle1[id].position.z < 0)
+        }else if(particle1[id].position.z < lowBoundary)
         {
-            particle2[id].position.z = 0;
+            particle2[id].position.z = lowBoundary;
             particle2[id].velocity = vec4(reflect(particle1[id].velocity.xyz,vec3(0.f,0.f,1.f)),1.f) * energyloss;
         }
     }
