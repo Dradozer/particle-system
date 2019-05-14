@@ -7,7 +7,7 @@
 ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH,
                                          const int HEIGTH, const glm::uvec3 boxSize)
 {
-    m_dimensions = 10;
+    m_dimensions = 25;
     m_window = window;
     m_particleCount = (particleCount * 32);
     m_width = WIDTH;
@@ -175,12 +175,9 @@ void ba_gaida::ParticleSystem::render()
                         "CS Gravity:   \t%.8f ms\n"
                         "CS Collision: \t%.8f ms\n"
                         "CS Update:    \t%.8f ms\n"
-                        "Renderer:     \t%.8f ms\n"
-                        "Total:        \t%.8f ms\n",
+                        "Renderer:     \t%.8f ms\n",
                         m_fps->getTimestamp(0) * 1000, m_fps->getTimestamp(1) * 1000, m_fps->getTimestamp(2) * 1000,
-                        m_fps->getTimestamp(3) * 1000, m_fps->getTimestamp(4) * 1000, m_fps->getTimestamp(5) * 1000,
-                        (m_fps->getTimestamp(0) + m_fps->getTimestamp(1) + m_fps->getTimestamp(2) + m_fps->getTimestamp(3)
-                        + m_fps->getTimestamp(4) + m_fps->getTimestamp(5))*1000);
+                        m_fps->getTimestamp(3) * 1000, m_fps->getTimestamp(4) * 1000, m_fps->getTimestamp(5) * 1000);
             ImGui::Text("-----------------------------------------------");
         }
 

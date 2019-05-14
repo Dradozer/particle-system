@@ -71,10 +71,10 @@ void ba_gaida::FpsCounter::resetTimestamp()
 void ba_gaida::FpsCounter::setTimestamp( const int index)
 {
     m_iterations[index]++;
-    m_timeCounter[index] = glfwGetTime() - m_lastTimer;
+    m_timeCounter[index] += glfwGetTime() - m_lastTimer;
     if(m_iterations[index] >= 1000)
     {
-        m_timeStamps[index] = m_timeCounter[index] / 1000.f;
+        m_timeStamps[index] = m_timeCounter[index]/1000.f;
         m_iterations[index] = 0;
         m_timeCounter[index] = 0.f;
     }
