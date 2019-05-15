@@ -231,7 +231,7 @@ void ba_gaida::ParticleSystem::initGrid()
             for(int z = 0; z < m_dimensions.z; z++)
             {
                 m_eulerianGrid[i].id = x * m_dimensions.x * m_dimensions.x + y * m_dimensions.y + z;
-                m_eulerianGrid[i].particlescount = 2;
+                m_eulerianGrid[i].particlescount = 0;
                 i++;
             }
         }

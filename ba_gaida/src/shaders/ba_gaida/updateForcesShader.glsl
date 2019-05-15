@@ -12,6 +12,13 @@ struct Particle{
     int pad1,pad2,pad3;
 };
 
+struct Grid{
+    uint id;
+    uint count;
+    uint lastCount;
+    int pad2;
+};
+
 layout( std430, binding = 0) writeonly buffer buffer_particle1
 {
     Particle particle1[];
@@ -20,6 +27,11 @@ layout( std430, binding = 0) writeonly buffer buffer_particle1
 layout( std430, binding = 1) readonly buffer buffer_particle2
 {
     Particle particle2[];
+};
+
+layout( std430, binding = 2) coherent buffer buffer_grid
+{
+    Grid grid[];
 };
 
 uniform float deltaTime;
@@ -35,5 +47,14 @@ void main(void) {
     {
         particle1[id].position = particle2[id].position +  particle2[id].velocity * deltaTime;
         particle1[id].velocity = particle2[id].velocity;
+    }
+
+    if(id >= gridSize.x * gridSize.y *gridSize.z)
+    {
+        return;
+    }else
+    {
+        grid[id].lastCount = grid[id].count;
+        grid[id].count = 0;
     }
 }
