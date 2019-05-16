@@ -19,7 +19,8 @@ namespace ba_gaida
             Shader::linkShader(id);
         }
 
-        static void updateComputeShader(GLuint *id, const float deltaTime, const unsigned int particleCount, const glm::ivec4 gridSize)
+        static void updateComputeShaderP64(GLuint *id, const float deltaTime, const unsigned int particleCount,
+                                           const glm::ivec4 gridSize)
         {
 #ifndef maxFPS
             GLenum glError;

@@ -94,19 +94,19 @@ void ba_gaida::ParticleSystem::update(const double deltaTime)
 #ifndef maxFPS
     m_fps->setTimestamp(0);
 #endif
-    ComputeShader::updateComputeShader(m_lableParticleID, deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderP64(m_lableParticleID, deltaTime, m_particleCount, m_dimensions);
 #ifndef maxFPS
     m_fps->setTimestamp(1);
 #endif
-    ComputeShader::updateComputeShader(m_externalForceID, deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderP64(m_externalForceID, deltaTime, m_particleCount, m_dimensions);
 #ifndef maxFPS
     m_fps->setTimestamp(2);
 #endif
-    ComputeShader::updateComputeShader(m_collisionID    , deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderP64(m_collisionID, deltaTime, m_particleCount, m_dimensions);
 #ifndef maxFPS
     m_fps->setTimestamp(3);
 #endif
-    ComputeShader::updateComputeShader(m_updateForceID  , deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderP64(m_updateForceID, deltaTime, m_particleCount, m_dimensions);
 #ifndef maxFPS
     m_fps->setTimestamp(4);
 #endif
