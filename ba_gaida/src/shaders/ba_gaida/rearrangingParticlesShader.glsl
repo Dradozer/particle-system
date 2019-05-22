@@ -1,7 +1,7 @@
 #version 450
 /*
- * 1.7 ComputeShader
- * Updates the Forces
+ * 1.3 ComputeShader
+ * rearranging Particle
  */
 layout(local_size_x = 64, local_size_y = 1, local_size_z = 1) in;
 
@@ -13,7 +13,7 @@ struct Particle{
 };
 
 struct Grid{
-    int id;
+    int gridID;
     int particlesInGrid;
     int previousSortOutPut;
     int currentSortOutPut;
@@ -38,7 +38,7 @@ uniform float deltaTime;
 uniform uint particleCount;
 uniform ivec4 gridSize;
 
-uint maxCubes = (gridSize.x * gridSize.y * gridSize.z);
+int cubeid;
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
@@ -47,7 +47,6 @@ void main(void) {
         return;
     } else
     {
-        particle1[id].position = particle2[id].position +  particle2[id].velocity * deltaTime;
-        particle1[id].velocity = particle2[id].velocity;
+        particle1[grid[particle2[id].gridID].currentSortOutPut + particle2[id].pad1] = particle2[id];
     }
 }

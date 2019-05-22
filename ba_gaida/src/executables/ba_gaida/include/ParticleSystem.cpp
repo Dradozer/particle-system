@@ -6,20 +6,22 @@
 
 ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH,
                                          const int HEIGTH, const glm::uvec3 boxSize)
-{
+{//todo origin
+
     m_dimensions = glm::ivec4(10,10,10,1);
     m_window = window;
-    m_particleCount = (particleCount * 32);
+    m_particleCount = (particleCount * 64);
+//    m_particleCount = 64;
     m_width = WIDTH;
     m_heigth = HEIGTH;
     m_boxSize = boxSize;
     m_boxCenter = glm::vec3(m_dimensions.x / 2, m_dimensions.y / 2,m_dimensions.z / 2);
     m_camera = new ba_gaida::Camera(m_window, m_boxCenter,
                                     glm::vec3(0.f, 1.f, 0.f), m_width, m_heigth);
-
     //create Particle at random Position without Velocity
     m_particle = nullptr;
     m_eulerianGrid = nullptr;
+
     init();
 
     Shader::attachShader(m_renderID, GL_VERTEX_SHADER, SHADERS_PATH "/ba_gaida/vertexShader.glsl");
@@ -32,16 +34,24 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
 
     SSBO::createSSBO(m_ssbo_particleId[0], 0, m_particleCount * sizeof(Particle), &m_particle[0]);
     SSBO::createSSBO(m_ssbo_particleId[1], 1, m_particleCount * sizeof(Particle), &m_particle[0]);
-    SSBO::createSSBO(m_ssbo_gridId, 2, 1000 * sizeof(Grid), &m_eulerianGrid[0]);
+    SSBO::createSSBO(m_ssbo_gridId, 2, m_dimensions.x * m_dimensions.y * m_dimensions.z * sizeof(Grid), &m_eulerianGrid[0]);
 
-    ComputeShader::createComputeShader(m_lableParticleID[0] , SHADERS_PATH "/ba_gaida/lableParticleShader.glsl");
-    ComputeShader::createComputeShader(m_externalForceID[0] , SHADERS_PATH "/ba_gaida/externalForcesShader.glsl");
-    ComputeShader::createComputeShader(m_collisionID[0]     , SHADERS_PATH "/ba_gaida/collisionShader.glsl");
-    ComputeShader::createComputeShader(m_updateForceID[0]   , SHADERS_PATH "/ba_gaida/updateForcesShader.glsl");
+    ComputeShader::createComputeShader(m_resetGridID[0]            , SHADERS_PATH "/ba_gaida/resetGridShader.glsl");
+    ComputeShader::createComputeShader(m_lableParticleID[0]        , SHADERS_PATH "/ba_gaida/lableParticleShader.glsl");
+    ComputeShader::createComputeShader(m_prefixSumID[0]            , SHADERS_PATH "/ba_gaida/prefixSumShader.glsl");
+    ComputeShader::createComputeShader(m_rearrangingParticlesID[0] , SHADERS_PATH "/ba_gaida/rearrangingParticlesShader.glsl");
+    ComputeShader::createComputeShader(m_externalForceID[0]        , SHADERS_PATH "/ba_gaida/externalForcesShader.glsl");
+    ComputeShader::createComputeShader(m_collisionID[0]            , SHADERS_PATH "/ba_gaida/collisionShader.glsl");
+    ComputeShader::createComputeShader(m_swapParticlesID[0]        , SHADERS_PATH "/ba_gaida/swapParticlesShader.glsl");
+    ComputeShader::createComputeShader(m_updateForceID[0]          , SHADERS_PATH "/ba_gaida/updateForcesShader.glsl");
 
+    setUniform(m_resetGridID);
     setUniform(m_lableParticleID);
+    setUniform(m_prefixSumID);
+    setUniform(m_rearrangingParticlesID);
     setUniform(m_externalForceID);
     setUniform(m_collisionID);
+    setUniform(m_swapParticlesID);
     setUniform(m_updateForceID);
 
 #ifndef maxFPS
@@ -54,7 +64,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     ImGui_ImplOpenGL3_Init(glsl_version);
     m_imgui_once = false; //pos and resize just once, look usage
     m_imgui_applications = 0.f;
-    m_fps = new ba_gaida::FpsCounter(m_window, 6);
+    m_fps = new ba_gaida::FpsCounter(m_window, 7);
 #else
     m_fps = new ba_gaida::FpsCounter(m_window);
 #endif
@@ -72,9 +82,12 @@ ba_gaida::ParticleSystem::~ParticleSystem()
     delete m_camera;
     delete m_fps;
     // remember to add all programID!
+    Shader::deleteShader(m_resetGridID[0]);
     Shader::deleteShader(m_lableParticleID[0]);
-    Shader::deleteShader(m_externalForceID[0]);
+    Shader::deleteShader(m_prefixSumID[0]);
+    Shader::deleteShader(m_rearrangingParticlesID[0]);
     Shader::deleteShader(m_collisionID[0]);
+    Shader::deleteShader(m_swapParticlesID[0]);
     Shader::deleteShader(m_updateForceID[0]);
     Shader::deleteShader(m_renderID);
     //delete BufferObjects
@@ -90,29 +103,39 @@ void ba_gaida::ParticleSystem::update(const double deltaTime)
 #ifndef maxFPS
     m_fps->resetTimestamp();
 #endif
-    m_camera->update();
+    if(!(ImGui::IsAnyWindowFocused()||ImGui::IsAnyWindowHovered()))
+        m_camera->update();
+
 #ifndef maxFPS
     m_fps->setTimestamp(0);
 #endif
+    ComputeShader::updateComputeShaderD(m_resetGridID, deltaTime, m_particleCount, m_dimensions);
     ComputeShader::updateComputeShaderP64(m_lableParticleID, deltaTime, m_particleCount, m_dimensions);
 #ifndef maxFPS
     m_fps->setTimestamp(1);
 #endif
-    ComputeShader::updateComputeShaderP64(m_externalForceID, deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderD(m_prefixSumID, deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderP64(m_rearrangingParticlesID, deltaTime, m_particleCount, m_dimensions);
 #ifndef maxFPS
     m_fps->setTimestamp(2);
 #endif
-    ComputeShader::updateComputeShaderP64(m_collisionID, deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderP64(m_externalForceID, deltaTime, m_particleCount, m_dimensions);
 #ifndef maxFPS
     m_fps->setTimestamp(3);
 #endif
     ComputeShader::updateComputeShaderP64(m_updateForceID, deltaTime, m_particleCount, m_dimensions);
+
 #ifndef maxFPS
     m_fps->setTimestamp(4);
 #endif
-    render();
+    ComputeShader::updateComputeShaderP64(m_swapParticlesID, deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderP64(m_collisionID, deltaTime, m_particleCount, m_dimensions);
 #ifndef maxFPS
     m_fps->setTimestamp(5);
+#endif
+    render();
+#ifndef maxFPS
+    m_fps->setTimestamp(6);
 #endif
     m_fps->update(deltaTime);
 }
@@ -144,18 +167,14 @@ void ba_gaida::ParticleSystem::render()
     { //imgui window
         ImGui::Begin("Debug | ParticleSystem");
         m_imgui_applications = 0;
-        if (m_imgui_once != true)
-        {
-            ImGui::SetWindowPos(ImVec2(0.f, 0.f), 0); // x, y, condition
-            m_imgui_once = true;
-        }
+
         ImGui::Text("Warning! This Settings makes the ParticleSystem slower\n");
         ImGui::Text("This UI-Settings consume about 0.1 - 0.2 ms\n");
         ImGui::Text("Particles: %.i\n", m_particleCount);
         ImGui::Text("Gridsize: %.ix%.ix%.i \n", m_dimensions.x,m_dimensions.y,m_dimensions.z);
         if (ImGui::CollapsingHeader("Controls"))
         {
-            m_imgui_applications = m_imgui_applications + 0.85f;
+            m_imgui_applications = m_imgui_applications + 0.7f;
             ImGui::Text("Controls:\n"
                         "LeftMouseButton: moves viewport\n"
                         "W: moves to view-direction\n"
@@ -164,18 +183,27 @@ void ba_gaida::ParticleSystem::render()
                         "F: moves down in world-space\n"
                         "ScrollWheel: zoom to center\n");
         }
+        if (m_imgui_once != true)
+        {
+            ImGui::SetWindowPos(ImVec2(0.f, 0.f), 0); // x, y, condition
+            m_imgui_once = true;
+            ImGui::SetNextTreeNodeOpen(true);
+        }
+
         if (ImGui::CollapsingHeader("Computingtimes"))
         {
-            m_imgui_applications = m_imgui_applications + 0.7f;
+            m_imgui_applications = m_imgui_applications + 0.8f;
             ImGui::Text("Avg. computingtime for segmenta:\n"
                         "CameraUpdate: \t%.8f ms\n"
                         "CS Label:     \t%.8f ms\n"
+                        "CS PrefixSum: \t%.8f ms\n"
                         "CS Gravity:   \t%.8f ms\n"
                         "CS Collision: \t%.8f ms\n"
                         "CS Update:    \t%.8f ms\n"
                         "Renderer:     \t%.8f ms\n",
                         m_fps->getTimestamp(0) * 1000, m_fps->getTimestamp(1) * 1000, m_fps->getTimestamp(2) * 1000,
-                        m_fps->getTimestamp(3) * 1000, m_fps->getTimestamp(4) * 1000, m_fps->getTimestamp(5) * 1000);
+                        m_fps->getTimestamp(3) * 1000, m_fps->getTimestamp(4) * 1000, m_fps->getTimestamp(5) * 1000,
+                        m_fps->getTimestamp(6) * 1000);
             ImGui::Text("-----------------------------------------------");
         }
 
@@ -202,15 +230,19 @@ void ba_gaida::ParticleSystem::initParticle()
     std::uniform_real_distribution<float> pos_x(m_dimensions.x/2 - m_boxSize.x,m_dimensions.x/2 + m_boxSize.x);
     std::uniform_real_distribution<float> pos_y(m_dimensions.y/2 - m_boxSize.y,m_dimensions.y/2 + m_boxSize.y);
     std::uniform_real_distribution<float> pos_z(m_dimensions.z/2 - m_boxSize.z,m_dimensions.z/2 + m_boxSize.z);
-    std::uniform_real_distribution<float> vel_x(-2.f,2.f);
+    std::uniform_real_distribution<float> vel_x(-10.f,10.f);
     std::uniform_real_distribution<float> vel_y(-10.f,10.f);
-    std::uniform_real_distribution<float> vel_z(-2.f,2.f);
+    std::uniform_real_distribution<float> vel_z(-10.f,10.f);
+//    std::uniform_real_distribution<float> vel_x(-2.f,2.f);
+//    std::uniform_real_distribution<float> vel_y(-10.f,10.f);
+//    std::uniform_real_distribution<float> vel_z(-2.f,2.f);
     std::default_random_engine rdm;
 
     m_particle = new Particle[m_particleCount];
 
     for (int i = 0; i < m_particleCount; i++)
     {
+        m_particle[i].position = glm::vec4(10.f - 0.001f,10.f - 0.001f,10.f - 0.001f,1.f);
         m_particle[i].position = glm::vec4(pos_x(rdm), pos_y(rdm), pos_z(rdm), 0.f);
         m_particle[i].velocity = glm::vec4(vel_x(rdm), vel_y(rdm), vel_z(rdm), 0.f);
         if (i == m_particleCount - 1)
@@ -232,6 +264,8 @@ void ba_gaida::ParticleSystem::initGrid()
             {
                 m_eulerianGrid[i].id = x * m_dimensions.x * m_dimensions.x + y * m_dimensions.y + z;
                 m_eulerianGrid[i].particlescount = 0;
+                m_eulerianGrid[i].previousSortOutPut = 0;
+                m_eulerianGrid[i].currentSortOutPut = 0;
                 i++;
             }
         }

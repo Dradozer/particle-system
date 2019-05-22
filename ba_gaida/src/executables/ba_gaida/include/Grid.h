@@ -7,7 +7,8 @@
 struct Grid{
     unsigned int id;
     unsigned int particlescount;
-    int pad1,pad2;
+    unsigned int previousSortOutPut;
+    unsigned int currentSortOutPut;
 };
 
 #endif //BA_GAIDA_GRID_H

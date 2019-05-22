@@ -19,7 +19,7 @@
 #include "include/Objects/CVK_Cube.h"
 
 //particleCount is multiplied by 32, keep it between 64 and 512 for now
-#define particleCount   512
+#define particleCount   256
 //Title title of the displayed window
 #define Title "ba_gaida"
 //Window dimensions Width x Heigth
@@ -145,7 +145,6 @@ int main()
         glfwPollEvents();
         handleInput(window, deltaTime);
         glfwSetScrollCallback(window, scroll_callback);
-
         particleSystem->update(deltaTime);
     }
 

@@ -16,9 +16,9 @@ void main()
     //the closer the darker and the further away the brighter the particle are
 //    float dist = length(cameraPos - pos.xyz) / 12.5;
     //change color depending on distance
-    float r = red / 255.f;
-    float g = green / 255.f;
-    float b = blue / 255.f;
+//    float r = red / 255.f;
+//    float g = green / 255.f;
+//    float b = blue / 255.f;
     vec4 posNormal = normalize(pos);
     FragColor = vec4 (posNormal.xyz,0.9f);
 }

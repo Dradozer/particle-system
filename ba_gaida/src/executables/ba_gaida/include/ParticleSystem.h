@@ -12,6 +12,7 @@
 #include <iostream>
 #include <random>
 #include <time.h>
+#include <math.h>
 #include "Camera.h"
 #include "ComputeShader.h"
 #include "Shader.h"
@@ -76,23 +77,25 @@ namespace ba_gaida
 
         /**
          * initalize the Grid-Structure
-         * @param dimensions the dimensions of the grid (x^3)
          */
         void initGrid();
 
         /**
          * sets the Id depending on the grid dimensions: x * dimensions^2 + y * dimensions + z
          * @param id The ShaderID-Pointer
-         * @param particleCount
          */
         void setUniform(GLuint *id);
 
         GLFWwindow *m_window;
 
+        GLuint m_resetGridID[4];
         GLuint m_lableParticleID[4];
+        GLuint m_prefixSumID[4];
+        GLuint m_rearrangingParticlesID[4];
         GLuint m_externalForceID[4];
-        GLuint m_updateForceID[4];
         GLuint m_collisionID[4];
+        GLuint m_swapParticlesID[4];
+        GLuint m_updateForceID[4];
         GLuint m_renderID;
 
         GLuint m_uniform_viewM;

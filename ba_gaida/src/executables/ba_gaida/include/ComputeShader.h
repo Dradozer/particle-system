@@ -33,9 +33,8 @@ namespace ba_gaida
             {
                 glUniform1f(id[1], deltaTime);
                 glUniform1ui(id[2], particleCount);
-                glUniform4i(id[3], gridSize.x,gridSize.y,gridSize.z,gridSize.w);
-
-                glDispatchCompute(particleCount / 64, 1, 1); // shader layout
+                glUniform4i(id[3], gridSize.x, gridSize.y, gridSize.z, gridSize.w);
+                glDispatchCompute(ceil(particleCount / 64), 1, 1); // shader layout
                 glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
             }
             glUseProgram(0);
@@ -47,8 +46,10 @@ namespace ba_gaida
 #endif
         }
 
-        static void updateComputeShaderD(GLuint *id, const float deltaTime, const unsigned int particleCount, const glm::ivec4 gridSize, const unsigned int d)
+        static void updateComputeShaderD(GLuint *id, const float deltaTime, const unsigned int particleCount,
+                                         const glm::ivec4 gridSize)
         {
+            int d = gridSize.x * gridSize.y * gridSize.z;
 #ifndef maxFPS
             GLenum glError;
             if ((glError = glGetError()) != GL_NO_ERROR)
@@ -60,9 +61,8 @@ namespace ba_gaida
             {
                 glUniform1f(id[1], deltaTime);
                 glUniform1ui(id[2], particleCount);
-                glUniform4i(id[3], gridSize.x,gridSize.y,gridSize.z,gridSize.w);
-
-                glDispatchCompute(d, 1, 1); // shader layout
+                glUniform4i(id[3], gridSize.x, gridSize.y, gridSize.z, gridSize.w);
+                glDispatchCompute(ceil(d / 10), 1, 1); // shader layout
                 glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
             }
             glUseProgram(0);
