@@ -18,7 +18,6 @@
 #include "Shader.h"
 #include "SSBO.h"
 #include "FpsCounter.h"
-#include "PerformanceSettings.h"
 #include "Particle.h"
 #include "Grid.h"
 #include "imgui/imgui.h"

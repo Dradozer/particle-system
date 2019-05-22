@@ -18,6 +18,7 @@ namespace ba_gaida
     class Camera
     {
     public:
+        bool m_hovered;
 
         Camera(GLFWwindow *window,const glm::vec3 center,const glm::vec3 up,const int width,const int height);
 
@@ -63,11 +64,9 @@ namespace ba_gaida
         glm::vec3 m_center;
         glm::vec3 m_up;
 
-
         glm::mat4 m_viewMatrix;
         glm::mat4 m_projectionMatrix;
         glm::mat4 m_viewProjMatrix;
-
     };
 }
 

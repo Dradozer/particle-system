@@ -6,8 +6,7 @@
 
 ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH,
                                          const int HEIGTH, const glm::uvec3 boxSize)
-{//todo origin
-
+{
     m_dimensions = glm::ivec4(10,10,10,1);
     m_window = window;
     m_particleCount = (particleCount * 64);
@@ -56,7 +55,6 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
 
     initShader();
 
-#ifndef maxFPS
     // init imgui
     ImGui::CreateContext();
     ImGui::StyleColorsDark();
@@ -67,18 +65,14 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_imgui_once = false; //pos and resize just once, look usage
     m_imgui_applications = 0.f;
     m_fps = new ba_gaida::FpsCounter(m_window, 10);
-#else
-    m_fps = new ba_gaida::FpsCounter(m_window);
-#endif
+
 }
 
 ba_gaida::ParticleSystem::~ParticleSystem()
 {
-#ifndef maxFPS
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
-#endif
     delete m_particle;
     delete m_eulerianGrid;
     delete m_camera;
@@ -102,51 +96,41 @@ ba_gaida::ParticleSystem::~ParticleSystem()
 
 void ba_gaida::ParticleSystem::update(const double deltaTime)
 {
-#ifndef maxFPS
     m_fps->resetTimestamp();
-#endif
-    if(!(ImGui::IsAnyWindowFocused()||ImGui::IsAnyWindowHovered()))
-        m_camera->update();
 
-#ifndef maxFPS
+    if(!(ImGui::IsAnyWindowFocused()||ImGui::IsAnyWindowHovered())){
+        m_camera->m_hovered = false;
+    }
+    m_camera->update();
     m_fps->setTimestamp(0);
-#endif
+
     ComputeShader::updateComputeShaderD(m_resetGridID, m_dimensions);
-#ifndef maxFPS
     m_fps->setTimestamp(1);
-#endif
+
     ComputeShader::updateComputeShaderP64(m_lableParticleID, m_particleCount);
-#ifndef maxFPS
     m_fps->setTimestamp(2);
-#endif
+
     ComputeShader::updateComputeShaderD(m_prefixSumID, m_dimensions);
-#ifndef maxFPS
     m_fps->setTimestamp(3);
-#endif
+
     ComputeShader::updateComputeShaderP64(m_rearrangingParticlesID, m_particleCount);
-#ifndef maxFPS
     m_fps->setTimestamp(4);
-#endif
+
     ComputeShader::updateComputeShaderP64DT(m_externalForceID, deltaTime, m_particleCount);
-#ifndef maxFPS
     m_fps->setTimestamp(5);
-#endif
+
     ComputeShader::updateComputeShaderP64DT(m_updateForceID, deltaTime, m_particleCount);
-#ifndef maxFPS
     m_fps->setTimestamp(6);
-#endif
+
     ComputeShader::updateComputeShaderP64(m_swapParticlesID, m_particleCount);
-#ifndef maxFPS
     m_fps->setTimestamp(7);
-#endif
+
     ComputeShader::updateComputeShaderP64(m_collisionID, m_particleCount);
-#ifndef maxFPS
     m_fps->setTimestamp(8);
-#endif
+
     render();
-#ifndef maxFPS
     m_fps->setTimestamp(9);
-#endif
+
     m_fps->update(deltaTime);
 }
 
@@ -170,7 +154,7 @@ void ba_gaida::ParticleSystem::render()
     glDrawArrays(GL_POINTS, 0, m_particleCount);
 
     glUseProgram(0);
-#ifndef maxFPS //go to PerformanceSettings.h and #define maxFps for better performance(disables imgui and debug, enables simple FpsCounter in title)
+
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
@@ -184,7 +168,7 @@ void ba_gaida::ParticleSystem::render()
         ImGui::Text("Gridsize: %.ix%.ix%.i \n", m_dimensions.x,m_dimensions.y,m_dimensions.z);
         if (ImGui::CollapsingHeader("Controls"))
         {
-            m_imgui_applications = m_imgui_applications + 0.7f;
+            m_imgui_applications = m_imgui_applications + 0.65f;
             ImGui::Text("Controls:\n"
                         "LeftMouseButton: moves viewport\n"
                         "W: moves to view-direction\n"
@@ -228,7 +212,7 @@ void ba_gaida::ParticleSystem::render()
     }
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-#endif
+
     glfwSwapBuffers(m_window);
 }
 

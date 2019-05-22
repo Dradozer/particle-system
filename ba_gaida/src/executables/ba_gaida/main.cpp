@@ -12,14 +12,12 @@
 #include <GL/wglew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
-
-#include "include/PerformanceSettings.h"
 #include "include/ParticleSystem.h"
 #include "include/Objects/CVK_Sphere.h"
 #include "include/Objects/CVK_Cube.h"
 
 //particleCount is multiplied by 32, keep it between 64 and 512 for now
-#define particleCount   256 *32
+#define particleCount   256 * 64
 //Title title of the displayed window
 #define Title "ba_gaida"
 //Window dimensions Width x Heigth
@@ -70,11 +68,11 @@ void handleInput(GLFWwindow *window, float deltaTime)
     }
     if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
     {
-        cameraCenter += glm::vec3(0.f, 1.f, 0.f) * deltaTime * 2.f;
+        cameraCenter += glm::vec3(0.f, 10.f, 0.f) * deltaTime * 2.f;
     }
     if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
     {
-        cameraCenter += glm::vec3(0.f, -1.f, 0.f) * deltaTime * 2.f;
+        cameraCenter += glm::vec3(0.f, -10.f, 0.f) * deltaTime * 2.f;
     }
     particleSystem->m_camera->setCenter(cameraCenter);
 }

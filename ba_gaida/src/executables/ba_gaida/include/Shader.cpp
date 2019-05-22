@@ -96,13 +96,11 @@ void ba_gaida::Shader::validateProgram(GLuint program)
 
         FAIL_PROGRAM //program shuts down
     }
-#ifndef maxFPS
     GLenum glError;
     if ((glError = glGetError()) != GL_NO_ERROR)
     {
         std::cout << "3.OpenGL-Error: " << glError << std::endl;
     }
-#endif
 }
 
 void ba_gaida::Shader::deleteShader(GLuint program)
@@ -120,11 +118,9 @@ void ba_gaida::Shader::deleteShader(GLuint program)
         delete [] shader;
         glDeleteProgram(program);
     }
-#ifndef maxFPS
     GLenum glError;
     if ((glError = glGetError()) != GL_NO_ERROR)
     {
         std::cout << "6.OpenGL-Error: " << glError << std::endl;
     }
-#endif
 }

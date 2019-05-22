@@ -6,13 +6,13 @@
 
 ba_gaida::Camera::Camera(GLFWwindow *window,const glm::vec3 center, const glm::vec3 up,const int width,const int height)
 {
-
     m_window = window;
     m_center = glm::vec3(center.x +1, center.y +1 , center.z+1);
     m_radius = (center.x + center.y + center.z)/3 * 5.f ;
     m_maxRadius = m_radius *1.5f;
     m_cameraPos = center + glm::vec3(0.f ,0.f, 0.f);
     m_up = up;
+    m_hovered = false;
 
     m_sensitivity = 0.01f;
     m_theta = glm::pi<float>() / 2.f;
@@ -36,7 +36,7 @@ void ba_gaida::Camera::update()
     double x, y;
 
     glfwGetCursorPos(m_window, &x, &y);
-    if (glfwGetMouseButton(m_window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+    if (glfwGetMouseButton(m_window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && m_hovered == false)
     {
         m_changeX = ((float) x - m_oldX) * m_sensitivity;
         m_changeY = ((float) y - m_oldY) * m_sensitivity;
@@ -48,6 +48,7 @@ void ba_gaida::Camera::update()
         m_phi -= m_changeX;
         if (m_phi < 0) m_phi += 2*glm::pi<float>();
         else if (m_phi > 2*glm::pi<float>()) m_phi -= 2*glm::pi<float>();
+        m_hovered = true;
     }
 
     m_oldX = (float) x;
