@@ -9,7 +9,8 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     uint gridID;
-    int pad1, pad2, pad3;
+    uint memoryPosition;
+    uint pad2, pad3;
 };
 
 struct Grid{
@@ -47,6 +48,6 @@ void main(void) {
         return;
     } else
     {
-        particle1[grid[particle2[id].gridID].currentSortOutPut + particle2[id].pad1] = particle2[id];
+        particle1[grid[particle2[id].gridID].currentSortOutPut + particle2[id].memoryPosition] = particle2[id];
     }
 }

@@ -31,7 +31,6 @@ void main(void) {
     } else
     {
         grid[id].particlesInGrid = 0;
-        grid[id].previousSortOutPut = 0;
         grid[id].currentSortOutPut = 0;
     }
 }

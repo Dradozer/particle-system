@@ -48,8 +48,6 @@ void main(void) {
         return;
     } else
     {
-        memoryBarrier();
         particle2[id] = particle1[id];
-        memoryBarrier();
     }
 }

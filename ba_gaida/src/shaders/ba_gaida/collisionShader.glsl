@@ -1,6 +1,6 @@
 #version 450
 /*
- * 1.5 ComputeShader
+ * 1.7 ComputeShader
  * Calculates the Collision
  */
 layout( local_size_x = 64, local_size_y = 1, local_size_z = 1) in;
@@ -9,7 +9,8 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     uint gridID;
-    int pad1,pad2,pad3;
+    uint memoryPosition;
+    uint pad2, pad3;
 };
 
 layout( std430, binding = 0) writeonly buffer buffer_particle1

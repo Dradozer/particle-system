@@ -19,7 +19,7 @@
 #include "include/Objects/CVK_Cube.h"
 
 //particleCount is multiplied by 32, keep it between 64 and 512 for now
-#define particleCount   256
+#define particleCount   256 *32
 //Title title of the displayed window
 #define Title "ba_gaida"
 //Window dimensions Width x Heigth

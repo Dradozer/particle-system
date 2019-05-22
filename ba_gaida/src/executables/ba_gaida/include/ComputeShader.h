@@ -19,8 +19,32 @@ namespace ba_gaida
             Shader::linkShader(id);
         }
 
-        static void updateComputeShaderP64(GLuint *id, const float deltaTime, const unsigned int particleCount,
-                                           const glm::ivec4 gridSize)
+        static void initComputeShader(GLuint *id, const unsigned int particleCount,
+                                         const glm::ivec4 gridSize)
+        {
+#ifndef maxFPS
+            GLenum glError;
+            if ((glError = glGetError()) != GL_NO_ERROR)
+            {
+                std::cout << "4.OpenGL-Error: " << glError << std::endl;
+            }
+#endif
+            glUseProgram(id[0]);
+            {
+                glUniform1ui(id[2], particleCount);
+                glUniform4i(id[3], gridSize.x, gridSize.y, gridSize.z, gridSize.w);
+            }
+            glUseProgram(0);
+#ifndef maxFPS
+            if ((glError = glGetError()) != GL_NO_ERROR)
+            {
+                std::cout << "5.1 OpenGL-Error: " << glError << std::endl;
+            }
+#endif
+        }
+
+
+        static void updateComputeShaderP64DT(GLuint *id, const float deltaTime, const unsigned int particleCount)
         {
 #ifndef maxFPS
             GLenum glError;
@@ -32,8 +56,6 @@ namespace ba_gaida
             glUseProgram(id[0]);
             {
                 glUniform1f(id[1], deltaTime);
-                glUniform1ui(id[2], particleCount);
-                glUniform4i(id[3], gridSize.x, gridSize.y, gridSize.z, gridSize.w);
                 glDispatchCompute(ceil(particleCount / 64), 1, 1); // shader layout
                 glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
             }
@@ -41,13 +63,35 @@ namespace ba_gaida
 #ifndef maxFPS
             if ((glError = glGetError()) != GL_NO_ERROR)
             {
-                std::cout << "5.OpenGL-Error: " << glError << std::endl;
+                std::cout << "5.2 OpenGL-Error: " << glError << std::endl;
             }
 #endif
         }
 
-        static void updateComputeShaderD(GLuint *id, const float deltaTime, const unsigned int particleCount,
-                                         const glm::ivec4 gridSize)
+        static void updateComputeShaderP64(GLuint *id, const unsigned int particleCount)
+        {
+#ifndef maxFPS
+            GLenum glError;
+            if ((glError = glGetError()) != GL_NO_ERROR)
+            {
+                std::cout << "4.OpenGL-Error: " << glError << std::endl;
+            }
+#endif
+            glUseProgram(id[0]);
+            {
+                glDispatchCompute(ceil(particleCount / 64), 1, 1); // shader layout
+                glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+            }
+            glUseProgram(0);
+#ifndef maxFPS
+            if ((glError = glGetError()) != GL_NO_ERROR)
+            {
+                std::cout << "5.3 OpenGL-Error: " << glError << std::endl;
+            }
+#endif
+        }
+
+        static void updateComputeShaderD(GLuint *id, const glm::ivec4 gridSize)
         {
             int d = gridSize.x * gridSize.y * gridSize.z;
 #ifndef maxFPS
@@ -59,9 +103,6 @@ namespace ba_gaida
 #endif
             glUseProgram(id[0]);
             {
-                glUniform1f(id[1], deltaTime);
-                glUniform1ui(id[2], particleCount);
-                glUniform4i(id[3], gridSize.x, gridSize.y, gridSize.z, gridSize.w);
                 glDispatchCompute(ceil(d / 10), 1, 1); // shader layout
                 glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
             }
@@ -69,7 +110,7 @@ namespace ba_gaida
 #ifndef maxFPS
             if ((glError = glGetError()) != GL_NO_ERROR)
             {
-                std::cout << "5.OpenGL-Error: " << glError << std::endl;
+                std::cout << "5.4 OpenGL-Error: " << glError << std::endl;
             }
 #endif
         }

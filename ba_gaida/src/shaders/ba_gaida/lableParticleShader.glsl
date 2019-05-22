@@ -9,7 +9,8 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     uint gridID;
-    uint pad1, pad2, pad3;
+    uint memoryPosition;
+    uint pad2, pad3;
 };
 
 struct Grid{
@@ -38,7 +39,9 @@ uniform float deltaTime;
 uniform uint particleCount;
 uniform ivec4 gridSize;
 
-int cubeid;
+uint cubeID(vec4 position){
+    return int(floor(position.x) * gridSize.x * gridSize.x + floor(position.y) * gridSize.y + floor(position.z));
+}
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
@@ -49,11 +52,8 @@ void main(void) {
     } else
     {
         particle2[id] = particle1[id];
-        cubeid = int(floor(particle1[id].position.x) * gridSize.x * gridSize.x + floor(particle1[id].position.y) * gridSize.y + floor(particle1[id].position.z));
-        particle2[id].gridID = cubeid;
-        memoryBarrierBuffer();
-        temp = atomicAdd(grid[cubeid].particlesInGrid, 1);
-        particle2[id].pad1 = temp;
-        memoryBarrier();
+        temp = cubeID(particle1[id].position);
+        particle2[id].gridID = temp;
+        particle2[id].memoryPosition = atomicAdd(grid[temp].particlesInGrid, 1);
     }
 }

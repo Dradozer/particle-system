@@ -9,7 +9,8 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     uint gridID;
-    int pad1,pad2,pad3;
+    uint memoryPosition;
+    uint pad2, pad3;
 };
 
 layout( std430, binding = 0) readonly buffer buffer_particle1
@@ -25,7 +26,7 @@ layout( std430, binding = 1) writeonly buffer buffer_particle2
 uniform float deltaTime;
 uniform uint particleCount;
 
-#define gravity  (-9.81)
+#define gravity  (-9.80665/2)
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;

@@ -9,7 +9,8 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     uint gridID;
-    int pad1, pad2, pad3;
+    uint memoryPosition;
+    uint pad2, pad3;
 };
 
 struct Grid{

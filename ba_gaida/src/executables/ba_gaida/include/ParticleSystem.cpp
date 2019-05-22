@@ -54,6 +54,8 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     setUniform(m_swapParticlesID);
     setUniform(m_updateForceID);
 
+    initShader();
+
 #ifndef maxFPS
     // init imgui
     ImGui::CreateContext();
@@ -64,7 +66,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     ImGui_ImplOpenGL3_Init(glsl_version);
     m_imgui_once = false; //pos and resize just once, look usage
     m_imgui_applications = 0.f;
-    m_fps = new ba_gaida::FpsCounter(m_window, 7);
+    m_fps = new ba_gaida::FpsCounter(m_window, 10);
 #else
     m_fps = new ba_gaida::FpsCounter(m_window);
 #endif
@@ -109,33 +111,41 @@ void ba_gaida::ParticleSystem::update(const double deltaTime)
 #ifndef maxFPS
     m_fps->setTimestamp(0);
 #endif
-    ComputeShader::updateComputeShaderD(m_resetGridID, deltaTime, m_particleCount, m_dimensions);
-    ComputeShader::updateComputeShaderP64(m_lableParticleID, deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderD(m_resetGridID, m_dimensions);
 #ifndef maxFPS
     m_fps->setTimestamp(1);
 #endif
-    ComputeShader::updateComputeShaderD(m_prefixSumID, deltaTime, m_particleCount, m_dimensions);
-    ComputeShader::updateComputeShaderP64(m_rearrangingParticlesID, deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderP64(m_lableParticleID, m_particleCount);
 #ifndef maxFPS
     m_fps->setTimestamp(2);
 #endif
-    ComputeShader::updateComputeShaderP64(m_externalForceID, deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderD(m_prefixSumID, m_dimensions);
 #ifndef maxFPS
     m_fps->setTimestamp(3);
 #endif
-    ComputeShader::updateComputeShaderP64(m_updateForceID, deltaTime, m_particleCount, m_dimensions);
-
+    ComputeShader::updateComputeShaderP64(m_rearrangingParticlesID, m_particleCount);
 #ifndef maxFPS
     m_fps->setTimestamp(4);
 #endif
-    ComputeShader::updateComputeShaderP64(m_swapParticlesID, deltaTime, m_particleCount, m_dimensions);
-    ComputeShader::updateComputeShaderP64(m_collisionID, deltaTime, m_particleCount, m_dimensions);
+    ComputeShader::updateComputeShaderP64DT(m_externalForceID, deltaTime, m_particleCount);
 #ifndef maxFPS
     m_fps->setTimestamp(5);
 #endif
-    render();
+    ComputeShader::updateComputeShaderP64DT(m_updateForceID, deltaTime, m_particleCount);
 #ifndef maxFPS
     m_fps->setTimestamp(6);
+#endif
+    ComputeShader::updateComputeShaderP64(m_swapParticlesID, m_particleCount);
+#ifndef maxFPS
+    m_fps->setTimestamp(7);
+#endif
+    ComputeShader::updateComputeShaderP64(m_collisionID, m_particleCount);
+#ifndef maxFPS
+    m_fps->setTimestamp(8);
+#endif
+    render();
+#ifndef maxFPS
+    m_fps->setTimestamp(9);
 #endif
     m_fps->update(deltaTime);
 }
@@ -192,18 +202,22 @@ void ba_gaida::ParticleSystem::render()
 
         if (ImGui::CollapsingHeader("Computingtimes"))
         {
-            m_imgui_applications = m_imgui_applications + 0.8f;
+            m_imgui_applications = m_imgui_applications + 1.1f;
             ImGui::Text("Avg. computingtime for segmenta:\n"
                         "CameraUpdate: \t%.8f ms\n"
+                        "CS ResetGrid: \t%.8f ms\n"
                         "CS Label:     \t%.8f ms\n"
                         "CS PrefixSum: \t%.8f ms\n"
+                        "CS rearr.Prt: \t%.8f ms\n"
                         "CS Gravity:   \t%.8f ms\n"
-                        "CS Collision: \t%.8f ms\n"
+                        "CS Swapping:  \t%.8f ms\n"
                         "CS Update:    \t%.8f ms\n"
+                        "CS Collision: \t%.8f ms\n"
                         "Renderer:     \t%.8f ms\n",
                         m_fps->getTimestamp(0) * 1000, m_fps->getTimestamp(1) * 1000, m_fps->getTimestamp(2) * 1000,
                         m_fps->getTimestamp(3) * 1000, m_fps->getTimestamp(4) * 1000, m_fps->getTimestamp(5) * 1000,
-                        m_fps->getTimestamp(6) * 1000);
+                        m_fps->getTimestamp(6) * 1000, m_fps->getTimestamp(7) * 1000, m_fps->getTimestamp(8) * 1000,
+                        m_fps->getTimestamp(9) * 1000);
             ImGui::Text("-----------------------------------------------");
         }
 
@@ -270,6 +284,17 @@ void ba_gaida::ParticleSystem::initGrid()
             }
         }
     }
+}
+
+void ba_gaida::ParticleSystem::initShader(){
+    ComputeShader::initComputeShader(m_resetGridID, m_particleCount, m_dimensions);
+    ComputeShader::initComputeShader(m_lableParticleID, m_particleCount, m_dimensions);
+    ComputeShader::initComputeShader(m_prefixSumID, m_particleCount, m_dimensions);
+    ComputeShader::initComputeShader(m_rearrangingParticlesID, m_particleCount, m_dimensions);
+    ComputeShader::initComputeShader(m_externalForceID, m_particleCount, m_dimensions);
+    ComputeShader::initComputeShader(m_collisionID, m_particleCount, m_dimensions);
+    ComputeShader::initComputeShader(m_swapParticlesID, m_particleCount, m_dimensions);
+    ComputeShader::initComputeShader(m_updateForceID, m_particleCount, m_dimensions);
 }
 
 void ba_gaida::ParticleSystem::setUniform(GLuint *id)

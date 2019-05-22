@@ -81,6 +81,11 @@ namespace ba_gaida
         void initGrid();
 
         /**
+         * initializes the uniformVariables
+         */
+        void initShader();
+
+        /**
          * sets the Id depending on the grid dimensions: x * dimensions^2 + y * dimensions + z
          * @param id The ShaderID-Pointer
          */
