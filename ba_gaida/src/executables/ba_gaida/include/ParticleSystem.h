@@ -97,8 +97,9 @@ namespace ba_gaida
         GLuint m_resetGridID[4];
         GLuint m_lableParticleID[4];
         GLuint m_prefixSumInitID[4];
-        GLuint m_prefixSumUpID[4];
-        GLuint m_prefixSumDownID[4];
+        GLuint m_prefixSumCalcID[4];
+        GLuint m_prefixSumBufferID[4];
+        GLuint m_prefixSumExcludeID[4];
         GLuint m_rearrangingParticlesID[4];
         GLuint m_externalForceID[4];
         GLuint m_densityID[4];
@@ -114,9 +115,11 @@ namespace ba_gaida
 
         Particle *m_particle;
         Grid *m_eulerianGrid;
+        int *m_gridBuffer;
 
         GLuint m_ssbo_particleId[2];
         GLuint m_ssbo_gridId;
+        GLuint m_ssbo_gridBufferID;
 
         glm::vec3 m_boxCenter;
 

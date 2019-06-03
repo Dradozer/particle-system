@@ -36,6 +36,11 @@ layout(std430, binding = 2) coherent buffer buffer_grid
     Grid grid[];
 };
 
+layout(std430, binding = 3) readonly buffer buffer_gridBuffer
+{
+    uint gridBuffer[];
+};
+
 uniform float deltaTime;
 uniform uint step;
 uniform ivec4 gridSize;
@@ -51,6 +56,6 @@ void main(void) {
     {
         return;
     } else {
-        grid[threadID].currentSortOutPut = grid[threadID].currentSortOutPut + grid[threadID - step].currentSortOutPut;
+        grid[threadID].currentSortOutPut =  gridBuffer[threadID] + gridBuffer[threadID - step];
     }
 }
