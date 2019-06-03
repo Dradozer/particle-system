@@ -27,7 +27,7 @@ layout( std430, binding = 1) readonly buffer buffer_particle2
 uniform float deltaTime;
 uniform uint particleCount;
 uniform ivec4 gridSize;
-uniform ivec4 origin = ivec4(0);
+uniform ivec4 origin = ivec4(1);
 
 #define energyloss 0.6f
 
@@ -38,13 +38,11 @@ void main(void) {
         return;
     } else
     {
-        particle1[id].position = particle2[id].position +  particle2[id].velocity * deltaTime;
-        particle1[id].velocity = particle2[id].velocity;
-
+        particle1[id] = particle2[id];
         //collisition X-Axis
-        if(particle2[id].position.x >= gridSize.x + origin.x)
+        if(particle2[id].position.x >= gridSize.x - origin.x)
         {
-         particle1[id].position.x = gridSize.x  + origin.x - 0.001f;
+         particle1[id].position.x = gridSize.x  - origin.x - 0.001f;
          particle1[id].velocity = vec4(reflect(particle2[id].velocity.xyz,vec3(-1.f,0.f,0.f)),1.f) * energyloss;
         }else if(particle2[id].position.x < origin.x)
         {
@@ -52,9 +50,9 @@ void main(void) {
             particle1[id].velocity = vec4(reflect(particle2[id].velocity.xyz,vec3(1.f,0.f,0.f)),1.f) * energyloss;
         }
         //collisition Y-Axis
-        if(particle2[id].position.y >= gridSize.y + origin.y)
+        if(particle2[id].position.y >= gridSize.y - origin.y)
         {
-            particle1[id].position.y = gridSize.y + origin.y - 0.001f;
+            particle1[id].position.y = gridSize.y - origin.y - 0.001f;
             particle1[id].velocity = vec4(reflect(particle2[id].velocity.xyz,vec3(0.f,-1.f,0.f)),1.f) * energyloss;
         }else if(particle2[id].position.y < origin.y)
         {
@@ -62,9 +60,9 @@ void main(void) {
             particle1[id].velocity = vec4(reflect(particle2[id].velocity.xyz,vec3(0.f,1.f,0.f)),1.f) * energyloss;
         }
         //collisition Z-Axis
-        if(particle2[id].position.z >= gridSize.z + origin.z)
+        if(particle2[id].position.z >= gridSize.z - origin.z)
         {
-            particle1[id].position.z = gridSize.z + origin.z - 0.001f;
+            particle1[id].position.z = gridSize.z - origin.z - 0.001f;
             particle1[id].velocity = vec4(reflect(particle2[id].velocity.xyz,vec3(0.f,0.f,-1.f)),1.f) * energyloss;
         }else if(particle2[id].position.z < origin.y)
         {
