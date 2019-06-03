@@ -1,6 +1,6 @@
 #version 450
 /*
- * 0.^1 ComputeShader
+ * 0.1 ComputeShader
  * reset Grid
  */
 layout(local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
@@ -32,5 +32,6 @@ void main(void) {
     {
         grid[id].particlesInGrid = 0;
         grid[id].currentSortOutPut = 0;
+        grid[id].previousSortOutPut = 0;
     }
 }

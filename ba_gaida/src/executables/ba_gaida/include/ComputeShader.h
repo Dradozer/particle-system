@@ -98,6 +98,27 @@ namespace ba_gaida
                 std::cout << "5.4 OpenGL-Error: " << glError << std::endl;
             }
         }
+
+        static void updateComputeShaderPrefix(GLuint *id, const glm::ivec4 gridSize, unsigned int step)
+        {
+            int d = gridSize.x * gridSize.y * gridSize.z;
+            GLenum glError;
+            if ((glError = glGetError()) != GL_NO_ERROR)
+            {
+                std::cout << "4.OpenGL-Error: " << glError << std::endl;
+            }
+            glUseProgram(id[0]);
+            {
+                glUniform1ui(id[2], step);
+                glDispatchCompute(ceil(d / 10), 1, 1); // shader layout
+                glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+            }
+            glUseProgram(0);
+            if ((glError = glGetError()) != GL_NO_ERROR)
+            {
+                std::cout << "5.5 OpenGL-Error: " << glError << std::endl;
+            }
+        }
     };
 }
 

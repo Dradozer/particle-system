@@ -20,5 +20,5 @@ void main()
 //    float g = green / 255.f;
 //    float b = blue / 255.f;
     vec4 posNormal = normalize(pos);
-    FragColor = vec4 (posNormal.xyz,0.9f);
+    FragColor = vec4 (posNormal.xyz,1.f);
 }

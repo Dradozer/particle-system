@@ -16,8 +16,8 @@
 #include "include/Objects/CVK_Sphere.h"
 #include "include/Objects/CVK_Cube.h"
 
-//particleCount is multiplied by 32, keep it between 64 and 512 for now
-#define particleCount   256 * 64
+//particleCount is multiplied by 64, keep it between 64 and 512 for now
+#define particleCount   256
 //Title title of the displayed window
 #define Title "ba_gaida"
 //Window dimensions Width x Heigth

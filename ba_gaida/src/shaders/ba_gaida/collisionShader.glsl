@@ -1,7 +1,7 @@
 #version 450
 /*
  * 1.7 ComputeShader
- * Calculates the Collision
+ * Updates Vel and calculates the Collision
  */
 layout( local_size_x = 64, local_size_y = 1, local_size_z = 1) in;
 
@@ -10,7 +10,8 @@ struct Particle{
     vec4 velocity;
     uint gridID;
     uint memoryPosition;
-    uint pad2, pad3;
+    float density;
+    uint pad3;
 };
 
 layout( std430, binding = 0) writeonly buffer buffer_particle1
@@ -37,7 +38,9 @@ void main(void) {
         return;
     } else
     {
-        particle1[id] = particle2[id];
+        particle1[id].position = particle2[id].position +  particle2[id].velocity * deltaTime;
+        particle1[id].velocity = particle2[id].velocity;
+
         //collisition X-Axis
         if(particle2[id].position.x >= gridSize.x + origin.x)
         {

@@ -90,16 +90,21 @@ namespace ba_gaida
          */
         void setUniform(GLuint *id);
 
+        void setUniformPrefix(GLuint *id);
+
         GLFWwindow *m_window;
 
         GLuint m_resetGridID[4];
         GLuint m_lableParticleID[4];
-        GLuint m_prefixSumID[4];
+        GLuint m_prefixSumInitID[4];
+        GLuint m_prefixSumUpID[4];
+        GLuint m_prefixSumDownID[4];
         GLuint m_rearrangingParticlesID[4];
         GLuint m_externalForceID[4];
-        GLuint m_collisionID[4];
+        GLuint m_densityID[4];
+        GLuint m_advectionID[4];
         GLuint m_swapParticlesID[4];
-        GLuint m_updateForceID[4];
+        GLuint m_collisionID[4];
         GLuint m_renderID;
 
         GLuint m_uniform_viewM;
@@ -116,6 +121,8 @@ namespace ba_gaida
 
         int m_heigth;
         int m_width;
+        int m_step;
+        unsigned int m_iterations;
         unsigned int m_particleCount;
         glm::ivec4 m_dimensions;
         glm::uvec3 m_boxSize;

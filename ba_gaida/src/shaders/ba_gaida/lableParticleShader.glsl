@@ -10,7 +10,8 @@ struct Particle{
     vec4 velocity;
     uint gridID;
     uint memoryPosition;
-    uint pad2, pad3;
+    float density;
+    uint pad3;
 };
 
 struct Grid{
