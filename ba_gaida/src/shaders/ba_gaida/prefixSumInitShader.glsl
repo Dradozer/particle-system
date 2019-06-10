@@ -56,7 +56,7 @@ void main(void) {
     {
         return;
     } else {
-        grid[threadID].currentSortOutPut = grid[threadID].particlesInGrid;
-        gridBuffer[threadID] = grid[threadID].particlesInGrid;
+        grid[threadID].currentSortOutPut = grid[threadID-1].particlesInGrid;
+        gridBuffer[threadID] = grid[threadID-1].particlesInGrid;
     }
 }

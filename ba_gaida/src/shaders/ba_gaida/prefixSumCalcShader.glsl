@@ -56,6 +56,7 @@ void main(void) {
     {
         return;
     } else {
-        grid[threadID].currentSortOutPut =  gridBuffer[threadID] + gridBuffer[threadID - step];
+        if(step < threadID)
+            grid[threadID].currentSortOutPut =  gridBuffer[threadID] + gridBuffer[threadID - step];
     }
 }

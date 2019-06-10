@@ -7,10 +7,11 @@
 ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH,
                                          const int HEIGTH, const glm::uvec3 boxSize)
 {
-    m_dimensions = glm::ivec4(20,20,20,1);
+    int dimensions = 20;
+    m_dimensions = glm::ivec4(dimensions,dimensions,dimensions,1);
     m_window = window;
     m_particleCount = (particleCount * 64);
-    m_iterations = ceil(log(m_particleCount)/log(2));
+    m_iterations = ceil(log(m_dimensions.x * m_dimensions.y * m_dimensions.z)/log(2))+1;
     std::cout << m_iterations << std::endl;
     m_step = 0;
     m_width = WIDTH;
@@ -136,8 +137,7 @@ void ba_gaida::ParticleSystem::update(const double deltaTime)
         ComputeShader::updateComputeShaderD(m_prefixSumBufferID, m_dimensions);
         m_step *= 2;
     }
-    ComputeShader::updateComputeShaderD(m_prefixSumExcludeID, m_dimensions);
-
+//    ComputeShader::updateComputeShaderD(m_prefixSumExcludeID, m_dimensions);
     m_fps->setTimestamp(3);
 
     ComputeShader::updateComputeShaderP64(m_rearrangingParticlesID, m_particleCount);
@@ -264,7 +264,7 @@ void ba_gaida::ParticleSystem::initParticle()
 //    std::uniform_real_distribution<float> vel_y(-10.f,10.f);
 //    std::uniform_real_distribution<float> vel_z(-10.f,10.f);
     std::uniform_real_distribution<float> vel_x(-2.f,2.f);
-    std::uniform_real_distribution<float> vel_y(-10.f,10.f);
+    std::uniform_real_distribution<float> vel_y(-5.f,5.f);
     std::uniform_real_distribution<float> vel_z(-2.f,2.f);
     std::default_random_engine rdm;
 
