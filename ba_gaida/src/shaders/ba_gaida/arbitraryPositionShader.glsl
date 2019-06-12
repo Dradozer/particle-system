@@ -8,10 +8,11 @@ layout( local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
 struct Particle{
     vec4 position;
     vec4 velocity;
+    vec4 arbitraryPosition;
     uint gridID;
     uint memoryPosition;
     float density;
-    uint pad3;
+    float pressureGradient;
 };
 
 struct Grid{
@@ -40,34 +41,42 @@ uniform uint particleCount;
 uniform float deltaTime;
 uniform ivec4 gridSize;
 
+float W(vec4 particlePosition ,vec4 neighborPosition){
+    float radius = 1.f;
+    float inPut = length(particlePosition - neighborPosition)/radius;
+    float pi_constant = 3/(2 *3.14159265);
+    if(inPut < 1){
+        return pi_constant * (2/3 - pow(inPut,2) + 0.5f * pow(inPut,3));
+    }else if(inPut < 2){
+        return pi_constant * (1/6 * pow(2- inPut,3));
+    }else{
+        return 0;
+    }
+}
+
 uint cubeID(vec4 position){
     return int(floor(position.x) * gridSize.x * gridSize.x + floor(position.y) * gridSize.y + floor(position.z));
 }
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
-    uint tempID;
     uint neighborGrid;
     float mass = 0.1f;
-    vec4 pressureSum;
-    vec4 pressureForce;
-    int count;
+    vec4 arbitraryPosition;
+    int count = 0;
     if(id >= particleCount)
     {
         return;
     } else
     {
         particle2[id] = particle1[id];
-
         neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
 
         for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count < 1024; i++){
-            pressureSum +=  mass *((particle1[id].density)/pow(particle1[id].density,2) + (particle1[i].density)/pow(particle1[i].density,2)) * (particle1[id].position - particle1[i].position);
+            arbitraryPosition += (mass / particle1[id].density) * particle1[id].arbitraryPosition * W(particle1[id].position, particle1[i].position);
             count++;
         }
 
-        pressureForce = - mass * pressureSum / grid[neighborGrid].particlesInGrid;
-
-        particle2[id].velocity = particle1[id].velocity + pressureForce * deltaTime;
+        particle2[id].arbitraryPosition = arbitraryPosition;
     }
 }

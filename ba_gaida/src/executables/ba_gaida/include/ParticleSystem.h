@@ -103,7 +103,7 @@ namespace ba_gaida
         GLuint m_rearrangingParticlesID[4];
         GLuint m_externalForceID[4];
         GLuint m_densityID[4];
-        GLuint m_advectionID[4];
+        GLuint m_arbitraryID[4];
         GLuint m_swapParticlesID[4];
         GLuint m_updateForceID[4];
         GLuint m_collisionID[4];

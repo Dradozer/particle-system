@@ -10,6 +10,7 @@
 struct Particle{
     glm::vec4 position;
     glm::vec4 velocity;
+    glm::vec4 arbitraryPosition;
     unsigned int gridID;
     unsigned int pad1,pad2,pad3;
 };

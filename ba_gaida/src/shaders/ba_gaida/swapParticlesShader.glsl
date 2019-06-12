@@ -8,10 +8,11 @@ layout( local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
 struct Particle{
     vec4 position;
     vec4 velocity;
+    vec4 arbitraryPosition;
     uint gridID;
     uint memoryPosition;
     float density;
-    uint pad3;
+    float pressureGradient;
 };
 
 struct Grid{
