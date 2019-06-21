@@ -48,6 +48,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     ComputeShader::createComputeShader(m_externalForceID[0]        , SHADERS_PATH "/ba_gaida/externalForcesShader.glsl");
     ComputeShader::createComputeShader(m_densityID[0]              , SHADERS_PATH "/ba_gaida/densityShader.glsl");
     ComputeShader::createComputeShader(m_arbitraryID[0]            , SHADERS_PATH "/ba_gaida/arbitraryPositionShader.glsl");
+    ComputeShader::createComputeShader(m_pressureID[0]             , SHADERS_PATH "/ba_gaida/pressureShader.glsl");
     ComputeShader::createComputeShader(m_swapParticlesID[0]        , SHADERS_PATH "/ba_gaida/swapParticlesShader.glsl");
     ComputeShader::createComputeShader(m_updateForceID[0]          , SHADERS_PATH "/ba_gaida/updateForceShader.glsl");
     ComputeShader::createComputeShader(m_collisionID[0]            , SHADERS_PATH "/ba_gaida/collisionShader.glsl");
@@ -63,6 +64,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     setUniform(m_externalForceID);
     setUniform(m_densityID);
     setUniform(m_arbitraryID);
+    setUniform(m_pressureID);
     setUniform(m_swapParticlesID);
     setUniform(m_updateForceID);
     setUniform(m_collisionID);
@@ -101,6 +103,7 @@ ba_gaida::ParticleSystem::~ParticleSystem()
     Shader::deleteShader(m_externalForceID[0]);
     Shader::deleteShader(m_densityID[0]);
     Shader::deleteShader(m_arbitraryID[0]);
+    Shader::deleteShader(m_pressureID[0]);
     Shader::deleteShader(m_swapParticlesID[0]);
     Shader::deleteShader(m_updateForceID[0]);
     Shader::deleteShader(m_collisionID[0]);
@@ -146,10 +149,11 @@ void ba_gaida::ParticleSystem::update(const double deltaTime)
 
     ComputeShader::updateComputeShaderP64DT(m_densityID, deltaTime, m_particleCount);
     ComputeShader::updateComputeShaderP64DT(m_arbitraryID, deltaTime, m_particleCount);
+    ComputeShader::updateComputeShaderP64DT(m_pressureID, deltaTime, m_particleCount);
 
     m_fps->setTimestamp(6);
 
-    ComputeShader::updateComputeShaderP64(m_swapParticlesID, m_particleCount);
+//    ComputeShader::updateComputeShaderP64(m_swapParticlesID, m_particleCount);
 
     ComputeShader::updateComputeShaderP64DT(m_updateForceID,deltaTime ,m_particleCount);
 
@@ -273,7 +277,9 @@ void ba_gaida::ParticleSystem::initParticle()
 //        m_particle[i].position = glm::vec4(10.f - 0.001f,10.f - 0.001f,10.f - 0.001f,1.f);
         m_particle[i].position = glm::vec4(pos_x(rdm), pos_y(rdm), pos_z(rdm), 0.f);
         m_particle[i].arbitraryPosition = m_particle[i].position;
-        m_particle[i].velocity = glm::vec4(vel_x(rdm), vel_y(rdm), vel_z(rdm), 0.f);
+//        m_particle[i].velocity = glm::vec4(vel_x(rdm), vel_y(rdm), vel_z(rdm), 0.f);
+        m_particle[i].velocity = glm::vec4(1.f);
+
         if (i == m_particleCount - 1)
         {
             std::cout << "Successfully generated: \t" << m_particleCount << " Particle" << std::endl;
@@ -316,6 +322,7 @@ void ba_gaida::ParticleSystem::initShader(){
     ComputeShader::initComputeShader(m_externalForceID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_densityID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_arbitraryID, m_particleCount, m_dimensions);
+    ComputeShader::initComputeShader(m_pressureID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_swapParticlesID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_updateForceID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_collisionID, m_particleCount, m_dimensions);

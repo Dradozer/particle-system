@@ -12,7 +12,9 @@ struct Particle{
     glm::vec4 velocity;
     glm::vec4 arbitraryPosition;
     unsigned int gridID;
-    unsigned int pad1,pad2,pad3;
+    unsigned int memoryPosition;
+    float density;
+    float pressureGradient;
 };
 
 #endif //BA_GAIDA_PARTICLE_H

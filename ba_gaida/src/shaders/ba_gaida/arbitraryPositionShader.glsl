@@ -41,7 +41,7 @@ uniform uint particleCount;
 uniform float deltaTime;
 uniform ivec4 gridSize;
 
-float W(vec4 particlePosition ,vec4 neighborPosition){
+float W(vec3 particlePosition ,vec3 neighborPosition){
     float radius = 1.f;
     float inPut = length(particlePosition - neighborPosition)/radius;
     float pi_constant = 3/(2 *3.14159265);
@@ -62,7 +62,7 @@ void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
     float mass = 0.1f;
-    vec4 arbitraryPosition;
+    vec3 arbitraryPosition;
     int count = 0;
     if(id >= particleCount)
     {
@@ -72,11 +72,9 @@ void main(void) {
         particle2[id] = particle1[id];
         neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
 
-        for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count < 1024; i++){
-            arbitraryPosition += (mass / particle1[id].density) * particle1[id].arbitraryPosition * W(particle1[id].position, particle1[i].position);
-            count++;
+        for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; i++){
+            arbitraryPosition += (mass / particle1[id].density) * particle1[id].arbitraryPosition.xyz * W(particle1[id].position.xyz, particle1[i].position.xyz);
         }
-
-        particle2[id].arbitraryPosition = arbitraryPosition;
+        particle2[id].arbitraryPosition.xyz = arbitraryPosition;
     }
 }
