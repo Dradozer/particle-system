@@ -52,13 +52,12 @@ float W(vec3 particlePosition ,vec3 neighborPosition){
     float pi_constant = 3/(2 *3.14159265);
     inPut = 0.5f;
     if(inPut < 1.f){
-        weight = pi_constant * ((2/3) - pow(inPut,2) + 0.5f * pow(inPut,3));
+        weight = pi_constant * ((2.f/3.f) - pow(inPut,2) + 0.5f * pow(inPut,3));
     }else if(inPut < 2.f){
-        weight = pi_constant * ((1/6) * pow(2 - inPut,3));
+        weight = pi_constant * ((1.f/6.f) * pow(2 - inPut,3));
     }else{
         weight = 0;
     }
-
     return weight / pow(radius,3);
 }
 
@@ -79,8 +78,8 @@ void main(void) {
         neighborGrid = particle2[id].gridID + cubeID(vec4(0,0,0,0));
         particle1[id].density = 0f;
         for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count < 1024; i++){
-//                density += mass * W(particle2[id].position.xyz, particle2[i].position.xyz);
-                density = W(particle2[id].position.xyz, particle2[i].position.xyz);
+                density += mass * W(particle2[id].position.xyz, particle2[i].position.xyz);
+//                density = W(particle2[id].position.xyz, particle2[i].position.xyz);
                 count++;
         }
         particle1[id].density = density;
