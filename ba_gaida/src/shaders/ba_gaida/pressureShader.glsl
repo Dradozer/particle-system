@@ -22,12 +22,12 @@ struct Grid{
     int currentSortOutPut;
 };
 
-layout( std430, binding = 0) writeonly buffer buffer_particle1
+layout( std430, binding = 0) readonly buffer buffer_particle1
 {
     Particle particle1[];
 };
 
-layout( std430, binding = 1) readonly buffer buffer_particle2
+layout( std430, binding = 1) writeonly buffer buffer_particle2
 {
     Particle particle2[];
 };
@@ -40,6 +40,9 @@ layout( std430, binding = 2) coherent buffer buffer_grid
 uniform uint particleCount;
 uniform float deltaTime;
 uniform ivec4 gridSize;
+
+#define gravity  (-9.80665)
+#define kinematicViscosity (0.000001)
 
 float W(vec3 particlePosition ,vec3 neighborPosition){
     float radius = 1.f;
@@ -69,20 +72,37 @@ uint cubeID(vec4 position){
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
-    float mass = 0.1f;
+    float mass = 2.5f;
     vec4 pressure = vec4(0.f);
-    vec4 weightVector = vec4(0.f);
-    int count = 0;
+    vec4 viscosity = vec4(0.f);
+    vec4 externalForces = vec4(0.f);
+    float radius = 1.f;
     if(id >= particleCount)
     {
         return;
     } else
     {
-        particle1[id] = particle2[id];
-        neighborGrid = particle2[id].gridID + cubeID(vec4(0,0,0,0));
-        for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; i++){
-            pressure += mass * ((particle2[id].arbitraryPosition / pow(particle2[id].density,2) + (particle2[i].arbitraryPosition / pow(particle2[i].density,2)))) * deltaW(particle2[id].position,particle2[i].position);
+        particle2[id] = particle1[id];
+        neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
+        for(int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; j++){
+
+            const vec4 deltaWeight = deltaW(particle1[id].position,particle1[j].position);
+
+            pressure += ((particle1[id].pressure / pow(particle1[id].density,2)
+            + (particle1[j].pressure / pow(particle1[j].density,2)))) * deltaWeight;
+
+            const vec4 distanceVector = (particle1[id].position - particle1[j].position);
+            viscosity += (1 / particle1[j].density)
+            * (particle1[id].velocity - particle1[j].velocity)
+            * ((distanceVector * deltaWeight)
+            / (distanceVector *distanceVector + 0.01f * radius * radius));
+
+
         }
-        particle1[id].velocity = particle2[id].velocity + particle2[id].density * pressure * deltaTime;
+        pressure *= (- mass /particle1[id].density) * particle1[id].density * mass;
+        viscosity *= mass * kinematicViscosity *  2 * mass;
+        externalForces.y = gravity ;
+
+        particle2[id].velocity = particle1[id].velocity + deltaTime * (pressure + viscosity + externalForces) / mass;
     }
 }

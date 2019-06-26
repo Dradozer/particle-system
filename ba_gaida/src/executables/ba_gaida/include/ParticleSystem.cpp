@@ -147,13 +147,13 @@ void ba_gaida::ParticleSystem::update(const double deltaTime)
     ComputeShader::updateComputeShaderP64(m_rearrangingParticlesID, m_particleCount);
     m_fps->setTimestamp(4);
 
-    ComputeShader::updateComputeShaderP64DT(m_externalForceID, deltaTime, m_particleCount);
+//    ComputeShader::updateComputeShaderP64DT(m_externalForceID, deltaTime, m_particleCount);
     m_fps->setTimestamp(5);
 
     ComputeShader::updateComputeShaderP64DT(m_densityID, deltaTime, m_particleCount);
     ComputeShader::updateComputeShaderP64DT(m_arbitraryID, deltaTime, m_particleCount);
     ComputeShader::updateComputeShaderP64DT(m_pressureID, deltaTime, m_particleCount);
-    ComputeShader::updateComputeShaderP64DT(m_viscosityID, deltaTime, m_particleCount);
+//    ComputeShader::updateComputeShaderP64DT(m_viscosityID, deltaTime, m_particleCount);
 
     m_fps->setTimestamp(6);
 
@@ -281,8 +281,8 @@ void ba_gaida::ParticleSystem::initParticle()
 //        m_particle[i].position = glm::vec4(10.f - 0.001f,10.f - 0.001f,10.f - 0.001f,1.f);
         m_particle[i].position = glm::vec4(pos_x(rdm), pos_y(rdm), pos_z(rdm), 0.f);
         m_particle[i].arbitraryPosition = m_particle[i].position;
-        m_particle[i].velocity = glm::vec4(vel_x(rdm), vel_y(rdm), vel_z(rdm), 0.f);
-//        m_particle[i].velocity = glm::vec4(1.f);
+//        m_particle[i].velocity = glm::vec4(vel_x(rdm), vel_y(rdm), vel_z(rdm), 0.f);
+        m_particle[i].velocity = glm::vec4(0.f);
 
         if (i == m_particleCount - 1)
         {

@@ -22,12 +22,12 @@ struct Grid{
     int currentSortOutPut;
 };
 
-layout( std430, binding = 0) readonly buffer buffer_particle1
+layout( std430, binding = 0) writeonly buffer buffer_particle1
 {
     Particle particle1[];
 };
 
-layout( std430, binding = 1) writeonly buffer buffer_particle2
+layout( std430, binding = 1) readonly buffer buffer_particle2
 {
     Particle particle2[];
 };
@@ -66,18 +66,17 @@ void main(void) {
     uint neighborGrid;
     float mass = 0.1f;
     vec3 arbitraryPosition;
-    int count = 0;
     if(id >= particleCount)
     {
         return;
     } else
     {
-        particle2[id] = particle1[id];
-        neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
+        particle1[id] = particle2[id];
+        neighborGrid = particle2[id].gridID + cubeID(vec4(0,0,0,0));
 
         for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; i++){
-            arbitraryPosition += (mass / particle1[i].density) * particle1[i].arbitraryPosition.xyz * W(particle1[id].position.xyz, particle1[i].position.xyz);
+            arbitraryPosition += (mass / particle2[i].density) * particle2[i].arbitraryPosition.xyz * W(particle2[id].position.xyz, particle2[i].position.xyz);
         }
-        particle2[id].arbitraryPosition.xyz = arbitraryPosition;
+        particle1[id].arbitraryPosition.xyz = arbitraryPosition;
     }
 }
