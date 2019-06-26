@@ -14,7 +14,7 @@ struct Particle{
     unsigned int gridID;
     unsigned int memoryPosition;
     float density;
-    float pressureGradient;
+    float pressure;
 };
 
 #endif //BA_GAIDA_PARTICLE_H

@@ -12,7 +12,7 @@ struct Particle{
     uint gridID;
     uint memoryPosition;
     float density;
-    float pressureGradient;
+    float pressure;
 };
 
 struct Grid{
@@ -45,27 +45,31 @@ uint cubeID(vec4 position){
     return int(floor(position.x) * gridSize.x * gridSize.x + floor(position.y) * gridSize.y + floor(position.z));
 }
 
-float W(vec4 particlePosition ,vec4 neighborPosition){
+float W(vec3 particlePosition ,vec3 neighborPosition){
     float radius = 1.f;
-    float inPut = length(particlePosition - neighborPosition)/radius;
+    float inPut = distance(particlePosition,neighborPosition);
+    float weight = 0.f;
     float pi_constant = 3/(2 *3.14159265);
-    if(inPut < 1){
-        return pi_constant * (2/3 - pow(inPut,2) + 0.5f * pow(inPut,3));
-    }else if(inPut < 2){
-        return pi_constant * (1/6 * pow(2- inPut,3));
+    inPut = 0.5f;
+    if(inPut < 1.f){
+        weight = pi_constant * ((2/3) - pow(inPut,2) + 0.5f * pow(inPut,3));
+    }else if(inPut < 2.f){
+        weight = pi_constant * ((1/6) * pow(2 - inPut,3));
     }else{
-        return 0;
+        weight = 0;
     }
+
+    return weight / pow(radius,3);
 }
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
-    float mass = 0.1f;
+    float mass = 1f;
     float density = 0;
-    float restDensity = 0.01f;
+    float restDensity = 1f;
     int count = 0;
-    float stiffness = 1.f;
+    float stiffness = 1f;
     if(id >= particleCount)
     {
         return;
@@ -75,11 +79,11 @@ void main(void) {
         neighborGrid = particle2[id].gridID + cubeID(vec4(0,0,0,0));
         particle1[id].density = 0f;
         for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count < 1024; i++){
-            density += mass * W(particle2[id].position, particle2[i].position);
-            count++;
+//                density += mass * W(particle2[id].position.xyz, particle2[i].position.xyz);
+                density = W(particle2[id].position.xyz, particle2[i].position.xyz);
+                count++;
         }
-
         particle1[id].density = density;
-        particle1[id].pressureGradient = stiffness * (pow( density / restDensity ,7) - 1);
+        particle1[id].pressure = stiffness * (pow( density / restDensity ,7) - 1);
     }
 }

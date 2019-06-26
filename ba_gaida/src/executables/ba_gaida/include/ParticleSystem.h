@@ -105,6 +105,7 @@ namespace ba_gaida
         GLuint m_densityID[4];
         GLuint m_arbitraryID[4];
         GLuint m_pressureID[4];
+        GLuint m_viscosityID[4];
         GLuint m_swapParticlesID[4];
         GLuint m_updateForceID[4];
         GLuint m_collisionID[4];

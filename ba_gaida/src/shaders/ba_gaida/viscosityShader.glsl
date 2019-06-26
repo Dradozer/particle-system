@@ -43,15 +43,23 @@ uniform ivec4 gridSize;
 
 float W(vec3 particlePosition ,vec3 neighborPosition){
     float radius = 1.f;
-    float inPut = length(particlePosition - neighborPosition)/radius;
+    float inPut = distance(particlePosition,neighborPosition);
+    float weight = 0.f;
     float pi_constant = 3/(2 *3.14159265);
-    if(inPut < 1){
-        return pi_constant * (2/3 - pow(inPut,2) + 0.5f * pow(inPut,3));
-    }else if(inPut < 2){
-        return pi_constant * (1/6 * pow(2- inPut,3));
+    inPut = 0.5f;
+    if(inPut < 1.f){
+        weight = pi_constant * (2/3 - pow(inPut,2) + 0.5f * pow(inPut,3));
+    }else if(inPut < 2.f){
+        weight = pi_constant * (1/6 * pow(2 - inPut,3));
     }else{
-        return 0;
+        weight = 0;
     }
+    return weight / pow(radius,3);
+}
+
+vec4 deltaW(vec4 particlePosition ,vec4 neighborPosition){
+    float weight = W(particlePosition.xyz, neighborPosition.xyz);
+    return vec4( weight / particlePosition.x, weight / particlePosition.y, weight / particlePosition.z ,0.f);
 }
 
 uint cubeID(vec4 position){
@@ -62,7 +70,8 @@ void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
     float mass = 0.1f;
-    vec3 arbitraryPosition;
+    vec4 pressure = vec4(0.f);
+    vec4 weightVector = vec4(0.f);
     int count = 0;
     if(id >= particleCount)
     {
@@ -70,11 +79,5 @@ void main(void) {
     } else
     {
         particle2[id] = particle1[id];
-        neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
-
-        for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; i++){
-            arbitraryPosition += (mass / particle1[i].density) * particle1[i].arbitraryPosition.xyz * W(particle1[id].position.xyz, particle1[i].position.xyz);
-        }
-        particle2[id].arbitraryPosition.xyz = arbitraryPosition;
     }
 }

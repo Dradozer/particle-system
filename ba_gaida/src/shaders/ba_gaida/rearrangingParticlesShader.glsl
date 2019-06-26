@@ -12,7 +12,7 @@ struct Particle{
     uint gridID;
     uint memoryPosition;
     float density;
-    float pressureGradient;
+    float pressure;
 };
 
 struct Grid{

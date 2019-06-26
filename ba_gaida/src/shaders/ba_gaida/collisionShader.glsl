@@ -12,7 +12,7 @@ struct Particle{
     uint gridID;
     uint memoryPosition;
     float density;
-    float pressureGradient;
+    float pressure;
 };
 
 layout( std430, binding = 0) writeonly buffer buffer_particle1
