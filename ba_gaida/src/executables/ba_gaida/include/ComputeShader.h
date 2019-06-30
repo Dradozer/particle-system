@@ -39,6 +39,28 @@ namespace ba_gaida
             }
         }
 
+        static void updateComputeShaderParticle(GLuint *id, const float deltaTime, const unsigned int particleCount ,const glm::vec4 settings ,const glm::vec4 forces)
+        {
+            GLenum glError;
+            if ((glError = glGetError()) != GL_NO_ERROR)
+            {
+                std::cout << "4.OpenGL-Error: " << glError << std::endl;
+            }
+            glUseProgram(id[0]);
+            {
+                glUniform1f(id[1], deltaTime);
+                glUniform4fv(id[4],1, &settings[0]);
+                glUniform4fv(id[5],1 ,&forces[0]);
+                glDispatchCompute(ceil(particleCount / 64), 1, 1); // shader layout
+                glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+            }
+            glUseProgram(0);
+            if ((glError = glGetError()) != GL_NO_ERROR)
+            {
+                std::cout << "5.2 OpenGL-Error: " << glError << std::endl;
+            }
+        }
+
 
         static void updateComputeShaderP64DT(GLuint *id, const float deltaTime, const unsigned int particleCount)
         {

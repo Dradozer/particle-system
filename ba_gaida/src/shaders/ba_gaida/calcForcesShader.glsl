@@ -40,12 +40,16 @@ layout( std430, binding = 2) coherent buffer buffer_grid
 uniform uint particleCount;
 uniform float deltaTime;
 uniform ivec4 gridSize;
+uniform vec4 externalForce;
+uniform vec4 particleSettings;
+//float mass;
+//float restingDensity;
+//float stiffness;
+//float radius;
 
-#define gravity  (-9.80665)
 #define kinematicViscosity (0.000001)
 
 float W(vec3 particlePosition ,vec3 neighborPosition){
-    float radius = 1.f;
     float inPut = distance(particlePosition,neighborPosition);
     float weight = 0.f;
     float pi_constant = 3/(2 *3.14159265);
@@ -57,7 +61,7 @@ float W(vec3 particlePosition ,vec3 neighborPosition){
     }else{
         weight = 0;
     }
-    return weight / pow(radius,3);
+    return weight / pow(particleSettings.w,3);
 }
 
 vec4 deltaW(vec4 particlePosition ,vec4 neighborPosition){
@@ -72,11 +76,8 @@ uint cubeID(vec4 position){
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
-    float mass = 2.5f;
     vec4 pressure = vec4(0.f);
     vec4 viscosity = vec4(0.f);
-    vec4 externalForces = vec4(0.f);
-    float radius = 1.f;
     if(id >= particleCount)
     {
         return;
@@ -95,14 +96,13 @@ void main(void) {
             viscosity += (1 / particle1[j].density)
             * (particle1[id].velocity - particle1[j].velocity)
             * ((distanceVector * deltaWeight)
-            / (distanceVector *distanceVector + 0.01f * radius * radius));
+            / (distanceVector *distanceVector + 0.01f * particleSettings.w * particleSettings.w));
 
 
         }
-        pressure *= (- mass /particle1[id].density) * particle1[id].density * mass;
-        viscosity *= mass * kinematicViscosity *  2 * mass;
-        externalForces.y = gravity ;
+        pressure *= (- particleSettings.x /particle1[id].density) * particle1[id].density * particleSettings.x;
+        viscosity *= particleSettings.x * kinematicViscosity *  2 * particleSettings.x;
 
-        particle2[id].velocity = particle1[id].velocity + deltaTime * (pressure + viscosity + externalForces) / mass;
+        particle2[id].velocity = particle1[id].velocity + deltaTime * (pressure + viscosity + externalForce) / particleSettings.x;
     }
 }

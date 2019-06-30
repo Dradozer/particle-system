@@ -148,7 +148,7 @@ CODE
    For every application frame your UI code will be called only once. This is in contrast to e.g. Unity's own implementation of an IMGUI,
    where the UI code is called multiple times ("multiple passes") from a single entry point. There are pros and cons to both approaches.
  - Our origin are on the top-left. In axis aligned bounding boxes, Min = top-left, Max = bottom-right.
- - This codebase is also optimized to yield decent performances with typical "Debug" builds settings.
+ - This codebase is also optimized to yield decent performances with typical "Debug" builds m_settings.
  - Please make sure you have asserts enabled (IM_ASSERT redirects to assert() by default, but can be redirected).
    If you get an assert, read the messages and comments around the assert.
  - C++: this is a very C-ish codebase: we don't rely on C++11, we don't include any C++ headers, and ImGui:: is a namespace.
@@ -953,7 +953,7 @@ CODE
     - If you have issues or if you need to hack into the library, even if you don't expect any support it is useful that you share your issues (on github or privately).
 
  - tip: you can call Begin() multiple times with the same name during the same frame, it will keep appending to the same window.
-        this is also useful to set yourself in the context of another window (to get/set other settings)
+        this is also useful to set yourself in the context of another window (to get/set other m_settings)
  - tip: you can create widgets without a Begin()/End() block, they will go in an implicit window called "Debug".
  - tip: the ImGuiOnceUponAFrame helper will allow run the block of code only once a frame. You can use it to quickly add custom UI in the middle
         of a deep nested inner loop in your code.
@@ -3036,7 +3036,7 @@ void ImGui::SetCurrentContext(ImGuiContext* ctx)
 }
 
 // Helper function to verify that the type sizes are matching between the calling file's compilation unit and imgui.cpp's compilation unit
-// If the user has inconsistent compilation settings, imgui configuration #define, packing pragma, etc. you may see different structures from what imgui.cpp sees which is highly problematic.
+// If the user has inconsistent compilation m_settings, imgui configuration #define, packing pragma, etc. you may see different structures from what imgui.cpp sees which is highly problematic.
 bool ImGui::DebugCheckVersionAndDataLayout(const char* version, size_t sz_io, size_t sz_style, size_t sz_vec2, size_t sz_vec4, size_t sz_vert)
 {
     bool error = false;
@@ -3440,7 +3440,7 @@ void ImGui::NewFrame()
     if (g.IO.ConfigWindowsResizeFromEdges && !(g.IO.BackendFlags & ImGuiBackendFlags_HasMouseCursors))
         g.IO.ConfigWindowsResizeFromEdges = false;
 
-    // Load settings on first frame (if not explicitly loaded manually before)
+    // Load m_settings on first frame (if not explicitly loaded manually before)
     if (!g.SettingsLoaded)
     {
         IM_ASSERT(g.SettingsWindows.empty());
@@ -3449,7 +3449,7 @@ void ImGui::NewFrame()
         g.SettingsLoaded = true;
     }
 
-    // Save settings (with a delay after the last modification, so we don't spam disk too much)
+    // Save m_settings (with a delay after the last modification, so we don't spam disk too much)
     if (g.SettingsDirtyTimer > 0.0f)
     {
         g.SettingsDirtyTimer -= g.IO.DeltaTime;
@@ -3656,7 +3656,7 @@ void ImGui::Shutdown(ImGuiContext* context)
     if (!g.Initialized)
         return;
 
-    // Save settings (unless we haven't attempted to load them: CreateContext/DestroyContext without a call to NewFrame shouldn't save an empty file)
+    // Save m_settings (unless we haven't attempted to load them: CreateContext/DestroyContext without a call to NewFrame shouldn't save an empty file)
     if (g.SettingsLoaded && g.IO.IniFilename != NULL)
     {
         ImGuiContext* backup_context = GImGui;
@@ -4580,11 +4580,11 @@ static ImGuiWindow* CreateNewWindow(const char* name, ImVec2 size, ImGuiWindowFl
     // Default/arbitrary window position. Use SetNextWindowPos() with the appropriate condition flag to change the initial position of a window.
     window->Pos = ImVec2(60, 60);
 
-    // User can disable loading and saving of settings. Tooltip and child windows also don't store settings.
+    // User can disable loading and saving of m_settings. Tooltip and child windows also don't store m_settings.
     if (!(flags & ImGuiWindowFlags_NoSavedSettings))
         if (ImGuiWindowSettings* settings = ImGui::FindWindowSettings(window->ID))
         {
-            // Retrieve settings from .ini file
+            // Retrieve m_settings from .ini file
             window->SettingsIdx = g.SettingsWindows.index_from_ptr(settings);
             SetWindowConditionAllowFlags(window, ImGuiCond_FirstUseEver, false);
             window->Pos = ImFloor(settings->Pos);
@@ -9373,7 +9373,7 @@ static void SettingsHandlerWindow_ReadLine(ImGuiContext*, ImGuiSettingsHandler*,
 static void SettingsHandlerWindow_WriteAll(ImGuiContext* imgui_ctx, ImGuiSettingsHandler* handler, ImGuiTextBuffer* buf)
 {
     // Gather data from windows that were active during this session
-    // (if a window wasn't opened in this session we preserve its settings)
+    // (if a window wasn't opened in this session we preserve its m_settings)
     ImGuiContext& g = *imgui_ctx;
     for (int i = 0; i != g.Windows.Size; i++)
     {

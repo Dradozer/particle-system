@@ -53,7 +53,7 @@ namespace ba_gaida
          * Updates the ComputeShader of ParticleSystem
          * @param deltaTime The time used for the frame
          */
-        void update(const double deltaTime);
+        void update(double deltaTime);
 
         void setVariables(const int index, float value);
 
@@ -92,6 +92,8 @@ namespace ba_gaida
 
         void setUniformPrefix(GLuint *id);
 
+        void setUniformParticles(GLuint *id);
+
         GLFWwindow *m_window;
 
         GLuint m_resetGridID[4];
@@ -101,13 +103,11 @@ namespace ba_gaida
         GLuint m_prefixSumBufferID[4];
         GLuint m_prefixSumExcludeID[4];
         GLuint m_rearrangingParticlesID[4];
-        GLuint m_externalForceID[4];
-        GLuint m_densityID[4];
-        GLuint m_arbitraryID[4];
-        GLuint m_pressureID[4];
-        GLuint m_viscosityID[4];
+        GLuint m_densityID[6];
+        GLuint m_arbitraryID[6];
+        GLuint m_calcForcesID[6];
         GLuint m_swapParticlesID[4];
-        GLuint m_updateForceID[4];
+        GLuint m_updateForceID[6];
         GLuint m_collisionID[4];
         GLuint m_renderID;
 
@@ -132,10 +132,14 @@ namespace ba_gaida
         unsigned int m_particleCount;
         glm::ivec4 m_dimensions;
         glm::uvec3 m_boxSize;
-#ifndef maxFPS
+        const glm::vec3 m_gravityV4 = glm::vec3(0.f, -9.80665, 0.f);
+        glm::vec3 m_externalForce;
+        glm::vec4 m_Forces;
+        glm::vec4 m_settings;
+        bool m_running;
+        bool m_gravity;
         bool m_imgui_once;
         float m_imgui_applications;
-#endif
 
     };
 }

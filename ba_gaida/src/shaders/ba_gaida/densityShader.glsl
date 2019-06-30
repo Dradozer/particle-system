@@ -40,6 +40,12 @@ layout( std430, binding = 2) coherent buffer buffer_grid
 uniform uint particleCount;
 uniform float deltaTime;
 uniform ivec4 gridSize;
+uniform vec4 externalForce;
+uniform vec4 particleSettings;
+//float mass;
+//float restingDensity;
+//float stiffness;
+//float radius;
 
 uint cubeID(vec4 position){
     return int(floor(position.x) * gridSize.x * gridSize.x + floor(position.y) * gridSize.y + floor(position.z));
@@ -64,10 +70,8 @@ float W(vec3 particlePosition ,vec3 neighborPosition){
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
-    float mass = 2.5f;
     float density = 0;
-    float restDensity = 50f;
-    float stiffness = 10f;
+    
     if(id >= particleCount)
     {
         return;
@@ -77,9 +81,9 @@ void main(void) {
         neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
         particle2[id].density = 0f;
         for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; i++){
-                density += mass * W(particle1[id].position.xyz, particle1[i].position.xyz);
+                density += particleSettings.x * W(particle1[id].position.xyz, particle1[i].position.xyz);
         }
         particle2[id].density = density;
-        particle2[id].pressure = stiffness * (pow( density / restDensity ,7) - 1);
+        particle2[id].pressure = particleSettings.z * (pow( density / particleSettings.y ,7) - 1);
     }
 }

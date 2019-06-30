@@ -7,14 +7,30 @@
 ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH,
                                          const int HEIGTH, const glm::uvec3 boxSize)
 {
-    m_dimensions = glm::ivec4(20);
+    m_running = false;
+
+    m_gravity = true;
+
     m_window = window;
+
+    m_settings.x = 2.5f;
+    m_settings.y = 50.f;
+    m_settings.z = 10.f;
+    m_settings.w = 1.f;
+    //float mass;
+    //float restingDensity;
+    //float stiffness;
+    //float radius;
+
+    m_dimensions = glm::ivec4(20);
     m_particleCount = (particleCount * 64);
     m_iterations = ceil(log(m_dimensions.x * m_dimensions.y * m_dimensions.z)/log(2))+1;
     m_step = 0;
+
     m_width = WIDTH;
     m_heigth = HEIGTH;
     m_boxSize = boxSize;
+
     m_boxCenter = glm::vec3(m_dimensions.x / 2, m_dimensions.y / 2,m_dimensions.z / 2);
     m_camera = new ba_gaida::Camera(m_window, m_boxCenter,
                                     glm::vec3(0.f, 1.f, 0.f), m_width, m_heigth);
@@ -45,11 +61,9 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     ComputeShader::createComputeShader(m_prefixSumBufferID[0]      , SHADERS_PATH "/ba_gaida/prefixSumBufferShader.glsl");
     ComputeShader::createComputeShader(m_prefixSumExcludeID[0]     , SHADERS_PATH "/ba_gaida/prefixSumExcludeShader.glsl");
     ComputeShader::createComputeShader(m_rearrangingParticlesID[0] , SHADERS_PATH "/ba_gaida/rearrangingParticlesShader.glsl");
-    ComputeShader::createComputeShader(m_externalForceID[0]        , SHADERS_PATH "/ba_gaida/externalForcesShader.glsl");
     ComputeShader::createComputeShader(m_densityID[0]              , SHADERS_PATH "/ba_gaida/densityShader.glsl");
     ComputeShader::createComputeShader(m_arbitraryID[0]            , SHADERS_PATH "/ba_gaida/arbitraryPositionShader.glsl");
-    ComputeShader::createComputeShader(m_pressureID[0]             , SHADERS_PATH "/ba_gaida/pressureShader.glsl");
-    ComputeShader::createComputeShader(m_viscosityID[0]            , SHADERS_PATH "/ba_gaida/viscosityShader.glsl");
+    ComputeShader::createComputeShader(m_calcForcesID[0]             , SHADERS_PATH "/ba_gaida/calcForcesShader.glsl");
     ComputeShader::createComputeShader(m_swapParticlesID[0]        , SHADERS_PATH "/ba_gaida/swapParticlesShader.glsl");
     ComputeShader::createComputeShader(m_updateForceID[0]          , SHADERS_PATH "/ba_gaida/updateForceShader.glsl");
     ComputeShader::createComputeShader(m_collisionID[0]            , SHADERS_PATH "/ba_gaida/collisionShader.glsl");
@@ -62,11 +76,9 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     setUniformPrefix(m_prefixSumBufferID);
     setUniformPrefix(m_prefixSumExcludeID);
     setUniform(m_rearrangingParticlesID);
-    setUniform(m_externalForceID);
-    setUniform(m_densityID);
-    setUniform(m_arbitraryID);
-    setUniform(m_pressureID);
-    setUniform(m_viscosityID);
+    setUniformParticles(m_densityID);
+    setUniformParticles(m_arbitraryID);
+    setUniformParticles(m_calcForcesID);
     setUniform(m_swapParticlesID);
     setUniform(m_updateForceID);
     setUniform(m_collisionID);
@@ -101,12 +113,10 @@ ba_gaida::ParticleSystem::~ParticleSystem()
     Shader::deleteShader(m_prefixSumCalcID[0]);
     Shader::deleteShader(m_prefixSumExcludeID[0]);
     Shader::deleteShader(m_prefixSumBufferID[0]);
-    Shader::deleteShader(m_rearrangingParticlesID[0]);
-    Shader::deleteShader(m_externalForceID[0]);
+    Shader::deleteShader(m_rearrangingParticlesID[0]);;
     Shader::deleteShader(m_densityID[0]);
     Shader::deleteShader(m_arbitraryID[0]);
-    Shader::deleteShader(m_pressureID[0]);
-    Shader::deleteShader(m_viscosityID[0]);
+    Shader::deleteShader(m_calcForcesID[0]);
     Shader::deleteShader(m_swapParticlesID[0]);
     Shader::deleteShader(m_updateForceID[0]);
     Shader::deleteShader(m_collisionID[0]);
@@ -119,8 +129,9 @@ ba_gaida::ParticleSystem::~ParticleSystem()
     glDeleteBuffers(1, &m_ssbo_gridId);
 }
 
-void ba_gaida::ParticleSystem::update(const double deltaTime)
+void ba_gaida::ParticleSystem::update(double deltaTime)
 {
+    deltaTime = deltaTime * m_running;
     m_fps->resetTimestamp();
 
     if(!(ImGui::IsAnyWindowFocused()||ImGui::IsAnyWindowHovered())){
@@ -147,13 +158,13 @@ void ba_gaida::ParticleSystem::update(const double deltaTime)
     ComputeShader::updateComputeShaderP64(m_rearrangingParticlesID, m_particleCount);
     m_fps->setTimestamp(4);
 
-//    ComputeShader::updateComputeShaderP64DT(m_externalForceID, deltaTime, m_particleCount);
+    m_Forces = glm::vec4(m_gravityV4 + m_externalForce,0.f);
+    ComputeShader::updateComputeShaderParticle(m_densityID, deltaTime, m_particleCount, m_settings,m_Forces);
+    ComputeShader::updateComputeShaderParticle(m_arbitraryID, deltaTime, m_particleCount,m_settings ,m_Forces);
+
     m_fps->setTimestamp(5);
 
-    ComputeShader::updateComputeShaderP64DT(m_densityID, deltaTime, m_particleCount);
-    ComputeShader::updateComputeShaderP64DT(m_arbitraryID, deltaTime, m_particleCount);
-    ComputeShader::updateComputeShaderP64DT(m_pressureID, deltaTime, m_particleCount);
-//    ComputeShader::updateComputeShaderP64DT(m_viscosityID, deltaTime, m_particleCount);
+    ComputeShader::updateComputeShaderParticle(m_calcForcesID, deltaTime, m_particleCount, m_settings,m_Forces);
 
     m_fps->setTimestamp(6);
 
@@ -198,12 +209,39 @@ void ba_gaida::ParticleSystem::render()
     ImGui::NewFrame();
     { //imgui window
         ImGui::Begin("Debug | ParticleSystem");
-        m_imgui_applications = 0;
+        m_imgui_applications = 1.2f;
 
-        ImGui::Text("Warning! This Settings makes the ParticleSystem slower\n");
-        ImGui::Text("This UI-Settings consume about 0.1 - 0.2 ms\n");
+        if (m_imgui_once != true)
+        {
+            ImGui::SetWindowPos(ImVec2(0.f, 0.f), 0); // x, y, condition
+            m_imgui_once = true;
+        }
+
         ImGui::Text("Particles: %.i\n", m_particleCount);
-        ImGui::Text("Gridsize: %.ix%.ix%.i \n", m_dimensions.x,m_dimensions.y,m_dimensions.z);
+        ImGui::Text("Gridsize: %.ix%.ix%.i \n", m_dimensions.x, m_dimensions.y, m_dimensions.z);
+        ImGui::Checkbox("Running ", &m_running);
+
+        if (ImGui::CollapsingHeader("Settings"))
+        {
+            m_imgui_applications = m_imgui_applications + 1.5f;
+//            m_settings.x = 2.5f;
+//            m_settings.y = 50.f;
+//            m_settings.z = 10.f;
+//            m_settings.w = 1.f;
+            ImGui::Text("ParticleSettings");
+            ImGui::SliderFloat("Mass", &m_settings.x, 0.1f, 10.0f);
+            ImGui::SliderFloat("RestDensity", &m_settings.y, 0.1f, 100.0f);
+            ImGui::SliderFloat("Stiffness", &m_settings.z, 0.1f, 50.0f);
+            ImGui::SliderFloat("Radius", &m_settings.w, 0.1f, 5.0f);
+            ImGui::Text("Gravity: %.4f\n", m_gravity * m_gravityV4.y);
+            ImGui::SameLine(125, -1.f);
+            ImGui::Checkbox("", &m_gravity);
+            ImGui::Text("ExternalForces:\n");
+            ImGui::SliderFloat("X", &m_externalForce.x, -20.0f, 20.0f);
+            ImGui::SliderFloat("Y", &m_externalForce.y, -20.0f, 20.0f);
+            ImGui::SliderFloat("Z", &m_externalForce.z, -20.0f, 20.0f);
+        }
+
         if (ImGui::CollapsingHeader("Controls"))
         {
             m_imgui_applications = m_imgui_applications + 0.65f;
@@ -214,12 +252,7 @@ void ba_gaida::ParticleSystem::render()
                         "Spacebar: moves up in world-space\n"
                         "F: moves down in world-space\n"
                         "ScrollWheel: zoom to center\n");
-        }
-        if (m_imgui_once != true)
-        {
-            ImGui::SetWindowPos(ImVec2(0.f, 0.f), 0); // x, y, condition
-            m_imgui_once = true;
-            ImGui::SetNextTreeNodeOpen(true);
+
         }
 
         if (ImGui::CollapsingHeader("Computingtimes"))
@@ -231,8 +264,8 @@ void ba_gaida::ParticleSystem::render()
                         "CS Label:     \t%.8f ms\n"
                         "CS PrefixSum: \t%.8f ms\n"
                         "CS rearr.Prt: \t%.8f ms\n"
-                        "CS Gravity:   \t%.8f ms\n"
-                        "CS Pressure:  \t%.8f ms\n"
+                        "CS preForces:   \t%.8f ms\n"
+                        "CS Forces:  \t%.8f ms\n"
                         "CS Swapping:  \t%.8f ms\n"
                         "CS Collision: \t%.8f ms\n"
                         "Renderer:     \t%.8f ms\n",
@@ -243,9 +276,11 @@ void ba_gaida::ParticleSystem::render()
             ImGui::Text("-----------------------------------------------");
         }
 
-        ImGui::SetWindowSize(ImVec2(400, 170 + 150 * m_imgui_applications), 0);
-        ImGui::Text("Application average %.4f ms/frame (%.i FPS)", 1000.f / m_fps->getFPS(),
-                    m_fps->getFPS());
+        ImGui::SetWindowSize(ImVec2(350, 150 * m_imgui_applications), 0);
+        if (m_running == true){
+            ImGui::Text("Application average %.4f ms/frame (%.i FPS)", 1000.f / m_fps->getFPS(),
+                        m_fps->getFPS());
+            }
         ImGui::End();
     }
     ImGui::Render();
@@ -323,11 +358,9 @@ void ba_gaida::ParticleSystem::initShader(){
     ComputeShader::initComputeShader(m_prefixSumExcludeID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_prefixSumBufferID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_rearrangingParticlesID, m_particleCount, m_dimensions);
-    ComputeShader::initComputeShader(m_externalForceID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_densityID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_arbitraryID, m_particleCount, m_dimensions);
-    ComputeShader::initComputeShader(m_pressureID, m_particleCount, m_dimensions);
-    ComputeShader::initComputeShader(m_viscosityID, m_particleCount, m_dimensions);
+    ComputeShader::initComputeShader(m_calcForcesID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_swapParticlesID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_updateForceID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_collisionID, m_particleCount, m_dimensions);
@@ -345,4 +378,13 @@ void ba_gaida::ParticleSystem::setUniformPrefix(GLuint *id)
     id[1] = glGetUniformLocation(id[0], "deltaTime");
     id[2] = glGetUniformLocation(id[0], "step");
     id[3] = glGetUniformLocation(id[0], "gridSize");
+}
+
+void ba_gaida::ParticleSystem::setUniformParticles(GLuint *id)
+{
+    id[1] = glGetUniformLocation(id[0], "deltaTime");
+    id[2] = glGetUniformLocation(id[0], "particleCount");
+    id[3] = glGetUniformLocation(id[0], "gridSize");
+    id[4] = glGetUniformLocation(id[0], "particleSettings");
+    id[5] = glGetUniformLocation(id[0], "externalForce");
 }

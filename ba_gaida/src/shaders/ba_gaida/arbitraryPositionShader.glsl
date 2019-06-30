@@ -40,9 +40,14 @@ layout( std430, binding = 2) coherent buffer buffer_grid
 uniform uint particleCount;
 uniform float deltaTime;
 uniform ivec4 gridSize;
+uniform vec4 externalForce;
+uniform vec4 particleSettings;
+//float mass;
+//float restingDensity;
+//float stiffness;
+//float radius;
 
 float W(vec3 particlePosition ,vec3 neighborPosition){
-    float radius = 1.f;
     float inPut = distance(particlePosition,neighborPosition);
     float weight = 0.f;
     float pi_constant = 3/(2 *3.14159265);
@@ -54,7 +59,7 @@ float W(vec3 particlePosition ,vec3 neighborPosition){
     }else{
         weight = 0;
     }
-    return weight / pow(radius,3);
+    return weight / pow(particleSettings.w,3);
 }
 
 uint cubeID(vec4 position){
@@ -64,7 +69,6 @@ uint cubeID(vec4 position){
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
-    float mass = 0.1f;
     vec3 arbitraryPosition;
     if(id >= particleCount)
     {
@@ -75,7 +79,7 @@ void main(void) {
         neighborGrid = particle2[id].gridID + cubeID(vec4(0,0,0,0));
 
         for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; i++){
-            arbitraryPosition += (mass / particle2[i].density) * particle2[i].arbitraryPosition.xyz * W(particle2[id].position.xyz, particle2[i].position.xyz);
+            arbitraryPosition += (particleSettings.x / particle2[i].density) * particle2[i].arbitraryPosition.xyz * W(particle2[id].position.xyz, particle2[i].position.xyz);
         }
         particle1[id].arbitraryPosition.xyz = arbitraryPosition;
     }

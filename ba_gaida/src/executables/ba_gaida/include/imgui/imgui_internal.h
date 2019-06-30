@@ -78,7 +78,7 @@ struct ImGuiTabBar;                 // Storage for a tab bar
 struct ImGuiTabItem;                // Storage for a tab item (within a tab bar)
 struct ImGuiWindow;                 // Storage for one window
 struct ImGuiWindowTempData;         // Temporary storage for one window (that's the data which in theory we could ditch at the end of the frame)
-struct ImGuiWindowSettings;         // Storage for window settings stored in .ini file (we keep one of those even if the actual window wasn't instanced during this session)
+struct ImGuiWindowSettings;         // Storage for window m_settings stored in .ini file (we keep one of those even if the actual window wasn't instanced during this session)
 
 // Use your programming IDE "Go to definition" facility on the names of the center columns to find the actual flags/enum lists.
 typedef int ImGuiLayoutType;        // -> enum ImGuiLayoutType_        // Enum: Horizontal or vertical
@@ -136,7 +136,7 @@ extern IMGUI_API ImGuiContext* GImGui;  // Current implicit ImGui context pointe
 #define IM_F32_TO_INT8_UNBOUND(_VAL)    ((int)((_VAL) * 255.0f + ((_VAL)>=0 ? 0.5f : -0.5f)))   // Unsaturated, for display purpose
 #define IM_F32_TO_INT8_SAT(_VAL)        ((int)(ImSaturate(_VAL) * 255.0f + 0.5f))               // Saturated, always output 0..255
 
-// Enforce cdecl calling convention for functions called by the standard library, in case compilation settings changed the default to e.g. __vectorcall
+// Enforce cdecl calling convention for functions called by the standard library, in case compilation m_settings changed the default to e.g. __vectorcall
 #ifdef _MSC_VER
 #define IMGUI_CDECL __cdecl
 #else
@@ -361,7 +361,7 @@ enum ImGuiSeparatorFlags_
 enum ImGuiItemFlags_
 {
     ImGuiItemFlags_NoTabStop                = 1 << 0,  // false
-    ImGuiItemFlags_ButtonRepeat             = 1 << 1,  // false    // Button() will return true multiple times based on io.KeyRepeatDelay and io.KeyRepeatRate settings.
+    ImGuiItemFlags_ButtonRepeat             = 1 << 1,  // false    // Button() will return true multiple times based on io.KeyRepeatDelay and io.KeyRepeatRate m_settings.
     ImGuiItemFlags_Disabled                 = 1 << 2,  // false    // [BETA] Disable interactions but doesn't affect visuals yet. See github.com/ocornut/imgui/issues/211
     ImGuiItemFlags_NoNav                    = 1 << 3,  // false
     ImGuiItemFlags_NoNavDefaultFocus        = 1 << 4,  // false
@@ -942,7 +942,7 @@ struct ImGuiContext
     ImGuiColorEditFlags     ColorEditOptions;                   // Store user options for color edit widgets
     ImVec4                  ColorPickerRef;
     bool                    DragCurrentAccumDirty;
-    float                   DragCurrentAccum;                   // Accumulator for dragging modification. Always high-precision, not rounded by end-user precision settings
+    float                   DragCurrentAccum;                   // Accumulator for dragging modification. Always high-precision, not rounded by end-user precision m_settings
     float                   DragSpeedDefaultRatio;              // If speed == 0.0f, uses (max-min) * DragSpeedDefaultRatio
     ImVec2                  ScrollbarClickDeltaToGrabCenter;    // Distance between mouse and center of grab box, normalized in parent space. Use storage?
     int                     TooltipOverrideCount;
@@ -959,9 +959,9 @@ struct ImGuiContext
     // Settings
     bool                           SettingsLoaded;
     float                          SettingsDirtyTimer;          // Save .ini Settings to memory when time reaches zero
-    ImGuiTextBuffer                SettingsIniData;             // In memory .ini settings
-    ImVector<ImGuiSettingsHandler> SettingsHandlers;            // List of .ini settings handlers
-    ImVector<ImGuiWindowSettings>  SettingsWindows;             // ImGuiWindow .ini settings entries (parsed from the last loaded .ini file and maintained on saving)
+    ImGuiTextBuffer                SettingsIniData;             // In memory .ini m_settings
+    ImVector<ImGuiSettingsHandler> SettingsHandlers;            // List of .ini m_settings handlers
+    ImVector<ImGuiWindowSettings>  SettingsWindows;             // ImGuiWindow .ini m_settings entries (parsed from the last loaded .ini file and maintained on saving)
 
     // Logging
     bool                    LogEnabled;
@@ -1143,7 +1143,7 @@ struct IMGUI_API ImGuiWindowTempData
     int                     FocusCounterAll;        // Counter for focus/tabbing system. Start at -1 and increase as assigned via FocusableItemRegister() (FIXME-NAV: Needs redesign)
     int                     FocusCounterTab;        // (same, but only count widgets which you can Tab through)
 
-    // We store the current settings outside of the vectors to increase memory locality (reduce cache misses). The vectors are rarely modified. Also it allows us to not heap allocate for short-lived windows which are not using those settings.
+    // We store the current m_settings outside of the vectors to increase memory locality (reduce cache misses). The vectors are rarely modified. Also it allows us to not heap allocate for short-lived windows which are not using those m_settings.
     ImGuiItemFlags          ItemFlags;              // == ItemFlagsStack.back() [empty == ImGuiItemFlags_Default]
     float                   ItemWidth;              // == ItemWidthStack.back(). 0.0: default, >0.0: width in pixels, <0.0: align xx pixels to the right of window
     float                   NextItemWidth;
@@ -1307,7 +1307,7 @@ enum ImGuiTabBarFlagsPrivate_
 {
     ImGuiTabBarFlags_DockNode                   = 1 << 20,  // Part of a dock node [we don't use this in the master branch but it facilitate branch syncing to keep this around]
     ImGuiTabBarFlags_IsFocused                  = 1 << 21,
-    ImGuiTabBarFlags_SaveSettings               = 1 << 22   // FIXME: Settings are handled by the docking system, this only request the tab bar to mark settings dirty when reordering tabs
+    ImGuiTabBarFlags_SaveSettings               = 1 << 22   // FIXME: Settings are handled by the docking system, this only request the tab bar to mark m_settings dirty when reordering tabs
 };
 
 enum ImGuiTabItemFlagsPrivate_

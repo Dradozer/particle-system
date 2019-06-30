@@ -253,7 +253,7 @@ void ImGui::ShowDemoWindow(bool* p_open)
         return;
     }
 
-    // Most "big" widgets share a common width settings by default.
+    // Most "big" widgets share a common width m_settings by default.
     //ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.65f);    // Use 2/3 of the space for widgets and 1/3 for labels (default)
     ImGui::PushItemWidth(ImGui::GetFontSize() * -12);           // Use fixed width for labels (by passing a negative value), the rest goes to widgets. We choose a width proportional to our font size.
 

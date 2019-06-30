@@ -438,7 +438,7 @@ void ImDrawList::AddCallback(ImDrawCallback callback, void* callback_data)
 // The cost of figuring out if a new command has to be added or if we can merge is paid in those Update** functions only.
 void ImDrawList::UpdateClipRect()
 {
-    // If current command is used with different settings we need to add a new command
+    // If current command is used with different m_settings we need to add a new command
     const ImVec4 curr_clip_rect = GetCurrentClipRect();
     ImDrawCmd* curr_cmd = CmdBuffer.Size > 0 ? &CmdBuffer.Data[CmdBuffer.Size-1] : NULL;
     if (!curr_cmd || (curr_cmd->ElemCount != 0 && memcmp(&curr_cmd->ClipRect, &curr_clip_rect, sizeof(ImVec4)) != 0) || curr_cmd->UserCallback != NULL)
@@ -457,7 +457,7 @@ void ImDrawList::UpdateClipRect()
 
 void ImDrawList::UpdateTextureID()
 {
-    // If current command is used with different settings we need to add a new command
+    // If current command is used with different m_settings we need to add a new command
     const ImTextureID curr_texture_id = GetCurrentTextureId();
     ImDrawCmd* curr_cmd = CmdBuffer.Size ? &CmdBuffer.back() : NULL;
     if (!curr_cmd || (curr_cmd->ElemCount != 0 && curr_cmd->TextureId != curr_texture_id) || curr_cmd->UserCallback != NULL)
