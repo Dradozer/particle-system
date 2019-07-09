@@ -47,24 +47,19 @@ uniform vec4 particleSettings;
 //float stiffness;
 //float radius;
 
+#define PI 3.14159265f
+
 uint cubeID(vec4 position){
     return int(floor(position.x) * gridSize.x * gridSize.x + floor(position.y) * gridSize.y + floor(position.z));
 }
 
-float W(vec3 particlePosition ,vec3 neighborPosition){
-    float radius = 1.f;
-    float inPut = distance(particlePosition,neighborPosition);
-    float weight = 0.f;
-    float pi_constant = 3/(2 *3.14159265);
-    inPut = 0.5f;
-    if(inPut < 1.f){
-        weight = pi_constant * ((2.f/3.f) - pow(inPut,2) + 0.5f * pow(inPut,3));
-    }else if(inPut < 2.f){
-        weight = pi_constant * ((1.f/6.f) * pow(2 - inPut,3));
-    }else{
-        weight = 0;
-    }
-    return weight / pow(radius,3);
+float Weight(vec3 relativePosition)
+{
+    float relativePosition_2 = dot(relativePosition, relativePosition);
+    float radius_2 = particleSettings.w * particleSettings.w;
+
+    float temp = 315.0 / (64.0 * PI * pow(particleSettings.w, 9));
+    return temp * pow(radius_2 - relativePosition_2, 3) * float(relativePosition_2 <= radius_2);
 }
 
 void main(void) {
@@ -80,10 +75,12 @@ void main(void) {
         particle2[id] = particle1[id];
         neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
         particle2[id].density = 0f;
-        for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; i++){
-                density += particleSettings.x * W(particle1[id].position.xyz, particle1[i].position.xyz);
+        int count = 0;
+        for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 64; i++){
+                density += particleSettings.x * Weight(particle1[id].position.xyz - particle1[i].position.xyz);
+            count++;
         }
         particle2[id].density = density;
-        particle2[id].pressure = particleSettings.z * (pow( density / particleSettings.y ,7) - 1);
+        particle2[id].pressure = particleSettings.z* (density - particleSettings.y);
     }
 }

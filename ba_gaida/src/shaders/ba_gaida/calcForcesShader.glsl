@@ -47,26 +47,39 @@ uniform vec4 particleSettings;
 //float stiffness;
 //float radius;
 
-#define kinematicViscosity (0.000001)
+#define kinematicViscosity (0.000001f)
 
-float W(vec3 particlePosition ,vec3 neighborPosition){
-    float inPut = distance(particlePosition,neighborPosition);
-    float weight = 0.f;
-    float pi_constant = 3/(2 *3.14159265);
-    inPut = 0.5f;
-    if(inPut < 1.f){
-        weight = pi_constant * ((2.f/3.f) - pow(inPut,2) + 0.5f * pow(inPut,3));
-    }else if(inPut < 2.f){
-        weight = pi_constant * ((1.f/6.f) * pow(2 - inPut,3));
-    }else{
-        weight = 0;
-    }
-    return weight / pow(particleSettings.w,3);
+#define PI 3.14159265f
+
+float Weight(vec3 relativePosition)
+{
+    float relativePosition_2 = dot(relativePosition, relativePosition);
+    float radius_2 = particleSettings.w * particleSettings.w;
+
+    float temp = 315.0 / (64.0 * PI * pow(particleSettings.w, 9));
+    return temp * pow(radius_2 - relativePosition_2, 3) * float(relativePosition_2 <= radius_2);
 }
 
-vec4 deltaW(vec4 particlePosition ,vec4 neighborPosition){
-    float weight = W(particlePosition.xyz, neighborPosition.xyz);
-    return vec4( weight / particlePosition.x, weight / particlePosition.y, weight / particlePosition.z ,0.f);
+vec3 pressureWeight(vec3 relativePosition)
+{
+    float temp = -45.0 /  (PI * pow(particleSettings.w, 6));
+
+    float length = max(length(relativePosition), 0.0001);
+
+    return temp * relativePosition / length *pow(abs(particleSettings.w - length), 3) * float(length <= particleSettings.w);
+}
+
+float viscosityLaplaceWeight (vec3 relativePosition)
+{
+    float radius_2 = particleSettings.w * particleSettings.w;
+    float radius_3 = radius_2 * particleSettings.w;
+    float radius_6 = radius_3 * radius_3;
+
+    float temp = 45.f /( PI * radius_6);
+
+    float length = length(relativePosition);
+
+    return temp * (particleSettings.w - length) * float(length <= particleSettings.w);
 }
 
 uint cubeID(vec4 position){
@@ -76,8 +89,8 @@ uint cubeID(vec4 position){
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
-    vec4 pressure = vec4(0.f);
-    vec4 viscosity = vec4(0.f);
+    vec3 pressure = vec3(0.f);
+    vec3 viscosity = vec3(0.f);
     if(id >= particleCount)
     {
         return;
@@ -85,24 +98,23 @@ void main(void) {
     {
         particle2[id] = particle1[id];
         neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
-        for(int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; j++){
+        int count = 0;
+        for(int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 64; j++){
 
-            const vec4 deltaWeight = deltaW(particle1[id].position,particle1[j].position);
-
-            pressure += ((particle1[id].pressure / pow(particle1[id].density,2)
-            + (particle1[j].pressure / pow(particle1[j].density,2)))) * deltaWeight;
-
-            const vec4 distanceVector = (particle1[id].position - particle1[j].position);
-            viscosity += (1 / particle1[j].density)
-            * (particle1[id].velocity - particle1[j].velocity)
-            * ((distanceVector * deltaWeight)
-            / (distanceVector *distanceVector + 0.01f * particleSettings.w * particleSettings.w));
+            pressure += -1 * particleSettings.x
+            * ((particle1[id].pressure + particle1[j].pressure)/ 2* particle1[j].density)
+            * pressureWeight(particle1[id].position.xyz - particle1[j].position.xyz) ;
 
 
+            viscosity += particleSettings.x
+            * ((particle1[j].velocity.xyz - particle1[id].velocity.xyz)/ particle1[j].density)
+            * viscosityLaplaceWeight(particle1[id].position.xyz - particle1[j].position.xyz);
+
+
+            count++;
         }
-        pressure *= (- particleSettings.x /particle1[id].density) * particle1[id].density * particleSettings.x;
-        viscosity *= particleSettings.x * kinematicViscosity *  2 * particleSettings.x;
+        viscosity *= kinematicViscosity;
 
-        particle2[id].velocity = particle1[id].velocity + deltaTime * (pressure + viscosity + externalForce) / particleSettings.x;
+        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * deltaTime * (pressure + viscosity + externalForce.xyz * particle1[id].density)/particleSettings.x ,0.f);
     }
 }

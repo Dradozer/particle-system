@@ -78,9 +78,9 @@ void main(void) {
         particle1[id] = particle2[id];
         neighborGrid = particle2[id].gridID + cubeID(vec4(0,0,0,0));
 
-        for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; i++){
-            arbitraryPosition += (particleSettings.x / particle2[i].density) * particle2[i].arbitraryPosition.xyz * W(particle2[id].position.xyz, particle2[i].position.xyz);
-        }
-        particle1[id].arbitraryPosition.xyz = arbitraryPosition;
+//        for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; i++){
+//            arbitraryPosition += (particleSettings.x / particle2[i].density) * particle2[i].arbitraryPosition.xyz * W(particle2[id].position.xyz, particle2[i].position.xyz);
+//        }
+//        particle1[id].arbitraryPosition.xyz = arbitraryPosition;
     }
 }

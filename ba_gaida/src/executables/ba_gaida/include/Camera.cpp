@@ -22,7 +22,7 @@ ba_gaida::Camera::Camera(GLFWwindow *window,const glm::vec3 center, const glm::v
     m_oldY = height / 2.f;
 
     m_viewMatrix = glm::lookAt( m_cameraPos, m_center, m_up);
-    m_projectionMatrix = glm::perspective(glm::radians(60.f), (float) width / height, 0.01f, 100.f);
+    m_projectionMatrix = glm::perspective(glm::radians(60.f), (float) width / height, 0.01f, 200.f);
     m_viewProjMatrix = m_viewMatrix * m_projectionMatrix;
 }
 
@@ -79,7 +79,7 @@ glm::mat4 ba_gaida::Camera::GetViewProjMatrix() const
 
 void ba_gaida::Camera::updateWidthHeight(int width, int height)
 {
-    m_projectionMatrix = glm::perspective(glm::radians(60.f), (float) width / height, 0.01f, 100.f);
+    m_projectionMatrix = glm::perspective(glm::radians(60.f), (float) width / height, 0.01f, 200.f);
     m_viewProjMatrix = m_viewMatrix * m_projectionMatrix;
 }
 

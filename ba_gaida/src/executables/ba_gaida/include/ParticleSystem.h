@@ -96,6 +96,7 @@ namespace ba_gaida
 
         GLFWwindow *m_window;
 
+        GLuint m_resetParticleID[4];
         GLuint m_resetGridID[4];
         GLuint m_lableParticleID[4];
         GLuint m_prefixSumInitID[4];
@@ -137,9 +138,11 @@ namespace ba_gaida
         glm::vec4 m_Forces;
         glm::vec4 m_settings;
         bool m_running;
+        bool m_reset;
         bool m_gravity;
         bool m_imgui_once;
         float m_imgui_applications;
+        float m_timeMultiplyer;
 
     };
 }

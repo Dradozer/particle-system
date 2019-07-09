@@ -7,9 +7,6 @@ out vec4 FragColor;
 in vec4 pos;
 in vec4 vel;
 uniform vec3 cameraPos;
-#define red 179
-#define green 20
-#define blue 20
 
 void main()
 {
@@ -20,5 +17,6 @@ void main()
 //    float g = green / 255.f;
 //    float b = blue / 255.f;
     vec4 posNormal = normalize(pos);
+//    const vec3 color = vec3(51.f/255);
     FragColor = vec4 (posNormal.xyz,1.f);
 }
