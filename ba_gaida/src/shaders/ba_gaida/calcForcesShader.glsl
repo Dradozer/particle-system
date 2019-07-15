@@ -3,7 +3,7 @@
  * 1.5 ComputeShader
  * swaping Particle SSBO's
  */
-layout( local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
+layout(local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
 
 struct Particle{
     vec4 position;
@@ -22,17 +22,17 @@ struct Grid{
     int currentSortOutPut;
 };
 
-layout( std430, binding = 0) readonly buffer buffer_particle1
+layout(std430, binding = 0) readonly buffer buffer_particle1
 {
     Particle particle1[];
 };
 
-layout( std430, binding = 1) writeonly buffer buffer_particle2
+layout(std430, binding = 1) writeonly buffer buffer_particle2
 {
     Particle particle2[];
 };
 
-layout( std430, binding = 2) coherent buffer buffer_grid
+layout(std430, binding = 2) coherent buffer buffer_grid
 {
     Grid grid[];
 };
@@ -47,7 +47,7 @@ uniform vec4 particleSettings;
 //float stiffness;
 //float radius;
 
-#define kinematicViscosity (0.000001f)
+#define kinematicViscosity (0.0000001f)
 
 #define PI 3.14159265f
 
@@ -75,7 +75,7 @@ float viscosityLaplaceWeight (vec3 relativePosition)
     float radius_3 = radius_2 * particleSettings.w;
     float radius_6 = radius_3 * radius_3;
 
-    float temp = 45.f /( PI * radius_6);
+    float temp = 45.f /(PI * radius_6);
 
     float length = length(relativePosition);
 
@@ -91,30 +91,36 @@ void main(void) {
     uint neighborGrid;
     vec3 pressure = vec3(0.f);
     vec3 viscosity = vec3(0.f);
-    if(id >= particleCount)
+    if (id >= particleCount)
     {
         return;
     } else
     {
         particle2[id] = particle1[id];
-        neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
-        int count = 0;
-        for(int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 64; j++){
+        //        neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
+        for (int x = -1; x <= 1; x++){
+            for (int y = -1; y <= 1; y++){
+                for (int z = -1; z <= 1; z++){
 
-            pressure += -1 * particleSettings.x
-            * ((particle1[id].pressure + particle1[j].pressure)/ 2* particle1[j].density)
-            * pressureWeight(particle1[id].position.xyz - particle1[j].position.xyz) ;
+                    neighborGrid = cubeID(particle1[id].position + vec4(x, y, z, 0));
+                    int count = 0;
+                    for (int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 16; j++){
 
+                        pressure += -1 * particleSettings.x
+                        * ((particle1[id].pressure + particle1[j].pressure)/ 2* particle1[j].density)
+                        * pressureWeight(particle1[id].position.xyz - particle1[j].position.xyz);
 
-            viscosity += particleSettings.x
-            * ((particle1[j].velocity.xyz - particle1[id].velocity.xyz)/ particle1[j].density)
-            * viscosityLaplaceWeight(particle1[id].position.xyz - particle1[j].position.xyz);
+                        viscosity += particleSettings.x
+                        * ((particle1[j].velocity.xyz - particle1[id].velocity.xyz)/ particle1[j].density)
+                        * viscosityLaplaceWeight(particle1[id].position.xyz - particle1[j].position.xyz);
 
-
-            count++;
+                        count++;
+                    }
+                }
+            }
         }
         viscosity *= kinematicViscosity;
 
-        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * deltaTime * (pressure + viscosity + externalForce.xyz * particle1[id].density)/particleSettings.x ,0.f);
+        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * (pressure + viscosity + externalForce.xyz * particle1[id].density)/particleSettings.x, 0.f);
     }
 }

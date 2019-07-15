@@ -28,7 +28,7 @@ layout( std430, binding = 1) readonly buffer buffer_particle2
 uniform float deltaTime;
 uniform uint particleCount;
 uniform ivec4 gridSize;
-uniform ivec4 origin = ivec4(0);
+uniform ivec4 origin = ivec4(1);
 
 #define energyloss 0.1f
 

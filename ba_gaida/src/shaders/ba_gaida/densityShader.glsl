@@ -3,7 +3,7 @@
  * 1.5 ComputeShader
  * swaping Particle SSBO's
  */
-layout( local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
+layout(local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
 
 struct Particle{
     vec4 position;
@@ -22,17 +22,17 @@ struct Grid{
     int currentSortOutPut;
 };
 
-layout( std430, binding = 0) readonly buffer buffer_particle1
+layout(std430, binding = 0) readonly buffer buffer_particle1
 {
     Particle particle1[];
 };
 
-layout( std430, binding = 1) writeonly buffer buffer_particle2
+layout(std430, binding = 1) writeonly buffer buffer_particle2
 {
     Particle particle2[];
 };
 
-layout( std430, binding = 2) coherent buffer buffer_grid
+layout(std430, binding = 2) coherent buffer buffer_grid
 {
     Grid grid[];
 };
@@ -66,21 +66,30 @@ void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
     float density = 0;
-    
-    if(id >= particleCount)
+
+    if (id >= particleCount)
     {
         return;
     } else
     {
         particle2[id] = particle1[id];
-        neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
+        neighborGrid = particle1[id].gridID + cubeID(vec4(0, 0, 0, 0));
         particle2[id].density = 0f;
-        int count = 0;
-        for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 64; i++){
-                density += particleSettings.x * Weight(particle1[id].position.xyz - particle1[i].position.xyz);
-            count++;
+        particle2[id].velocity.w = 0;
+        for (int x = -1; x <= 1; x++){
+            for (int y = -1; y <= 1; y++){
+                for (int z = -1; z <= 1; z++){
+
+                    neighborGrid = cubeID(particle1[id].position + vec4(x, y, z, 0));
+                    int count = 0;
+                    for (int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 16; j++){
+                        density += particleSettings.x * Weight(particle1[id].position.xyz - particle1[j].position.xyz);
+                        count++;
+                    }
+                }
+            }
         }
         particle2[id].density = density;
-        particle2[id].pressure = particleSettings.z* (density - particleSettings.y);
+        particle2[id].pressure = particleSettings.z * (density - particleSettings.y);
     }
 }

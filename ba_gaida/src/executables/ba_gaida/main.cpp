@@ -42,10 +42,15 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 
 void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
-//	if(key == GLFW_KEY_F1 && action == GLFW_PRESS) {
-//		setAllUniforms();
-//		std::cout << "u pressed a key, good job team." << std::endl;
-//	}
+    if(glfwGetKey(window, GLFW_KEY_H)== GLFW_PRESS){
+        particleSystem->hideUi();
+    }
+    if(glfwGetKey(window, GLFW_KEY_SPACE)== GLFW_PRESS){
+        particleSystem->runStop();
+    }
+    if(glfwGetKey(window, GLFW_KEY_R)== GLFW_PRESS){
+        particleSystem->reset();
+    }
 }
 
 void handleInput(GLFWwindow *window, float deltaTime)
@@ -66,7 +71,7 @@ void handleInput(GLFWwindow *window, float deltaTime)
     {
         cameraCenter -= dir * deltaTime * 2.f;
     }
-    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
     {
         cameraCenter += glm::vec3(0.f, 10.f, 0.f) * deltaTime * 2.f;
     }
@@ -74,6 +79,7 @@ void handleInput(GLFWwindow *window, float deltaTime)
     {
         cameraCenter += glm::vec3(0.f, -10.f, 0.f) * deltaTime * 2.f;
     }
+
     particleSystem->m_camera->setCenter(cameraCenter);
 }
 
@@ -132,10 +138,8 @@ int main()
     {
         std::cout << "2.OpenGL-Error: " << glError << std::endl;
     }
-
     double time = glfwGetTime();
     double deltaTime;
-
     while (!glfwWindowShouldClose(window))
     {
         deltaTime = glfwGetTime() - time;

@@ -57,6 +57,11 @@ namespace ba_gaida
 
         void setVariables(const int index, float value);
 
+        void hideUi();
+
+        void runStop();
+
+        void reset();
     private:
 
         /**
@@ -93,6 +98,7 @@ namespace ba_gaida
         void setUniformPrefix(GLuint *id);
 
         void setUniformParticles(GLuint *id);
+
 
         GLFWwindow *m_window;
 
@@ -141,6 +147,7 @@ namespace ba_gaida
         bool m_reset;
         bool m_gravity;
         bool m_imgui_once;
+        bool m_imguiUi;
         float m_imgui_applications;
         float m_timeMultiplyer;
 
