@@ -17,7 +17,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_timeMultiplyer = 1.f;
     m_settings.x = 0.0118f;
     m_settings.y = 0.f;
-    m_settings.z = 20.f;
+    m_settings.z = 12.f;
     m_settings.w = 1.f;
     //float mass;
     //float restingDensity;

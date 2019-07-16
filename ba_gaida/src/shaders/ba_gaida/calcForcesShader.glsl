@@ -47,9 +47,9 @@ uniform vec4 particleSettings;
 //float stiffness;
 //float radius;
 
-#define kinematicViscosity (0.0000001f)
+const float kinematicViscosity  = (0.00000001f);// uniform testen
 
-#define PI 3.14159265f
+const float PI = 3.14159265f;
 
 float Weight(vec3 relativePosition)
 {
@@ -60,13 +60,13 @@ float Weight(vec3 relativePosition)
     return temp * pow(radius_2 - relativePosition_2, 3) * float(relativePosition_2 <= radius_2);
 }
 
-vec3 pressureWeight(vec3 relativePosition)
+vec3 pressureWeightGradient(vec3 relativePosition)
 {
-    float temp = -45.0 /  (PI * pow(particleSettings.w, 6));
+    float c = -45.0 / PI /  pow(particleSettings.w, 6);
 
-    float length = max(length(relativePosition), 0.0001);
+    float l = max(length(relativePosition),0.0001);
 
-    return temp * relativePosition / length *pow(abs(particleSettings.w - length), 3) * float(length <= particleSettings.w);
+    return c*relativePosition / l*pow(abs(particleSettings.w - l), 2.0)*float(l <= particleSettings.w);
 }
 
 float viscosityLaplaceWeight (vec3 relativePosition)
@@ -96,8 +96,8 @@ void main(void) {
         return;
     } else
     {
+        //vorticity
         particle2[id] = particle1[id];
-        //        neighborGrid = particle1[id].gridID + cubeID(vec4(0,0,0,0));
         for (int x = -1; x <= 1; x++){
             for (int y = -1; y <= 1; y++){
                 for (int z = -1; z <= 1; z++){
@@ -107,8 +107,8 @@ void main(void) {
                     for (int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 16; j++){
 
                         pressure += -1 * particleSettings.x
-                        * ((particle1[id].pressure + particle1[j].pressure)/ 2* particle1[j].density)
-                        * pressureWeight(particle1[id].position.xyz - particle1[j].position.xyz);
+                        * ((particle1[id].pressure + particle1[j].pressure)/ (2* particle1[j].density))
+                        * pressureWeightGradient(particle1[id].position.xyz - particle1[j].position.xyz);
 
                         viscosity += particleSettings.x
                         * ((particle1[j].velocity.xyz - particle1[id].velocity.xyz)/ particle1[j].density)
@@ -120,7 +120,6 @@ void main(void) {
             }
         }
         viscosity *= kinematicViscosity;
-
-        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * (pressure + viscosity + externalForce.xyz * particle1[id].density)/particleSettings.x, 0.f);
+        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * (pressure +  viscosity + externalForce.xyz * particle1[id].density)/particleSettings.x, 0.f);
     }
 }
