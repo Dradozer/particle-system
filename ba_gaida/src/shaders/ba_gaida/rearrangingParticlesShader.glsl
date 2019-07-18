@@ -41,6 +41,10 @@ uniform float deltaTime;
 uniform uint particleCount;
 uniform ivec4 gridSize;
 
+uint cubeID(vec4 position){
+    return int(floor(position.x) * gridSize.x * gridSize.x + floor(position.y) * gridSize.y + floor(position.z));
+}
+
 int cubeid;
 
 void main(void) {
@@ -50,6 +54,6 @@ void main(void) {
         return;
     } else
     {
-        particle1[grid[particle2[id].gridID].currentSortOutPut + particle2[id].memoryPosition] = particle2[id];
+        particle1[grid[cubeID(particle2[id].position)].currentSortOutPut + particle2[id].memoryPosition] = particle2[id];
     }
 }

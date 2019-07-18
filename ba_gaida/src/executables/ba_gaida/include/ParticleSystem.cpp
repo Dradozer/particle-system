@@ -15,16 +15,16 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_window = window;
 
     m_timeMultiplyer = 1.f;
-    m_settings.x = 0.0118f;
-    m_settings.y = 0.f;
-    m_settings.z = 12.f;
+    m_settings.x = 0.99f;
+    m_settings.y = 2.5f;
+    m_settings.z = 0.2f;
     m_settings.w = 1.f;
     //float mass;
     //float restingDensity;
     //float stiffness;
     //float radius;
 
-    m_externalForce = glm::vec3(0.f,15.f,0.f);
+    m_externalForce = glm::vec3(0.f,0.f,0.f);
 
     m_dimensions = glm::ivec4(50);
     m_particleCount = (particleCount * 64);
@@ -141,6 +141,7 @@ void ba_gaida::ParticleSystem::update(double deltaTime)
     if(m_reset == true){
         ComputeShader::updateComputeShaderP64(m_resetParticleID, m_particleCount);
         m_reset = m_running = false;
+        m_externalForce = glm::vec3(0.f);
     }
     deltaTime = deltaTime * m_timeMultiplyer * m_running;
     m_fps->resetTimestamp();
@@ -221,7 +222,7 @@ if(m_imguiUi == true){
     ImGui::NewFrame();
     { //imgui window
         ImGui::Begin("Debug | ParticleSystem");
-        m_imgui_applications = 1.2f;
+        m_imgui_applications = 1.17f;
 
         if (m_imgui_once != true)
         {
@@ -255,10 +256,10 @@ if(m_imguiUi == true){
             m_imgui_applications = m_imgui_applications + 1.6f;
             ImGui::SliderFloat("Time", &m_timeMultiplyer, 0.01f, 2.0f);
             ImGui::Text("ParticleSettings");
-            ImGui::SliderFloat("Mass", &m_settings.x, 0.1f, 10.0f);
-            ImGui::SliderFloat("RestDensity", &m_settings.y, -10.f, 10.f);
-            ImGui::SliderFloat("Stiffness", &m_settings.z, 0.1f, 50.f);
-            ImGui::SliderFloat("Radius", &m_settings.w, 0.1f, 5.f);
+            ImGui::SliderFloat("Mass", &m_settings.x, 0.1f, 2.0f);
+            ImGui::SliderFloat("RestDensity", &m_settings.y, -20.f, 20.f);
+            ImGui::SliderFloat("Stiffness", &m_settings.z, -1.f, 10.f);
+            ImGui::SliderFloat("Radius", &m_settings.w, 0.5f, 5.f);
             ImGui::Text("Gravity: %.4f\n", m_gravity * m_gravityV4.y);
             ImGui::SameLine(125, -1.f);
             ImGui::Checkbox("", &m_gravity);
@@ -270,7 +271,7 @@ if(m_imguiUi == true){
 
         if (ImGui::CollapsingHeader("Controls"))
         {
-            m_imgui_applications = m_imgui_applications + 0.75f;
+            m_imgui_applications = m_imgui_applications + 0.9f;
             ImGui::Text("Controls:\n"
                         "LeftMouseButton: moves viewport\n"
                         "W: moves to view-direction\n"
@@ -342,12 +343,14 @@ void ba_gaida::ParticleSystem::initParticle()
 
     for (int i = 0; i < m_particleCount; i++)
     {
-//        m_particle[i].position = glm::vec4(10.f - 0.001f,10.f - 0.001f,10.f - 0.001f,1.f);
         m_particle[i].position = glm::vec4(pos_x(rdm), pos_y(rdm), pos_z(rdm), 0.f);
-        if(i == 1){
-            m_particle[i].position.w = 1.f;
+        while(glm::distance(glm::vec3(m_particle[i].position.x,m_particle[i].position.y,m_particle[i].position.z),glm::vec3(m_dimensions.x/2,m_dimensions.y/10,m_dimensions.z/2 ))> 1.f)
+        {
+            m_particle[i].position = glm::vec4(pos_x(rdm), pos_y(rdm), pos_z(rdm), 0.f);
         }
         m_particle[i].arbitraryPosition = m_particle[i].position;
+
+
 //        m_particle[i].velocity = glm::vec4(vel_x(rdm), vel_y(rdm), vel_z(rdm), 0.f);
         m_particle[i].velocity = glm::vec4(0.f);
 

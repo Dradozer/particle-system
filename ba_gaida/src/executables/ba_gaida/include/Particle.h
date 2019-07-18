@@ -11,7 +11,7 @@ struct Particle{
     glm::vec4 position;
     glm::vec4 velocity;
     glm::vec4 arbitraryPosition;
-    unsigned int gridID;
+    float volume;
     unsigned int memoryPosition;
     float density;
     float pressure;

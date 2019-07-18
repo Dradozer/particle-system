@@ -10,13 +10,6 @@ uniform vec3 cameraPos;
 
 void main()
 {
-    //the closer the darker and the further away the brighter the particle are
-//    float dist = length(cameraPos - pos.xyz) / 12.5;
-    //change color depending on distance
-//    float r = red / 255.f;
-//    float g = green / 255.f;
-//    float b = blue / 255.f;
-    vec4 posNormal = normalize(pos);
-    vec3 color = vec3(51.f/255);
-    FragColor = vec4 (posNormal.xyz,1.f);
+    vec4 posNormal = normalize(pos + vec4(0.5f,0.5f,0.5f,0.f));
+    FragColor = vec4(1.f) - vec4 (posNormal.xyz,0.f);
 }

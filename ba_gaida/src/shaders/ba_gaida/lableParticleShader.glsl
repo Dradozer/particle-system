@@ -55,7 +55,6 @@ void main(void) {
     {
         particle2[id] = particle1[id];
         temp = cubeID(particle1[id].position);
-        particle2[id].gridID = temp;
         particle2[id].memoryPosition = atomicAdd(grid[temp].particlesInGrid, 1);
     }
 }

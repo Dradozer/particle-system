@@ -30,10 +30,9 @@ uniform uint particleCount;
 uniform ivec4 gridSize;
 uniform ivec4 origin = ivec4(1);
 
-#define energyloss 0.1f
-
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
+    const float energyloss = 0.2;
     if(id >= particleCount)
     {
         return;

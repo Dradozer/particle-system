@@ -47,9 +47,11 @@ uniform vec4 particleSettings;
 //float stiffness;
 //float radius;
 
-const float kinematicViscosity  = (0.00000001f);// uniform testen
+const float kinematicViscosity  = 0.1f;// uniform testen
 
 const float PI = 3.14159265f;
+
+const vec3 gravity = vec3(0.f, -9.80665, 0.f);
 
 float Weight(vec3 relativePosition)
 {
@@ -91,6 +93,7 @@ void main(void) {
     uint neighborGrid;
     vec3 pressure = vec3(0.f);
     vec3 viscosity = vec3(0.f);
+    vec3 buoyancy = vec3(0.f);
     if (id >= particleCount)
     {
         return;
@@ -119,7 +122,9 @@ void main(void) {
                 }
             }
         }
+
+        buoyancy = -gravity * particle1[id].density /particleSettings.x;
         viscosity *= kinematicViscosity;
-        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * (pressure +  viscosity + externalForce.xyz * particle1[id].density)/particleSettings.x, 0.f);
+        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * (pressure +  viscosity + buoyancy + externalForce.xyz * particle1[id].density), 0.f);
     }
 }

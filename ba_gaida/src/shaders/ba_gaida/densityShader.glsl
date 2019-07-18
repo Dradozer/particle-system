@@ -47,7 +47,7 @@ uniform vec4 particleSettings;
 //float stiffness;
 //float radius;
 
-#define PI 3.14159265f
+const float PI = 3.14159265f;
 
 uint cubeID(vec4 position){
     return int(floor(position.x) * gridSize.x * gridSize.x + floor(position.y) * gridSize.y + floor(position.z));

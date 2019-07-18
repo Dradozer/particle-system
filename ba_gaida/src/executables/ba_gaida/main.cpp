@@ -17,14 +17,14 @@
 #include "include/Objects/CVK_Cube.h"
 
 //particleCount is multiplied by 64, keep it between 64 and 512 for now
-#define particleCount   256
+const int particleCount  = 1024;
 //Title title of the displayed window
 #define Title "ba_gaida"
 //Window dimensions Width x Heigth
-#define WIDTH 1024
-#define HEIGTH 768
+const int WIDTH = 1024;
+const int HEIGTH = 768;
 //VSync, parameter must be 0 or 1, 0 -> disabled , 1 -> enabled
-#define VSync FALSE
+const bool VSync = FALSE;
 
 ba_gaida::ParticleSystem *particleSystem;
 GLFWwindow *window;
@@ -130,7 +130,7 @@ int main()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     srand(time(0));
-    particleSystem = new ba_gaida::ParticleSystem(window, particleCount, WIDTH, HEIGTH, glm::uvec3(2));
+    particleSystem = new ba_gaida::ParticleSystem(window, particleCount, WIDTH, HEIGTH, glm::uvec3(1));
     particleSystem->m_fps->setTitle(Title);
     glClearColor(135 / 255.f, 206 / 255.f, 235 / 255.f, 0.f);
     glViewport(0, 0, WIDTH, HEIGTH);
