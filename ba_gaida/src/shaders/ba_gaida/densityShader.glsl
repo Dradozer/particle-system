@@ -16,18 +16,19 @@ struct Particle{
 };
 
 struct Grid{
-    int gridID;
-    int particlesInGrid;
-    int previousSortOutPut;
-    int currentSortOutPut;
+    uint id;
+    uint particlesInGrid;
+    uint particleToUse;
+    uint currentSortOutPut;
+    uint particles [16];
 };
 
-layout(std430, binding = 0) readonly buffer buffer_particle1
+layout(std430, binding = 0) writeonly buffer buffer_particle1
 {
     Particle particle1[];
 };
 
-layout(std430, binding = 1) writeonly buffer buffer_particle2
+layout(std430, binding = 1) readonly buffer buffer_particle2
 {
     Particle particle2[];
 };
@@ -72,24 +73,20 @@ void main(void) {
         return;
     } else
     {
-        particle2[id] = particle1[id];
-        neighborGrid = particle1[id].gridID + cubeID(vec4(0, 0, 0, 0));
-        particle2[id].density = 0f;
-        particle2[id].velocity.w = 0;
+        particle1[id] = particle2[id];
+        particle1[id].density = 0f;
+        particle1[id].velocity.w = 0;
         for (int x = -1; x <= 1; x++){
             for (int y = -1; y <= 1; y++){
                 for (int z = -1; z <= 1; z++){
-
-                    neighborGrid = cubeID(particle1[id].position + vec4(x, y, z, 0));
-                    int count = 0;
-                    for (int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 16; j++){
-                        density += particleSettings.x * Weight(particle1[id].position.xyz - particle1[j].position.xyz);
-                        count++;
+                    neighborGrid = cubeID(particle2[id].position + vec4(x, y, z, 0));
+                    for (int j = 0; j < grid[neighborGrid].particleToUse; j++){
+                        density += particleSettings.x * Weight(particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz);
                     }
                 }
             }
         }
-        particle2[id].density = density;
-        particle2[id].pressure = particleSettings.z * (density - particleSettings.y);
+        particle1[id].density = density;
+        particle1[id].pressure = particleSettings.z * (density - particleSettings.y);
     }
 }

@@ -16,10 +16,11 @@ struct Particle{
 };
 
 struct Grid{
-    int gridID;
-    int particlesInGrid;
-    int previousSortOutPut;
-    int currentSortOutPut;
+    uint id;
+    uint particlesInGrid;
+    uint particleToUse;
+    uint currentSortOutPut;
+    uint particles [16];
 };
 
 layout(std430, binding = 0) readonly buffer buffer_particle1
@@ -92,6 +93,7 @@ void main(void) {
     uint id = gl_GlobalInvocationID.x;
     float temperature = particle1[id].density;
     uint neighborGrid;
+    uint jParticle;
     vec3 pressure = vec3(0.f);
     vec3 viscosity = vec3(0.f);
     vec3 buoyancy = vec3(0.f);
@@ -106,18 +108,16 @@ void main(void) {
                 for (int z = -1; z <= 1; z++){
 
                     neighborGrid = cubeID(particle1[id].position + vec4(x, y, z, 0));
-                    int count = 0;
-                    for (int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 16; j++){
+                    for (int j = 0; j < grid[neighborGrid].particleToUse; j++){
+                        jParticle = grid[neighborGrid].particles[j];
 
                         pressure += -1 * particleSettings.x
-                        * ((particle1[id].pressure + particle1[j].pressure)/ (2* particle1[j].density))
-                        * pressureWeightGradient(particle1[id].position.xyz - particle1[j].position.xyz);
+                        * ((particle1[id].pressure + particle1[jParticle].pressure)/ (2* particle1[jParticle].density))
+                        * pressureWeightGradient(particle1[id].position.xyz - particle1[jParticle].position.xyz);
 
                         viscosity += particleSettings.x
-                        * ((particle1[j].velocity.xyz - particle1[id].velocity.xyz)/ particle1[j].density)
-                        * viscosityLaplaceWeight(particle1[id].position.xyz - particle1[j].position.xyz);
-
-                        count++;
+                        * ((particle1[jParticle].velocity.xyz - particle1[id].velocity.xyz)/ particle1[jParticle].density)
+                        * viscosityLaplaceWeight(particle1[id].position.xyz - particle1[jParticle].position.xyz);
                     }
                 }
             }

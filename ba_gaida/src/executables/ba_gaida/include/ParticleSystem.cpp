@@ -7,7 +7,7 @@
 ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH,
                                          const int HEIGTH, const glm::uvec3 boxSize)
 {
-    m_running = false;
+    m_running = true;
     m_reset = false;
     m_gravity = true;
     m_imguiUi = true;
@@ -62,11 +62,6 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     ComputeShader::createComputeShader(m_resetParticleID[0]        , SHADERS_PATH "/ba_gaida/resetParticleShader.glsl");
     ComputeShader::createComputeShader(m_resetGridID[0]            , SHADERS_PATH "/ba_gaida/resetGridShader.glsl");
     ComputeShader::createComputeShader(m_lableParticleID[0]        , SHADERS_PATH "/ba_gaida/lableParticleShader.glsl");
-    ComputeShader::createComputeShader(m_prefixSumInitID[0]        , SHADERS_PATH "/ba_gaida/prefixSumInitShader.glsl");
-    ComputeShader::createComputeShader(m_prefixSumCalcID[0]        , SHADERS_PATH "/ba_gaida/prefixSumCalcShader.glsl");
-    ComputeShader::createComputeShader(m_prefixSumBufferID[0]      , SHADERS_PATH "/ba_gaida/prefixSumBufferShader.glsl");
-    ComputeShader::createComputeShader(m_prefixSumExcludeID[0]     , SHADERS_PATH "/ba_gaida/prefixSumExcludeShader.glsl");
-    ComputeShader::createComputeShader(m_rearrangingParticlesID[0] , SHADERS_PATH "/ba_gaida/rearrangingParticlesShader.glsl");
     ComputeShader::createComputeShader(m_densityID[0]              , SHADERS_PATH "/ba_gaida/densityShader.glsl");
     ComputeShader::createComputeShader(m_arbitraryID[0]            , SHADERS_PATH "/ba_gaida/arbitraryPositionShader.glsl");
     ComputeShader::createComputeShader(m_calcForcesID[0]           , SHADERS_PATH "/ba_gaida/calcForcesShader.glsl");
@@ -77,11 +72,6 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     setUniform(m_resetParticleID);
     setUniform(m_resetGridID);
     setUniform(m_lableParticleID);
-    setUniformPrefix(m_prefixSumInitID);
-    setUniformPrefix(m_prefixSumCalcID);
-    setUniformPrefix(m_prefixSumBufferID);
-    setUniformPrefix(m_prefixSumExcludeID);
-    setUniform(m_rearrangingParticlesID);
     setUniformParticles(m_densityID);
     setUniformParticles(m_arbitraryID);
     setUniformParticles(m_calcForcesID);
@@ -116,11 +106,6 @@ ba_gaida::ParticleSystem::~ParticleSystem()
     Shader::deleteShader(m_resetParticleID[0]);
     Shader::deleteShader(m_resetGridID[0]);
     Shader::deleteShader(m_lableParticleID[0]);
-    Shader::deleteShader(m_prefixSumInitID[0]);
-    Shader::deleteShader(m_prefixSumCalcID[0]);
-    Shader::deleteShader(m_prefixSumExcludeID[0]);
-    Shader::deleteShader(m_prefixSumBufferID[0]);
-    Shader::deleteShader(m_rearrangingParticlesID[0]);;
     Shader::deleteShader(m_densityID[0]);
     Shader::deleteShader(m_arbitraryID[0]);
     Shader::deleteShader(m_calcForcesID[0]);
@@ -158,23 +143,13 @@ void ba_gaida::ParticleSystem::update(double deltaTime)
 
     ComputeShader::updateComputeShaderP64(m_lableParticleID, m_particleCount);
     m_fps->setTimestamp(2);
-    ComputeShader::updateComputeShaderD(m_prefixSumInitID, m_dimensions);
-    m_step = 1;
-    for(int i = 1; i < m_iterations; i++){
-        ComputeShader::updateComputeShaderPrefix(m_prefixSumCalcID, m_dimensions,m_step);
-        ComputeShader::updateComputeShaderD(m_prefixSumBufferID, m_dimensions);
-        m_step *= 2;
-    }
-//    ComputeShader::updateComputeShaderD(m_prefixSumExcludeID, m_dimensions);
     m_fps->setTimestamp(3);
-
-    ComputeShader::updateComputeShaderP64(m_rearrangingParticlesID, m_particleCount);
     m_fps->setTimestamp(4);
 
     m_Forces = glm::vec4(glm::vec3(m_gravityV4.x * m_gravity,m_gravityV4.y * m_gravity,m_gravityV4.z * m_gravity)+ m_externalForce,0.f);
 
     ComputeShader::updateComputeShaderParticle(m_densityID, deltaTime, m_particleCount, m_settings,m_Forces, m_buoyCoeff);
-    ComputeShader::updateComputeShaderParticle(m_arbitraryID, deltaTime, m_particleCount,m_settings ,m_Forces, m_buoyCoeff);
+//    ComputeShader::updateComputeShaderParticle(m_arbitraryID, deltaTime, m_particleCount,m_settings ,m_Forces, m_buoyCoeff);
 
     m_fps->setTimestamp(5);
 
@@ -377,8 +352,8 @@ void ba_gaida::ParticleSystem::initGrid()
             for(int z = 0; z < m_dimensions.z; z++)
             {
                 m_eulerianGrid[i].id = x * m_dimensions.x * m_dimensions.x + y * m_dimensions.y + z;
-                m_eulerianGrid[i].particlescount = 0;
-                m_eulerianGrid[i].previousSortOutPut = 0;
+                m_eulerianGrid[i].particlesInGrid = 0;
+                m_eulerianGrid[i].particleToUse = 0;
                 m_eulerianGrid[i].currentSortOutPut = 0;
                 m_gridBuffer[i] = 0;
                 i++;
@@ -391,11 +366,6 @@ void ba_gaida::ParticleSystem::initShader(){
     ComputeShader::initComputeShader(m_resetParticleID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_resetGridID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_lableParticleID, m_particleCount, m_dimensions);
-    ComputeShader::initComputeShader(m_prefixSumInitID, m_particleCount, m_dimensions);
-    ComputeShader::initComputeShader(m_prefixSumCalcID, m_particleCount, m_dimensions);
-    ComputeShader::initComputeShader(m_prefixSumExcludeID, m_particleCount, m_dimensions);
-    ComputeShader::initComputeShader(m_prefixSumBufferID, m_particleCount, m_dimensions);
-    ComputeShader::initComputeShader(m_rearrangingParticlesID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_densityID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_arbitraryID, m_particleCount, m_dimensions);
     ComputeShader::initComputeShader(m_calcForcesID, m_particleCount, m_dimensions);

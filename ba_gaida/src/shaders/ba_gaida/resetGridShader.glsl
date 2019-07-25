@@ -6,10 +6,11 @@
 layout(local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
 
 struct Grid{
-    int id;
-    int particlesInGrid;
-    int previousSortOutPut;
-    int currentSortOutPut;
+    uint id;
+    uint particlesInGrid;
+    uint particleToUse;
+    uint currentSortOutPut;
+    uint particles [16];
 };
 
 layout(std430, binding = 2) coherent buffer buffer_grid
@@ -32,6 +33,10 @@ void main(void) {
     {
         grid[id].particlesInGrid = 0;
         grid[id].currentSortOutPut = 0;
-        grid[id].previousSortOutPut = 0;
+        grid[id].particleToUse = 0;
+
+        for(int i = 0; i <= 15; i++){
+            grid[id].particles[i] = 0;
+        }
     }
 }

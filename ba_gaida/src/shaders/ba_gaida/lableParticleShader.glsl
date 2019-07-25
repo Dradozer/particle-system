@@ -16,10 +16,11 @@ struct Particle{
 };
 
 struct Grid{
-    int id;
-    int particlesInGrid;
-    int previousSortOutPut;
-    int currentSortOutPut;
+    uint id;
+    uint particlesInGrid;
+    uint particleToUse;
+    uint currentSortOutPut;
+    uint particles [16];
 };
 
 layout(std430, binding = 0) readonly buffer buffer_particle1
@@ -48,6 +49,7 @@ uint cubeID(vec4 position){
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint temp;
+    uint temp2;
     if (id >= particleCount)
     {
         return;
@@ -55,6 +57,12 @@ void main(void) {
     {
         particle2[id] = particle1[id];
         temp = cubeID(particle1[id].position);
-        particle2[id].memoryPosition = atomicAdd(grid[temp].particlesInGrid, 1);
+        temp2 = atomicAdd(grid[temp].particlesInGrid, 1);
+        particle2[id].memoryPosition = temp2;
+
+        if(temp2 < 16){
+            grid[temp].particles[temp2] = id;
+            atomicAdd(grid[temp].particleToUse, 1);
+        }
     }
 }
