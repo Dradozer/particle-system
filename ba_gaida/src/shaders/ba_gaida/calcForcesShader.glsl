@@ -39,6 +39,7 @@ layout(std430, binding = 2) coherent buffer buffer_grid
 
 uniform uint particleCount;
 uniform float deltaTime;
+uniform float buoyCoeff;
 uniform ivec4 gridSize;
 uniform vec4 externalForce;
 uniform vec4 particleSettings;
@@ -48,10 +49,9 @@ uniform vec4 particleSettings;
 //float radius;
 
 const float kinematicViscosity  = 0.1f;// uniform testen
-
 const float PI = 3.14159265f;
 
-const vec3 gravity = vec3(0.f, -9.80665, 0.f);
+const vec3 upDirection = vec3(0.f, 1.f, 0.f);
 
 float Weight(vec3 relativePosition)
 {
@@ -90,6 +90,7 @@ uint cubeID(vec4 position){
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
+    float temperature = particle1[id].density;
     uint neighborGrid;
     vec3 pressure = vec3(0.f);
     vec3 viscosity = vec3(0.f);
@@ -99,7 +100,6 @@ void main(void) {
         return;
     } else
     {
-        //vorticity
         particle2[id] = particle1[id];
         for (int x = -1; x <= 1; x++){
             for (int y = -1; y <= 1; y++){
@@ -123,7 +123,7 @@ void main(void) {
             }
         }
 
-        buoyancy = -gravity * particle1[id].density /particleSettings.x;
+        buoyancy = buoyCoeff * temperature * upDirection;
         viscosity *= kinematicViscosity;
         particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * (pressure +  viscosity + buoyancy + externalForce.xyz * particle1[id].density), 0.f);
     }

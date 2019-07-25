@@ -110,9 +110,9 @@ namespace ba_gaida
         GLuint m_prefixSumBufferID[4];
         GLuint m_prefixSumExcludeID[4];
         GLuint m_rearrangingParticlesID[4];
-        GLuint m_densityID[6];
-        GLuint m_arbitraryID[6];
-        GLuint m_calcForcesID[6];
+        GLuint m_densityID[7];
+        GLuint m_arbitraryID[7];
+        GLuint m_calcForcesID[7];
         GLuint m_swapParticlesID[4];
         GLuint m_updateForceID[6];
         GLuint m_collisionID[4];
@@ -150,7 +150,7 @@ namespace ba_gaida
         bool m_imguiUi;
         float m_imgui_applications;
         float m_timeMultiplyer;
-
+        float m_buoyCoeff;
     };
 }
 #endif //BA_GAIDA_PARTIKELSYSTEM_H
