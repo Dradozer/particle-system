@@ -7,7 +7,7 @@
 ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleCount, const int WIDTH,
                                          const int HEIGTH, const glm::uvec3 boxSize)
 {
-    m_running = true;
+    m_running = false;
     m_reset = false;
     m_gravity = true;
     m_imguiUi = true;
@@ -16,8 +16,9 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
 
     m_timeMultiplyer = 1.f;
     m_buoyCoeff = 10.f;
+    m_temperature = 1.3f;
     m_settings.x = 0.99f;
-    m_settings.y = 10.f;
+    m_settings.y = 15.f;
     m_settings.z = 0.2f;
     m_settings.w = 1.f;
     //float mass;
@@ -148,12 +149,12 @@ void ba_gaida::ParticleSystem::update(double deltaTime)
 
     m_Forces = glm::vec4(glm::vec3(m_gravityV4.x * m_gravity,m_gravityV4.y * m_gravity,m_gravityV4.z * m_gravity)+ m_externalForce,0.f);
 
-    ComputeShader::updateComputeShaderParticle(m_densityID, deltaTime, m_particleCount, m_settings,m_Forces, m_buoyCoeff);
+    ComputeShader::updateComputeShaderParticle(m_densityID, deltaTime, m_particleCount, m_settings,m_Forces, m_buoyCoeff, m_temperature);
 //    ComputeShader::updateComputeShaderParticle(m_arbitraryID, deltaTime, m_particleCount,m_settings ,m_Forces, m_buoyCoeff);
 
     m_fps->setTimestamp(5);
 
-    ComputeShader::updateComputeShaderParticle(m_calcForcesID, deltaTime, m_particleCount, m_settings,m_Forces, m_buoyCoeff);
+    ComputeShader::updateComputeShaderParticle(m_calcForcesID, deltaTime, m_particleCount, m_settings,m_Forces, m_buoyCoeff, m_temperature);
 
     m_fps->setTimestamp(6);
 
@@ -229,11 +230,12 @@ if(m_imguiUi == true){
 
         if (ImGui::CollapsingHeader("Settings"))
         {
-            m_imgui_applications = m_imgui_applications + 1.75f;
+            m_imgui_applications = m_imgui_applications + 1.95f;
             ImGui::SliderFloat("Time", &m_timeMultiplyer, 0.01f, 2.f);
             ImGui::Text("ParticleSettings");
             ImGui::SliderFloat("Mass", &m_settings.x, 0.1f, 2.f);
             ImGui::SliderFloat("BuoyCoeff", &m_buoyCoeff, 1.f, 20.f);
+            ImGui::SliderFloat("Temperature", &m_temperature, -3.f, 3.f);
             ImGui::SliderFloat("RestDensity", &m_settings.y, -20.f, 20.f);
             ImGui::SliderFloat("Stiffness", &m_settings.z, -1.f, 10.f);
             ImGui::SliderFloat("Radius", &m_settings.w, 0.5f, 5.f);
@@ -396,6 +398,7 @@ void ba_gaida::ParticleSystem::setUniformParticles(GLuint *id)
     id[4] = glGetUniformLocation(id[0], "particleSettings");
     id[5] = glGetUniformLocation(id[0], "externalForce");
     id[6] = glGetUniformLocation(id[0], "buoyCoeff");
+    id[7] = glGetUniformLocation(id[0], "temperature");
 }
 
 void ba_gaida::ParticleSystem::hideUi()
