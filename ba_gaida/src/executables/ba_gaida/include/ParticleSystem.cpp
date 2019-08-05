@@ -15,7 +15,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_window = window;
 
     m_timeMultiplyer = 1.f;
-    m_buoyCoeff = 10.f;
+    m_buoyCoeff = 9.9f;
     m_temperature = 1.3f;
     m_settings.x = 0.99f;
     m_settings.y = 15.f;
@@ -331,6 +331,9 @@ void ba_gaida::ParticleSystem::initParticle()
 
 
 //        m_particle[i].velocity = glm::vec4(vel_x(rdm), vel_y(rdm), vel_z(rdm), 0.f);
+
+        m_particle[i].temperature = 27.f;
+
         m_particle[i].velocity = glm::vec4(0.f);
 
         if (i == m_particleCount - 1)

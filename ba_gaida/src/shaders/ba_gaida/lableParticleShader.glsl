@@ -9,7 +9,7 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     vec4 arbitraryPosition;
-    uint gridID;
+    float temperature;
     uint memoryPosition;
     float density;
     float pressure;

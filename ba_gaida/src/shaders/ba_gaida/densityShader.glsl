@@ -9,7 +9,7 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     vec4 arbitraryPosition;
-    uint gridID;
+    float temperature;
     uint memoryPosition;
     float density;
     float pressure;
@@ -67,6 +67,8 @@ void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
     float density = 0;
+    float temperature = 27.f;
+    float dc = 1;
 
     if (id >= particleCount)
     {
@@ -81,12 +83,21 @@ void main(void) {
                 for (int z = -1; z <= 1; z++){
                     neighborGrid = cubeID(particle2[id].position + vec4(x, y, z, 0));
                     for (int j = 0; j < grid[neighborGrid].particleToUse; j++){
-                        density += particleSettings.x * Weight(particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz);
+                        density += particleSettings.x
+                        * Weight(particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz);
                     }
+
+//                    for (int j = 0; j < grid[neighborGrid].particleToUse; j++){
+//                        temperature += (particleSettings.x / ( particle2[id].density + particle2[grid[neighborGrid].particles[j]].density))
+//                        * dc *(particle2[id].temperature - particle2[grid[neighborGrid].particles[j]].temperature)
+//                        * dot(particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz ,  Weight(particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz))
+//                        /(dot((particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz),(particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz)) + 0.001*0.001 );
+//                    }
                 }
             }
         }
         particle1[id].density = density;
+        particle1[id].temperature = temperature;
         particle1[id].pressure = particleSettings.z * (density - particleSettings.y);
     }
 }
