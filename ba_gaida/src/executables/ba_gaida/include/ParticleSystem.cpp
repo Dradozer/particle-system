@@ -15,7 +15,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_window = window;
 
     m_timeMultiplyer = 1.f;
-    m_buoyCoeff = 10.f;
+    m_buoyCoeff = 9.9f;
     m_temperature = 1.3f;
     m_settings.x = 0.99f;
     m_settings.y = 15.f;

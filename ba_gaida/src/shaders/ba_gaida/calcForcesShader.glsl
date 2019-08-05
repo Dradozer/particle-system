@@ -43,7 +43,7 @@ uniform float buoyCoeff;
 uniform ivec4 gridSize;
 uniform vec4 externalForce;
 uniform vec4 particleSettings;
-uniform float temperature;
+//uniform float temperature;
 //float mass;
 //float restingDensity;
 //float stiffness;
@@ -91,6 +91,7 @@ uint cubeID(vec4 position){
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
+    float temperature = particle1[id].density;
     uint neighborGrid;
     vec3 pressure = vec3(0.f);
     vec3 viscosity = vec3(0.f);
@@ -125,6 +126,6 @@ void main(void) {
 
         buoyancy = buoyCoeff * temperature * upDirection;
         viscosity *= kinematicViscosity;
-        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * (pressure +  viscosity + buoyancy + externalForce.xyz), 0.f);
+        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * (pressure +  viscosity + buoyancy + externalForce.xyz * particle1[id].density), 0.f);
     }
 }
