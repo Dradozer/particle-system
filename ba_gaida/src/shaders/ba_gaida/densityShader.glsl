@@ -67,7 +67,6 @@ void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
     float density = 0;
-    float temperature = 27.f;
     float dc = 1;
 
     if (id >= particleCount)
@@ -86,18 +85,10 @@ void main(void) {
                         density += particleSettings.x
                         * Weight(particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz);
                     }
-
-//                    for (int j = 0; j < grid[neighborGrid].particleToUse; j++){
-//                        temperature += (particleSettings.x / ( particle2[id].density + particle2[grid[neighborGrid].particles[j]].density))
-//                        * dc *(particle2[id].temperature - particle2[grid[neighborGrid].particles[j]].temperature)
-//                        * dot(particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz ,  Weight(particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz))
-//                        /(dot((particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz),(particle2[id].position.xyz - particle2[grid[neighborGrid].particles[j]].position.xyz)) + 0.001*0.001 );
-//                    }
                 }
             }
         }
         particle1[id].density = density;
-        particle1[id].temperature = temperature;
         particle1[id].pressure = particleSettings.z * (density - particleSettings.y);
     }
 }
