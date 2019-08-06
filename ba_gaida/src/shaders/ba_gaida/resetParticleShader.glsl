@@ -8,8 +8,8 @@ layout( local_size_x = 64, local_size_y = 1, local_size_z = 1) in;
 struct Particle{
     vec4 position;
     vec4 velocity;
-    vec4 arbitraryPosition;
-    uint gridID;
+    vec4 startPosition;
+    float temperature;
     uint memoryPosition;
     float density;
     float pressure;
@@ -34,7 +34,7 @@ void main(void) {
         return;
     } else
     {
-        particle1[id].position = particle2[id].arbitraryPosition;
+        particle1[id].position = particle2[id].startPosition;
         particle1[id].velocity = vec4(0.f,0.f,0.f,0.f);
     }
 }

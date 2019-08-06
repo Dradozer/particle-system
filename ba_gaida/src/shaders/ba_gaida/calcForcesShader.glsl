@@ -1,15 +1,15 @@
 #version 450
 /*
  * 1.5 ComputeShader
- * swaping Particle SSBO's
+ * calc Particle Forces
  */
 layout(local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
 
 struct Particle{
     vec4 position;
     vec4 velocity;
-    vec4 arbitraryPosition;
-    uint gridID;
+    vec4 startPosition;
+    float temperature;
     uint memoryPosition;
     float density;
     float pressure;
@@ -43,7 +43,7 @@ uniform float buoyCoeff;
 uniform ivec4 gridSize;
 uniform vec4 externalForce;
 uniform vec4 particleSettings;
-//uniform float temperature;
+uniform float temperature;
 //float mass;
 //float restingDensity;
 //float stiffness;
@@ -91,11 +91,16 @@ uint cubeID(vec4 position){
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
-    float temperature = particle1[id].density;
+//    float temperature = 0;
     uint neighborGrid;
     vec3 pressure = vec3(0.f);
     vec3 viscosity = vec3(0.f);
     vec3 buoyancy = vec3(0.f);
+    const float Dc = 0.026;
+    // air 0.025
+    // water 0.6089
+    // concrete 0.92
+
     if (id >= particleCount)
     {
         return;
@@ -118,14 +123,19 @@ void main(void) {
                         * ((particle1[j].velocity.xyz - particle1[id].velocity.xyz)/ particle1[j].density)
                         * viscosityLaplaceWeight(particle1[id].position.xyz - particle1[j].position.xyz);
 
+//                        temperature += (particleSettings.x / (particle1[id].density * particle1[j].density))
+//                        * Dc * (particle1[id].temperature - particle1[j].temperature)
+//                        * ( ((particle1[id].position.xyz - particle1[j].position.xyz) * Weight(particle1[id].position.xyz - particle1[j].position.xyz) )
+//                        /((particle1[id].position.xyz - particle1[j].position.xyz) * (particle1[id].position.xyz - particle1[j].position.xyz) + 0.0001f * 0.0001f ));
+
                         count++;
                     }
                 }
             }
         }
-
+        particle2[id].temperature = temperature;
         buoyancy = buoyCoeff * temperature * upDirection;
         viscosity *= kinematicViscosity;
-        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * (pressure +  viscosity + buoyancy + externalForce.xyz * particle1[id].density), 0.f);
+        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * (pressure +  viscosity + buoyancy + externalForce.xyz), 0.f);
     }
 }

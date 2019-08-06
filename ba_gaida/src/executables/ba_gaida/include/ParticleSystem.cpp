@@ -352,11 +352,13 @@ void ba_gaida::ParticleSystem::initParticle()
         {
             m_particle[i].position = glm::vec4(pos_x(rdm), pos_y(rdm), pos_z(rdm), 0.f);
         }
-        m_particle[i].arbitraryPosition = m_particle[i].position;
+        m_particle[i].startPosition = m_particle[i].position;
 
 
 //        m_particle[i].velocity = glm::vec4(vel_x(rdm), vel_y(rdm), vel_z(rdm), 0.f);
         m_particle[i].velocity = glm::vec4(0.f);
+
+        m_particle[i].temperature = 27.f;
 
         if (i == m_particleCount - 1)
         {

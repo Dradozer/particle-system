@@ -8,8 +8,8 @@ layout(local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
 struct Particle{
     vec4 position;
     vec4 velocity;
-    vec4 arbitraryPosition;
-    uint gridID;
+    vec4 startPosition;
+    float temperature;
     uint memoryPosition;
     float density;
     float pressure;
@@ -73,7 +73,6 @@ void main(void) {
     } else
     {
         particle2[id] = particle1[id];
-        neighborGrid = particle1[id].gridID + cubeID(vec4(0, 0, 0, 0));
         particle2[id].density = 0f;
         particle2[id].velocity.w = 0;
         for (int x = -1; x <= 1; x++){
