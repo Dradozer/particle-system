@@ -5,31 +5,11 @@
  */
 layout(local_size_x = 10, local_size_y = 1, local_size_z = 1) in;
 
-struct Particle{
-    vec4 position;
-    vec4 velocity;
-    vec4 startPosition;
-    float temperature;
-    uint memoryPosition;
-    float density;
-    float pressure;
-};
-
 struct Grid{
     uint gridID;
     uint particlesInGrid;
     uint previousSortOutPut;
     uint currentSortOutPut;
-};
-
-layout(std430, binding = 0) readonly buffer buffer_particle1
-{
-    Particle particle1[];
-};
-
-layout(std430, binding = 1) writeonly buffer buffer_particle2
-{
-    Particle particle2[];
 };
 
 layout(std430, binding = 2) coherent buffer buffer_grid

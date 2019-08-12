@@ -3,12 +3,13 @@
  * 1.5 ComputeShader
  * swaping Particle SSBO's
  */
-layout( local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
+layout(local_size_x = 100, local_size_y = 1, local_size_z = 1) in;
 
 struct Particle{
     vec4 position;
     vec4 velocity;
     vec4 startPosition;
+    vec4 normal;
     float temperature;
     uint memoryPosition;
     float density;
@@ -22,17 +23,17 @@ struct Grid{
     int currentSortOutPut;
 };
 
-layout( std430, binding = 0) writeonly buffer buffer_particle1
+layout(std430, binding = 0) writeonly buffer buffer_outParticle
 {
-    Particle particle1[];
+    Particle outParticle[];
 };
 
-layout( std430, binding = 1) readonly buffer buffer_particle2
+layout(std430, binding = 1) readonly buffer buffer_inParticle
 {
-    Particle particle2[];
+    Particle inParticle[];
 };
 
-layout( std430, binding = 2) coherent buffer buffer_grid
+layout(std430, binding = 2) coherent buffer buffer_grid
 {
     Grid grid[];
 };
@@ -42,24 +43,21 @@ uniform float deltaTime;
 uniform ivec4 gridSize;
 uniform vec4 externalForce;
 uniform vec4 particleSettings;
+uniform float temperature;
 //float mass;
 //float restingDensity;
 //float stiffness;
 //float radius;
 
-float W(vec3 particlePosition ,vec3 neighborPosition){
-    float inPut = distance(particlePosition,neighborPosition);
-    float weight = 0.f;
-    float pi_constant = 3/(2 *3.14159265);
-    inPut = 0.5f;
-    if(inPut < 1.f){
-        weight = pi_constant * ((2.f/3.f) - pow(inPut,2) + 0.5f * pow(inPut,3));
-    }else if(inPut < 2.f){
-        weight = pi_constant * ((1.f/6.f) * pow(2 - inPut,3));
-    }else{
-        weight = 0;
-    }
-    return weight / pow(particleSettings.w,3);
+const float PI = 3.14159265f;
+
+vec3 gradientWeight(vec3 relativePosition)
+{
+    float c = -45.0 / PI /  pow(particleSettings.w, 6);
+
+    float l = max(length(relativePosition), 0.0001);
+
+    return c * relativePosition / l * pow(abs(particleSettings.w - l), 2.0)*float(l <= particleSettings.w);
 }
 
 uint cubeID(vec4 position){
@@ -69,17 +67,30 @@ uint cubeID(vec4 position){
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
-    vec3 arbitraryPosition;
-    if(id >= particleCount)
+    vec3 normal = vec3(0.f);
+    if (id >= particleCount)
     {
         return;
     } else
     {
-        particle1[id] = particle2[id];
+        outParticle[id] = inParticle[id];
 
-//        for(int i = grid[neighborGrid].currentSortOutPut; i < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid; i++){
-//            arbitraryPosition += (particleSettings.x / particle2[i].density) * particle2[i].arbitraryPosition.xyz * W(particle2[id].position.xyz, particle2[i].position.xyz);
-//        }
-//        particle1[id].arbitraryPosition.xyz = arbitraryPosition;
+        for (int x = -1; x <= 1; x++){
+            for (int y = -1; y <= 1; y++){
+                for (int z = -1; z <= 1; z++){
+                    neighborGrid = cubeID(inParticle[id].position + vec4(x, y, z, 0));
+                    int count = 0;
+                    for (int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 16; j++){
+                        if(j == id){
+                            continue;
+                        }
+                        normal += (particleSettings.x / inParticle[j].density)* gradientWeight(inParticle[id].position.xyz - inParticle[j].position.xyz);
+                        count++;
+                    }
+                }
+            }
+
+        }
+        outParticle[id].normal = vec4(normal, 0.f);
     }
 }

@@ -9,6 +9,7 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     vec4 startPosition;
+    vec4 normal;
     float temperature;
     uint memoryPosition;
     float density;
@@ -22,14 +23,14 @@ struct Grid{
     int currentSortOutPut;
 };
 
-layout(std430, binding = 0) readonly buffer buffer_particle1
+layout(std430, binding = 0) readonly buffer buffer_inParticle
 {
-    Particle particle1[];
+    Particle inParticle[];
 };
 
-layout(std430, binding = 1) writeonly buffer buffer_particle2
+layout(std430, binding = 1) writeonly buffer buffer_outParticle
 {
-    Particle particle2[];
+    Particle outParticle[];
 };
 
 layout(std430, binding = 2) coherent buffer buffer_grid
@@ -43,13 +44,13 @@ uniform float buoyCoeff;
 uniform ivec4 gridSize;
 uniform vec4 externalForce;
 uniform vec4 particleSettings;
-uniform float temperature;
+uniform float thermalCon;
 //float mass;
 //float restingDensity;
 //float stiffness;
 //float radius;
 
-const float kinematicViscosity  = 0.1f;// uniform testen
+const float kinematicViscosity  = 0.5f;// uniform testen
 const float PI = 3.14159265f;
 
 const vec3 upDirection = vec3(0.f, 1.f, 0.f);
@@ -63,16 +64,16 @@ float Weight(vec3 relativePosition)
     return temp * pow(radius_2 - relativePosition_2, 3) * float(relativePosition_2 <= radius_2);
 }
 
-vec3 pressureWeightGradient(vec3 relativePosition)
+vec3 gradientWeight(vec3 relativePosition)
 {
     float c = -45.0 / PI /  pow(particleSettings.w, 6);
 
-    float l = max(length(relativePosition),0.0001);
+    float l = max(length(relativePosition), 0.0001);
 
     return c*relativePosition / l*pow(abs(particleSettings.w - l), 2.0)*float(l <= particleSettings.w);
 }
 
-float viscosityLaplaceWeight (vec3 relativePosition)
+float laplaceWeight (vec3 relativePosition)
 {
     float radius_2 = particleSettings.w * particleSettings.w;
     float radius_3 = radius_2 * particleSettings.w;
@@ -91,51 +92,55 @@ uint cubeID(vec4 position){
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
-//    float temperature = 0;
+    float temperature = inParticle[id].temperature;
     uint neighborGrid;
     vec3 pressure = vec3(0.f);
     vec3 viscosity = vec3(0.f);
     vec3 buoyancy = vec3(0.f);
-    const float Dc = 0.026;
-    // air 0.025
-    // water 0.6089
-    // concrete 0.92
 
     if (id >= particleCount)
     {
         return;
     } else
     {
-        particle2[id] = particle1[id];
+        outParticle[id] = inParticle[id];
         for (int x = -1; x <= 1; x++){
             for (int y = -1; y <= 1; y++){
                 for (int z = -1; z <= 1; z++){
 
-                    neighborGrid = cubeID(particle1[id].position + vec4(x, y, z, 0));
+                    neighborGrid = cubeID(inParticle[id].position + vec4(x, y, z, 0));
                     int count = 0;
                     for (int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 16; j++){
-
+                        if (j == id){
+                            continue;
+                        }
                         pressure += -1 * particleSettings.x
-                        * ((particle1[id].pressure + particle1[j].pressure)/ (2* particle1[j].density))
-                        * pressureWeightGradient(particle1[id].position.xyz - particle1[j].position.xyz);
+                        * ((inParticle[id].pressure + inParticle[j].pressure)/ (2* inParticle[j].density))
+                        * gradientWeight(inParticle[id].position.xyz - inParticle[j].position.xyz);
 
                         viscosity += particleSettings.x
-                        * ((particle1[j].velocity.xyz - particle1[id].velocity.xyz)/ particle1[j].density)
-                        * viscosityLaplaceWeight(particle1[id].position.xyz - particle1[j].position.xyz);
+                        * ((inParticle[j].velocity.xyz - inParticle[id].velocity.xyz)/ inParticle[j].density)
+                        * laplaceWeight(inParticle[id].position.xyz - inParticle[j].position.xyz);
 
-//                        temperature += (particleSettings.x / (particle1[id].density * particle1[j].density))
-//                        * Dc * (particle1[id].temperature - particle1[j].temperature)
-//                        * ( ((particle1[id].position.xyz - particle1[j].position.xyz) * Weight(particle1[id].position.xyz - particle1[j].position.xyz) )
-//                        /((particle1[id].position.xyz - particle1[j].position.xyz) * (particle1[id].position.xyz - particle1[j].position.xyz) + 0.0001f * 0.0001f ));
-
+                        if (inParticle[id].density > 20){
+                            temperature += (particleSettings.x / (inParticle[id].density * inParticle[j].density))
+                            * thermalCon
+                            * (dot((inParticle[id].position.xyz - inParticle[j].position.xyz), gradientWeight(inParticle[id].position.xyz - inParticle[j].position.xyz))
+                            /(dot((inParticle[id].position.xyz - inParticle[j].position.xyz), (inParticle[id].position.xyz - inParticle[j].position.xyz)) + 0.0001f * 0.0001f));
+                        }
                         count++;
                     }
                 }
             }
         }
-        particle2[id].temperature = temperature;
+
+        if (inParticle[id].density < 10){
+            temperature -=  deltaTime;
+        }
+
+        outParticle[id].temperature = temperature;
         buoyancy = buoyCoeff * temperature * upDirection;
         viscosity *= kinematicViscosity;
-        particle2[id].velocity = particle1[id].velocity + vec4(deltaTime * (pressure +  viscosity + buoyancy + externalForce.xyz), 0.f);
+        outParticle[id].velocity = inParticle[id].velocity + vec4(deltaTime * (pressure +  viscosity + buoyancy + externalForce.xyz), 0.f);
     }
 }

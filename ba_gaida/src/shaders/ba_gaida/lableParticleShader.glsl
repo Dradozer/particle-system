@@ -9,6 +9,7 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     vec4 startPosition;
+    vec4 normal;
     float temperature;
     uint memoryPosition;
     float density;
@@ -22,14 +23,14 @@ struct Grid{
     int currentSortOutPut;
 };
 
-layout(std430, binding = 0) readonly buffer buffer_particle1
+layout(std430, binding = 0) readonly buffer buffer_inParticle
 {
-    Particle particle1[];
+    Particle inParticle[];
 };
 
-layout(std430, binding = 1) writeonly buffer buffer_particle2
+layout(std430, binding = 1) writeonly buffer buffer_outParticle
 {
-    Particle particle2[];
+    Particle outParticle[];
 };
 
 layout(std430, binding = 2) coherent buffer buffer_grid
@@ -53,8 +54,8 @@ void main(void) {
         return;
     } else
     {
-        particle2[id] = particle1[id];
-        temp = cubeID(particle1[id].position);
-        particle2[id].memoryPosition = atomicAdd(grid[temp].particlesInGrid, 1);
+        outParticle[id] = inParticle[id];
+        temp = cubeID(inParticle[id].position);
+        outParticle[id].memoryPosition = atomicAdd(grid[temp].particlesInGrid, 1);
     }
 }

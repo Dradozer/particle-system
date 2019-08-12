@@ -20,7 +20,7 @@ namespace ba_gaida
         }
 
         static void initComputeShader(GLuint *id, const unsigned int particleCount,
-                                         const glm::ivec4 gridSize)
+                                      const glm::ivec4 gridSize)
         {
             GLenum glError;
             if ((glError = glGetError()) != GL_NO_ERROR)
@@ -40,8 +40,8 @@ namespace ba_gaida
         }
 
         static void updateComputeShaderParticle(GLuint *id, const float deltaTime,
-                const unsigned int particleCount ,const glm::vec4 settings ,
-                const glm::vec4 forces, const float buoyCoeff, const float temperature)
+                                                const unsigned int particleCount, const glm::vec4 settings,
+                                                const glm::vec4 forces, const float buoyCoeff, const float thermalCon)
         {
             GLenum glError;
             if ((glError = glGetError()) != GL_NO_ERROR)
@@ -51,10 +51,10 @@ namespace ba_gaida
             glUseProgram(id[0]);
             {
                 glUniform1f(id[1], deltaTime);
-                glUniform4fv(id[4],1, &settings[0]);
-                glUniform4fv(id[5],1 ,&forces[0]);
-                glUniform1f(id[6],buoyCoeff);
-                glUniform1f(id[7],temperature);
+                glUniform4fv(id[4], 1, &settings[0]);
+                glUniform4fv(id[5], 1, &forces[0]);
+                glUniform1f(id[6], buoyCoeff);
+                glUniform1f(id[7], thermalCon);
                 glDispatchCompute(ceil(particleCount / 64), 1, 1); // shader layout
                 glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
             }

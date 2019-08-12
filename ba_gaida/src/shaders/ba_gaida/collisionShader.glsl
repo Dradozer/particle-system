@@ -9,20 +9,21 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     vec4 startPosition;
+    vec4 normal;
     float temperature;
     uint memoryPosition;
     float density;
     float pressure;
 };
 
-layout( std430, binding = 0) writeonly buffer buffer_particle1
+layout( std430, binding = 0) writeonly buffer buffer_outParticle
 {
-    Particle particle1[];
+    Particle outParticle[];
 };
 
-layout( std430, binding = 1) readonly buffer buffer_particle2
+layout( std430, binding = 1) readonly buffer buffer_inParticle
 {
-    Particle particle2[];
+    Particle inParticle[];
 };
 
 uniform float deltaTime;
@@ -38,36 +39,36 @@ void main(void) {
         return;
     } else
     {
-        particle1[id] = particle2[id];
+        outParticle[id] = inParticle[id];
         //collisition X-Axis
-        if(particle2[id].position.x >= gridSize.x - origin.x)
+        if(inParticle[id].position.x >= gridSize.x - origin.x)
         {
-         particle1[id].position.x = gridSize.x  - origin.x - 0.001f;
-         particle1[id].velocity = vec4(reflect(particle2[id].velocity.xyz,vec3(-1.f,0.f,0.f)),1.f) * energyloss;
-        }else if(particle2[id].position.x < origin.x)
+            outParticle[id].position.x = gridSize.x  - origin.x - 0.001f;
+            outParticle[id].velocity = vec4(reflect(inParticle[id].velocity.xyz,vec3(-1.f,0.f,0.f)),1.f) * energyloss;
+        }else if(inParticle[id].position.x < origin.x)
         {
-            particle1[id].position.x = origin.x + 0.001f;
-            particle1[id].velocity = vec4(reflect(particle2[id].velocity.xyz,vec3(1.f,0.f,0.f)),1.f) * energyloss;
+            outParticle[id].position.x = origin.x + 0.001f;
+            outParticle[id].velocity = vec4(reflect(inParticle[id].velocity.xyz,vec3(1.f,0.f,0.f)),1.f) * energyloss;
         }
         //collisition Y-Axis
-        if(particle2[id].position.y >= gridSize.y - origin.y)
+        if(inParticle[id].position.y >= gridSize.y - origin.y)
         {
-            particle1[id].position.y = gridSize.y - origin.y - 0.001f;
-            particle1[id].velocity = vec4(reflect(particle2[id].velocity.xyz,vec3(0.f,-1.f,0.f)),1.f) * energyloss;
-        }else if(particle2[id].position.y < origin.y)
+            outParticle[id].position.y = gridSize.y - origin.y - 0.001f;
+            outParticle[id].velocity = vec4(reflect(inParticle[id].velocity.xyz,vec3(0.f,-1.f,0.f)),1.f) * energyloss;
+        }else if(inParticle[id].position.y < origin.y)
         {
-            particle1[id].position.y = origin.y + 0.001f;
-            particle1[id].velocity = vec4(reflect(particle2[id].velocity.xyz,vec3(0.f,1.f,0.f)),1.f) * energyloss;
+            outParticle[id].position.y = origin.y + 0.001f;
+            outParticle[id].velocity = vec4(reflect(inParticle[id].velocity.xyz,vec3(0.f,1.f,0.f)),1.f) * energyloss;
         }
         //collisition Z-Axis
-        if(particle2[id].position.z >= gridSize.z - origin.z)
+        if(inParticle[id].position.z >= gridSize.z - origin.z)
         {
-            particle1[id].position.z = gridSize.z - origin.z - 0.001f;
-            particle1[id].velocity = vec4(reflect(particle2[id].velocity.xyz,vec3(0.f,0.f,-1.f)),1.f) * energyloss;
-        }else if(particle2[id].position.z < origin.z)
+            outParticle[id].position.z = gridSize.z - origin.z - 0.001f;
+            outParticle[id].velocity = vec4(reflect(inParticle[id].velocity.xyz,vec3(0.f,0.f,-1.f)),1.f) * energyloss;
+        }else if(inParticle[id].position.z < origin.z)
         {
-            particle1[id].position.z = origin.z + 0.001f;
-            particle1[id].velocity = vec4(reflect(particle2[id].velocity.xyz,vec3(0.f,0.f,1.f)),1.f) * energyloss;
+            outParticle[id].position.z = origin.z + 0.001f;
+            outParticle[id].velocity = vec4(reflect(inParticle[id].velocity.xyz,vec3(0.f,0.f,1.f)),1.f) * energyloss;
         }
     }
 }

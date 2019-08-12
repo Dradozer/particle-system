@@ -11,6 +11,7 @@ struct Particle{
     glm::vec4 position;
     glm::vec4 velocity;
     glm::vec4 startPosition;
+    glm::vec4 normal;
     float temperature;
     unsigned int memoryPosition;
     float density;

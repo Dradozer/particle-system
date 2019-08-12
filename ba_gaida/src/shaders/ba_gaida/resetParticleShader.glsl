@@ -9,20 +9,21 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     vec4 startPosition;
+    vec4 normal;
     float temperature;
     uint memoryPosition;
     float density;
     float pressure;
 };
 
-layout( std430, binding = 0) writeonly buffer buffer_particle1
+layout( std430, binding = 0) writeonly buffer buffer_outParticle
 {
-    Particle particle1[];
+    Particle outParticle[];
 };
 
-layout( std430, binding = 1) readonly buffer buffer_particle2
+layout( std430, binding = 1) readonly buffer buffer_inParticle
 {
-    Particle particle2[];
+    Particle inParticle[];
 };
 
 uniform uint particleCount;
@@ -34,7 +35,8 @@ void main(void) {
         return;
     } else
     {
-        particle1[id].position = particle2[id].startPosition;
-        particle1[id].velocity = vec4(0.f,0.f,0.f,0.f);
+        outParticle[id].position = vec4(inParticle[id].startPosition.xyz,0.f);
+        outParticle[id].velocity = vec4(0.f,0.f,0.f,0.f);
+        outParticle[id].temperature = inParticle[id].startPosition.w;
     }
 }

@@ -9,6 +9,7 @@ struct Particle{
     vec4 position;
     vec4 velocity;
     vec4 startPosition;
+    vec4 normal;
     float temperature;
     uint memoryPosition;
     float density;
@@ -22,14 +23,14 @@ struct Grid{
     int currentSortOutPut;
 };
 
-layout( std430, binding = 0) writeonly buffer buffer_particle1
+layout( std430, binding = 0) writeonly buffer buffer_outParticle
 {
-    Particle particle1[];
+    Particle outParticle[];
 };
 
-layout( std430, binding = 1) readonly buffer buffer_particle2
+layout( std430, binding = 1) readonly buffer buffer_inParticle
 {
-    Particle particle2[];
+    Particle inParticle[];
 };
 
 layout( std430, binding = 2) coherent buffer buffer_grid
@@ -50,6 +51,6 @@ void main(void) {
         return;
     } else
     {
-        particle1[id] = particle2[id];
+        outParticle[id] = inParticle[id];
     }
 }
