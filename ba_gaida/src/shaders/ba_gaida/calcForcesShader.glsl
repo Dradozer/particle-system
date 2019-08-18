@@ -44,13 +44,13 @@ uniform float buoyCoeff;
 uniform ivec4 gridSize;
 uniform vec4 externalForce;
 uniform vec4 particleSettings;
-uniform float thermalCon;
+uniform float heatFlow;
 //float mass;
 //float restingDensity;
 //float stiffness;
 //float radius;
 
-const float kinematicViscosity  = 0.5f;// uniform testen
+const float kinematicViscosity  = 0.25f;// uniform testen
 const float PI = 3.14159265f;
 
 const vec3 upDirection = vec3(0.f, 1.f, 0.f);
@@ -84,6 +84,10 @@ float laplaceWeight (vec3 relativePosition)
     float length = length(relativePosition);
 
     return temp * (particleSettings.w - length) * float(length <= particleSettings.w);
+}
+
+float thermalCon (float temperatureDiff){
+    return heatFlow /(particleSettings.w * temperatureDiff);
 }
 
 uint cubeID(vec4 position){
@@ -122,9 +126,9 @@ void main(void) {
                         * ((inParticle[j].velocity.xyz - inParticle[id].velocity.xyz)/ inParticle[j].density)
                         * laplaceWeight(inParticle[id].position.xyz - inParticle[j].position.xyz);
 
-                        if (inParticle[id].density > 20){
+                        if (inParticle[id].density > 28){
                             temperature += (particleSettings.x / (inParticle[id].density * inParticle[j].density))
-                            * thermalCon
+                            * heatFlow
                             * (dot((inParticle[id].position.xyz - inParticle[j].position.xyz), gradientWeight(inParticle[id].position.xyz - inParticle[j].position.xyz))
                             /(dot((inParticle[id].position.xyz - inParticle[j].position.xyz), (inParticle[id].position.xyz - inParticle[j].position.xyz)) + 0.0001f * 0.0001f));
                         }
@@ -133,14 +137,15 @@ void main(void) {
                 }
             }
         }
-
-        if (inParticle[id].density < 10){
-            temperature -=  deltaTime;
+´´
+        if (length(inParticle[id].normal) >= 2){
+            temperature -= (inParticle[id].temperature / 50) * deltaTime;
         }
 
         outParticle[id].temperature = temperature;
-        buoyancy = buoyCoeff * temperature * upDirection;
+//        buoyancy = buoyCoeff * 10.5 * upDirection * inParticle[id].density;
+        buoyancy = buoyCoeff * temperature * upDirection * inParticle[id].density;
         viscosity *= kinematicViscosity;
-        outParticle[id].velocity = inParticle[id].velocity + vec4(deltaTime * (pressure +  viscosity + buoyancy + externalForce.xyz), 0.f);
+        outParticle[id].velocity = inParticle[id].velocity + vec4(deltaTime * ( pressure +  viscosity + (buoyancy + externalForce.xyz * inParticle[id].density)* 0.1), 0.f);
     }
 }

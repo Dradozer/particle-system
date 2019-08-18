@@ -17,7 +17,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_timeMultiplyer = 1.f;
     m_buoyCoeff = 1.f;
     m_temperature = 10.f;
-    m_thermalCon = -0.026f;
+    m_thermalCon = -0.04f;
     // air 0.025
     // water 0.6089
     // concrete 0.92
@@ -265,7 +265,7 @@ if(m_imguiUi == true){
             ImGui::Text("ParticleSettings");
             ImGui::SliderFloat("Mass", &m_settings.x, 0.1f, 2.f);
             ImGui::SliderFloat("BuoyCoeff", &m_buoyCoeff, 1.f, 20.f);
-            ImGui::SliderFloat("ThermalCon", &m_thermalCon, -0.1f, 0.1f);
+            ImGui::SliderFloat("HeatFlow", &m_thermalCon, 0.f, 1.f);
             ImGui::SliderFloat("RestDensity", &m_settings.y, -20.f, 20.f);
             ImGui::SliderFloat("Stiffness", &m_settings.z, -1.f, 10.f);
             ImGui::SliderFloat("Radius", &m_settings.w, 0.5f, 5.f);
@@ -435,7 +435,7 @@ void ba_gaida::ParticleSystem::setUniformParticles(GLuint *id)
     id[4] = glGetUniformLocation(id[0], "particleSettings");
     id[5] = glGetUniformLocation(id[0], "externalForce");
     id[6] = glGetUniformLocation(id[0], "buoyCoeff");
-    id[7] = glGetUniformLocation(id[0], "thermalCon");
+    id[7] = glGetUniformLocation(id[0], "heatFlow");
 }
 
 void ba_gaida::ParticleSystem::hideUi()
