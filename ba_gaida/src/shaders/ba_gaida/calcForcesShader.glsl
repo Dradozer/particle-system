@@ -137,7 +137,7 @@ void main(void) {
                 }
             }
         }
-´´
+
         if (length(inParticle[id].normal) >= 2){
             temperature -= (inParticle[id].temperature / 50) * deltaTime;
         }
