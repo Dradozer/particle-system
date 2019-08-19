@@ -18,12 +18,13 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_buoyCoeff = 1.f;
     m_temperature = 10.f;
     m_thermalCon = -0.04f;
+    // values have to be negative for buoyancy
     // air 0.025
     // water 0.6089
     // concrete 0.92
 
-    m_settings.x = 0.90f;
-    m_settings.y = 15.f;
+    m_settings.x = 0.7f;
+    m_settings.y = 10.f;
     m_settings.z = 0.2f;
     m_settings.w = 1.f;
     //float mass;
@@ -150,7 +151,7 @@ void ba_gaida::ParticleSystem::update(double deltaTime)
         m_reset = m_running = false;
         m_externalForce = glm::vec3(0.f);
     }
-    deltaTime = deltaTime * m_timeMultiplyer * m_running;
+    deltaTime = deltaTime * m_timeMultiplyer * m_running * 0.5;
     m_fps->resetTimestamp();
 
     if(!(ImGui::IsAnyWindowFocused()||ImGui::IsAnyWindowHovered())){
@@ -265,7 +266,7 @@ if(m_imguiUi == true){
             ImGui::Text("ParticleSettings");
             ImGui::SliderFloat("Mass", &m_settings.x, 0.1f, 2.f);
             ImGui::SliderFloat("BuoyCoeff", &m_buoyCoeff, 1.f, 20.f);
-            ImGui::SliderFloat("HeatFlow", &m_thermalCon, 0.f, 1.f);
+            ImGui::SliderFloat("HeatFlow", &m_thermalCon, -.2f, 0.2f);
             ImGui::SliderFloat("RestDensity", &m_settings.y, -20.f, 20.f);
             ImGui::SliderFloat("Stiffness", &m_settings.z, -1.f, 10.f);
             ImGui::SliderFloat("Radius", &m_settings.w, 0.5f, 5.f);

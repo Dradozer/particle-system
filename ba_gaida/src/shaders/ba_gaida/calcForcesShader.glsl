@@ -132,6 +132,7 @@ void main(void) {
                             * (dot((inParticle[id].position.xyz - inParticle[j].position.xyz), gradientWeight(inParticle[id].position.xyz - inParticle[j].position.xyz))
                             /(dot((inParticle[id].position.xyz - inParticle[j].position.xyz), (inParticle[id].position.xyz - inParticle[j].position.xyz)) + 0.0001f * 0.0001f));
                         }
+
                         count++;
                     }
                 }
