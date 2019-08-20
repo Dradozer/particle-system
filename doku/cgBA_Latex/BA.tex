@@ -26,9 +26,20 @@
 
 \section*{Abstract}
 
+In dieser Arbeit wird auf die realistische Simulation von Rauch eingegangen. Dabei bezieht sich die Arbeit hauptsächlich auf die Simulationen von Müller et al.\cite{muller2003particle} und Ren et al.\cite{ren2016fast}. Die Simulation wurde mittels C++, der \ac{abk:OGL} und Compute Shadern erstellt. Hierbei wurde das \ac{abk:SPH} Verfahren genutzt und die Möglichkeiten zur Beschleunigung auf der \ac{abk:GPU} untersucht.
+\newline \newline
+This paper deals with the realistic simulation of smoke. The work refers mainly to the simulations of Müller et al.\cite{muller2003particle} and Ren et al.\cite{ren2016fast}. The simulation was created using C++, the \ac{abk:OGL} and compute shaders. Here the \ac{abk:SPH} method was used and the possibilities to accelerate it on the \ac{abk:GPU} were investigated.
+\newpage
+
 %-------------------------------------------------------------------------------
 
 \section{Vorwort}
+
+Vor dem Beginn der vorliegenden Bachelorarbeit möchte ich mich zunächst bei einigen Personen bedanken die mich während der Arbeit unterstützt haben.\newline \newline
+Zunächst einmal bedanke ich mich bei Prof. Dr.-Ing. Stefan Müller und Bastian Krayer MSc. für die großartige Betreuung meiner Arbeit.\newline
+Außerdem möchte ich mich bei Pascal Bendler bedanken, der mich tatkräftig beim debugging unterstützt hat.\newline
+Das größte Dankeschön geht aber an den Freund, der mich immer wieder dazu motiviert hat weiter zu arbeiten und nach alternativen Möglichkeiten zu suchen.
+\newpage
 
 %-------------------------------------------------------------------------------
 
@@ -66,12 +77,11 @@
 %-------------------------------------------------------------------------------
 
 \begin{acronym}
+	\acro{abk:OGL}[OpenGL]{Open Graphics Libary}
+	\acro{abk:SPH}[SPH]{Smoothed Particle Hydrodynamics}
 	\acro{abk:GPU}[GPU]{Graphics Processing Unit}
 \end{acronym}
-test test \ac{abk:GPU} test test \acl{abk:GPU}
 
-\cite{wiki:lol}
-% Hier kommt jetzt der eigentliche Text der Arbeit
 \bibliography{lib}
 
 \end{document}

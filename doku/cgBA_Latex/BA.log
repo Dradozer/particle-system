@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.18)  19 AUG 2019 16:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.18)  20 AUG 2019 13:17
 entering extended mode
 **./BA.tex
 (BA.tex
@@ -532,54 +532,66 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
 \openout4 = `BA.toc'.
 
  [1]
-LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 40.
+Package acronym Info: Label `acro:abk:OGL' newly defined as it shall be overrid
+den
+although it is yet undefined on input line 29.
+Package acronym Info: Label `acro:abk:SPH' newly defined as it shall be overrid
+den
+although it is yet undefined on input line 29.
 Package acronym Info: Label `acro:abk:GPU' newly defined as it shall be overrid
 den
-although it is yet undefined on input line 71.
- (BA.bbl
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 14.
+although it is yet undefined on input line 29.
 
-("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\t1pcr.fd
-"
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-Underfull \hbox (badness 2846) in paragraph at lines 11--17
-[]\T1/ppl/m/sc/10.95 Wikipedia\T1/ppl/m/n/10.95 :  \T1/ppl/m/it/10.95 Wär-me-st
-rom --- Wi-ki-pe-dia, Die freie En-zy-klo-pä-
+Underfull \hbox (badness 10000) in paragraph at lines 29--32
+
+ []
+
+[1
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 38--42
+
+ []
+
+[2]
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 51.
+ (BA.bbl
+Underfull \hbox (badness 2111) in paragraph at lines 12--17
+[]\T1/ppl/m/sc/10.95 Müller\T1/ppl/m/n/10.95 , Matt-hi-as ; \T1/ppl/m/sc/10.95 
+Cha-rypar\T1/ppl/m/n/10.95 , Da-vid ; \T1/ppl/m/sc/10.95 Gross\T1/ppl/m/n/10.95
+ , Mar-kus:
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 77.
- [1
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 77.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 87.
+ [3]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 87.
  (BA.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 77.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 77.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 87.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 87.
 Package rerunfilecheck Info: File `BA.out' has not changed.
 (rerunfilecheck)             Checksum: 58DFDFA39274730B929541320E77C0EC;891.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 77.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 87.
  ) 
 Here is how much of TeX's memory you used:
- 8572 strings out of 492895
- 128294 string characters out of 3122334
- 230317 words of memory out of 3000000
- 12317 multiletter control sequences out of 15000+200000
- 27307 words of font info for 57 fonts, out of 3000000 for 9000
+ 8564 strings out of 492895
+ 128098 string characters out of 3122334
+ 230532 words of memory out of 3000000
+ 12307 multiletter control sequences out of 15000+200000
+ 26686 words of font info for 55 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,13n,40p,269b,450s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,13n,40p,469b,450s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.
 enc}<C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
-fonts/symbols/msam10.pfb><C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/urw/courier/ucrr8a.pfb><C:/Users/Dradozer/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/Dradozer/AppData/Local/Pr
-ograms/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Dradozer/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on BA.pdf (4 pages, 103273 bytes).
+fonts/cm/cmr8.pfb><C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/symbols/msam10.pfb><C:/Users/Dradozer/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/Dradozer/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Dradozer/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on BA.pdf (6 pages, 107337 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 27 named destinations out of 1000 (max. 500000)
+ 173 PDF objects out of 1000 (max. 8388607)
+ 34 named destinations out of 1000 (max. 500000)
  134 words of extra memory for PDF output out of 10000 (max. 10000000)
 
