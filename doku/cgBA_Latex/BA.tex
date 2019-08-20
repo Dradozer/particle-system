@@ -26,24 +26,35 @@
 
 \section*{Abstract}
 
-In dieser Arbeit wird auf die realistische Simulation von Rauch eingegangen. Dabei bezieht sich die Arbeit hauptsächlich auf die Simulationen von Müller et al.\cite{muller2003particle} und Ren et al.\cite{ren2016fast}. Die Simulation wurde mittels C++, der \ac{abk:OGL} und Compute Shadern erstellt. Hierbei wurde das \ac{abk:SPH} Verfahren genutzt und die Möglichkeiten zur Beschleunigung auf der \ac{abk:GPU} untersucht.
+In dieser Arbeit wird auf die realistische Simulation von Rauch eingegangen. Dabei bezieht sich die Arbeit hauptsächlich auf die Simulationen von Müller et al.\cite{muller2003particle} und Ren et al.\cite{ren2016fast}. Die Simulation wurde mittels C++, der \ac{abk:OGL} und Compute-Shadern erstellt. Hierbei wurde das \ac{abk:SPH} Verfahren genutzt und die Möglichkeiten zur Beschleunigung auf der \ac{abk:GPU} untersucht.
 \newline \newline
-This paper deals with the realistic simulation of smoke. The work refers mainly to the simulations of Müller et al.\cite{muller2003particle} and Ren et al.\cite{ren2016fast}. The simulation was created using C++, the \ac{abk:OGL} and compute shaders. Here the \ac{abk:SPH} method was used and the possibilities to accelerate it on the \ac{abk:GPU} were investigated.
+This paper deals with the realistic simulation of smoke. The work refers mainly to the simulations of Müller et al.\cite{muller2003particle} and Ren et al.\cite{ren2016fast}. The simulation was created using C++, the \acl{abk:OGL} and compute shaders. Here the \acl{abk:SPH} method was used and the possibilities to accelerate it on the \ac{abk:GPU} were investigated.
 \newpage
 
 %-------------------------------------------------------------------------------
 
 \section{Vorwort}
 
-Vor dem Beginn der vorliegenden Bachelorarbeit möchte ich mich zunächst bei einigen Personen bedanken die mich während der Arbeit unterstützt haben.\newline \newline
-Zunächst einmal bedanke ich mich bei Prof. Dr.-Ing. Stefan Müller und Bastian Krayer MSc. für die großartige Betreuung meiner Arbeit.\newline
-Außerdem möchte ich mich bei Pascal Bendler bedanken, der mich tatkräftig beim debugging unterstützt hat.\newline
+Vor dem Beginn der vorliegenden Bachelorarbeit möchte ich mich zunächst bei einigen Personen bedanken die mich während der Arbeit unterstützt haben.
+\newline \newline
+Zunächst einmal bedanke ich mich bei Prof. Dr.-Ing. Stefan Müller und Bastian Krayer MSc. für die großartige Betreuung meiner Arbeit.
+\newline
+Außerdem möchte ich mich bei Pascal Bendler bedanken, der mich tatkräftig beim debugging unterstützt hat.
+\newline
 Das größte Dankeschön geht aber an den Freund, der mich immer wieder dazu motiviert hat weiter zu arbeiten und nach alternativen Möglichkeiten zu suchen.
 \newpage
 
 %-------------------------------------------------------------------------------
 
 \section{Einleitung}
+
+Das Ziel dieser Arbeit ist es eine möglichst physikalisch korrekte Rauchsimulation zu implementieren. Dazu nutzen wir, dass sich Rauch wie ein Fluid verhält \cite{stam2003real}, dabei wird die Simulation der physikalischen Basis von Fluiden angenähert. Hierbei wird in dieser Implementation ein Partikelsystem zur Berechnung der physikalischen Eigenschaften genutzt. Aufgrund des hohen Rechenaufwandes einer Rauchsimulation wurde diese meist nur im Offline-Rendering genutzt. Echtzeitanwendungen wie Spiele-Engines nutzen mittlerweile dabei die Architektur der \ac{abk:GPU} aus um diesen Aufwand parallel abzuarbeiten. 
+\newline \newline
+Die \acl{abk:GPU} eignet sich besonders gut zum berechnen parallelisierbarer Rechenoperationen, da sie im Vergleich zur \ac{abk:CPU}, die nur wenige Kerne besitzt, über tausend Kerne verfügt, die zwar nicht so leistungsfähig sind wie die der \ac{abk:CPU}, aber dennoch einen signifikante Steigerung der Leistung bieten.
+\newline \newline
+In der Arbeit wird auch darauf eingegangen den genannten Aufwand zu minimieren, dazu wurden zwei Verfahren zur Beschleunigung des Partikelsystems, auf der \ac{abk:GPU},  implementiert und gegenübergestellt.
+\newline \newline
+Für die Implementation wurde \ac{abk:OGL} genutzt, welches das programmieren auf der \ac{abk:GPU} deutlich vereinfacht und seit der Version 4.3 auch das verarbeiten von Daten mit Hilfe von Compute-Shadern unterstützt. Für den schnellstmöglichen Zugriff auf diese Daten wird Speicherplatz, in Form von \ac{abk:SSBO}, auf der \ac{abk:GPU} angelegt. Dabei sollte auch auf eine effiziente Nutzung des limitierten Speicherplatzes geachtet werden.
 
 %-------------------------------------------------------------------------------
 
@@ -80,8 +91,13 @@ Das größte Dankeschön geht aber an den Freund, der mich immer wieder dazu mot
 	\acro{abk:OGL}[OpenGL]{Open Graphics Libary}
 	\acro{abk:SPH}[SPH]{Smoothed Particle Hydrodynamics}
 	\acro{abk:GPU}[GPU]{Graphics Processing Unit}
+	\acro{abk:CPU}[CPU]{Central Processing Unit}
+	\acro{abk:SSBO}[SSBO]{Shader Storage Buffer Object}
 \end{acronym}
 
+%-------------------------------------------------------------------------------
+
+\newpage
 \bibliography{lib}
 
 \end{document}

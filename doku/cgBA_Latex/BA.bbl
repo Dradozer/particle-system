@@ -21,4 +21,10 @@
 \newblock Fast SPH simulation for gaseous fluids.
 \newblock {In: }\emph{The Visual Computer} 32 (2016), Nr. 4, S. 523--534
 
+\bibitem[Sta03]{stam2003real}
+\textsc{Stam}, Jos:
+\newblock Real-time fluid dynamics for games.
+\newblock {In: }\emph{Proceedings of the game developer conference} Bd.~18,
+  2003, S.~25
+
 \end{thebibliography}
