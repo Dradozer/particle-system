@@ -17,7 +17,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
     m_timeMultiplyer = 1.f;
     m_buoyCoeff = 1.f;
     m_temperature = 10.f;
-    m_thermalCon = -0.04f;
+    m_heatFlow = -8.f;
     // values have to be negative for buoyancy
     // air 0.025
     // water 0.6089
@@ -180,12 +180,12 @@ void ba_gaida::ParticleSystem::update(double deltaTime)
 
     m_Forces = glm::vec4(glm::vec3(m_gravityV4.x * m_gravity,m_gravityV4.y * m_gravity,m_gravityV4.z * m_gravity)+ m_externalForce,0.f);
 
-    ComputeShader::updateComputeShaderParticle(m_densityID, deltaTime, m_particleCount, m_settings, m_Forces, m_buoyCoeff, m_thermalCon);
-    ComputeShader::updateComputeShaderParticle(m_arbitraryID, deltaTime, m_particleCount, m_settings , m_Forces, m_buoyCoeff, m_thermalCon);
+    ComputeShader::updateComputeShaderParticle(m_densityID, deltaTime, m_particleCount, m_settings, m_Forces, m_buoyCoeff, m_heatFlow);
+    ComputeShader::updateComputeShaderParticle(m_arbitraryID, deltaTime, m_particleCount, m_settings , m_Forces, m_buoyCoeff, m_heatFlow);
 
     m_fps->setTimestamp(5);
 
-    ComputeShader::updateComputeShaderParticle(m_calcForcesID, deltaTime, m_particleCount, m_settings, m_Forces, m_buoyCoeff, m_thermalCon);
+    ComputeShader::updateComputeShaderParticle(m_calcForcesID, deltaTime, m_particleCount, m_settings, m_Forces, m_buoyCoeff, m_heatFlow);
 
     m_fps->setTimestamp(6);
 
@@ -266,7 +266,7 @@ if(m_imguiUi == true){
             ImGui::Text("ParticleSettings");
             ImGui::SliderFloat("Mass", &m_settings.x, 0.1f, 2.f);
             ImGui::SliderFloat("BuoyCoeff", &m_buoyCoeff, 1.f, 20.f);
-            ImGui::SliderFloat("HeatFlow", &m_thermalCon, -.2f, 0.2f);
+            ImGui::SliderFloat("HeatFlow", &m_heatFlow, -10.f, 10.f);
             ImGui::SliderFloat("RestDensity", &m_settings.y, -20.f, 20.f);
             ImGui::SliderFloat("Stiffness", &m_settings.z, -1.f, 10.f);
             ImGui::SliderFloat("Radius", &m_settings.w, 0.5f, 5.f);

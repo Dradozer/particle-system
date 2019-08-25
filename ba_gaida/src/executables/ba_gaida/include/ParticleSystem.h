@@ -151,7 +151,7 @@ namespace ba_gaida
         float m_imgui_applications;
         float m_timeMultiplyer;
         float m_buoyCoeff;
-        float m_thermalCon;
+        float m_heatFlow;
         float m_temperature;
     };
 }

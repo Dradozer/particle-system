@@ -127,10 +127,11 @@ void main(void) {
                         * laplaceWeight(inParticle[id].position.xyz - inParticle[j].position.xyz);
 
                         if (inParticle[id].density > 28){
-                            temperature += (particleSettings.x / (inParticle[id].density * inParticle[j].density))
+                            temperature += ((particleSettings.x / (inParticle[id].density * inParticle[j].density))
                             * heatFlow
                             * (dot((inParticle[id].position.xyz - inParticle[j].position.xyz), gradientWeight(inParticle[id].position.xyz - inParticle[j].position.xyz))
-                            /(dot((inParticle[id].position.xyz - inParticle[j].position.xyz), (inParticle[id].position.xyz - inParticle[j].position.xyz)) + 0.0001f * 0.0001f));
+                            /(dot((inParticle[id].position.xyz - inParticle[j].position.xyz), (inParticle[id].position.xyz - inParticle[j].position.xyz)) + 0.0001f * 0.0001f)))
+                            * deltaTime;
                         }
 
                         count++;
