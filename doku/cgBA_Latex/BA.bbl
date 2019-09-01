@@ -15,6 +15,21 @@
 \newblock {In: }\emph{Proceedings of the 2003 ACM SIGGRAPH/Eurographics
   symposium on Computer animation} Eurographics Association, 2003, S. 154--159
 
+\bibitem[Pes09]{franz}
+\textsc{Peschel}, Franz:
+\newblock \emph{Simulation und Visualisierung von Fluiden in einer
+  Echtzeitanwendung mit Hilfe der GPU}.
+\newblock
+  \url{http://aleph1.uni-koblenz.de/F?func=find-b&find_code=wrd&request=franz+peschel}.
+\newblock \,Version:\,2009. --
+\newblock [Online; Stand 28. August 2019]
+
+\bibitem[PTG12]{pfaff2012lagrangian}
+\textsc{Pfaff}, Tobias ; \textsc{Thuerey}, Nils  ; \textsc{Gross}, Markus:
+\newblock Lagrangian vortex sheets for animating fluids.
+\newblock {In: }\emph{ACM Transactions on Graphics (TOG)} 31 (2012), Nr. 4, S.
+  112
+
 \bibitem[RYY{\etalchar{+}}16]{ren2016fast}
 \textsc{Ren}, Bo ; \textsc{Yan}, Xiao ; \textsc{Yang}, Tao ; \textsc{Li},
   Chen-feng ; \textsc{Lin}, Ming~C.  ; \textsc{Hu}, Shi-min:
@@ -26,5 +41,14 @@
 \newblock Real-time fluid dynamics for games.
 \newblock {In: }\emph{Proceedings of the game developer conference} Bd.~18,
   2003, S.~25
+
+\bibitem[Wik19]{wiki:xxx}
+\textsc{Wikipedia}:
+\newblock \emph{Navier-Stokes-Gleichungen --- Wikipedia{,} Die freie
+  Enzyklopädie}.
+\newblock
+  \url{https://de.wikipedia.org/w/index.php?title=Navier-Stokes-Gleichungen&oldid=191399294}.
+\newblock \,Version:\,2019. --
+\newblock [Online; Stand 28. August 2019]
 
 \end{thebibliography}

@@ -10,6 +10,7 @@ struct Particle{
     vec4 velocity;
     vec4 startPosition;
     vec4 normal;
+    vec4 vorticity;
     float temperature;
     uint memoryPosition;
     float density;
@@ -50,6 +51,7 @@ uniform float temperature;
 //float radius;
 
 const float PI = 3.14159265f;
+const float beta = 5; // 0-1
 
 vec3 gradientWeight(vec3 relativePosition)
 {
@@ -68,6 +70,8 @@ void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
     vec3 normal = vec3(0.f);
+    vec3 k = vec3(0.f);
+
     if (id >= particleCount)
     {
         return;
@@ -92,5 +96,10 @@ void main(void) {
 
         }
         outParticle[id].normal = vec4(normal, 0.f);
+
+        k = inParticle[id].vorticity.xyz * gradientWeight(inParticle[id].velocity.xyz);
+
+        outParticle[id].vorticity = vec4((k + beta * cross(normal, externalForce.xyz)),0.f) * deltaTime;
+
     }
 }

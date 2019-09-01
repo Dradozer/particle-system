@@ -10,6 +10,7 @@ struct Particle{
     vec4 velocity;
     vec4 startPosition;
     vec4 normal;
+    vec4 vorticity;
     float temperature;
     uint memoryPosition;
     float density;
@@ -101,6 +102,7 @@ void main(void) {
     vec3 pressure = vec3(0.f);
     vec3 viscosity = vec3(0.f);
     vec3 buoyancy = vec3(0.f);
+    vec3 vorticity = vec3(0.f);
 
     if (id >= particleCount)
     {
@@ -126,6 +128,9 @@ void main(void) {
                         * ((inParticle[j].velocity.xyz - inParticle[id].velocity.xyz)/ inParticle[j].density)
                         * laplaceWeight(inParticle[id].position.xyz - inParticle[j].position.xyz);
 
+                        vorticity += (cross(inParticle[j].vorticity.xyz, inParticle[id].position.xyz - inParticle[j].position.xyz))
+                        * Weight(inParticle[id].position.xyz - inParticle[j].position.xyz);
+
                         if (inParticle[id].density > 28){
                             temperature += ((particleSettings.x / (inParticle[id].density * inParticle[j].density))
                             * heatFlow
@@ -148,6 +153,6 @@ void main(void) {
 //        buoyancy = buoyCoeff * 10.5 * upDirection * inParticle[id].density;
         buoyancy = buoyCoeff * temperature * upDirection * inParticle[id].density;
         viscosity *= kinematicViscosity;
-        outParticle[id].velocity = inParticle[id].velocity + vec4(deltaTime * ( pressure +  viscosity + (buoyancy + externalForce.xyz * inParticle[id].density)* 0.1), 0.f);
+        outParticle[id].velocity = inParticle[id].velocity + vec4(deltaTime * ( vorticity + pressure +  viscosity + (buoyancy + externalForce.xyz * inParticle[id].density)* 0.1), 0.f);
     }
 }

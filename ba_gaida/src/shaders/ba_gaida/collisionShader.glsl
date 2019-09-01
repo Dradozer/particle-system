@@ -10,6 +10,7 @@ struct Particle{
     vec4 velocity;
     vec4 startPosition;
     vec4 normal;
+    vec4 vorticity;
     float temperature;
     uint memoryPosition;
     float density;
@@ -33,7 +34,7 @@ uniform ivec4 origin = ivec4(1);
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
-    const float energyloss = 0.2;
+    const float energyloss = 0.5;
     if(id >= particleCount)
     {
         return;

@@ -1,15 +1,40 @@
 \documentclass[intern,palatino]{cgBA}
 
 \author{Sebastian Gaida}
-\title{Simulation von Rauch mittels Partikelsystem}
+\title{Simulation von Rauch}
 \zweitgutachter{Bastian Krayer MSc. }
 \zweitgutachterInfo{(Institut für Computervisualistik, AG Computervisualistik)}
 \externLogo{7.46cm}{logos/UniLogoNeu}
 \externName{DIN: NewTechnologies}
 
+\sloppy
+
 \usepackage{acronym}
 \usepackage{hyperref}
 \usepackage{url}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\makeatletter 
+\g@addto@macro\UrlBreaks{ 
+	\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j 
+	\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t 
+	\do\u\do\v\do\w\do\x\do\y\do\z\do\&\do\1\do\2\do\3 
+	\do\4\do\5\do\6\do\7\do\8\do\9\do\0} 
+% \def\do@url@hyp{\do\-} 
+\makeatother 
+
+\lstset{language=C++,
+	frame=tb,
+	tabsize=4,
+	showstringspaces=false,
+	numbers=left%,
+	%commentstyle=\color{olive},
+	%keywordstyle=\color{blue},
+	%stringstyle=\color{red}
+}
+
+\setcounter{secnumdepth}{4}
 
 \begin{document}
 
@@ -41,14 +66,14 @@ Zunächst einmal bedanke ich mich bei Prof. Dr.-Ing. Stefan Müller und Bastian 
 \newline
 Außerdem möchte ich mich bei Pascal Bendler bedanken, der mich tatkräftig beim debugging unterstützt hat.
 \newline
-Das größte Dankeschön geht aber an den Freund, der mich immer wieder dazu motiviert hat weiter zu arbeiten und nach alternativen Möglichkeiten zu suchen.
+Ein großes Dankeschön geht auch an den Freund, der mich immer wieder dazu motiviert hat weiter zu arbeiten und nach alternativen Möglichkeiten zu suchen.
 \newpage
 
 %-------------------------------------------------------------------------------
 
 \section{Einleitung}
 
-Das Ziel dieser Arbeit ist es eine möglichst physikalisch korrekte Rauchsimulation zu implementieren. Dazu nutzen wir, dass sich Rauch wie ein Fluid verhält \cite{stam2003real}, dabei wird die Simulation der physikalischen Basis von Fluiden angenähert. Hierbei wird in dieser Implementation ein Partikelsystem zur Berechnung der physikalischen Eigenschaften genutzt. Aufgrund des hohen Rechenaufwandes einer Rauchsimulation wurde diese meist nur im Offline-Rendering genutzt. Echtzeitanwendungen wie Spiele-Engines nutzen mittlerweile dabei die Architektur der \ac{abk:GPU} aus um diesen Aufwand parallel abzuarbeiten. 
+Das Ziel dieser Arbeit ist es eine möglichst physikalisch korrekte Rauchsimulation zu implementieren. Dazu nutzen wir, dass sich Rauch wie ein Fluid verhält \cite{stam2003real}, dabei wird die Simulation der physikalischen Basis von Fluiden angenähert. Hierbei wird in dieser Implementation ein Partikelsystem zur Berechnung der physikalischen Eigenschaften genutzt. Echtzeitanwendungen wie die Unity-Engine bieten eine Partikelsimulation an, jedoch beschränkt sich diese lediglich auf das Ausstoßen von Partikeln. Dabei können Partikelinteraktionen, sowie Verhaltensmuster nicht bearbeitet werden.
 \newline \newline
 Die \acl{abk:GPU} eignet sich besonders gut zum berechnen parallelisierbarer Rechenoperationen, da sie im Vergleich zur \ac{abk:CPU}, die nur wenige Kerne besitzt, über tausend Kerne verfügt, die zwar nicht so leistungsfähig sind wie die der \ac{abk:CPU}, aber dennoch einen signifikante Steigerung der Leistung bieten.
 \newline \newline
@@ -59,22 +84,192 @@ Für die Implementation wurde \ac{abk:OGL} genutzt, welches das programmieren au
 %-------------------------------------------------------------------------------
 
 \section{State of the Art}
-\subsection{Vektorfelder}
-\subsection{Partikelsystem}
+Die Simulation von einem Systemen, zur Darstellung von Fluiden, ist ein jahrelange Herausforderung für die Computergrafik. Dabei treten immer wieder die gleichen Problemstellungen auf. Zum einen soll die Simulation physikalisch korrekt sein, um eine für den Beobachter ein möglichst schönes, sowie nachvollziehbarer Ergebnis zu bieten. Schon kleinstes Fehlverhalten können die Immersion zerstören. Andererseits soll das System auch in Echtzeit berechnet werden und dabei auf mögliche Interaktionen reagieren können. Für eine möglichst effiziente Berechnung werden verschiedene Beschleunigungsverfahren verwendet, die ein gutes Ressourcenmanagement in Form der Laufzeit sowie Speicherplatz erfordern.
+\newline \newline
+Die physikalische Grundlage, die Navier-Stokes-Gleichungen, basiert dabei auf den Gleichungen die von Claude Louis Marie Henri Navier und George Gabriel Stokes im 19. Jahrhundert aufgestellt wurden \cite{wiki:xxx}. Diese Gleichungen beschreiben die physikalischen Eigenschaften von Fluiden und werden für die Simulation dieser angewendet. Diese Formeln werden je nach Fluid noch angepasst um speziellere Eigenschaften darzustellen.
+\newline
+Diese Simulation wird meist in Form eines rasterbasierenden Verfahren oder eines Partikelsystems implementiert.\newline
 
 %-------------------------------------------------------------------------------
 
-\section{Fluidsimulation}
+\subsection{Vektorfeldverfahren}
+Beim Vektorfeldverfahren wird die Umgebung in gleichgroße Voxels unterteilt, auch bekannt als Voxelgrid oder eulersches Grid. Bei diesem Vektorfeldverfahren betrachtet man die Partikel nicht direkt sondern einen Masse die in Form des Voxels generalisiert wird. Dabei werden Parameter wie Dichte, Druck und Geschwindigkeit in dem jeweiligen Voxel gespeichert. Die Berechnungen lassen sich in Advektion, Druck, Diffusion und Beschleunigung unterteilen. Die Advektion beschreibt dabei den Strömungstransport, das Übertragen der Bewegungskraft auf ein anliegendes Objekt. Druck wiederum beschreibt die Übertragung von Kräften an benachbarte Partikel, wodurch bei einem zu hohen Druck eine Kraft vom Zentrum weg entsteht und wiederum bei einem Unterdruck eine Kraft zum Zentrum hin. Die Diffusion beschreibt die Viskosität des Fluids. Je nach Anpassung der breitet sich das Fluid stark aus wie zum Beispiel Wasser oder weniger stark wie Lava aus.
+Bei Beschleunigung handelt es sich um externe Kräfte die auf das Fluid einwirken, dies ist vergleichbar mit der Schwerkraft oder einer Windgeschwindigkeit. Zur Beschleunigung zählt man bei den Vektorfeldern aber auch die Wirbelstärke, die bei Rauch die typischen Turbulenzen verursacht und damit einen signifikanten Einfluss auf die Erscheinung hat.
+\newline
+Wegen der physikalisch präziseren Ergebnisse eignet sich diese Verfahren besonders für Strömungsimulationen in Innenräumen \cite{franz}, da man Kraft dem System zuführt, diese Kraft wird daraufhin eingefärbt und spiegelt dabei das Fluid wieder.
+\newline
+Bei dieser Methode stellt das Lösen der Gleichungen und die Visualisierung der Ergebnisse die größte Schwierigkeit da. Die Visualisierung erweist sich als Hindernis, da in jedem Voxel Kräfte vorhanden sind. Dabei unterscheidet man in dem Grid unter einem gefärbten Teil und einem nicht sichtbaren Teil der meist Luft repräsentiert \ref{img:Vertexfeld}. Zur Darstellung des Fluids wird meist Volumerendering genutzt. Außerdem ist, wegen der Grid-Architektur des Verfahrens, der Rechenaufwand hoch und lässt sich nur schwer verbessern.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=8.5cm]{Bilder/vektorfeld.jpg}
+	\caption[Fluidsimulation in Form des Vektorfeldverfahren \newline Quelle:\url{https://thumbs.gfycat.com/CelebratedElasticHartebeest-poster.jpg}]{Fluidsimulation in Form des Vektorfeldverfahren}
+	\label{img:Vertexfeld}
+\end{figure}
+
+%-------------------------------------------------------------------------------
+
+\subsection{Partikelsystem}
+
+Bei dem Verfahren einer Partikelsimulation werden die Partikel einzeln betrachtet, dies bezeichnet man auch lagrangiansches Verfahren. Diese speichern Parameter wie Position und Geschwindigkeit selber ab. Die Berechnungen beschränken sich dabei auf die Dichte, Druck, Viskosität, Auftrieb und Wirbelstärke.
+Bei den Berechnungen werden die Nachbarpartikel mit einbezogen. Die Dichte beschreibt dabei wie viele Nachbarpartikel Einfluss auf dieses bestimmte Partikel haben und wird als Gewichtung für die Berechnung der Kräfte verwendet. Das typische Verhalten des Fluides, wird aber durch das Zusammenspiel der Kräfte Drucke und Viskosität erzeugt. Dabei sorgt der Druck dafür, dass Partikel sich voneinander wegbewegen und die Viskosität wirkt dem entgegen und führt das Anziehen von Partikel hervor. Der Auftrieb wiederum lässt sich über die Temperatur des Rauches bestimmen, welche je nach Dichte steigt oder sinkt. Zum anderen lässt sich aber die Wirbelstärke nicht so einfach berechnen und stellen somit ein Problem in der Forschung dar.
+Für die Berechnungen werden die Nachbarpartikel benötigt, welche aber nicht für jeden Partikel bekannt sind und es entsteht ein großer Aufwand, wenn man aus Einfachheit alle Partikel mit einbezieht. Hierbei entstehen viele Möglichkeiten das System zu beschleunigen.
+\newline
+Der Ansatz eines Partikelsystems eignet sich hervorragen zum einbinden in eine Echtzeitanwendung, wie ein Computerspiel oder einer Engine, da man mit der Partikelanzahl  die Performance beeinflussen kann. Beim Reduzieren der Partikel sollte eine Anpassung der Parameter erfolgen, da dies sonst einen signifikanten Einfluss auf das Verhalten des Fluids hat.
+\newline
+Die größten Schwierigkeiten bei einer Rauchsimulation in Form eines Partikelsystems entstehen durch Beschleunigung der Nachbarschaftssuche, sowie den Auftrieb und die Wirbelstärke.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=8.5cm]{Bilder/partikelsystem.jpg}
+	\caption[Partikelsimulation von Wasser \newline \url{https://i.ytimg.com/vi/DhNt_A3k4B4/maxresdefault.jpg}]{Partikelsimulation von Wasser}
+	\label{img:Partikelsystem}
+\end{figure}
+
+%-------------------------------------------------------------------------------
+
+\section{Rauchsimulation}
+
+Zur Simulation von Rauch wurde ein Partikelsystem implementiert, wessen physikalische Grundlage auf dem \ac{abk:SPH} Verfahren basiert, welches Müller \cite{muller2003particle} 2003 zur Simulation von Fluiden genutzt hat. Dabei handelt es sich um eine Abwandelung der Navier-Stokes-Gleichungen für die Berechnung der Dichte, Druckes und Viskosität. Diese wurden zur Verwendung in einem \ac{abk:SPH} angepasst. Der Auftrieb, sowie die Temperaturberechung, stammen aus einem Paper von Ren \cite{ren2016fast}. Die größten Probleme bei der Implementation bereitete aber die Wirbelstärke, Ren und Pfaff \cite{pfaff2012lagrangian} boten eine Formel zur Berechnung dar, welche aber nicht das gewünschte Ergebnis lieferte.
+
+\begin{figure}
+	\begin{lstlisting}
+for all particle i do
+	get neighbor
+	calculate density
+end for
+for all particle i do
+	calculate pressure
+end for
+
+for all particle i do
+	get neighbor
+	calculare normal
+end for
+for all particle i do
+	calculate vorticity
+end for
+
+for all particle i do
+	get neighbor
+	calculate pressure force
+	calculate viscosity force
+	calculate vorticity force
+	calculate temperature
+end for
+for all particle i do
+	calculate temperature cooldown
+	calculate buoyancy force
+	update velocity
+end for
+
+for all particle i do
+	apply velocity on position
+end for
+
+	\end{lstlisting}
+	\caption{Updateschleife der Physik}
+	\label{code:test}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\begin{tabular}{ | c | p{8cm} | c |}
+			\hline
+			Symbol & Bedeutung & Format  \\ \hline
+			$m_i $ 				&  Masse des Partikel i								&	float	\\ \hline
+			$r_i $		 		&  Position des Partikel i							&	vec3	\\ \hline
+			$r_{ij}$ 			&  Abstandsvektor von $r_i - r_j$					&	vec3	\\ \hline
+			$v_i$	 			&  Geschwindigkeitsvektor des Partikel i			&	vec3	\\ \hline
+			$W_{ij} $ 			&  Gewichtungsfunktion, kurz für $W (r_i - r_j)$	&	float	\\ \hline
+			$\nabla W_{ij} $ 	&  Gradienten-Gewichtungsfunktion					&	vec3	\\ \hline
+			$\nabla^2 W_{ij} $ 	&  Laplace-Gewichtungsfunktion						&	float	\\ \hline
+			$\rho_i $ 			&  Dichte des Partikel i		 					&	float	\\ \hline
+			$\rho_0 $ 			&  Ruhedichte im Allgemeinen						&	float	\\ \hline
+			$k $ 				&  Steifheit des Fluids			 					&	float	\\ \hline
+			$p_i $ 				&  Druck des Partikel i								&	float	\\ \hline
+			$f^{pressure}_i $	&  Druckkraft des Partikel i						&	vec3	\\ \hline
+			$\mu $ 				&  Viskosität des Fluids							&	float	\\ \hline
+			$\nu_i $ 			&  Viskosität des Partikel i						&	float	\\ \hline
+			$f^{viscosity}_i $ 	&  Viskositätskraft des Partikel i					&	vec3	\\ \hline
+			$T_i $ 				&  Temperatur des Partikel i						&	float	\\ \hline
+			$D_r $ 				&  Zeit zum halbieren der Temperatur				&	float	\\ \hline
+			$b $ 				&  Up-Vektor										&	vec3	\\ \hline
+			$D_c $ 				&  Wärmeleitfähigkeitsfunktion des Fluids			&	float	\\ \hline
+			$c $ 				&  Wärmeleitfähigkeit								&	float	\\ \hline
+			$C_b $ 				&  Auftriebs-Koeffizient							&	float	\\ \hline
+			$a_{b,i} $ 	  		&  Auftriebsbeschleunigung							&	vec3	\\ \hline
+			$n_i $ 				&  Normale des Partikel i							&	vec3	\\ \hline
+			$C_N $ 				&  Nutzer definierter Schwellenwert					&	float	\\ \hline
+			$y $ 				&  Zahl die nahezu 0 ist					 		&	float	\\ \hline
+			$f^{buoyancy}_i $ 	&  Auftriebskraft des Partikel i					&	vec3	\\ \hline
+			$\beta $ 			&  Nutzer definierter Wert							&	float	\\ \hline
+			$\omega_i $ 		&  Wirbelstärke des Partikel i						&	vec3	\\ \hline
+			$f^{vortex}_i $ 	&  Wirbelstärkenkraft des Partikel i				&	vec3	\\ \hline
+			$g $ 				&  Gravitationskraft								&	vec3	\\ \hline
+			$\delta t $ 		&  Zeit seit letzter Iteration 						&	float	\\ \hline
+			$\delta $ 			&  veränderte Wert im Abstand von $\delta t$ 		&			\\ \hline
+			$h $ 				&  Radius											&	float	\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Bedeutung aller Symbole der Berechnungen}
+	\label{tab:Symbole}
+\end{figure}
+
+%-------------------------------------------------------------------------------
+
+\subsection{Gewichtungsfunktionen}
+
+%-------------------------------------------------------------------------------
+
 \subsection{Dichte}
-\subsection{Viskosität}
+
+%-------------------------------------------------------------------------------
+
 \subsection{Druck}
+
+%-------------------------------------------------------------------------------
+
+\subsection{Viskosität}
+
+%-------------------------------------------------------------------------------
+
 \subsection{Auftrieb}
 
 %-------------------------------------------------------------------------------
 
+\subsection{Wirbelstärke}
+
+%-------------------------------------------------------------------------------
+
+\subsection{externe Kräfte}
+
+%-------------------------------------------------------------------------------
+
+\section{Implementierung und Aufbau}
+
+%-------------------------------------------------------------------------------
+
 \section{Beschleunigung}
-\subsection{Grid-basiertes-Verfahren}
+
+%-------------------------------------------------------------------------------
+
+\subsection{gridbasierte Nachbarschaftssuche}
+
+%-------------------------------------------------------------------------------
+
 \subsection{Sortierverfahren}
+
+%-------------------------------------------------------------------------------
+
+\subsection{Countigsort}
+
+%-------------------------------------------------------------------------------
+
+\subsection{Speicherverfahren}
+
+%-------------------------------------------------------------------------------
+
 \subsection{Vergleich}
 
 %-------------------------------------------------------------------------------
@@ -97,6 +292,8 @@ Für die Implementation wurde \ac{abk:OGL} genutzt, welches das programmieren au
 
 %-------------------------------------------------------------------------------
 
+\newpage
+\listoffigures
 \newpage
 \bibliography{lib}
 

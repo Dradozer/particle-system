@@ -10,6 +10,7 @@ struct Particle{
     vec4 velocity;
     vec4 startPosition;
     vec4 normal;
+    vec4 vorticity;
     float temperature;
     uint memoryPosition;
     float density;
@@ -36,7 +37,8 @@ void main(void) {
     } else
     {
         outParticle[id].position = vec4(inParticle[id].startPosition.xyz,0.f);
-        outParticle[id].velocity = vec4(0.f,0.f,0.f,0.f);
+        outParticle[id].velocity = vec4(0.f);
+        outParticle[id].vorticity = vec4(0.f);
         outParticle[id].temperature = inParticle[id].startPosition.w;
     }
 }

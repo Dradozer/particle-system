@@ -366,6 +366,8 @@ void ba_gaida::ParticleSystem::initParticle()
 
         m_particle[i].temperature = m_temperature;
 
+        m_particle[i].vorticity = glm::vec4(0.f);
+
         if (i == m_particleCount - 1)
         {
             std::cout << "Successfully generated: \t" << m_particleCount << " Particle" << std::endl;
