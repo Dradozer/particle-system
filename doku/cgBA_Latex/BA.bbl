@@ -23,6 +23,13 @@
 \newblock {In: }\emph{Computer Animation and Simulation’96}.
 \newblock Springer, 1996, S. 61--76
 
+\bibitem[Hei10]{nvidia2}
+\textsc{Heinrich}, Alan:
+\newblock \emph{Smoothed Particle Hydrodynamics Webcast}.
+\newblock \url{https://youtu.be/SQPCXzqH610}.
+\newblock \,Version:\,2010. --
+\newblock [Online; Stand 10. September 2019]
+
 \bibitem[Hoe14]{nvidia}
 \textsc{Hoetzlein}, Rama~C.:
 \newblock \emph{FAST FIXED-RADIUS NEAREST NEIGHBORS: INTERACTIVE

@@ -10,4 +10,5 @@
 \contentsline {figure}{\numberline {9}{\ignorespaces Anpassbare Variablen per ImGui\relax }}{15}{figure.caption.11}% 
 \contentsline {figure}{\numberline {10}{\ignorespaces Partikel SSBOs zum lesen und schreiben\relax }}{16}{figure.caption.12}% 
 \contentsline {figure}{\numberline {11}{\ignorespaces Partikel im Grid mit einem Radius von 1\relax }}{18}{figure.caption.13}% 
-\contentsline {figure}{\numberline {12}{\ignorespaces registrieren der Partikel im Grid mit CubeID-Funktion \relax }}{19}{figure.caption.14}% 
+\contentsline {figure}{\numberline {12}{\ignorespaces Speichern der Partikel-IDs im Grid \relax }}{19}{figure.caption.14}% 
+\contentsline {figure}{\numberline {13}{\ignorespaces registrieren der Partikel im Grid mit CubeID-Funktion \relax }}{20}{figure.caption.15}% 

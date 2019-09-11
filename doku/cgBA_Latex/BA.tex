@@ -487,12 +487,23 @@ In Abschnitt \ref{counting} wird genauer auf ein solches Verfahren so wie die Im
 
 \subsection{Speicherverfahren}\label{speicher}
 
+Da beim Speicherverfahren ein großer Aufwand ans Speicherplatz auf der GPU benötigt wird, dieser aber begrenzt ist und deshalb nicht für große Simulationen verwendbar ist, wird eine Begrenzung des genutzten Speicherplatzes angewendet. Heinrich \cite{nvidia2} beschreibt, dass bei der Implementation von Müllers \cite{muller2003particle} Fluidsimulation nur 32 Nachbarnpartikel für eine korrekte Simulation von Nöten sind, die einen Einfluss auf den betrachteten Partikel haben. Da ein ausgeglichener Einfluss auf diesem Partikel herrschen soll, wurden die Nachbarn nicht auf 32 Partikel beschränkt, sondern auf 16 Partikel pro Gridbehälter. Dadurch können maximal 432 Partikel in die Berechnungen mit einbezogen werden. Wobei wie man in Abbildung \ref{img:grid} sehen kann nicht alle Gridbehälter durch die Gewichtungsfunktionen \ref{kernel} mit einbezogen werden. Im Durchschnitt haben pro Nachbarschaftssuche ca. 138 Nachbarpartikel Einfluss auf die Berechnung.
+\newline
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.3\columnwidth]{Bilder/StoringLable.jpg}
+	\caption{Speichern der Partikel-IDs im Grid }
+	\label{img:Storinglable}
+\end{figure}
+
 %-------------------------------------------------------------------------------
 \subsection{Countigsort}\label{counting}
 
-
+%-------------------------------------------------------------------------------
 
 \subsubsection{Coutingsort - Theorie}
+
+%-------------------------------------------------------------------------------
 
 \subsubsection{Coutingsort - Implementierung}
 \begin{figure}[H]
