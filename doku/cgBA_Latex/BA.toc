@@ -6,18 +6,19 @@
 \contentsline {subsection}{\numberline {3.2}Partikelsystem}{5}{subsection.3.2}% 
 \contentsline {section}{\numberline {4}Rauchsimulation}{6}{section.4}% 
 \contentsline {subsection}{\numberline {4.1}Gewichtungsfunktionen}{9}{subsection.4.1}% 
-\contentsline {subsection}{\numberline {4.2}Dichte}{9}{subsection.4.2}% 
-\contentsline {subsection}{\numberline {4.3}Druck}{9}{subsection.4.3}% 
-\contentsline {subsection}{\numberline {4.4}Viskosit\IeC {\"a}t}{9}{subsection.4.4}% 
-\contentsline {subsection}{\numberline {4.5}Auftrieb}{9}{subsection.4.5}% 
-\contentsline {subsection}{\numberline {4.6}Wirbelst\IeC {\"a}rke}{9}{subsection.4.6}% 
-\contentsline {subsection}{\numberline {4.7}externe Kr\IeC {\"a}fte}{9}{subsection.4.7}% 
-\contentsline {section}{\numberline {5}Implementierung und Aufbau}{9}{section.5}% 
-\contentsline {section}{\numberline {6}Beschleunigung}{9}{section.6}% 
-\contentsline {subsection}{\numberline {6.1}gridbasierte Nachbarschaftssuche}{9}{subsection.6.1}% 
-\contentsline {subsection}{\numberline {6.2}Sortierverfahren}{9}{subsection.6.2}% 
-\contentsline {subsection}{\numberline {6.3}Countigsort}{9}{subsection.6.3}% 
-\contentsline {subsection}{\numberline {6.4}Speicherverfahren}{9}{subsection.6.4}% 
-\contentsline {subsection}{\numberline {6.5}Vergleich}{9}{subsection.6.5}% 
-\contentsline {section}{\numberline {7}Ergebnis}{9}{section.7}% 
-\contentsline {section}{\numberline {8}Fazit}{9}{section.8}% 
+\contentsline {subsection}{\numberline {4.2}Dichte}{11}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4.3}Druck}{12}{subsection.4.3}% 
+\contentsline {subsection}{\numberline {4.4}Viskosit\IeC {\"a}t}{13}{subsection.4.4}% 
+\contentsline {subsection}{\numberline {4.5}Auftrieb}{13}{subsection.4.5}% 
+\contentsline {subsection}{\numberline {4.6}Wirbelkraft}{14}{subsection.4.6}% 
+\contentsline {subsection}{\numberline {4.7}Update Kr\IeC {\"a}fte}{15}{subsection.4.7}% 
+\contentsline {section}{\numberline {5}Implementierung}{16}{section.5}% 
+\contentsline {section}{\numberline {6}Beschleunigung}{17}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}gridbasierte Nachbarschaftssuche}{17}{subsection.6.1}% 
+\contentsline {subsection}{\numberline {6.2}Speicherverfahren}{19}{subsection.6.2}% 
+\contentsline {subsection}{\numberline {6.3}Countigsort}{19}{subsection.6.3}% 
+\contentsline {subsubsection}{\numberline {6.3.1}Coutingsort - Theorie}{19}{subsubsection.6.3.1}% 
+\contentsline {subsubsection}{\numberline {6.3.2}Coutingsort - Implementierung}{19}{subsubsection.6.3.2}% 
+\contentsline {subsection}{\numberline {6.4}Vergleich}{19}{subsection.6.4}% 
+\contentsline {section}{\numberline {7}Ergebnis}{19}{section.7}% 
+\contentsline {section}{\numberline {8}Fazit}{19}{section.8}% 

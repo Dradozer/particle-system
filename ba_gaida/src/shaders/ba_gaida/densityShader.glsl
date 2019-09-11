@@ -67,7 +67,7 @@ float Weight(vec3 relativePosition)
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
     uint neighborGrid;
-    float density = 0.1;
+    float density = 0.f;
 
     if (id >= particleCount)
     {
@@ -82,7 +82,8 @@ void main(void) {
 
                     neighborGrid = cubeID(inParticle[id].position + vec4(x, y, z, 0));
                     int count = 0;
-                    for (int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 16; j++){
+                    for (int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut
+                    +  grid[neighborGrid].particlesInGrid && count <= 16; j++){
                         if(j == id){
                             continue;
                         }
