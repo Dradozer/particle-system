@@ -10,6 +10,7 @@ struct Particle{
     vec4 velocity;
     vec4 startPosition;
     vec4 normal;
+    vec4 vorticity;
     float temperature;
     uint memoryPosition;
     float density;

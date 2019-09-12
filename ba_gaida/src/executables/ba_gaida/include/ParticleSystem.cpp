@@ -363,6 +363,7 @@ void ba_gaida::ParticleSystem::initParticle()
 
 //        m_particle[i].velocity = glm::vec4(vel_x(rdm), vel_y(rdm), vel_z(rdm), 0.f);
         m_particle[i].velocity = glm::vec4(0.f);
+        m_particle[i].vorticity = glm::vec4(1.f);
 
         m_particle[i].temperature = m_temperature;
 
