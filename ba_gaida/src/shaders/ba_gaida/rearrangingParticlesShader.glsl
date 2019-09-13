@@ -56,6 +56,7 @@ void main(void) {
         return;
     } else
     {
-        outParticle[grid[cubeID(inParticle[id].position)].currentSortOutPut + inParticle[id].memoryPosition] = inParticle[id];
+        outParticle[grid[cubeID(inParticle[id].position)].currentSortOutPut
+        + inParticle[id].memoryPosition] = inParticle[id];
     }
 }

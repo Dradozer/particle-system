@@ -539,12 +539,125 @@ RadixSort hat einen Aufwand von $O(l n)$, wobei l für die Anzahl der Stellen st
 %-------------------------------------------------------------------------------
 
 \subsection{Countigsort}\label{counting}
-CountingSort ist ein paralleler und nicht vergleichsbasierter Algorithmus, dabei erlaubt er uns das Sortieren von 
-\cite{counting}
+Countingsort ist ein nicht vergleichsbasierter Algorithmus, dies erlaubt eine parallele Implementation bei der die Laufzeit unabhängig von der Zuordnung des Arrays ist und damit eine festen Aufwand hat.
+Die einzelnen Schritte des Sortieralgorithmus erfolgen nach Demaine \cite{counting}.
+\newline
+Für den Countigsort wird ein Array mit den zu sortierenden Zahlen wie in der Tabelle \ref{tab:Counting1} benötigt, dabei muss die maximale Größe des Wertes im Array bekannt sein.
+\newline
 
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{ | c || c | c | c | c | c |}
+		\hline
+		Index 				&  0 & 1 & 2 & 3 & 4 \\ \hline
+		Wert				&  8 & 2 & 5 & 3 & 5 \\
+		\hline
+	\end{tabular}
+	\caption{Ausgangsarray beim Countingsort}
+	\label{tab:Counting1}
+\end{figure}
 
+Zunächst werden dann in einem Hilfsarray die Anzahl der vorkommenden Werte bestimmt \ref{tab:Counting2}. Daraufhin wird die Summe aus allen vorherigen Anzahlen bestimmt und in das Hilfsarray geschrieben \ref{tab:Counting3}.
+\newline
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{ | c || c | c | c | c | c | c | c | c | c | c |}
+		\hline
+		Wert 				& 0	&  1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9	\\ \hline
+		Anzahl				& 0 &  0 & 1 & 1 & 0 & 2 & 0 & 0 & 1 & 0	\\
+		\hline
+	\end{tabular}
+	\caption{Anzahl der Werte im Hilfsarray}
+	\label{tab:Counting2}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{ | c || c | c | c | c | c | c | c | c | c | c |}
+		\hline
+		Wert 				& 0	&  1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9	\\ \hline
+		Anzahl				& 0 &  0 & 1 & 2 & 2 & 4 & 4 & 4 & 5 & 5	\\
+		\hline
+	\end{tabular}
+	\caption{Summe der Anzahl der Werte im Hilfsarray}
+	\label{tab:Counting3}
+\end{figure}
+
+Zu Letzt wird über die Werte des initialen Array iteriert und der Wert an die Anzahl der Summe minus 1 geschrieben, dies beruht darauf, dass die Arrays mit dem Index 0 starten und hat keinen Zusammenhang mit dem folgenden Schritt. Daraufhin wird die Summe der Anzahl bei diesem Wert um 1 verringert, aber bei den folgenden Zahlen nicht angepasst. Dadurch kann eine Zahl mehrfach vorkommen und wird trotzdem richtig einsortiert.
+\newline
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{ | c || c | c | c | c | c |}
+		\hline
+		Index 				&  0 & 1 & 2 & 3 & 4 \\ \hline
+		Wert				&  2 & 3 & 5 & 5 & 8 \\
+		\hline
+	\end{tabular}
+	\caption{vollständig sortiertes Array}
+	\label{tab:Counting4}
+\end{figure}
+
+\newpage
 %Implementierung
 %-------------------------------------------------------------------------------
+
+Bei der Implementation mussten Anpassungen zwischen dem von Hoetzlein \cite{nvidia} vorgeschlagenen Algorithmus und der Theorie von Demaine \cite{counting}. Diese erfolgten für eine schnellere und stabilere Implementation des Sortieralgorithmus, außerdem liefert Hoetzlein bloß einen groben Aufbau des Algorithmus, welcher als Grundlage des in Abbildung \ref{code:Counting} zu findenden Aufbau diente.
+\newline
+
+\begin{figure}[H]
+	\centering
+	\begin{lstlisting}
+computeshader 1
+	for all grid i do
+		reset grid
+	end for
+end computeshader 1
+computeshader 2
+	for all particles i do
+		lable Particles to Grid
+	end for
+end computeshader 2
+computeshader 3
+	for all grid i do
+		init gridBuffer
+	end for
+end computeshader 3
+for log_2(ParticleCount) do
+	computeshader 4
+		for all grid i do
+			calculate PrefixSum
+		end for
+	end computeshader 4
+	computeshader 5
+		for all grid i do
+			update gridBuffer
+		end for
+	end computeshader 5
+end for
+computeshader 6
+	for all particles i do
+		rearrange Particles
+	end for
+end computeshader 6
+	\end{lstlisting}
+	\caption{Aufbau des Implementierten Countingsort}
+	\label{code:Counting}
+\end{figure}
+\newpage
+
+Der Sortieralgorithmus beginnt mit dem zurücksetzen des Grid-SSBO \ref{img:GridStruct}. Dies dient dazu, dass die  Berechnung des vorherigen Frames keinen Einfluss hat. Dabei werden alle Variablen bis auf die $id$ zurückgesetzt, wobei die $id$ und der $previousSortOutPut$ Füllervariablen sind um die 16 Byte zu erreichen, sie haben aber noch einen Mehrwert im Debugging.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.3\columnwidth]{Bilder/GridStruct.jpg}
+	\caption{SSBO-Struct des Grids}
+	\label{img:GridStruct}
+\end{figure}
+
+Im Folgenden wird wie in Abbildung \ref{img:lable} in Zeile 60 zu sehen die Anzahl der Partikel in einem Grid gespeichtert, die Zugehörigkeit zum Grid wird über die CubeID-Funktion ermittelt. Eine atomicAdd-Funktion wird dabei durchgeführt und es wird der Wert $grid[temp].particlesInGrid$ um 1 erhöht. In $outParticle[id].memoryPosition$ wird der Wert vor der Addition gespeichert und dieser sagt aus als wievielter sich dieser Partikel im Grid registriert hat. Die Abwandelung mit dieser Variable spart beim $rearrange Particles$-Schritt kostbare Laufzeit.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.3\columnwidth]{Bilder/lable.jpg}
@@ -552,11 +665,45 @@ CountingSort ist ein paralleler und nicht vergleichsbasierter Algorithmus, dabei
 	\label{img:lable}
 \end{figure}
 
- Dabei wird wie in Abbildung \ref{img:lable} in Zeile 60 zu sehen die Anzahl der Partikel in einem Grid gespeichtert. Die atomicAdd-Funktion wird dabei durchgeführt und es wird der Wert $grid[temp].particlesInGrid$ um 1 erhöht. 
+Zum Berechnen der Prefixsum wird der parallele Scan von Nav\"{i}e nach Harris \cite{harris2007parallel} implementiert. Dieser berechnet die Prefixsum über die Summe der bisherigen Anzahl der $i - 2^d$ Nachbarn, wobei $d = 0$ to $log_2(n)-1$.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\columnwidth]{Bilder/PrefixSum.jpg}
+	\caption{paralleler Prefixsum Scan von Nav\"{i}e nach Harris \cite{harris2007parallel}}
+	\label{img:prefixsum}
+\end{figure}
+
+Um den ersten Schritt zu vereinfachen und keinen Zugriff auf Variablen zu haben, die überschrieben werden könnten, wird der Algorithmus damit initialisiert, dass die Anzahl der Partikel die sich im Grid befinden in den $currentSortOutPut$ sowie in den Gridbuffer geschrieben wird.
+\newline
+Der Gridbuffer dient in dem Fall als temporärer Buffer, der bloß eine Float-Variable speichert, damit nicht gleichzeitig aus einem Buffer die gleiche Variable gelesen und beschrieben wird.
+Dafür werden die ComputeShader zu Berechnung der Prefixsum und zum updaten des Gridbuffers im wechsel $log_2(Particleanzahl)-1$ durchgeführt. Bei der Prefixsum wird aus dem Gridbuffer die aktuelle Summe plus die Summe des $i - 2^d$ Nachbarn addiert und in dem $currentSortOutPut$ des Grid-SSBOs gespeichert. Daraufhin wird der Gridbuffer aktualisiert und es wird die Summe die in der $currentSortOutPut$ Variable steht übertragen.
+\newline
+Im letzten Schritt müssen die Partikel nur noch neu angeordnet werden. Dies müsste nach dem Algorithmus für jedes Grid sequentiell ablaufen, damit sich die Partikel nacheinander an die richtige Position schreiben. Dies entspricht dem Schritt von \ref{tab:Counting3} zu \ref{tab:Counting4}.
+\newline
+Um diesen sequentiellen Prozess zum umgehen wurde aber im Vorhinein bereits in der $outParticle[id].memoryPosition$ die Position des Partikels im Grid bestimmt. Deshalb können die Partikel wie in \ref{img:rearrange} zu sehen, sich bloß an die entsprechende Speicherstelle schreiben. Dadurch befinden sich nun alle Partikel die in einem Grid sind in aufeinanderfolgenden Speicherplätzen und verhindert damit scattered reads.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.3\columnwidth]{Bilder/rearrange.jpg}
+	\caption{umorganisieren der Partikel im Speicher}
+	\label{img:rearrange}
+\end{figure}
+
+Das Aufrufen der Nachbarpartikel erfolgt daraufhin wie zum Beispiel bei der Normalenberechnung \ref{img:normal}. Dabei wird zunächst die $id$ des Nachbargrids über die $CubeID$-Funktion ermittelt. Daraufhin wird der $currentSortOutPut$ des Nachbargrids, welcher dem ersten Partikel in dem Grid entspricht, als initial Wert der For-Schleife genommen. Diese läuft bis die Summe des $currentSortOutPut$ plus die $particlesinGrid$ erreicht worden sind oder eine andere Abbruchbedingung eintritt.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.3\columnwidth]{Bilder/normal.jpg}
+	\caption{Berechnung der Normalen einen Partikel}
+	\label{img:normal}
+\end{figure}
 
 %-------------------------------------------------------------------------------
 
 \subsection{Vergleich}\label{vergleich}
+
+
 
 %-------------------------------------------------------------------------------
 
@@ -568,7 +715,6 @@ CountingSort ist ein paralleler und nicht vergleichsbasierter Algorithmus, dabei
 
 %-------------------------------------------------------------------------------
 
-%-------------------------------------------------------------------------------
 
 \newpage
 \listoffigures

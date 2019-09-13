@@ -45,6 +45,12 @@
 \newblock \,Version:\,2014. --
 \newblock [Online; Stand 10. September 2019]
 
+\bibitem[HSO07]{harris2007parallel}
+\textsc{Harris}, Mark ; \textsc{Sengupta}, Shubhabrata  ; \textsc{Owens},
+  John~D.:
+\newblock Parallel prefix sum (scan) with CUDA.
+\newblock {In: }\emph{GPU gems} 3 (2007), Nr. 39, S. 851--876
+
 \bibitem[IOS{\etalchar{+}}14]{ihmsen2014sph}
 \textsc{Ihmsen}, Markus ; \textsc{Orthmann}, Jens ; \textsc{Solenthaler},
   Barbara ; \textsc{Kolb}, Andreas  ; \textsc{Teschner}, Matthias:

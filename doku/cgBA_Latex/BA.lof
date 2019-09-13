@@ -13,4 +13,13 @@
 \contentsline {figure}{\numberline {12}{\ignorespaces Speichern der Partikel-IDs im Grid \relax }}{19}{figure.caption.14}% 
 \contentsline {figure}{\numberline {13}{\ignorespaces Unsortierter Speicher beim Speicherverfahren\relax }}{20}{figure.caption.15}% 
 \contentsline {figure}{\numberline {14}{\ignorespaces sortierter Speicher nach Sortieralgorithmus\relax }}{20}{figure.caption.16}% 
-\contentsline {figure}{\numberline {15}{\ignorespaces registrieren der Partikel im Grid mit CubeID-Funktion \relax }}{21}{figure.caption.17}% 
+\contentsline {figure}{\numberline {15}{\ignorespaces Ausgangsarray beim Countingsort\relax }}{21}{figure.caption.17}% 
+\contentsline {figure}{\numberline {16}{\ignorespaces Anzahl der Werte im Hilfsarray\relax }}{21}{figure.caption.18}% 
+\contentsline {figure}{\numberline {17}{\ignorespaces Summe der Anzahl der Werte im Hilfsarray\relax }}{21}{figure.caption.19}% 
+\contentsline {figure}{\numberline {18}{\ignorespaces vollst\IeC {\"a}ndig sortiertes Array\relax }}{21}{figure.caption.20}% 
+\contentsline {figure}{\numberline {19}{\ignorespaces Aufbau des Implementierten Countingsort\relax }}{22}{figure.caption.21}% 
+\contentsline {figure}{\numberline {20}{\ignorespaces SSBO-Struct des Grids\relax }}{23}{figure.caption.22}% 
+\contentsline {figure}{\numberline {21}{\ignorespaces registrieren der Partikel im Grid mit CubeID-Funktion \relax }}{23}{figure.caption.23}% 
+\contentsline {figure}{\numberline {22}{\ignorespaces paralleler Prefixsum Scan von Nav\"{i}e nach Harris \cite {harris2007parallel}\relax }}{24}{figure.caption.24}% 
+\contentsline {figure}{\numberline {23}{\ignorespaces umorganisieren der Partikel im Speicher\relax }}{25}{figure.caption.25}% 
+\contentsline {figure}{\numberline {24}{\ignorespaces Berechnung der Normalen einen Partikel\relax }}{25}{figure.caption.26}% 

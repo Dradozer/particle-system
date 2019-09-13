@@ -83,11 +83,13 @@ void main(void) {
                 for (int z = -1; z <= 1; z++){
                     neighborGrid = cubeID(inParticle[id].position + vec4(x, y, z, 0));
                     int count = 0;
-                    for (int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut +  grid[neighborGrid].particlesInGrid && count <= 16; j++){
+                    for (int j = grid[neighborGrid].currentSortOutPut; j < grid[neighborGrid].currentSortOutPut
+                    +  grid[neighborGrid].particlesInGrid && count <= 16; j++){
                         if(j == id){
                             continue;
                         }
-                        normal += (particleSettings.x / inParticle[j].density)* gradientWeight(inParticle[id].position.xyz - inParticle[j].position.xyz);
+                        normal += (particleSettings.x / inParticle[j].density)
+                        * gradientWeight(inParticle[id].position.xyz - inParticle[j].position.xyz);
                         count++;
                     }
                 }
