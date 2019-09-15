@@ -703,8 +703,11 @@ Das Aufrufen der Nachbarpartikel erfolgt daraufhin wie zum Beispiel bei der Norm
 
 \subsection{Vergleich}\label{vergleich}
 
-
-
+Die beiden Beschleunigungsverfahren bieten auf Kosten von Speicherplatz oder Laufzeit für das Sortieren eine sehr starke Verkürzung der Laufzeit. Im folgenden werden beide Beschleunigungsverfahren gegenübergestellt und mit einander auf Vor- und Nachteile untersucht.
+\newline
+Damit bei beiden Verfahren über gleich viele Partikel iteriert wird und dies damit keinen Einfluss auf die Beschleunigung hat wurde der Countingsort ebenfalls auf 16 Partikel pro Grid beschränkt \ref{img:normal}. Als Standardwerte für die Partikelanzahl wird $65.536$ und für die Gridgröße $50x50x50$ angesehen, welche bei speziellen Tests für die Partikel oder das Grid dann variieren können.
+\newline
+Die Tests wurden auf einem Desktop-Pc mit einer Intel(R) Core(TM) i5-9600k CPU @ 4.0 GHz und einer Nvidia GeForece GTX 1660 Ti Grafikkarte durchgeführt. Bei den Tests wurden die Durchschnittswerte von 20s Laufzeit pro Simulation, die jeder 10 mal wiederholt wurden, ausgewertet.
 %-------------------------------------------------------------------------------
 
 \section{Ergebnis}\label{ergebnis}

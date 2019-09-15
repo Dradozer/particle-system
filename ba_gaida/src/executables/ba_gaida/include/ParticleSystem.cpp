@@ -34,7 +34,7 @@ ba_gaida::ParticleSystem::ParticleSystem(GLFWwindow *window, const int particleC
 
     m_externalForce = glm::vec3(0.f,0.f,0.f);
 
-    m_dimensions = glm::ivec4(50);
+    m_dimensions = glm::ivec4(100);
     m_particleCount = (particleCount * 64);
     m_iterations = ceil(log(m_dimensions.x * m_dimensions.y * m_dimensions.z)/log(2))+1;
     m_step = 0;
