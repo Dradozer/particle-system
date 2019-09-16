@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.18)  14 SEP 2019 15:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.18)  16 SEP 2019 13:00
 entering extended mode
 **./BA.tex
 (BA.tex
@@ -445,6 +445,462 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks28
 \@floatcapt=\box34
 )
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgfplots\pgfplo
+ts.sty"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lots.revision.tex")
+Package: pgfplots 2018/03/28 v1.16 Data Visualization (1.16)
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/frontendlay
+er\tikz.sty"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/basiclayer\
+pgf.sty"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/utilities\p
+gfrcs.sty"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities
+\pgfutil-common.tex"
+\pgfutil@everybye=\toks29
+\pgfutil@tempdima=\dimen137
+\pgfutil@tempdimb=\dimen138
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities
+\pgfutil-common-lists.tex"))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities
+\pgfutil-latex.def"
+\pgfutil@abb=\box35
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ms\everyshi.sty
+"
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities
+\pgfrcs.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf\pgf.revis
+ion.tex")
+Package: pgfrcs 2019/08/03 v3.1.4b (3.1.4b)
+))
+Package: pgf 2019/08/03 v3.1.4b (3.1.4b)
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/basiclayer\
+pgfcore.sty"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/systemlayer
+\pgfsys.sty"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/systemlay
+er\pgfsys.code.tex"
+Package: pgfsys 2019/08/03 v3.1.4b (3.1.4b)
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities
+\pgfkeys.code.tex"
+\pgfkeys@pathtoks=\toks30
+\pgfkeys@temptoks=\toks31
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities
+\pgfkeysfiltered.code.tex"
+\pgfkeys@tmptoks=\toks32
+))
+\pgf@x=\dimen139
+\pgf@y=\dimen140
+\pgf@xa=\dimen141
+\pgf@ya=\dimen142
+\pgf@xb=\dimen143
+\pgf@yb=\dimen144
+\pgf@xc=\dimen145
+\pgf@yc=\dimen146
+\pgf@xd=\dimen147
+\pgf@yd=\dimen148
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count126
+\c@pgf@countb=\count127
+\c@pgf@countc=\count128
+\c@pgf@countd=\count129
+\t@pgf@toka=\toks33
+\t@pgf@tokb=\toks34
+\t@pgf@tokc=\toks35
+\pgf@sys@id@count=\count130
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/systemlay
+er\pgf.cfg"
+File: pgf.cfg 2019/08/03 v3.1.4b (3.1.4b)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/systemlay
+er\pgfsys-pdftex.def"
+File: pgfsys-pdftex.def 2019/08/03 v3.1.4b (3.1.4b)
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/systemlay
+er\pgfsys-common-pdf.def"
+File: pgfsys-common-pdf.def 2019/08/03 v3.1.4b (3.1.4b)
+)))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/systemlay
+er\pgfsyssoftpath.code.tex"
+File: pgfsyssoftpath.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfsyssoftpath@smallbuffer@items=\count131
+\pgfsyssoftpath@bigbuffer@items=\count132
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/systemlay
+er\pgfsysprotocol.code.tex"
+File: pgfsysprotocol.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcore.code.tex"
+Package: pgfcore 2019/08/03 v3.1.4b (3.1.4b)
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+ath.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athcalc.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athutil.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athparser.code.tex"
+\pgfmath@dimen=\dimen149
+\pgfmath@count=\count133
+\pgfmath@box=\box36
+\pgfmath@toks=\toks36
+\pgfmath@stack@operand=\toks37
+\pgfmath@stack@operation=\toks38
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athfunctions.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athfunctions.basic.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athfunctions.trigonometric.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athfunctions.random.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athfunctions.comparison.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athfunctions.base.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athfunctions.round.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athfunctions.misc.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athfunctions.integerarithmetics.code.tex")))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+athfloat.code.tex"
+\c@pgfmathroundto@lastzeros=\count134
+))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfi
+nt.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcorepoints.code.tex"
+File: pgfcorepoints.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@picminx=\dimen150
+\pgf@picmaxx=\dimen151
+\pgf@picminy=\dimen152
+\pgf@picmaxy=\dimen153
+\pgf@pathminx=\dimen154
+\pgf@pathmaxx=\dimen155
+\pgf@pathminy=\dimen156
+\pgf@pathmaxy=\dimen157
+\pgf@xx=\dimen158
+\pgf@xy=\dimen159
+\pgf@yx=\dimen160
+\pgf@yy=\dimen161
+\pgf@zx=\dimen162
+\pgf@zy=\dimen163
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcorepathconstruct.code.tex"
+File: pgfcorepathconstruct.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@path@lastx=\dimen164
+\pgf@path@lasty=\dimen165
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcorepathusage.code.tex"
+File: pgfcorepathusage.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@shorten@end@additional=\dimen166
+\pgf@shorten@start@additional=\dimen167
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcorescopes.code.tex"
+File: pgfcorescopes.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfpic=\box37
+\pgf@hbox=\box38
+\pgf@layerbox@main=\box39
+\pgf@picture@serial@count=\count135
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcoregraphicstate.code.tex"
+File: pgfcoregraphicstate.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgflinewidth=\dimen168
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcoretransformations.code.tex"
+File: pgfcoretransformations.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@pt@x=\dimen169
+\pgf@pt@y=\dimen170
+\pgf@pt@temp=\dimen171
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcorequick.code.tex"
+File: pgfcorequick.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcoreobjects.code.tex"
+File: pgfcoreobjects.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcorepathprocessing.code.tex"
+File: pgfcorepathprocessing.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcorearrows.code.tex"
+File: pgfcorearrows.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfarrowsep=\dimen172
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcoreshade.code.tex"
+File: pgfcoreshade.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@max=\dimen173
+\pgf@sys@shading@range@num=\count136
+\pgf@shadingcount=\count137
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcoreimage.code.tex"
+File: pgfcoreimage.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcoreexternal.code.tex"
+File: pgfcoreexternal.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfexternal@startupbox=\box40
+))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcorelayers.code.tex"
+File: pgfcorelayers.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcoretransparency.code.tex"
+File: pgfcoretransparency.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcorepatterns.code.tex"
+File: pgfcorepatterns.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basiclaye
+r\pgfcorerdf.code.tex"
+File: pgfcorerdf.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/modules\p
+gfmoduleshapes.code.tex"
+File: pgfmoduleshapes.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfnodeparttextbox=\box41
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/modules\p
+gfmoduleplot.code.tex"
+File: pgfmoduleplot.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/compatibili
+ty\pgfcomp-version-0-65.sty"
+Package: pgfcomp-version-0-65 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@nodesepstart=\dimen174
+\pgf@nodesepend=\dimen175
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/compatibili
+ty\pgfcomp-version-1-18.sty"
+Package: pgfcomp-version-1-18 2019/08/03 v3.1.4b (3.1.4b)
+))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/utilities\p
+gffor.sty"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/utilities\p
+gfkeys.sty"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities
+\pgfkeys.code.tex"))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/math\pgfmat
+h.sty"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+ath.code.tex"))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/utilities
+\pgffor.code.tex"
+Package: pgffor 2019/08/03 v3.1.4b (3.1.4b)
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math\pgfm
+ath.code.tex")
+\pgffor@iter=\dimen176
+\pgffor@skip=\dimen177
+\pgffor@stack=\toks39
+\pgffor@toks=\toks40
+))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/frontendl
+ayer/tikz\tikz.code.tex"
+Package: tikz 2019/08/03 v3.1.4b (3.1.4b)
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/libraries
+\pgflibraryplothandlers.code.tex"
+File: pgflibraryplothandlers.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@plot@mark@count=\count138
+\pgfplotmarksize=\dimen178
+)
+\tikz@lastx=\dimen179
+\tikz@lasty=\dimen180
+\tikz@lastxsaved=\dimen181
+\tikz@lastysaved=\dimen182
+\tikz@lastmovetox=\dimen183
+\tikz@lastmovetoy=\dimen184
+\tikzleveldistance=\dimen185
+\tikzsiblingdistance=\dimen186
+\tikz@figbox=\box42
+\tikz@figbox@bg=\box43
+\tikz@tempbox=\box44
+\tikz@tempbox@bg=\box45
+\tikztreelevel=\count139
+\tikznumberofchildren=\count140
+\tikznumberofcurrentchild=\count141
+\tikz@fig@count=\count142
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/modules\p
+gfmodulematrix.code.tex"
+File: pgfmodulematrix.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfmatrixcurrentrow=\count143
+\pgfmatrixcurrentcolumn=\count144
+\pgf@matrix@numberofcolumns=\count145
+)
+\tikz@expandcount=\count146
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/frontendl
+ayer/tikz/libraries\tikzlibrarytopaths.code.tex"
+File: tikzlibrarytopaths.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lots.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lotscore.code.tex"
+\t@pgfplots@toka=\toks41
+\t@pgfplots@tokb=\toks42
+\t@pgfplots@tokc=\toks43
+\pgfplots@tmpa=\dimen187
+\c@pgfplots@coordindex=\count147
+\c@pgfplots@scanlineindex=\count148
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/sys\
+pgfplotssysgeneric.code.tex"))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/libs
+\pgfplotslibrary.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/oldp
+gfcompatib\pgfplotsoldpgfsupp_loader.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/libraries
+\pgflibraryfpu.code.tex"))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/util
+\pgfplotsutil.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/list
+structure\pgfplotsliststructure.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/list
+structure\pgfplotsliststructureext.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/list
+structure\pgfplotsarray.code.tex"
+\c@pgfplotsarray@tmp=\count149
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/list
+structure\pgfplotsmatrix.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/numt
+able\pgfplotstableshared.code.tex"
+\c@pgfplotstable@counta=\count150
+\t@pgfplotstable@a=\toks44
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/list
+structure\pgfplotsdeque.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/util
+\pgfplotsbinary.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/util
+\pgfplotsbinary.data.code.tex"))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/util
+\pgfplotsutil.verb.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/libs
+\pgflibrarypgfplots.surfshading.code.tex"
+\c@pgfplotslibrarysurf@no=\count151
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/sys\
+pgflibrarypgfplots.surfshading.pgfsys-pdftex.def")))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/util
+\pgfplotscolormap.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots/util
+\pgfplotscolor.code.tex"))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lotsstackedplots.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lotsplothandlers.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lotsmeshplothandler.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lotsmeshplotimage.code.tex")))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lots.scaling.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lotscoordprocessing.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lots.errorbars.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lots.markers.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lotsticks.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfplots\pgfp
+lots.paths.code.tex")
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/frontendl
+ayer/tikz/libraries\tikzlibrarydecorations.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/modules\p
+gfmoduledecorations.code.tex"
+\pgfdecoratedcompleteddistance=\dimen188
+\pgfdecoratedremainingdistance=\dimen189
+\pgfdecoratedinputsegmentcompleteddistance=\dimen190
+\pgfdecoratedinputsegmentremainingdistance=\dimen191
+\pgf@decorate@distancetomove=\dimen192
+\pgf@decorate@repeatstate=\count152
+\pgfdecorationsegmentamplitude=\dimen193
+\pgfdecorationsegmentlength=\dimen194
+)
+\tikz@lib@dec@box=\box46
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/frontendl
+ayer/tikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/libraries
+/decorations\pgflibrarydecorations.pathmorphing.code.tex"))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/frontendl
+ayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex"
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/libraries
+/decorations\pgflibrarydecorations.pathreplacing.code.tex"))
+\pgfplots@numplots=\count153
+\pgfplots@xmin@reg=\dimen195
+\pgfplots@xmax@reg=\dimen196
+\pgfplots@ymin@reg=\dimen197
+\pgfplots@ymax@reg=\dimen198
+\pgfplots@zmin@reg=\dimen199
+\pgfplots@zmax@reg=\dimen256
+)
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/frontendl
+ayer/tikz/libraries\tikzlibraryplotmarks.code.tex"
+File: tikzlibraryplotmarks.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/libraries
+\pgflibraryplotmarks.code.tex"
+File: pgflibraryplotmarks.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)))
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/subfigure\subfi
+gure.sty"
+Package: subfigure 2002/07/30 v2.1.4 subfigure package
+\subfigtopskip=\skip51
+\subfigcapskip=\skip52
+\subfigcaptopadj=\dimen257
+\subfigbottomskip=\skip53
+\subfigcapmargin=\dimen258
+\subfiglabelskip=\skip54
+\c@subfigure=\count154
+\c@lofdepth=\count155
+\c@subtable=\count156
+\c@lotdepth=\count157
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+
+("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/subfigure\subfi
+gure.cfg")
+\subfig@top=\skip55
+\subfig@bottom=\skip56
+)
 ("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlan
 g1.sty"
 File: lstlang1.sty 2019/02/27 1.8b listings language file
@@ -464,21 +920,21 @@ LaTeX Warning: Unused global option(s):
 (BA.aux)
 \openout1 = `BA.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Try loading font information for T1+ppl on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 34.
 
 ("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\t1ppl.fd
 "
@@ -487,17 +943,17 @@ File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 ("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\sup
 p-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count126
-\scratchdimen=\dimen137
-\scratchbox=\box35
-\nofMPsegments=\count127
-\nofMParguments=\count128
-\everyMPshowfont=\toks29
-\MPscratchCnt=\count129
-\MPscratchDim=\dimen138
-\MPnumerator=\count130
-\makeMPintoPDFobject=\count131
-\everyMPtoPDFconversion=\toks30
+\scratchcounter=\count158
+\scratchdimen=\dimen259
+\scratchbox=\box47
+\nofMPsegments=\count159
+\nofMParguments=\count160
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count161
+\MPscratchDim=\dimen260
+\MPnumerator=\count162
+\makeMPintoPDFobject=\count163
+\everyMPtoPDFconversion=\toks46
 )
 ("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstop
 df-base.sty"
@@ -518,9 +974,10 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
+Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box36
-Package hyperref Info: Link coloring OFF on input line 31.
+\AtBeginShipoutBox=\box48
+Package hyperref Info: Link coloring OFF on input line 34.
 
 ("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\namere
 f.sty"
@@ -530,47 +987,51 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 itlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count132
+\c@section@level=\count164
 )
-LaTeX Info: Redefining \ref on input line 31.
-LaTeX Info: Redefining \pageref on input line 31.
-LaTeX Info: Redefining \nameref on input line 31.
+LaTeX Info: Redefining \ref on input line 34.
+LaTeX Info: Redefining \pageref on input line 34.
+LaTeX Info: Redefining \nameref on input line 34.
  (BA.out) (BA.out)
-\@outlinefile=\write3
-\openout3 = `BA.out'.
+\@outlinefile=\write4
+\openout4 = `BA.out'.
 
-\c@lstlisting=\count133
-LaTeX Font Info:    Try loading font information for U+msa on input line 34.
+\c@lstlisting=\count165
+ ABD: EveryShipout initializing macros
+Package pgfplots notification 'compat/show suggested version=true': document ha
+s been generated with the most recent feature set (\pgfplotsset{compat=1.16}).
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 37.
 
 ("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.f
 d"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 34.
+LaTeX Font Info:    Try loading font information for U+msb on input line 37.
 
 ("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.f
 d"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<logos/UniLogoNeu.pdf, id=91, 566.12401pt x 162.73297pt>
+<logos/UniLogoNeu.pdf, id=90, 566.12401pt x 162.73297pt>
 File: logos/UniLogoNeu.pdf Graphic file (type pdf)
 <use logos/UniLogoNeu.pdf>
-Package pdftex.def Info: logos/UniLogoNeu.pdf  used on input line 34.
+Package pdftex.def Info: logos/UniLogoNeu.pdf  used on input line 37.
 (pdftex.def)             Requested size: 211.82086pt x 60.88887pt.
 
-Overfull \hbox (169.14174pt too wide) in paragraph at lines 34--34
+Overfull \hbox (169.14174pt too wide) in paragraph at lines 37--37
 []|[]| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 34--34
+Underfull \hbox (badness 10000) in alignment at lines 37--37
 [][] 
  []
 
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 34.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 37.
 
-Overfull \hbox (28.28967pt too wide) in paragraph at lines 34--34
+Overfull \hbox (28.28967pt too wide) in paragraph at lines 37--37
 [] 
  []
 
@@ -578,37 +1039,37 @@ Overfull \hbox (28.28967pt too wide) in paragraph at lines 34--34
 
 {C:/Users/Dradozer/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./logos/
 UniLogoNeu.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 34--34
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 34--34
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
 
  []
 
 
-Overfull \hbox (48.02078pt too wide) in alignment at lines 34--34
+Overfull \hbox (48.02078pt too wide) in alignment at lines 37--37
 [][][] 
  []
 
 [1]
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 36.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 39.
  (BA.toc
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 2.
 )
-\tf@toc=\write4
-\openout4 = `BA.toc'.
+\tf@toc=\write5
+\openout5 = `BA.toc'.
 
  [1]
-Underfull \hbox (badness 10000) in paragraph at lines 46--49
+Underfull \hbox (badness 10000) in paragraph at lines 49--52
 
  []
 
 
-Underfull \hbox (badness 1867) in paragraph at lines 46--49
+Underfull \hbox (badness 1867) in paragraph at lines 49--52
 \T1/ppl/m/n/10.95 This pa-per deals with the rea-li-stic si-mu-la-ti-on of smo-
 ke. The work
  []
@@ -616,276 +1077,325 @@ ke. The work
 [1
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 55--62
+Underfull \hbox (badness 10000) in paragraph at lines 58--65
 
  []
 
 
-Underfull \hbox (badness 1902) in paragraph at lines 55--62
+Underfull \hbox (badness 1902) in paragraph at lines 58--65
 \T1/ppl/m/n/10.95 Zunächst ein-mal be-dan-ke ich mich bei Prof. Dr.-Ing. Ste-fa
 n Mül-ler
  []
 
 [2]
-Underfull \hbox (badness 1028) in paragraph at lines 68--75
+Underfull \hbox (badness 1028) in paragraph at lines 71--78
 \T1/ppl/m/n/10.95 Echt-zeit-an-wen-dun-gen wie die Unity-Engine bie-ten ei-ne P
 ar-ti-kel-si-mu-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--75
+Underfull \hbox (badness 10000) in paragraph at lines 71--78
 
  []
 
 
-Underfull \hbox (badness 1112) in paragraph at lines 68--75
+Underfull \hbox (badness 1112) in paragraph at lines 71--78
 \T1/ppl/m/n/10.95 Die GPU eig-net sich be-son-ders gut zum be-rech-nen par-al-l
 e-li-sier-ba-rer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--75
+Underfull \hbox (badness 10000) in paragraph at lines 71--78
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--75
+Underfull \hbox (badness 10000) in paragraph at lines 71--78
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--84
+Underfull \hbox (badness 10000) in paragraph at lines 82--87
 
  []
 
 
-Underfull \hbox (badness 2600) in paragraph at lines 79--84
+Underfull \hbox (badness 2600) in paragraph at lines 82--87
 \T1/ppl/m/n/10.95 Die phy-si-ka-li-sche Grund-la-ge, die Navier-Stokes-Gleichun
 gen, ba-siert
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--84
+Underfull \hbox (badness 10000) in paragraph at lines 82--87
 
  []
 
 [3]
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 87.
-<Bilder/vektorfeld.jpg, id=168, 937.5025pt x 861.2175pt>
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 90.
+<Bilder/vektorfeld.jpg, id=166, 937.5025pt x 861.2175pt>
 File: Bilder/vektorfeld.jpg Graphic file (type jpg)
 <use Bilder/vektorfeld.jpg>
-Package pdftex.def Info: Bilder/vektorfeld.jpg  used on input line 97.
+Package pdftex.def Info: Bilder/vektorfeld.jpg  used on input line 100.
 (pdftex.def)             Requested size: 251.9989pt x 231.49368pt.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 98.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 101.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Bilder/partikelsystem.jpg, id=169, 919.435pt x 722.7pt>
+<Bilder/partikelsystem.jpg, id=167, 919.435pt x 722.7pt>
 File: Bilder/partikelsystem.jpg Graphic file (type jpg)
 <use Bilder/partikelsystem.jpg>
-Package pdftex.def Info: Bilder/partikelsystem.jpg  used on input line 115.
+Package pdftex.def Info: Bilder/partikelsystem.jpg  used on input line 118.
 (pdftex.def)             Requested size: 251.9989pt x 198.07594pt.
 [4] [5 <./Bilder/vektorfeld.jpg>]
-Underfull \hbox (badness 1845) in paragraph at lines 224--232
+Underfull \hbox (badness 1845) in paragraph at lines 225--233
 \T1/ppl/m/n/10.95 kei-nen Ein-fluss mehr. Ge-wich-tungs-funk-tio-nen die-nen da
 -zu um ei-ne
  []
 
 
-Underfull \hbox (badness 2205) in paragraph at lines 224--232
+Underfull \hbox (badness 2205) in paragraph at lines 225--233
 \T1/ppl/m/n/10.95 stei-gen-dem Ab-stand, die-se Funk-ti-on wird als Stan-dard f
 ür jeg-li-che
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--232
+Underfull \hbox (badness 10000) in paragraph at lines 225--233
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--232
+Underfull \hbox (badness 10000) in paragraph at lines 225--233
 
  []
 
 [6 <./Bilder/partikelsystem.jpg>] [7] [8] [9]
-<Bilder/kernel.jpg, id=261, 793.46437pt x 331.2375pt>
+<Bilder/kernel.jpg, id=259, 793.46437pt x 331.2375pt>
 File: Bilder/kernel.jpg Graphic file (type jpg)
 <use Bilder/kernel.jpg>
-Package pdftex.def Info: Bilder/kernel.jpg  used on input line 277.
+Package pdftex.def Info: Bilder/kernel.jpg  used on input line 278.
 (pdftex.def)             Requested size: 251.9989pt x 105.19958pt.
-<Bilder/impKernel.jpg, id=266, 680.5425pt x 457.71pt>
+<Bilder/impKernel.jpg, id=264, 680.5425pt x 457.71pt>
 File: Bilder/impKernel.jpg Graphic file (type jpg)
 <use Bilder/impKernel.jpg>
-Package pdftex.def Info: Bilder/impKernel.jpg  used on input line 285.
+Package pdftex.def Info: Bilder/impKernel.jpg  used on input line 286.
 (pdftex.def)             Requested size: 486.0022pt x 326.86906pt.
 
-Overfull \hbox (126.0022pt too wide) in paragraph at lines 285--286
+Overfull \hbox (126.0022pt too wide) in paragraph at lines 286--287
  [][] 
  []
 
 [10 <./Bilder/kernel.jpg> <./Bilder/impKernel.jpg>]
-<Bilder/dichte.jpg, id=285, 674.52pt x 255.20343pt>
+<Bilder/dichte.jpg, id=283, 674.52pt x 255.20343pt>
 File: Bilder/dichte.jpg Graphic file (type jpg)
 <use Bilder/dichte.jpg>
-Package pdftex.def Info: Bilder/dichte.jpg  used on input line 313.
+Package pdftex.def Info: Bilder/dichte.jpg  used on input line 314.
 (pdftex.def)             Requested size: 486.0022pt x 183.88261pt.
 
-Overfull \hbox (126.0022pt too wide) in paragraph at lines 313--314
+Overfull \hbox (126.0022pt too wide) in paragraph at lines 314--315
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 306--316
+Underfull \hbox (badness 10000) in paragraph at lines 307--317
 
  []
 
 [11] [12 <./Bilder/dichte.jpg>]
 
-LaTeX Warning: Reference `imp:temp' on page 13 undefined on input line 355.
+LaTeX Warning: Reference `imp:temp' on page 13 undefined on input line 356.
 
 [13]
-<Bilder/thermal.jpg, id=323, 668.4975pt x 65.49469pt>
+<Bilder/thermal.jpg, id=321, 668.4975pt x 65.49469pt>
 File: Bilder/thermal.jpg Graphic file (type jpg)
 <use Bilder/thermal.jpg>
-Package pdftex.def Info: Bilder/thermal.jpg  used on input line 380.
+Package pdftex.def Info: Bilder/thermal.jpg  used on input line 381.
 (pdftex.def)             Requested size: 486.0022pt x 47.61682pt.
 
-Overfull \hbox (126.0022pt too wide) in paragraph at lines 380--381
+Overfull \hbox (126.0022pt too wide) in paragraph at lines 381--382
  [][] 
  []
 
 [14 <./Bilder/thermal.jpg>]
-Underfull \hbox (badness 1024) in paragraph at lines 407--409
+Underfull \hbox (badness 1024) in paragraph at lines 408--410
 \T1/ppl/m/n/10.95 Abschlieÿend wer-den al-le Kräf-te zu-sam-men ge-rech-net und
  zum Ge-
  []
 
 
-Underfull \hbox (badness 5359) in paragraph at lines 407--409
+Underfull \hbox (badness 5359) in paragraph at lines 408--410
 \T1/ppl/m/n/10.95 schwin-dig-keits-vek-tor hin-zu-ge-fügt []17[]. Ein Spe-zi-al
 -fall da-bei ist die
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 407--409
+Underfull \hbox (badness 10000) in paragraph at lines 408--410
 
  []
 
-<Bilder/external.jpg, id=340, 264.99pt x 297.36093pt>
+<Bilder/external.jpg, id=338, 264.99pt x 297.36093pt>
 File: Bilder/external.jpg Graphic file (type jpg)
 <use Bilder/external.jpg>
-Package pdftex.def Info: Bilder/external.jpg  used on input line 416.
+Package pdftex.def Info: Bilder/external.jpg  used on input line 417.
 (pdftex.def)             Requested size: 126.0022pt x 141.3931pt.
 [15 <./Bilder/external.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 426--435
-
- []
-
-<Bilder/Flipflop.jpg, id=351, 666.99188pt x 137.01187pt>
+<Bilder/Flipflop.jpg, id=349, 666.99188pt x 137.01187pt>
 File: Bilder/Flipflop.jpg Graphic file (type jpg)
 <use Bilder/Flipflop.jpg>
-Package pdftex.def Info: Bilder/Flipflop.jpg  used on input line 438.
+Package pdftex.def Info: Bilder/Flipflop.jpg  used on input line 441.
 (pdftex.def)             Requested size: 468.0011pt x 96.13762pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 438--439
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 441--442
  [][] 
  []
 
 [16 <./Bilder/Flipflop.jpg>] [17]
-<Bilder/grid.jpg, id=373, 721.69624pt x 270.00874pt>
+<Bilder/grid.jpg, id=371, 721.69624pt x 270.00874pt>
 File: Bilder/grid.jpg Graphic file (type jpg)
 <use Bilder/grid.jpg>
-Package pdftex.def Info: Bilder/grid.jpg  used on input line 475.
+Package pdftex.def Info: Bilder/grid.jpg  used on input line 478.
 (pdftex.def)             Requested size: 360.0pt x 134.68678pt.
  [18 <./Bilder/grid.jpg>]
-<Bilder/StoringLable.jpg, id=387, 674.52pt x 306.39468pt>
+<Bilder/StoringLable.jpg, id=385, 674.52pt x 306.39468pt>
 File: Bilder/StoringLable.jpg Graphic file (type jpg)
 <use Bilder/StoringLable.jpg>
-Package pdftex.def Info: Bilder/StoringLable.jpg  used on input line 498.
+Package pdftex.def Info: Bilder/StoringLable.jpg  used on input line 501.
 (pdftex.def)             Requested size: 468.0011pt x 212.59071pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 498--499
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 501--502
  [][] 
  []
 
 [19 <./Bilder/StoringLable.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 542--547
+Underfull \hbox (badness 10000) in paragraph at lines 545--550
 
  []
 
 [20]
-Underfull \hbox (badness 1436) in paragraph at lines 560--562
+Underfull \hbox (badness 1436) in paragraph at lines 563--565
 []\T1/ppl/m/n/10.95 Zunächst wer-den dann in ei-nem Hilfsar-ray die An-zahl der
  vor-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 560--562
+Underfull \hbox (badness 10000) in paragraph at lines 563--565
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 587--589
+Underfull \hbox (badness 10000) in paragraph at lines 590--592
 
  []
 
 [21]
-Underfull \hbox (badness 10000) in paragraph at lines 606--608
+Underfull \hbox (badness 10000) in paragraph at lines 609--611
 
  []
 
 [22]
-<Bilder/GridStruct.jpg, id=461, 663.98062pt x 91.09032pt>
+<Bilder/GridStruct.jpg, id=459, 663.98062pt x 91.09032pt>
 File: Bilder/GridStruct.jpg Graphic file (type jpg)
 <use Bilder/GridStruct.jpg>
-Package pdftex.def Info: Bilder/GridStruct.jpg  used on input line 654.
+Package pdftex.def Info: Bilder/GridStruct.jpg  used on input line 657.
 (pdftex.def)             Requested size: 468.0011pt x 64.20476pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 654--655
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 657--658
  [][] 
  []
 
-<Bilder/lable.jpg, id=463, 675.27281pt x 287.57437pt>
+<Bilder/lable.jpg, id=461, 675.27281pt x 287.57437pt>
 File: Bilder/lable.jpg Graphic file (type jpg)
 <use Bilder/lable.jpg>
-Package pdftex.def Info: Bilder/lable.jpg  used on input line 663.
+Package pdftex.def Info: Bilder/lable.jpg  used on input line 666.
 (pdftex.def)             Requested size: 468.0011pt x 199.30852pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 663--664
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 666--667
  [][] 
  []
 
-<Bilder/PrefixSum.jpg, id=465, 450.18187pt x 223.58531pt>
+<Bilder/PrefixSum.jpg, id=463, 450.18187pt x 223.58531pt>
 File: Bilder/PrefixSum.jpg Graphic file (type jpg)
 <use Bilder/PrefixSum.jpg>
-Package pdftex.def Info: Bilder/PrefixSum.jpg  used on input line 672.
+Package pdftex.def Info: Bilder/PrefixSum.jpg  used on input line 675.
 (pdftex.def)             Requested size: 360.0pt x 178.80365pt.
 [23 <./Bilder/GridStruct.jpg> <./Bilder/lable.jpg>]
-<Bilder/rearrange.jpg, id=477, 663.98062pt x 63.98906pt>
+<Bilder/rearrange.jpg, id=475, 663.98062pt x 63.98906pt>
 File: Bilder/rearrange.jpg Graphic file (type jpg)
 <use Bilder/rearrange.jpg>
-Package pdftex.def Info: Bilder/rearrange.jpg  used on input line 688.
+Package pdftex.def Info: Bilder/rearrange.jpg  used on input line 691.
 (pdftex.def)             Requested size: 468.0011pt x 45.10251pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 688--689
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 691--692
  [][] 
  []
 
 [24 <./Bilder/PrefixSum.jpg>]
-<Bilder/normal.jpg, id=485, 659.46375pt x 275.52937pt>
+<Bilder/normal.jpg, id=483, 659.46375pt x 275.52937pt>
 File: Bilder/normal.jpg Graphic file (type jpg)
 <use Bilder/normal.jpg>
-Package pdftex.def Info: Bilder/normal.jpg  used on input line 697.
+Package pdftex.def Info: Bilder/normal.jpg  used on input line 700.
 (pdftex.def)             Requested size: 468.0011pt x 195.53893pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 697--698
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 700--701
  [][] 
  []
 
-[25 <./Bilder/rearrange.jpg> <./Bilder/normal.jpg>] [26] (BA.lof
+
+Underfull \hbox (badness 10000) in paragraph at lines 709--717
+
+ []
+
+[25 <./Bilder/rearrange.jpg> <./Bilder/normal.jpg>]
+Overfull \hbox (84.38779pt too wide) in paragraph at lines 720--730
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--736
+
+ []
+
+
+Overfull \hbox (9.18794pt too wide) in paragraph at lines 739--749
+ [][] 
+ []
+
+[26] [27]
+<Bilder/1.jpg, id=508, 242.8272pt x 173.448pt>
+File: Bilder/1.jpg Graphic file (type jpg)
+<use Bilder/1.jpg>
+Package pdftex.def Info: Bilder/1.jpg  used on input line 802.
+(pdftex.def)             Requested size: 176.40198pt x 126.00726pt.
+<Bilder/2.jpg, id=509, 242.8272pt x 173.448pt>
+File: Bilder/2.jpg Graphic file (type jpg)
+<use Bilder/2.jpg>
+Package pdftex.def Info: Bilder/2.jpg  used on input line 803.
+(pdftex.def)             Requested size: 176.40198pt x 126.00726pt.
+<Bilder/3.jpg, id=510, 242.8272pt x 173.448pt>
+File: Bilder/3.jpg Graphic file (type jpg)
+<use Bilder/3.jpg>
+Package pdftex.def Info: Bilder/3.jpg  used on input line 809.
+(pdftex.def)             Requested size: 176.40198pt x 126.00726pt.
+<Bilder/4.jpg, id=511, 242.8272pt x 173.448pt>
+File: Bilder/4.jpg Graphic file (type jpg)
+<use Bilder/4.jpg>
+Package pdftex.def Info: Bilder/4.jpg  used on input line 810.
+(pdftex.def)             Requested size: 176.40198pt x 126.00726pt.
+ [28 <./Bilder/1.jpg> <./Bilder/2.jpg>]
+<Bilder/5.jpg, id=522, 242.8272pt x 173.448pt>
+File: Bilder/5.jpg Graphic file (type jpg)
+<use Bilder/5.jpg>
+Package pdftex.def Info: Bilder/5.jpg  used on input line 816.
+(pdftex.def)             Requested size: 176.40198pt x 126.00726pt.
+<Bilder/6.jpg, id=523, 242.8272pt x 173.448pt>
+File: Bilder/6.jpg Graphic file (type jpg)
+<use Bilder/6.jpg>
+Package pdftex.def Info: Bilder/6.jpg  used on input line 817.
+(pdftex.def)             Requested size: 176.40198pt x 126.00726pt.
+ [29 <./Bilder/3.jpg> <./Bilder/4.jpg> <./Bilder/5.jpg> <./Bilder/6.jpg>] (BA.l
+of
 LaTeX Font Info:    Try loading font information for T1+pcr on input line 2.
 
 ("C:\Users\Dradozer\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\t1pcr.fd
@@ -910,10 +1420,10 @@ Underfull \hbox (badness 3168) in paragraph at lines 6--6
  []
 
 )
-\tf@lof=\write5
-\openout5 = `BA.lof'.
+\tf@lof=\write6
+\openout6 = `BA.lof'.
 
- [27] (BA.bbl
+ [30] (BA.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 40--47
 []\T1/ppl/m/sc/10.95 Hoetzlein\T1/ppl/m/n/10.95 , Ra-ma C.:  \T1/ppl/m/it/10.95
  FAST FIXED-RADIUS
@@ -958,7 +1468,7 @@ Underfull \hbox (badness 2582) in paragraph at lines 75--82
  Version:2009. --
  []
 
-[28]
+[31]
 Underfull \hbox (badness 3601) in paragraph at lines 96--103
 \T1/ppl/m/it/10.95 En-zy-klo-pä-die\T1/ppl/m/n/10.95 .  []$\T1/pcr/m/n/10.95 ht
 tps : / / de . wikipedia . org / w / index .
@@ -969,29 +1479,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 96--103
 \T1/pcr/m/n/10.95 php ? title = Navier-[]Stokes-[]Gleichungen & oldid =
  []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 727.
- [29]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 727.
+) [32]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 827.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 827.
  (BA.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 727.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 727.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 827.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 827.
 Package rerunfilecheck Info: File `BA.out' has not changed.
-(rerunfilecheck)             Checksum: 1104218B62D9C910CFA99CE5C9B7F0FA;1289.
+(rerunfilecheck)             Checksum: 9EAF1A93C4F54879F713C6EF19426C5C;1247.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 727.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 827.
  ) 
 Here is how much of TeX's memory you used:
- 11186 strings out of 492895
- 162910 string characters out of 3122334
- 485168 words of memory out of 3000000
- 14721 multiletter control sequences out of 15000+200000
+ 31345 strings out of 492895
+ 727158 string characters out of 3122334
+ 1096157 words of memory out of 3000000
+ 34512 multiletter control sequences out of 15000+200000
  30455 words of font info for 67 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,13n,58p,1057b,1274s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 74i,19n,127p,1057b,2280s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.
 enc}<C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
 fonts/cm/cmex10.pfb><C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/
@@ -1010,9 +1519,9 @@ ucrr8a.pfb><C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw
 /palatino/uplb8a.pfb><C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts
 /type1/urw/palatino/uplr8a.pfb><C:/Users/Dradozer/AppData/Local/Programs/MiKTeX
  2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on BA.pdf (32 pages, 1090823 bytes).
+Output written on BA.pdf (35 pages, 1544936 bytes).
 PDF statistics:
- 646 PDF objects out of 1000 (max. 8388607)
- 184 named destinations out of 1000 (max. 500000)
- 257 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 690 PDF objects out of 1000 (max. 8388607)
+ 198 named destinations out of 1000 (max. 500000)
+ 291 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -15,6 +15,9 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{float}
+\usepackage{pgfplots}
+\usepackage{subfigure}
+\pgfplotsset{compat=1.16 ,legend style={at={(0.02,.98)},anchor=north west}}
 
 \lstset{language=C++,
 	frame=tb,
@@ -127,8 +130,6 @@ Zur Simulation von Rauch wurde ein Partikelsystem implementiert, wessen physikal
 Die Berechnung der Simulation bedarf vieler Schritte die von einander abhängig sind. In Abbildung  \ref{code:sim} werden alle Rechenschritte in einen optimalen Reihenfolge dargestellt. Die Berechnungen lassen sich in 4 Compute-Shader unterteilen.
 \newline
 Zum Verständnis bildet Abbildung \ref{tab:Symbole} alle Variablen da, sowie deren Bedeutung und Format.
-
-%todo überarbeiten
 
 \begin{figure}
 	\centering
@@ -398,7 +399,7 @@ In der Formel \ref{funk:wirb2} wird dann noch die Wirbelstärke der umliegenden 
 f^{vortex}_j  = \sum_j (\omega_j \times (r_i -r_j)) W_{i,j}
 \end{equation}
 
-Eine Wirbelkraft zu errechnen die Turbulenzen verursacht ist leider nicht gelungen. Diese hatte lediglich die Wirkung die, dass der Rauch langsamer aufgetrieben ist. 
+Eine Wirbelkraft zu errechnen die Turbulenzen verursacht ist leider nicht gelungen. Diese hatte lediglich die Wirkung die, dass der Rauch langsamer aufgetrieben ist. Das langsame Ausstoßen von Partikeln hatte leider keine positiven Auswirkungen auf die Physik. Dadurch entstanden eher Instabilitäten des Drucks, welcher sich zu beginn anpassen lies, aber dann inkonstant wurde. Eine Anpassung der Variablen führte leider dabei zu keinem Erfolg. Es wurden auch andere Versuche unternommen die Wirbelkraft anzupassen, wie unter anderem die Formel zu modifizieren, welche aber erfolglos blieben.
 
 %-------------------------------------------------------------------------------
 
@@ -428,10 +429,12 @@ Dazu können einige Parameter während der Laufzeit angepasst werden. Hierfür w
 Das Anpassen der Variablen während der Laufzeit kann aber zur Instabilität der Physik führen.
 \newline
 Da die Implementierung die GPU verwendet muss darauf geachtet werden, dass die angewendeten Verfahren auch parallel berechenbar sind. Da nicht alle Kerne der GPU gleich schnell arbeiten muss es verhindert werden, dass Werte die von anderen Prozessen noch gelesen wird nicht überschrieben werden.
-Um dieses Problem zu umgehen wurden zwei identische SSBOs für die Partikel angelegt, welches zwar mehr Speicheraufwand bedeutet, aber bei ca. 65.000 Partikel nur zusätzlich 12 KB beträgt. Bei den zwei SSBOs werden diese im wechsel zum lesen un schreiben genutzt \ref{img:flipflop}. Dadurch besitzt das lesbare SSBO die zuletzt berechneten Daten und schreibt die neuen in das beschreibbare SSBO, hierbei wird aber immer anfangs das beschreibbare zunächst mit dem lesbaren SSBO überschrieben, damit alle Daten aktuell sind.
+Um dieses Problem zu umgehen wurden zwei identische SSBOs für die Partikel angelegt, welches zwar mehr Speicheraufwand bedeutet, aber bei ca. 65.000 Partikel nur zusätzlich 12 MB beträgt. Bei den zwei SSBOs werden diese im wechsel zum lesen un schreiben genutzt \ref{img:flipflop}. Dadurch besitzt das lesbare SSBO die zuletzt berechneten Daten und schreibt die neuen in das beschreibbare SSBO, hierbei wird aber immer anfangs das beschreibbare zunächst mit dem lesbaren SSBO überschrieben, damit alle Daten aktuell sind.
 Es muss dabei aber auch auf eine gerade Anzahl der aufrufe der Compute-Shader geachtet werden, da sonst im Beginn der Update-Schleife aus dem falschen SSBO gelesen wird.
 \newline
-%todo ergänzen atomicOperationen 
+Für das parallele Schreiben in das gleiche SSBO bedarf es aber wiederum speziellen Operationen, die verhindern, dass mehrere Zugriffe gleichzeitig passieren und eine Variable bearbeiten. Dieses Problem entsteht häufig beim Versuch der Beschleunigung, da dort viele parallele Prozesse der Partikel auf das SSBO des Grids zugreifen.
+\newline
+OpenGL bietet in GLSL dabei Atomic-Operationen an, diese verhindern das ein anderer Prozess ebenfalls auf die Variable zugreift und diese bearbeitet. Dies entsteht dadurch, dass diese Funktionen zunächst einmal überprüfen ob die Variable bereits bearbeitet wird, falls dies der Fall ist wird solange gewartet bis sie freigegeben wird. Durch viele Prozesse die auf eine Variable zugreifen wollen können dadurch Warteschlangen für diese entstehen, welche in einem Zeitverlust resultiert.
 
 \begin{figure}[H]
 	\centering
@@ -707,17 +710,114 @@ Die beiden Beschleunigungsverfahren bieten auf Kosten von Speicherplatz oder Lau
 \newline
 Damit bei beiden Verfahren über gleich viele Partikel iteriert wird und dies damit keinen Einfluss auf die Beschleunigung hat wurde der Countingsort ebenfalls auf 16 Partikel pro Grid beschränkt \ref{img:normal}. Als Standardwerte für die Partikelanzahl wird $65.536$ und für die Gridgröße $50x50x50$ angesehen, welche bei speziellen Tests für die Partikel oder das Grid dann variieren können.
 \newline
-Die Tests wurden auf einem Desktop-Pc mit einer Intel(R) Core(TM) i5-9600k CPU @ 4.0 GHz und einer Nvidia GeForece GTX 1660 Ti Grafikkarte durchgeführt. Bei den Tests wurden die Durchschnittswerte von 20s Laufzeit pro Simulation, die jeder 10 mal wiederholt wurden, ausgewertet.
+Die Tests wurden auf einem Desktop-Pc mit einer Intel(R) Core(TM) i5-9600k CPU @ 4.0 GHz und einer Nvidia GeForece GTX 1660 Ti Grafikkarte durchgeführt. Bei den Tests wurden die Durchschnittswerte von 20s Laufzeit pro Simulation, die jeder 10 mal wiederholt wurden, ausgewertet. Bei den zeitlichen Angaben handelt es sich um Millisekunden pro Frame.
+\newline
+Beim Vergleich der Sortieralgorithmen bei steigender Partikelanzahl \ref{tab:particle} haben beide eine ähnliche Berechnungsdauer bei einer niedrigen Anzahl, dabei ist aber der Countingsort bereits ein wenig schneller. Besonders bemerkbar macht sich der Unterschied bei hoher Partikelanzahl bei dem das Speicherverfahren fast die doppelte Laufzeit pro Frame besitzt. Dies ist ganz klar auf die scattered reads zurückzuführen, die das Speicherverfahren, trotz weniger Kernal calls, erheblich verlangsamen.
+\newline
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{ | c || c | c | c | c | c | c | c | c |}
+		\hline
+		Partikel			&  8.912 & 16.384 & 32.768 & 65.536 & 131.072 & 262.144 & 524.288 & 1.048.576	\\ \hline
+		Countingsort														\\ \hline
+		Laufzeit(ms)		&   0,72 &  1,27 &  2,13 &  4,12 &  12,71 &  27,81 &  56,72 &  142,56		 	\\ \hline
+		
+		Speicher															\\ \hline
+		Laufzeit(ms)		&   0,9 &  1,88 &  3,69 &  7,34 &  15,15 &  38,71 &  107.45 &  270,65	\\
+		\hline
+	\end{tabular}
+	\caption{Laufzeit in Relation zur Partikelanzahl}
+	\label{tab:particle}
+\end{figure}
+
+Einen Einfluss auf die Laufzeit hat auch die Griddimension, wobei dieser sehr viel geringer ausfällt als die der Partikelanzahl. Wie in Abbildung \ref{tab:Grid} zu sehen, ist auch hier der Countingsort schneller und bei diesem haben die Griddimensionen auch weniger Einfluss auf die Laufzeit, als beim Speicherverfahren. Beim Speicherverfahren steigt die Laufzeit stärker an, obwohl dieser anstieg sich nicht signifikant von dem des Countingsort unterscheidet.
+\newline
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{ | c || c | c | c | c | c | c | c | c | c |}
+		\hline
+		Partikel			&  20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 & 100	\\ \hline
+		Countingsort														\\ \hline
+		Laufzeit(ms)		&   5,85 &  4,43 &  3,92 &  4,04 &  4,27 &  4,54 &  4,85 &  5,37 &	6,36	 	\\ \hline
+		
+		Speicher															\\ \hline
+		Laufzeit(ms)		&   7,4 &  7,04 &  7,14 &  7,45 &  8,47 &  9,29 &  9.54 &  9,84 & 10,41	\\
+		\hline
+	\end{tabular}
+	\caption{Laufzeit in Relation zur den Griddimensionen}
+	\label{tab:Grid}
+\end{figure}
+
+Das Sinken und anschließende Steigen aus Abbildung \ref{tab:Grid} lässt sich durch das stärkere verteilen der Partikel erklären, da sich in einem kleineren Raum mehr Partikel in einem Grid befinden und sich dadurch mehr atomicAdd-Funktionen bei den einzelnen Grids stauen.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[width=1.0\textwidth,height=0.5\textheight]
+		\addplot[smooth,mark=*,blue]
+		coordinates {
+			(20,30.158) (30,30.656) (40,31.376) (50,32.569) (60,34.345) (70,36.826) (80,40.126) (90,44.365) (100,49.658)
+		};
+		\addlegendentry{Countingsort}
+		\addplot[smooth,color=red,mark=x]
+		coordinates {
+			(20,26.681) (30,28.237) (40,31.271) (50,36.276) (60,43.740) (70,54.158) (80,68.021) (90,85.823) (100,108.053)
+		};
+		\addlegendentry{Speicher}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Speicherverbrauch in Kb auf der Y-Achse und Griddimensionen auf der X-Achse }
+	\label{dia:speicher}
+\end{figure}
+
+Da der Speicherplatz der Grafikkarte nicht unbegrenzt ist, lohnt es sich ebenfalls einen Blick auf diesen zu werfen in Verbindung mit den Griddimensionen, da diese sich bei den Sortieralgorithmen im nutzenden Speicher unterscheiden \ref{dia:speicher}.
+\newline
+Zunächst hat das Speicherverfahren einen geringeren Verbrauch, welcher daraus resultiert, dass für den Countingsort neben dem Grid-SSBO noch der temporäre Gridbuffer als SSBO existiert. Doch Beim Speicherverfahren steigt der benötigte Speicherplatz sehr viel stärker an als beim Countigsort. Bei diesem ist nur ein geringer anstieg zu verzeichnen.
+
 %-------------------------------------------------------------------------------
 
 \section{Ergebnis}\label{ergebnis}
 
+In der Studienarbeit wurde gezeigt, dass eine Rauchsimulation die nur auf einem Partikelsystem basiert schwer in der Realisierung von Wirbelkräften ist. Diese lassen sich nicht über simple Partikelinteraktionen simulieren und bedürfen für eine realistische Simulation eine Erweiterung in Form eines Vektorfeldes oder einer ähnlichen Technik. Eine eigen kreierte Physik zu Realisierung von Wirbelkräften in einem Partikelsystem bedarf einer Einarbeitung und Umsetzung in dieser Thematik die zu umfangreich Zeitaufwändig gewesen wäre.
+\newline
+Die Simulation kann durch das Anpassen der Variablen ebenfalls für andere Simulationen genutzt werden, wie zum Beispiel Wasser oder andere Flüssigkeiten deren Physik rein auf der Partikelinteraktion in einem Partikelsystem basieren kann.
+\newline
+Die Beschleunigung des Systems war besonders erfolgreich. Die Implementation beider Beschleunigungsverfahren erzielte ihre Vorgabe, sodass das Partikelsystem in Echtzeit simuliert werden konnte. Dabei erwies sich der Countingsort mit den persönlichen Anpassungen als performanter bei einer hohen Partikelanzahl, sowie effizienter im Speicherverbrauch als das Speicherverfahren. Außerdem besitzt der Countingsort eine stabilere Laufzeit als das Speicherverfahren, da dieses durch die scattered reads teilweise sehr starke Schwankungen in der Performance aufweisen.
+\newline
+Das Integrieren der Simulation in eine Engine  wäre deshalb mit dem Countingsort möglich und empfehlenswert.
+\newline
+Die vorliegende Fluidsimulation bietet viele Möglichkeiten zur Erweiterung. Eine angedachte wäre die Realisierung einer Technik zur besseren Berechnung der Wirbelkraft, da diese einen großen optischen Einfluss auf die Simulation hat.
+\newline
+Außerdem wurden bisher nur Point-Sprites gerendert, welche zwar einen Vorteil für die Berechnung bieten, aber nicht besonders optisch ansprechend sind. Deshalb würde sich hier ein realistisches Rendern der Partikel anbieten.
+\newline
+Die Performance ebenfalls noch ausbaufähig, hier sollte man noch andere Beschleunigungsverfahren in Betracht ziehen und gegeneinander abwägen. Außerdem sollten weitere Anpassungen beim Countingsort in Zukunft sich positiv auf dessen Beschleunigung des Systems auswirken.
+\newline
+In Abbildung \ref{img:particle1} und \ref{img:particle2} sieht man die Ausbreitung der Partikel welcher durch den Druck und die Viskosität entsteht. Außerdem steigen die Partikel durch eine hohe Temperatur auf, welche in Abbildung \ref{img:particle3} abkühlt und zum absinken der gesamten Partikel führt.
+
 %-------------------------------------------------------------------------------
 
-\section{Fazit}\label{fazit}
+\begin{figure}[H]
+	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/1.jpg}}
+	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/2.jpg}}
+	\caption{Aufstieg und Ausbreitung der Partikel}
+	\label{img:particle1}
+\end{figure}
 
-%-------------------------------------------------------------------------------
+\begin{figure}[H]
+	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/3.jpg}}
+	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/4.jpg}}
+	\caption{Ausbreitung der Partikel}
+		\label{img:particle2}
+\end{figure}
 
+\begin{figure}[H]
+	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/5.jpg}}
+	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/6.jpg}}
+	\caption{Absinken der Partikel nach einiger Zeit}
+		\label{img:particle3}
+\end{figure}
 
 \newpage
 \listoffigures
