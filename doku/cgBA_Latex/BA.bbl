@@ -71,6 +71,13 @@
 \newblock {In: }\emph{ACM Transactions on Graphics (TOG)} 33 (2014), Nr. 4, S.
   153
 
+\bibitem[MSD07]{muller2007screen}
+\textsc{M{\"u}ller}, Matthias ; \textsc{Schirm}, Simon  ; \textsc{Duthaler},
+  Stephan:
+\newblock Screen space meshes.
+\newblock {In: }\emph{Proceedings of the 2007 ACM SIGGRAPH/Eurographics
+  symposium on Computer animation} Eurographics Association, 2007, S. 9--15
+
 \bibitem[Pes09]{franz}
 \textsc{Peschel}, Franz:
 \newblock \emph{Simulation und Visualisierung von Fluiden in einer
@@ -92,13 +99,9 @@
 \newblock {In: }\emph{Proceedings of the game developer conference} Bd.~18,
   2003, S.~25
 
-\bibitem[Wik19]{wiki:xxx}
-\textsc{Wikipedia}:
-\newblock \emph{Navier-Stokes-Gleichungen --- Wikipedia{,} Die freie
-  Enzyklopädie}.
-\newblock
-  \url{https://de.wikipedia.org/w/index.php?title=Navier-Stokes-Gleichungen&oldid=191399294}.
-\newblock \,Version:\,2019. --
-\newblock [Online; Stand 28. August 2019]
+\bibitem[TC78]{temam1978navier}
+\textsc{Temam}, Roger ; \textsc{Chorin}, A:
+\newblock \emph{Navier Stokes equations: Theory and numerical analysis}.
+\newblock 1978
 
 \end{thebibliography}

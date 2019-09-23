@@ -16,6 +16,7 @@
 \usepackage{float}
 \usepackage{pgfplots}
 \usepackage{subfigure}
+\usepackage{caption}
 \pgfplotsset{compat=1.16 ,legend style={at={(0.02,.98)},anchor=north west}}
 
 \lstset{language=C++,
@@ -35,29 +36,37 @@
 	\maketitle
 	\newpage
 	\pagenumbering{roman}
+	
+	
+	%-------------------------------------------------------------------------------
+	
+	\section*{Abstract}\label{abstract}
+	
+	Diese Studienarbeit befasst sich mit der Simulation von Rauch in einem Partikelsystem. Hierbei werden die Möglichkeiten untersucht Rauch möglichst realistisch in einem Partikelsystem zu implementieren und in Echtzeit berechnen zu lassen. Die physikalische Simulation basiert dabei auf den Arbeiten von  Müller \cite{muller2003particle} und Ren \cite{ren2016fast}, welche sich mit den physikalischen Eigenschaft von Fluiden und Gasen beschäftigen. Die Simulation wurde mittels C++, OpenGL und der in OpenGL verfügbaren Compute-Shader auf der GPU implementiert. Dabei wurde ein besonderes Augenmerk darauf gelegt, dass diese möglichst Performant ist. Hierfür werden Techniken von Hoetzlein \cite{nvidia} benutzt um das Partikelsystem zu beschleunigen. Daraufhin wurden zwei Beschleunigungsverfahren implementiert und gegenübergestellt. Es wird dabei auf die Laufzeit, aber auch auf den verbrauchten Speicherplatz der GPU eingegangen.
+	\newline \newline
+	This student project deals with the simulation of smoke in a particle system. Here the possibilities are investigated to implement smoke as realistically as possible in a particle system and to calculate it in real time. The physical simulation is based on the work of Müller \cite{muller2003particle} and Ren \cite{ren2016fast}, who deal with the physical properties of fluids and gases. The simulation was implemented on the GPU using C++, OpenGL and the compute shaders available in OpenGL. Special attention was paid to the performance of the simulation. Hoetzlein \cite{nvidia} techniques are used to accelerate the particle system. Two acceleration methods were then implemented and compared. The runtime, but also the used memory space of the GPU is discussed.
+	
+	\newpage
+	
 	\tableofcontents
 	\clearpage
 	\pagenumbering{arabic}
 	\bibliographystyle{alphadin}
-
-%-------------------------------------------------------------------------------
-
-\section*{Abstract}\label{abstract}
-
-In dieser Arbeit wird auf die realistische Simulation von Rauch eingegangen. Dabei bezieht sich die Arbeit hauptsächlich auf die Simulationen von Müller et al.\cite{muller2003particle} und Ren et al.\cite{ren2016fast}. Die Simulation wurde mittels C++, der OpenGL und Compute-Shadern erstellt. Hierbei wurde das SPH-Verfahren genutzt und die Möglichkeiten zur Beschleunigung auf der GPU untersucht.
-\newline \newline
-This paper deals with the realistic simulation of smoke. The work refers mainly to the simulations of Müller et al.\cite{muller2003particle} and Ren et al.\cite{ren2016fast}. The simulation was created using C++, the OpenGL and compute shaders. Here the SPH method was used and the possibilities to accelerate it on the GPU were investigated.
-\newpage
+	\captionsetup{font=it}
 
 %-------------------------------------------------------------------------------
 
 \section{Vorwort}\label{vorwort}
 
+Zur Simulation eines Fluids hat mich die Lehrveranstaltung Animation und Simulation inspiriert, da dort vermehrt Partikelsysteme implementiert wurden. Doch dort besaßen alle Simulationen eine schlechte Performance, weshalb nur wenige Partikel berechnet werden konnten. Mein persönliches Ziel war es deshalb das System weites gehen zu beschleunigen.
+\newline \newline
 Vor dem Beginn der vorliegenden Bachelorarbeit möchte ich mich zunächst bei einigen Personen bedanken die mich während der Arbeit unterstützt haben.
 \newline \newline
 Zunächst einmal bedanke ich mich bei Prof. Dr.-Ing. Stefan Müller und Bastian Krayer MSc. für die großartige Betreuung meiner Arbeit.
 \newline
-Außerdem möchte ich mich bei Pascal Bendler bedanken, der mich tatkräftig beim debugging unterstützt hat.
+Danke  an alle die sich die Zeit genommen haben meine Arbeit Korrektur zu lesen.
+\newline
+Außerdem möchte ich mich bei Pascal Bendler bedanken, der mich tatkräftig beim Debugging und Aufbau des Frameworks unterstützt hat.
 \newline
 Ein großes Dankeschön geht auch an den Freund, der mich immer wieder dazu motiviert hat weiter zu arbeiten und nach alternativen Möglichkeiten zu suchen.
 \newpage
@@ -66,34 +75,33 @@ Ein großes Dankeschön geht auch an den Freund, der mich immer wieder dazu moti
 
 \section{Einleitung}\label{einleitung}
 
-Das Ziel dieser Arbeit ist es eine möglichst physikalisch korrekte Rauchsimulation zu implementieren. Dazu nutzen wir, dass sich Rauch wie ein Fluid verhält \cite{stam2003real}, dabei wird die Simulation der physikalischen Basis von Fluiden angenähert. Hierbei wird in dieser Implementation ein Partikelsystem zur Berechnung der physikalischen Eigenschaften genutzt. Echtzeitanwendungen wie die Unity-Engine bieten eine Partikelsimulation an, jedoch beschränkt sich diese lediglich auf das Ausstoßen von Partikeln. Dabei können Partikelinteraktionen, sowie Verhaltensmuster nicht bearbeitet werden.
-\newline \newline
-Die GPU eignet sich besonders gut zum berechnen parallelisierbarer Rechenoperationen, da sie im Vergleich zur CPU, die nur wenige Kerne besitzt, über tausend Kerne verfügt, die zwar nicht so leistungsfähig sind wie die der CPU, aber dennoch einen signifikante Steigerung der Leistung bieten.
-\newline \newline
-In der Arbeit wird auch darauf eingegangen den genannten Aufwand zu minimieren, dazu wurden zwei Verfahren zur Beschleunigung des Partikelsystems, auf der GPU,  implementiert und gegenübergestellt.
-\newline \newline
-Für die Implementation wurde OpenGL genutzt, welches das programmieren auf der GPU deutlich vereinfacht und seit der Version 4.3 auch das verarbeiten von Daten mit Hilfe von Compute-Shadern unterstützt. Für den schnellstmöglichen Zugriff auf diese Daten wird Speicherplatz, in Form von SSBO, auf derGPU angelegt. Dabei sollte auch auf eine effiziente Nutzung des limitierten Speicherplatzes geachtet werden.
+Das Ziel dieser Arbeit ist es eine möglichst physikalisch korrekte Rauchsimulation in einem Partikelsystem zu implementieren. Dazu nutzen wir, dass sich Rauch wie ein Fluid verhält \cite{stam2003real}, dabei wird die Simulation der physikalischen Basis von Fluiden angenähert. Es wird in dieser Implementation ein Partikelsystem zur Berechnung der physikalischen Eigenschaften genutzt. Echtzeit-Entwicklungsplattformen wie die Unity-Engine bieten zwar eine Partikelsimulation an, jedoch beschränkt sich diese lediglich auf das Ausstoßen von Partikeln. Dabei können Partikelinteraktionen, sowie Fluideigenschaften nicht angepasst werden.
+\newline
+Die GPU eignet sich besonders gut zum berechnen parallelisierbarer Rechenoperationen, da sie im Vergleich zur CPU, die nur wenige Kerne besitzt, über tausend Kerne verfügt. Diese sind zwar nicht so leistungsfähig wie die der CPU, aber dennoch einen signifikante Steigerung der Leistung bieten.
+\newline
+In der Arbeit wird auch darauf eingegangen den genannten Aufwand zu minimieren. Dazu wurden zwei Verfahren zur Beschleunigung des Partikelsystems auf der GPU implementiert und gegenübergestellt.
+\newline
+Für die Implementation wurde OpenGL genutzt, welches das programmieren auf der GPU deutlich vereinfacht und seit der Version 4.3 auch das verarbeiten von Daten mit Hilfe von Compute-Shadern unterstützt. Für den schnellstmöglichen Zugriff auf diese Daten wird Speicherplatz, in Form von SSBO, auf der GPU angelegt. Dabei sollte auch auf eine effiziente Nutzung des limitierten Speicherplatzes geachtet werden.
 
 %-------------------------------------------------------------------------------
 
 \section{State of the Art}\label{state}
-Die Simulation von einem Systemen, zur Darstellung von Fluiden, ist ein jahrelange Herausforderung für die Computergrafik. Dabei treten immer wieder die gleichen Problemstellungen auf. Zum einen soll die Simulation physikalisch korrekt sein, um eine für den Beobachter ein möglichst schönes, sowie nachvollziehbarer Ergebnis zu bieten. Schon kleinstes Fehlverhalten können die Immersion zerstören. Andererseits soll das System auch in Echtzeit berechnet werden und dabei auf mögliche Interaktionen reagieren können. Für eine möglichst effiziente Berechnung werden verschiedene Beschleunigungsverfahren verwendet, die ein gutes Ressourcenmanagement in Form der Laufzeit sowie Speicherplatz erfordern.
+Die Simulation von einem Systemen zur Darstellung von Fluiden, ist ein jahrelange Herausforderung für die Computergrafik. Dabei treten immer wieder die gleichen Problemstellungen auf. Zum einen soll die Simulation physikalisch korrekt sein, um ein für den Beobachter möglichst schönes, sowie nachvollziehbares Ergebnis zu bieten. Schon kleinstes Fehlverhalten können die Immersion zerstören. Andererseits soll das System auch in Echtzeit berechnet werden und dabei auf mögliche Interaktionen reagieren können. Für eine möglichst effiziente Berechnung werden verschiedene Beschleunigungsverfahren verwendet, die ein gutes Ressourcenmanagement in Form der Laufzeit, sowie Speicherplatz erfordern.
 \newline \newline
-Die physikalische Grundlage, die Navier-Stokes-Gleichungen, basiert dabei auf den Gleichungen die von Claude Louis Marie Henri Navier und George Gabriel Stokes im 19. Jahrhundert aufgestellt wurden \cite{wiki:xxx}. Diese Gleichungen beschreiben die physikalischen Eigenschaften von Fluiden und werden für die Simulation dieser angewendet. Diese Formeln werden je nach Fluid noch angepasst um speziellere Eigenschaften darzustellen.
+Die physikalische Grundlage, die Navier-Stokes-Gleichungen, basiert dabei auf den Gleichungen die von Claude Louis Marie Henri Navier und George Gabriel Stokes im 19. Jahrhundert aufgestellt wurden. Diese Gleichungen beschreiben die physikalischen Eigenschaften von Fluiden und werden für die Simulation dieser angewendet. Diese Formeln werden je nach Fluid angepasst um speziellere Eigenschaften darzustellen\cite{temam1978navier}.
 \newline
-Diese Simulation wird meist in Form eines rasterbasierenden Verfahren oder eines Partikelsystems implementiert.\newline
-
+Diese Simulation wird meist in Form eines rasterbasierenden Verfahren oder eines Partikelsystems implementiert.
 %-------------------------------------------------------------------------------
 
 \subsection{Vektorfeldverfahren}\label{vektor}
-Beim Vektorfeldverfahren wird die Umgebung in gleichgroße Voxels unterteilt, auch bekannt als Voxelgrid oder eulersches Grid. Bei diesem Vektorfeldverfahren betrachtet man die Partikel nicht direkt sondern einen Masse die in Form des Voxels generalisiert wird. Dabei werden Parameter wie Dichte, Druck und Geschwindigkeit in dem jeweiligen Voxel gespeichert. Die Berechnungen lassen sich in Advektion, Druck, Diffusion und Beschleunigung unterteilen. Die Advektion beschreibt dabei den Strömungstransport, das Übertragen der Bewegungskraft auf ein anliegendes Objekt. Druck wiederum beschreibt die Übertragung von Kräften an benachbarte Partikel, wodurch bei einem zu hohen Druck eine Kraft vom Zentrum weg entsteht und wiederum bei einem Unterdruck eine Kraft zum Zentrum hin. Die Diffusion beschreibt die Viskosität des Fluides. Je nach Anpassung der breitet sich das Fluid stark aus wie zum Beispiel Wasser oder weniger stark wie Lava aus.
-Bei Beschleunigung handelt es sich um externe Kräfte die auf das Fluid einwirken, dies ist vergleichbar mit der Schwerkraft oder einer Windgeschwindigkeit. Zur Beschleunigung zählt man bei den Vektorfeldern aber auch die Wirbelkraft, die bei Rauch die typischen Turbulenzen verursacht und damit einen signifikanten Einfluss auf die Erscheinung hat.
+Beim Vektorfeldverfahren wird die Umgebung in gleichgroße Voxels unterteilt, auch bekannt als Voxelgrid oder eulersches Grid. Bei diesem Vektorfeldverfahren betrachtet man die Partikel nicht direkt sondern eine Masse die in Form des Voxels generalisiert wird. Dabei werden Parameter wie Dichte, Druck und Geschwindigkeit in dem jeweiligen Voxel gespeichert. Die Berechnungen lassen sich in Advektion, Druck, Diffusion und Beschleunigung unterteilen. Die Advektion beschreibt dabei den Strömungstransport, das Übertragen der Bewegungskraft auf ein anliegendes Objekt. Druck wiederum beschreibt die Übertragung von Kräften an benachbarte Partikel, wodurch bei einem zu hohen Druck eine Kraft vom Zentrum weg entsteht und wiederum bei einem Unterdruck eine Kraft zum Zentrum hin. Die Diffusion beschreibt die Viskosität des Fluides. Je nach Anpassung dieser breitet sich das Fluid stark wie zum Beispiel Wasser oder weniger stark wie Honig aus.
+Bei Beschleunigung handelt es sich um eine externe Kraft die auf das Fluid wirkt, dies ist vergleichbar mit der Schwerkraft oder einer Windgeschwindigkeit. Zur Beschleunigung zählt man bei den Vektorfeldern aber auch die Wirbelkraft, die bei Rauch die typischen Turbulenzen verursacht und damit einen signifikanten Einfluss auf die Erscheinung hat.
 \newline
 Wegen der physikalisch präziseren Ergebnisse eignet sich diese Verfahren besonders für Strömungsimulationen in Innenräumen \cite{franz}, da man Kraft dem System zuführt, diese Kraft wird daraufhin eingefärbt und spiegelt dabei das Fluid wieder.
 \newline
-Bei dieser Methode stellt das Lösen der Gleichungen und die Visualisierung der Ergebnisse die größte Schwierigkeit da. Die Visualisierung erweist sich als Hindernis, da in jedem Voxel Kräfte vorhanden sind. Dabei unterscheidet man in dem Grid unter einem gefärbten Teil und einem nicht sichtbaren Teil der meist Luft repräsentiert \ref{img:Vertexfeld}. Zur Darstellung des Fluides wird meist Volumerendering genutzt. Außerdem ist, wegen der Grid-Architektur des Verfahrens, der Rechenaufwand hoch und lässt sich nur schwer verbessern.
+Bei dieser Methode stellt das Lösen der Gleichungen und die Visualisierung der Ergebnisse die größte Schwierigkeit dar. Die Visualisierung erweist sich als Hindernis, da in jedem Voxel Kräfte vorhanden sind. Dabei unterscheidet man in dem Grid unter einem gefärbten Teil und einem nicht sichtbaren Teil, der meist Luft repräsentiert \ref{img:Vertexfeld}. Zur Darstellung des Fluides wird meist Volumerendering genutzt. Außerdem ist der Rechenaufwand hoch und lässt sich wegen der Grid-Architektur des Verfahrens nur schwer verbessern.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{Bilder/vektorfeld.jpg}
 	\caption[Fluidsimulation in Form des Vektorfeldverfahren \newline Quelle:\url{https://thumbs.gfycat.com/CelebratedElasticHartebeest-poster.jpg}]{Fluidsimulation in Form des Vektorfeldverfahren}
@@ -105,12 +113,12 @@ Bei dieser Methode stellt das Lösen der Gleichungen und die Visualisierung der 
 \subsection{Partikelsystem}\label{partikel}
 
 Bei dem Verfahren einer Partikelsimulation werden die Partikel einzeln betrachtet, dies bezeichnet man auch lagrangiansches Verfahren. Diese speichern Parameter wie Position und Geschwindigkeit selber ab. Die Berechnungen beschränken sich dabei auf die Dichte, Druck, Viskosität, Auftrieb und Wirbelkraft.
-Bei den Berechnungen werden die Nachbarpartikel mit einbezogen. Die Dichte beschreibt dabei wie viele Nachbarpartikel Einfluss auf dieses bestimmte Partikel haben und wird als Gewichtung für die Berechnung der Kräfte verwendet. Das typische Verhalten des Fluides, wird aber durch das Zusammenspiel der Kräfte Drucke und Viskosität erzeugt. Dabei sorgt der Druck dafür, dass Partikel sich voneinander wegbewegen und die Viskosität wirkt dem entgegen und führt das Anziehen von Partikel hervor. Der Auftrieb wiederum lässt sich über die Temperatur des Rauches bestimmen, welche je nach Dichte steigt oder sinkt. Zum anderen lässt sich aber die Wirbelkraft nicht so einfach berechnen und stellen somit ein Problem in der Forschung dar.
-Für die Berechnungen werden die Nachbarpartikel benötigt, welche aber nicht für jeden Partikel bekannt sind und es entsteht ein großer Aufwand, wenn man aus Einfachheit alle Partikel mit einbezieht. Hierbei entstehen viele Möglichkeiten das System zu beschleunigen.
+Die Nachbarpartikel werden dabei in die Berechnung miteinbezogen. Die Dichte beschreibt dabei wie viele Nachbarpartikel Einfluss auf den betrachteten Partikel haben und wird als Gewichtung für die Berechnung der Kräfte verwendet. Das typische Verhalten des Fluides wird aber durch das Zusammenspiel der Kräfte Drucke und Viskosität erzeugt. Dabei sorgt der Druck dafür, dass die Partikel sich voneinander wegbewegen. Die Viskosität wirkt dem entgegen und führt das Anziehen von Partikel hervor. Der Auftrieb wiederum lässt sich über die Temperatur des Rauches bestimmen, welche je nach Dichte steigt oder sinkt. Zum anderen lässt sich aber die Wirbelkraft nicht so einfach berechnen und stellt somit ein Problem in der Forschung dar.
+Für die Berechnungen werden die Nachbarpartikel benötigt, welche aber nicht für jeden Partikel bekannt sind. Es entsteht ein großer Aufwand, wenn man aus Einfachheit alle Partikel mit einbezieht. Hierbei entstehen viele Möglichkeiten das System zu beschleunigen.
 \newline
-Der Ansatz eines Partikelsystems eignet sich hervorragen zum einbinden in eine Echtzeitanwendung, wie ein Computerspiel oder einer Engine, da man mit der Partikelanzahl  die Performance beeinflussen kann. Beim Reduzieren der Partikel sollte eine Anpassung der Parameter erfolgen, da dies sonst einen signifikanten Einfluss auf das Verhalten des Fluides hat.
+Der Ansatz eines Partikelsystems eignet sich hervorragend zum Einbinden in eine Echtzeitanwendung. Wie beispielsweise ein Computerspiel oder einer Engine, da man mit der Partikelanzahl  die Performance beeinflussen kann. Beim Reduzieren der Partikel sollte eine Anpassung der Parameter erfolgen, da dies sonst einen signifikanten Einfluss auf das Verhalten des Fluides hat.
 \newline
-Die größten Schwierigkeiten bei einer Rauchsimulation in Form eines Partikelsystems entstehen durch Beschleunigung der Nachbarschaftssuche, sowie den Auftrieb und die Wirbelkraft.
+Die größten Schwierigkeiten bei einer Rauchsimulation in Form eines Partikelsystems entstehen durch die Beschleunigung der Nachbarschaftssuche, sowie den Auftrieb und die Wirbelkraft.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\columnwidth]{Bilder/partikelsystem.jpg}
@@ -123,13 +131,13 @@ Die größten Schwierigkeiten bei einer Rauchsimulation in Form eines Partikelsy
 \section{Rauchsimulation}\label{rauch}
 
 % Längeren Text
-Zur Simulation von Rauch wurde ein Partikelsystem implementiert, wessen physikalische Grundlage auf dem SPH-Verfahren basiert, welches Müller \cite{muller2003particle} 2003 zur Simulation von Fluiden genutzt hat. Dabei handelt es sich um eine Abwandelung der Navier-Stokes-Gleichungen für die Berechnung der Dichte, Druckes und Viskosität. Diese wurden zur Verwendung in einem SPH angepasst. Der Auftrieb, sowie die Temperaturberechung, stammen aus einem Paper von Ren \cite{ren2016fast}. Die größten Probleme bei der Implementation bereitete aber die Wirbelkraft, Ren und Macklin \cite{macklin2014unified} boten eine Formel zur Berechnung dar, welche aber nicht das gewünschte Ergebnis lieferte.
+Zur Simulation von Rauch wurde ein Partikelsystem implementiert, wessen physikalische Grundlage auf dem SPH-Verfahren basiert. Dieses Verfahren verwendet Müller \cite{muller2003particle} 2003 zur Simulation von Fluiden. Dabei handelt es sich um eine Abwandelung der Navier-Stokes-Gleichungen für die Berechnung der Dichte, Druckes und Viskosität. Diese wurden zur Verwendung in einem SPH angepasst. Der Auftrieb, sowie die Temperaturberechung, stammen aus einem Paper von Ren \cite{ren2016fast}. Die größten Probleme bei der Implementation bereitete aber die Wirbelkraft. Ren und Macklin \cite{macklin2014unified} boten eine Formel zur Berechnung dar, welche aber nicht das gewünschte Ergebnis lieferte.
 \newline
-Die Berechnung der Simulation bedarf vieler Schritte die von einander abhängig sind. In Abbildung  \ref{code:sim} werden alle Rechenschritte in einen optimalen Reihenfolge dargestellt. Die Berechnungen lassen sich in 4 Compute-Shader unterteilen.
+Die Berechnung der Simulation bedarf vieler Schritte die von einander abhängig sind. In Abbildung  \ref{code:sim} werden alle Rechenschritte in einer optimalen Reihenfolge dargestellt. Die Berechnungen lassen sich in vier Compute-Shader unterteilen, welche voneinander abhängig und deshalb nicht weiter reduzierbar sind.
 \newline
-Zum Verständnis bildet Abbildung \ref{tab:Symbole} alle Variablen da, sowie deren Bedeutung und Format.
+Zum Verständnis stellt die Abbildung \ref{tab:Symbole} alle Variablen dar, sowie deren Bedeutung und Format.
 
-\begin{figure}
+\begin{figure} [H]
 	\centering
 	\begin{lstlisting}
 computeshader 1	
@@ -171,7 +179,7 @@ end computeshader 4
 	\label{code:sim}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 		\begin{tabular}{ | c | p{8cm} | c |}
 			\hline
@@ -220,13 +228,13 @@ end computeshader 4
 
 \subsection{Gewichtungsfunktionen}\label{kernel}
 
-Ein wichtiger Aspekt welchen Einfluss Nachbarpartikel auf den betrachteten Partikel haben sind die Gewichtungsfunktionen. Diese bestimmen den Einfluss über die Entfernung $r_{ij}$ der Partikel zu einander, dabei spielt der Radius als Maximalabstand eine wichtige Rolle. Die Funktionen besitzen alle die Eigenschaft, dass sie symmetrisch sind und beim erreichen des Radius gegen 0 konvergieren und damit haben weit entfernte Partikel keinen Einfluss mehr. Gewichtungsfunktionen dienen dazu um eine Stabilität in das Partikelsystem zu bringen. Dabei nähern sie sich üblich Ableitungen von bestimmten Funktionen an \cite{muller2003particle}. Diese Funktionen wurden mit Hilfe von Bastian Krayer implementiert.
+Ein wichtiger Aspekt, welchen Einfluss Nachbarpartikel auf den betrachteten Partikel haben, sind die Gewichtungsfunktionen. Diese bestimmen den Einfluss über die Entfernung $r_{ij}$ der Partikel zu einander, dabei spielt der Radius als Maximalabstand eine wichtige Rolle. Die Funktionen besitzen alle die Eigenschaft, dass sie symmetrisch sind und beim Erreichen des Radius gegen 0 konvergieren, damit haben zu weit entfernte Partikel keinen Einfluss mehr. Gewichtungsfunktionen dienen dazu um eine Stabilität in das Partikelsystem zu bringen. Dabei nähern sie sich üblich Ableitungen von bestimmten Funktionen an \cite{muller2003particle}. Diese Funktionen wurden mit Hilfe von Bastian Krayer implementiert.
 \newline
 Für das SPH werden die drei folgenden Gewichtungsfunktionen genutzt. Abhängig von den Berechnungen wird eine andere Funktion für die richtige Stabilität des Systems benötigt. In Abbildung \ref{img:kernel} ist der Verlauf der Funktionen dargestellt.
 \newline
 Die $W_{poly}$-Funktion \ref{funk:normal} bietet einen weichen abfallenden Verlauf bei ansteigendem Abstand, diese Funktion wird als Standard für jegliche Berechnung genutzt.
 \newline
-Es werden aber für die Berechnungen ebenfalls ein Gradient, sowie der Laplace benötigt. Der Gradient für die Druckberechnung lässt sich durch die Ableitung der für diese Berechnung vorgesehene Funktion berechnen. Mit der $W_poly$-Funktion beim Wert 1, bei der die Druckkraft am höchsten sein sollte, ein nahezu 0 Wert erreicht, welcher dazu führen würde, dass sehr nahe Partikel sich nicht mehr abstoßen würden. Deshalb nutzt Müller Desbrun \cite{desbrun1996smoothed} Funktion \ref{funk:gradient}, da diese in der Ableitung \ref{funk:gradient2} Werte liefert, die für die Berechnung entsprechend konvergieren.
+Es werden aber für die Berechnungen ebenfalls ein Gradient, sowie der Laplace benötigt. Der Gradient für die Druckberechnung lässt sich durch die Ableitung der für diese Berechnung vorgesehene Funktion berechnen. Mit der $W_poly$-Funktion beim Wert 1, bei der die Druckkraft am höchsten sein sollte, ein nahezu 0 Wert erreicht, welcher dazu führen würde, dass sehr nahe Partikel sich nicht mehr abstoßen würden. Deshalb nutzt Müller Desbrun \cite{desbrun1996smoothed} Funktion \ref{funk:gradient}, da diese in der Ableitung als Funktion  \ref{funk:gradient2} Werte liefert, die für die Berechnung entsprechend konvergieren.
 \newline\newline
 
 \begin{equation}\label{funk:normal}
@@ -302,11 +310,11 @@ A_s(r_i) = \sum_j m_j \frac{A_j}{\rho_j} W(r_i-r_j)
 \rho_i(r_i) = \sum_j m_j \frac{\rho_j}{\rho_j} W(r_i-r_j) = \sum_j m_j  W(r_{i,j})
 \end{equation}
 
-Die Dichte, wie in der Gleichung \ref{funk:density} zu sehen, errechnet sich aus der Summe über alle Nachbarn j. Dabei multiplizieren wir die Masse $m_j$ mit der Dichte $\rho_j$ durch die Dichte. Dies wird dann noch mit der Gewichtungsfunktion verrechnet. Die Gleichung ergibt sich aus der Berechnung für Skalaregrößen \ref{funk:skalar} von Müller \cite{muller2003particle}.
+Die Dichte, wie in der Gleichung \ref{funk:density} zu sehen, errechnet sich aus der Summe über alle Nachbarn j. Dabei multiplizieren wir die Masse $m_j$ mit der Dichte $\rho_j$ durch die Dichte $\rho_j$ selbst. Dies wird dann noch mit der Gewichtungsfunktion verrechnet. Die Gleichung ergibt sich aus der Berechnung für Skalaregrößen \ref{funk:skalar} von Müller \cite{muller2003particle}.
 \newline\newline
-Wie in Abbildung \ref{img:dichte} Zeile 90 zu sehen, ist die Masse der Partikel nicht vom jeweiligen Partikel abhängig. In dem Paper von Ihmsen \cite{ihmsen2014sph} wird eine Formel $m_i = h^3 \rho_0$ für die Masse vorgestellt, diese wird initial durchgeführt und die Masse ist für den Rest der Simulation gleichbleibend. Diese Formel hat sich aber als nicht stabil, in der Implementation, herausgestellt. Deshalb wurde sie als Uniform-Variable implementiert die bei allen Partikel gleich ist. Der Vorteil dieser Implementation ist, dass man die Masse zu beginn oder auch zur Laufzeit verändern kann. Wobei dem ändern während der Laufzeit abzuraten ist, da es zu einem instabilen Verhalten der Simulation führen kann.
+Wie in Abbildung \ref{img:dichte} Zeile 90 zu sehen, ist die Masse der Partikel nicht vom jeweiligen Partikel abhängig. In dem Paper von Ihmsen \cite{ihmsen2014sph} wird eine Formel $m_i = h^3 \rho_0$ für die Masse vorgestellt, diese wird initial durchgeführt und die Masse ist für den Rest der Simulation gleichbleibend. Diese Formel hat sich aber als nicht stabil in der Implementation herausgestellt. Deshalb wurde sie als Uniform-Variable implementiert die bei allen Partikel gleich ist. Der Vorteil dieser Implementation ist, dass man die Masse zu beginn oder auch zur Laufzeit verändern kann. Wobei dem Ändern während der Laufzeit abzuraten ist, da es zu einem instabilen Verhalten der Simulation führen kann.
 \newline
-In Zeile 87-89 ist ein If-Abfang eingebaut der es verhindert, dass die Partikel auf sich selbst Einfluss nehmen können. Auf die Begrenzung der Nachbarn, die in die Berechnung eingenommen werden, wird in Abschnitt \ref{besch} eingegangen.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.35\columnwidth]{Bilder/dichte.jpg}
@@ -318,9 +326,9 @@ In Zeile 87-89 ist ein If-Abfang eingebaut der es verhindert, dass die Partikel 
 
 \subsection{Druck}\label{druch}
 
-Der Druckkraft $f^{pressure}$ beschreibt das Abstoßen von Partikeln von einander. Die standardmäßige Berechnung für Skalaregrößen \ref{funk:skalar}, ist aber in diesem Fall nicht symmetrisch und würde zu einen instabilen Simulation führen. Da für Partikel i nur der Druck $p$ des Nachbarpartikel j relevant wäre. Dies würde zu einem unterschiedlichen Druckkraft bei der Berechnung des Druckes zwischen den zwei Partikeln führen. Um dieses Problem zu umgehen stellt Müller \cite{muller2003particle} eine alternative Formel \ref{funk:pressureF} vor, die eine symmetrische Berechnung zwischen den Partikeln ermöglicht. Dabei werden beide Druckwerte addiert, um das Verhältnis aber beizubehalten wird auch die Dichte im Nenner verdoppelt. Zur Gewichtung wird dabei die Gradientenfunktion \ref{funk:gradient2} genutzt und damit der Vektor vom anderen Partikel j weg zeigt wird dieser negiert.
+Die Druckkraft $f^{pressure}$ beschreibt das Abstoßen von Partikeln von einander. Die standardmäßige Berechnung für Skalaregrößen Gleichung \ref{funk:skalar}, ist aber in diesem Fall nicht symmetrisch und würde zu einen instabilen Simulation führen. Da für Partikel i nur der Druck $p$ des Nachbarpartikel j relevant wäre. Dies würde zu einem unterschiedlichen Druckkraft bei der Berechnung des Druckes zwischen den zwei Partikeln führen. Um dieses Problem zu umgehen, stellt Müller \cite{muller2003particle} eine alternative Formel \ref{funk:pressureF} vor, die eine symmetrische Berechnung zwischen den Partikeln ermöglicht. Dabei werden beide Druckwerte beider Partikel addiert, um das Verhältnis aber beizubehalten wird auch die Dichte im Nenner verdoppelt. Zur Gewichtung wird dabei die Gradientenfunktion \ref{funk:gradient2} genutzt und damit der Vektor in die entgegengesetzte Richtung zum Partikel j zeigt, wird dieser negiert.
 \newline
-Zum berechnen der Druckkraft muss aber zunächst der Druck berechnet werden. Die Formel \ref{funk:pressure} von Desbrun \cite{desbrun1996smoothed} diesbezüglich wurde angepasst, indem eine Ruhedichte von der eigentlichen Dichte abgezogen wird. Dabei wird die Ruhedichte $p_0$ als Offset verwendet und hat keinen mathematischen Einfluss auf die Druckkraft \cite{muller2003particle}. Die Variable $k$ beschreibt dabei die Steifheit und bestimmt wie stark sich der Rauch ausdehnt.
+Zum berechnen der Druckkraft muss aber zunächst der Druck berechnet werden. Die Formel \ref{funk:pressure} von Desbrun \cite{desbrun1996smoothed} diesbezüglich wurde angepasst, indem eine Ruhedichte von der eigentlichen Dichte abgezogen wird. Dabei wird die Ruhedichte $p_0$ als Offset verwendet und hat keinen mathematischen Einfluss auf die Druckkraft \cite{muller2003particle}, da es diese nur um das Offset verschriebt. Die Variable $k$ beschreibt dabei die Steifheit und bestimmt wie stark sich der Rauch ausdehnt.
 
 \begin{equation}\label{funk:pressure}
 p_i = k(\rho - \rho_0)
@@ -333,9 +341,9 @@ f^{pressure}_i = - \nabla p(r_i) = - \sum_j m_j \frac{p_i+p_j}{2\rho_j} \nabla W
 
 \subsection{Viskosität}\label{visc}
 
-Ein wichtiger Aspekt der Physik ist auch die Viskosität. Diese beschreibt den Einfluss der Kraft der umliegenden Partikel, dabei haben aber nicht alle Partikel gleich viel Einfluss auf einander. Dies resultiert daraus, dass die Viskosität eine asymmetrische Kraft ist.   Wäre sie jedoch eine symmetrische Kraft würde es dazuführen ,dass viele Partikel die alle gleichzeitig in eine Richtung bewegen, sich ins unendliche beschleunigen würden. Dabei würde es bereits reichen, dass ein einzelner Partikel seine Kraft überträgt, da dieser wie bei einem Dominoeffekt, alle Partikel in seiner Umgebung in seine Bewegungsrichtung beschleunigen würde. Um dies zu umgehen modifiziert Müller \cite{muller2003particle} die SPH-Formel \ref{funk:skalar} indem der Unterschied des Geschwindigkeitsvektor $v$ in Betracht gezogen wird. Dies sorgt dafür, dass ein Partikel mit einem großen Geschwindigkeitsvektor trotzdem noch alle Partikel in seiner Nähe mit sich reißt, aber sich nicht mehr ins unendliche beschleunigen kann.
+Ein wichtiger Aspekt der Physik ist auch die Viskosität. Diese beschreibt den Einfluss der Kraft der umliegenden Partikel, dabei haben aber nicht alle Partikel gleich viel Einfluss auf einander. Dies resultiert daraus, dass die Viskosität eine asymmetrische Kraft ist. Wäre sie jedoch eine symmetrische Kraft würde es dazuführen, dass sobald sich eine große Anzahl an Partikel gleichzeitig in die selbe Richtung bewegen, sich diese ins unendliche beschleunigen würden. Dabei würde es bereits reichen, dass ein einzelner Partikel seine Kraft überträgt, da dieser wie bei einem Dominoeffekt, alle Partikel in seiner Umgebung in seine Bewegungsrichtung beschleunigen würde. Um dies zu umgehen modifiziert Müller \cite{muller2003particle} die SPH-Formel \ref{funk:skalar} indem der Unterschied des Geschwindigkeitsvektor $v$ in Betracht gezogen wird. Dies sorgt dafür, dass ein Partikel mit einem großen Geschwindigkeitsvektor trotzdem noch alle Partikel in seiner Nähe mit sich reißt, aber sich nicht mehr ins unendliche beschleunigen kann.
 \newline
-Dies lässt den Rauch wirken als würde er sich zusammen ziehen. Das resultiert daraus, dass die Partikel, mit der angepassten Formel, sich auch abbremsen können, da ein schnellerer Partikel beim berechnen der Viskosität mit einem langsamen Partikel einen Viskositätskraft entgegen seiner Bewegungsrichtung erhält. 
+Dies lässt den Rauch wirken als würde er sich zusammen ziehen. Das resultiert daraus, dass die Partikel, mit der angepassten Formel, sich auch abbremsen können, da ein schnellerer Partikel beim Berechnen der Viskosität mit einem langsamen Partikel eine Viskositätskraft entgegen seiner Bewegungsrichtung erhält. 
 \newline
 Wie in \ref{funk:visc} wird der Geschwindigkeitsvektor des eigenen Partikel abgezogen. Als Gewichtungsfunktion wird dabei der Laplace\ref{funk:laplace2} der $W_{visc}$\ref{funk:laplace} genutzt.
 
@@ -351,11 +359,15 @@ Die Variable $\mu$ beschreibt die eigentliche Viskosität. $\mu$ ist bei Fluiden
 
 Auftrieb ist eine Kraft die abhängig von der Temperatur des Rauches ist. Oftmals wird diese Temperatur statisch implementiert und sich eine Berechnung dieser gespart. Dabei zu beachten ist, dass die Partikel sich bei einer hohen Dichte gegenseitig aufheizen und bei einer niedrigen abkühlen. Um dieses Verhalten umzusetzen wurde die Auftriebsvariante von Ren \cite{ren2016fast} implementiert.
 \newline
-Zum anpassen der Temperatur der Partikel wurde die Formel \ref{funk:temp} verwendet. Diese betrachtet die Nachbarpartikel und heizt bzw. kühlt die Partikel abhängig der Nachbarn auf oder ab. Bei dieser Formel fehlte aber eine Definition der Funktion Dc, weshalb diese durch die in \ref{imp:temp} ersetzt wurde. Diese multipliziert den Temperatur unterschied mit einer Konstanten $C$ die den Wärmestrom des Rauches beschreibt. $\gamma$ ist dabei nur eine Variable, die positiv und nahe $0$ist, die das Teilen durch $0$ verhindert.
+Zum anpassen der Temperatur der Partikel wurde die Formel \ref{funk:temp} verwendet. Diese betrachtet die Nachbarpartikel und heizt bzw. kühlt die Partikel abhängig der Nachbarn auf oder ab. Bei dieser Formel fehlte aber eine Definition der Funktion Dc, weshalb diese durch \ref{funk:thermal} ersetzt wurde. Diese multipliziert den Temperaturunterschied mit einer Konstanten $C$ die den Wärmestrom des Rauches beschreibt. $\gamma$ ist dabei nur eine Variable, die positiv und nahe $0$ ist, die das Teilen durch $0$ verhindert.
 \newline
-Die Formel \ref{funk:temp2} beschreibt zudem das Abkühlen von Partikeln die kaum bis keine Nachbarpartikel haben. Dafür wird die Temperatur durch die Zeit geteilt die benötigt wäre um die Temperatur zu halbieren. Welche Partikel dabei betroffen sind wird über die Normale $n_i$ ermittelt, dazu wird die Formel \ref{funk:normale} verwendet. Die Normale wird bei einer geringen Dichte $\rho$ größer und wenn diese einen nutzerdefinierten Schwellwert überschreitet führt dies zur Abkühlung des Partikel. Leider lässt sich diese Formel nur bei einer positiven Temperatur anwenden, welches das Abkühlen von bereits negativen Temperatur verhindert.
+Die Formel \ref{funk:temp2} beschreibt zudem das Abkühlen von Partikeln die kaum bis keine Nachbarpartikel haben. Dafür wird die Temperatur durch die Zeit geteilt die benötigt wäre um die Temperatur zu halbieren. Welche Partikel dabei betroffen sind wird über die Normale $n_i$ ermittelt, dazu wird die Formel \ref{funk:normale} verwendet. Die Normale wird bei einer geringen Dichte $\rho$ größer und wenn diese einen nutzerdefinierten Schwellwert überschreitet führt dies zur Abkühlung des Partikel. Leider lässt sich diese Formel nur bei einer positiven Temperatur anwenden, welches das Abkühlen von bereits negativer Temperatur verhindert.
 \newline
 Wenn die Temperatur errechnet wurde lässt diese sich wie in \ref{funk:temp3} berechnen. Dabei beschreibt $b$ einen Up-Vektor und $C_b$ den Auftriebs-Koeffizienten.
+
+\begin{equation}\label{funk:thermal}
+Dc(T)  = C * T
+\end{equation}
 
 \begin{equation}\label{funk:temp}
 \frac{\delta T_i}{\delta t}  = \sum_j \frac{m_j}{\rho_i \rho_j} Dc(T_i - T_j) \frac{(r_i-r_j) \cdot \nabla W_{i,j}}{(r_i-r_j)^2 + \gamma^2}
@@ -373,14 +385,6 @@ n_i  = \sum_j \frac{m_j}{\rho_j} \nabla W_{i,j}
 f^{buoyancy}_i  = C_b T_i b
 \end{equation}
 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.35\columnwidth]{Bilder/thermal.jpg}
-	\caption{Implementation der Wärmeleitfähigkeit}
-	\label{img:temp}
-\end{figure}
-
 %-------------------------------------------------------------------------------
 
 \subsection{Wirbelkraft}\label{wirbel}
@@ -397,7 +401,7 @@ In der Formel \ref{funk:wirb2} wird dann noch die Wirbelstärke der umliegenden 
 f^{vortex}_j  = \sum_j (\omega_j \times (r_i -r_j)) W_{i,j}
 \end{equation}
 
-Eine Wirbelkraft zu errechnen die Turbulenzen verursacht ist leider nicht gelungen. Diese hatte lediglich die Wirkung die, dass der Rauch langsamer aufgetrieben ist. Das langsame Ausstoßen von Partikeln hatte leider keine positiven Auswirkungen auf die Physik. Dadurch entstanden eher Instabilitäten des Drucks, welcher sich zu beginn anpassen lies, aber dann inkonstant wurde. Eine Anpassung der Variablen führte leider dabei zu keinem Erfolg. Es wurden auch andere Versuche unternommen die Wirbelkraft anzupassen, wie unter anderem die Formel zu modifizieren, welche aber erfolglos blieben.
+Eine Wirbelkraft zu errechnen die Turbulenzen verursacht ist leider nicht gelungen. Diese hatte lediglich die Wirkung die, dass der Rauch langsamer aufgetrieben ist. Das langsame Ausstoßen von Partikeln hatte leider keine positiven Auswirkungen auf die Physik. Dadurch entstanden eher Instabilitäten des Drucks, welcher sich zu Beginn anpassen lies, aber dann inkonstant wurde. Eine Anpassung der Variablen führte leider dabei zu keinem Erfolg. Es wurden auch andere Versuche unternommen die Wirbelkraft anzupassen, wie unter anderem die Formel zu modifizieren, welche aber erfolglos blieben.
 
 %-------------------------------------------------------------------------------
 
@@ -410,14 +414,6 @@ Abschließend werden alle Kräfte zusammen gerechnet und zum Geschwindigkeitsvek
 \frac{\delta v_i}{\delta t}  = f^{pressure}_i + f^{viscosity}_i + f^{buoyancy}_i + f^{vortex}_i + ext + \rho_i g
 \end{equation}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.35\columnwidth]{Bilder/external.jpg}
-	\caption{Anpassbare Variablen per ImGui}
-	\label{img:ext}
-\end{figure}
-\newpage
-
 %-------------------------------------------------------------------------------
 
 \section{Implementierung}\label{imp}
@@ -426,13 +422,24 @@ Bei der Implementierung wurde darauf geachtet, dass das System einfach und schne
 Dazu können einige Parameter während der Laufzeit angepasst werden. Hierfür wurde ImGui \cite{ocornut} verwendet, welches eine UI \ref{img:ext} zur Verfügung stellt um die Parameter anzupassen.
 Das Anpassen der Variablen während der Laufzeit kann aber zur Instabilität der Physik führen.
 \newline
-Da die Implementierung die GPU verwendet muss darauf geachtet werden, dass die angewendeten Verfahren auch parallel berechenbar sind. Da nicht alle Kerne der GPU gleich schnell arbeiten muss es verhindert werden, dass Werte die von anderen Prozessen noch gelesen wird nicht überschrieben werden.
+ImGui diente auch dazu die Laufzeit der einzelnen Berechnungsschritte dazustellen. Aus diesen Informationen konnten unter anderem darauf geschlossen werden, welche Berechnungen besonders viel Aufwand mit sich bringen. Diese Zeiten machten aber auch darauf aufmerksam, das ein Prozess der einen geringen Aufwand haben sollte trotzdem eine hohe Laufzeit benötigte. Daraufhin wurden im Countingsort \ref{counting} beim Umorganisierungschritt eine Anpassung vorgenommen, die sich positiv auf die Leistung ausgewirkt hat.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.35\columnwidth]{Bilder/external.jpg}
+	\caption{Anpassbare Variablen per ImGui}
+	\label{img:ext}
+\end{figure}
+
+Damit bei dem Iterieren über das eigene Grid ein Partikel sich nicht selbst beeinflussen kann wurde wie in Abbildung \ref{img:normal} Zeile 88-90 zu sehen ist ein If-Abfang eingebaut. Diese verhindert es, dass ein Partikel mit derselben ID einen Einfluss, auf sich selbst, nehmen kann. Auf die Begrenzung der Nachbarn, die in die Berechnung eingenommen werden, wird in Abschnitt \ref{vergleich} eingegangen.
+\newline
+Da die Implementierung die GPU verwendet muss darauf geachtet werden, dass die angewendeten Verfahren auch parallel berechenbar sind. Da nicht alle Kerne der GPU gleich schnell arbeiten muss es verhindert werden, dass Werte die von anderen Prozessen noch gelesen wird, nicht überschrieben werden.
 Um dieses Problem zu umgehen wurden zwei identische SSBOs für die Partikel angelegt, welches zwar mehr Speicheraufwand bedeutet, aber bei ca. 65.000 Partikel nur zusätzlich 12 MB beträgt. Bei den zwei SSBOs werden diese im wechsel zum lesen un schreiben genutzt \ref{img:flipflop}. Dadurch besitzt das lesbare SSBO die zuletzt berechneten Daten und schreibt die neuen in das beschreibbare SSBO, hierbei wird aber immer anfangs das beschreibbare zunächst mit dem lesbaren SSBO überschrieben, damit alle Daten aktuell sind.
-Es muss dabei aber auch auf eine gerade Anzahl der aufrufe der Compute-Shader geachtet werden, da sonst im Beginn der Update-Schleife aus dem falschen SSBO gelesen wird.
+Es muss dabei aber auch auf eine gerade Anzahl der Aufrufe der Compute-Shader geachtet werden, da sonst im Beginn der Update-Schleife aus dem falschen SSBO gelesen wird. Hierfür wurde ein simpler Compute-Shader implementiert, der nur das alte SSBO mit den Daten des neuen überschreibt.
 \newline
 Für das parallele Schreiben in das gleiche SSBO bedarf es aber wiederum speziellen Operationen, die verhindern, dass mehrere Zugriffe gleichzeitig passieren und eine Variable bearbeiten. Dieses Problem entsteht häufig beim Versuch der Beschleunigung, da dort viele parallele Prozesse der Partikel auf das SSBO des Grids zugreifen.
 \newline
-OpenGL bietet in GLSL dabei Atomic-Operationen an, diese verhindern das ein anderer Prozess ebenfalls auf die Variable zugreift und diese bearbeitet. Dies entsteht dadurch, dass diese Funktionen zunächst einmal überprüfen ob die Variable bereits bearbeitet wird, falls dies der Fall ist wird solange gewartet bis sie freigegeben wird. Durch viele Prozesse die auf eine Variable zugreifen wollen können dadurch Warteschlangen für diese entstehen, welche in einem Zeitverlust resultiert.
+OpenGL bietet in GLSL dabei Atomic-Operationen an, diese verhindern das ein anderer Prozess ebenfalls auf die Variable zugreift und diese bearbeitet. Dies entsteht dadurch, dass diese Funktionen zunächst einmal überprüfen ob die Variable bereits bearbeitet wird, falls dies der Fall ist wird solange gewartet bis sie freigegeben wird. Durch viele Prozesse die auf eine Variable zugreifen wollen, können dadurch Warteschlangen für diese entstehen, woraus ein Zeitverlust resultiert.
 
 \begin{figure}[H]
 	\centering
@@ -440,20 +447,19 @@ OpenGL bietet in GLSL dabei Atomic-Operationen an, diese verhindern das ein ande
 	\caption{Partikel SSBOs zum lesen und schreiben}
 	\label{img:flipflop}
 \end{figure}
-\newpage
 %-------------------------------------------------------------------------------
 
 \section{Beschleunigung}\label{besch}
 
-Um ein Partikelsystem in einer Engine zu integrieren, muss diese möglichst performant sein, da in einer Engine auch andere Prozesse berechnet werden. Es bestehen mehrere Möglichkeiten ein Partikelsystem zu beschleunigen, eine liegt darin die zu betrachtenden Nachbarpartikel zu begrenzen. Durch die Gewichtungsfunktionen \ref{kernel} werden ohnehin Partikel die außerhalb des Radius $h$ liegen nicht mehr miteinbezogen. Würde man einfach über alle möglichen Nachbarpartikel iterieren, würde ein $O(n^2)$ Aufwand anfallen, hierbei steht n für die Anzahl der Partikel. Dies würde bei 1000 Partikeln ein Aufwand von 1.000.000 Rechenoperationen pro Rechnung bedeuten pro Frame. Dies ließe sich nicht in Echtzeit berechnen geschweige denn in eine Engine integrieren. Deshalb wurden im folgenden Abschnitt die Möglichkeiten, diese Laufzeit zu reduzieren, untersucht und gegenübergestellt.  
+Um ein Partikelsystem in einer Engine zu integrieren, muss diese möglichst performant sein, da in einer Engine auch andere Prozesse berechnet werden. Es bestehen mehrere Möglichkeiten ein Partikelsystem zu beschleunigen, eine liegt darin die zu betrachtenden Nachbarpartikel zu begrenzen. Durch die Gewichtungsfunktionen \ref{kernel} werden ohnehin Partikel die außerhalb des Radius $h$ liegen nicht mehr miteinbezogen. Würde man einfach über alle möglichen Nachbarpartikel iterieren, würde ein $O(n^2)$ Aufwand anfallen, hierbei steht n für die Anzahl der Partikel. Dies würde bei 1000 Partikeln ein Aufwand von 1.000.000 Rechenoperationen pro Rechnung pro Frame bedeuten. Dies ließe sich nicht in Echtzeit berechnen, geschweige denn in eine Engine integrieren. Deshalb wurden im folgenden Abschnitt die Möglichkeiten, diese Laufzeit zu reduzieren, untersucht und gegenübergestellt.  
 
 %-------------------------------------------------------------------------------
 
 \subsection{gridbasierte Nachbarschaftssuche}\label{nachbar}
 
-Eine Möglichkeit die Laufzeit zu verringern basiert darauf, dass man nur die Nachbarn mit in die Berechnung einbezieht die infrage kommen. Würde man aber alle Partikel miteinander vergleichen und die Nachbarn für einen einzigen Partikel herausfinden und für diese Iteration abspeichern würde dies mit einem immer noch hohem Aufwand so wie einem großen Speicherverbrauch verbunden sein, bei dem nicht klar ist wie viel Speicher benötigt wird, da die Anzahl der Nachbarpartikel nicht bekannt ist.
+Eine Möglichkeit die Laufzeit zu verringern basiert darauf, dass man nur die Nachbarn mit in die Berechnung einbezieht, die infrage kommen. Würde man aber alle Partikel miteinander vergleichen, die Nachbarn für einen einzigen Partikel herausfinden und für diese Iteration abspeichern, würde dies mit einem immer noch hohem Aufwand, sowie einem großen Speicherverbrauch verbunden sein. Bei diesem wäre nicht klar, wie viel Speicher benötigt wird, da die Anzahl der Nachbarpartikel nicht bekannt ist. Man müsste dabei vom Worst Case ausgehen und genug Speicherplatz für alle Partikel anlegen.
 \newline
-Hoetzlein \cite{nvidia} stellt dabei eine auf einem Grid basierte Nachbarschaftssuche da. Diese lässt sich in die folgenden 3 Unterpunkte unterteilen.
+Hoetzlein \cite{nvidia} stellt dabei eine gridbasierte Nachbarschaftssuche vor. Diese lässt sich in die folgenden 3 Unterpunkte unterteilen.
 
 \begin{enumerate}
 	\item Unterteilen der Welt in gleichgroße Gridbehälter
@@ -461,15 +467,15 @@ Hoetzlein \cite{nvidia} stellt dabei eine auf einem Grid basierte Nachbarschafts
 	\item Suche der Partikel in den Nachbarbehältern 
 \end{enumerate}
 
-Der 1. Punkt wird bereits beim Initialisieren durchgeführt, dabei wird vorher vom Benutzer vorgegeben wie groß das Grid sein soll. Dieser Wert ist zu Laufzeit nicht mehr anpassbar, da das Grid als SSBO angelegt wird. Jedes der Gridbehälter(Grid) besitzt eine eindeutige ID die gleicht mit der gl\_GlobalInvocationID.x in dem Compute-Shader ist. 
+Der 1. Punkt wird bereits beim Initialisieren durchgeführt, dabei wird vorher vom Benutzer vorgegeben wie groß die Griddimensionen sein sollen. Dieser Wert ist zu Laufzeit nicht mehr anpassbar, da das Grid als SSBO angelegt wird. Jedes Grid besitzt eine eindeutige ID die gleich mit der $gl\_GlobalInvocationID.x$ in dem Compute-Shader ist. 
 \newline
-Punkt 2 bedarf einer hohen Menge an Speicherplatz, da davon ausgegangen werden muss, dass im Worst-Case-Szenario sich alle Partikel in einem Grid aufhalten. Welches bei einer Gridgröße von $50x50x50$ und ca. $65.000$ Partikel $8,125$ GB verbrauchen würde rein an Speicherplatz für die Partikel die in einem Grid vorhanden sind. Dabei handelt es sich bei diesen Zahlen um eine Simulation die später als Standardsimulation betrachtet wird.
+Punkt 2 bedarf einer hohen Menge an Speicherplatz, da davon ausgegangen werden muss, dass im Worst-Case-Szenario sich alle Partikel in einem Grid aufhalten. Welches bei einer Gridgröße von $50x50x50$ und ca. $65.000$ Partikel $32,5$ GB verbrauchen würde, dies wäre noch ineffizienter als wenn alle Partikel genug Speicherplatz für alle potenziellen Nachbarn anlegen würden. Dabei handelt es sich bei diesen Zahlen um eine Simulation die später als Standardsimulation betrachtet wird.
 \newline
 Ein Problem dabei ist aber auch, dass die Partikel zunächst zugeordnet werden müssen. Dies erfolgt über die in Abbildung \ref{img:lable} in Zeile 46 zu findende Funktion $cubeID$, welche über die Position des Partikel eine eindeutige GridID ausrechnet. Das hinzufügen der Partikel in die Grids ist je nach Verfahren unterschiedlich und wird genauer in Abschnitt \ref{counting} und \ref{speicher}  erklärt.
 \newline
 In Punkt 3 handelt es sich lediglich um ein iterieren über alle Partikel in den Nachbarbehältern, da diese bereits stark eingegrenzt wurden und durch die Gewichtungsfunktionen nur die Partikel betrachtet werden die in dem entsprechenden Radius sind.
 \newline
-In Abbildung \ref{img:grid} sieht man ein vereinfachtes 2D-Grid mit einem Partikel, welcher dem Grid in der Mitte zuzuordnen ist. Bei einem standardmäßigem Radius $h$ von 1, werden alle möglichen Nachbarpartikel die infrage kommen abgedeckt. Hierbei werden alle 9 in 2D oder 27 in 3D Nachbarbehälter betrachtet und über die Partikel in diesen iteriert.
+In Abbildung \ref{img:grid} sieht man ein vereinfachtes 2D-Grid mit einem Partikel, welcher dem Grid in der Mitte zuzuordnen ist. Bei einem standardmäßigem Radius $h$ von 1, werden alle möglichen Nachbarpartikel die infrage kommen abgedeckt. Hierbei werden alle 9 in 2D oder 27 in 3D Grids betrachtet und über die Partikel in diesen iteriert.
 
 \begin{figure}[H]
 	\centering
@@ -482,17 +488,17 @@ Diese Art der Nachbarschaftssuche besitzt einen Aufwand von $O(n k)$ im optimal 
 \newline
 Dabei werden die Partikel den Behältern zugeordnet, diese wiederum Speichern die Anzahl der Partikel aller vorherigen Behälter und wie viele Partikel sie selbst beinhalten. Damit wird dann über einen Sortieralgorithmus bestimmt an welcher Stelle die Partikel zu welchem Grid im Speicher gehören. Dann muss nur noch von einem Grid die erste Speicheradresse, sowie die Anzahl der Partikel abgefragt werden und über diese iteriert werden.
 \newline
-In Abschnitt \ref{counting} wird genauer auf ein solches Verfahren so wie die Implementation eingegangen.
+In Abschnitt \ref{counting} wird genauer auf ein solches Verfahre, sowie die Implementation eingegangen.
 
 %-------------------------------------------------------------------------------
 
 \subsection{Speicherverfahren}\label{speicher}
 
-Da beim Speicherverfahren ein großer Aufwand ans Speicherplatz auf der GPU benötigt wird, dieser aber begrenzt ist und deshalb nicht für große Simulationen verwendbar ist, wird eine Begrenzung des genutzten Speicherplatzes angewendet. Heinrich \cite{nvidia2} beschreibt, dass bei der Implementation von Müllers \cite{muller2003particle} Fluidsimulation nur 32 Nachbarnpartikel für eine korrekte Simulation von Nöten sind, die einen Einfluss auf den betrachteten Partikel haben. Da ein ausgeglichener Einfluss auf diesem Partikel herrschen soll, wurden die Nachbarn nicht auf 32 Partikel beschränkt, sondern auf 16 Partikel pro Grid. Dadurch können maximal 432 Partikel in die Berechnungen mit einbezogen werden. Wobei wie man in Abbildung \ref{img:grid} sehen kann nicht alle Grids durch die Gewichtungsfunktionen \ref{kernel} mit einbezogen werden. Im Durchschnitt haben pro Nachbarschaftssuche ca. 138 Nachbarpartikel Einfluss auf die Berechnung.
+Da beim Speicherverfahren ein großer Aufwand ans Speicherplatz auf der GPU benötigt wird, dieser aber begrenzt ist und deshalb nicht für große Simulationen verwendbar ist, wird eine Begrenzung des genutzten Speicherplatzes angewendet. Heinrich \cite{nvidia2} beschreibt, dass bei der Implementation von Müllers \cite{muller2003particle} Fluidsimulation nur 32 Nachbarnpartikel für eine korrekte Simulation von Nöten sind, die einen Einfluss auf den betrachteten Partikel haben. Da ein ausgeglichener Einfluss auf diesem Partikel herrschen soll, wurden die Nachbarn nicht auf 32 Partikel beschränkt, sondern auf 16 Partikel pro Grid. Dadurch können maximal 432 Partikel in die Berechnungen mit einbezogen werden. Wobei wie man in Abbildung \ref{img:grid} sehen kann, dass nicht alle Grids durch die Gewichtungsfunktionen \ref{kernel} mit einbezogen werden. Im Durchschnitt haben pro Nachbarschaftssuche ca. 138 Nachbarpartikel einen Einfluss auf die Berechnung.
 \newline
 Bei der Implementation wurde einfachheitshalber bei den Grids 16 unsigned int Variablen hinzugefügt, die die IDs der Nachbarpartikel beinhaltet.
 \newline
-Wie in Abbildung \ref{img:Storinglable} zu sehen, werden die zunächst die Zugehörigkeiten der Partikel zu dem Grid berechnet. Daraufhin wird mit der $count$ Variable berechnet, an welche Speicherposition die IDs der Partikel gespeichert wird. Dafür wird wegen den parallelen Prozessen eine Atomic-Funktion genutzt, woraufhin Partikel die einen Wert unter 16 besitzen in dem Grid an der entsprechenden Position gespeichert. Es werden daraufhin bei der Nachbarschaftsbetrachtung nur noch die abgespeicherten IDs abgerufen. 
+Wie in Abbildung \ref{img:Storinglable} zu sehen, werden die zunächst die Zugehörigkeiten der Partikel zu dem Grid berechnet. Daraufhin wird mit der $count$ Variable berechnet, an welche Speicherposition die IDs der Partikel gespeichert wird. Dafür wird wegen den parallelen Prozessen eine Atomic-Funktion genutzt, woraufhin Partikel die einen Wert unter 16 besitzen in dem Grid an der entsprechenden Position gespeichert werden. Es werden daraufhin bei der Nachbarschaftsbetrachtung nur noch die abgespeicherten IDs abgerufen. 
 
 \begin{figure}[H]
 	\centering
@@ -500,10 +506,10 @@ Wie in Abbildung \ref{img:Storinglable} zu sehen, werden die zunächst die Zugeh
 	\caption{Speichern der Partikel-IDs im Grid }
 	\label{img:Storinglable}
 \end{figure}
-\newpage
+
 Diese Form der Nachbarschaftsbetrachtung besitzt in der Theorie einen Aufwand von $O(n k)$. Was aber dabei nicht beachtet wurde ist, dass die Partikel-IDs in den Grids sich sehr stark unterscheiden können, wie in Abbildung \ref{tab:Speicher} zu sehen.
 \newline
-Durch diesen unsortierten Speicher entstehen scattered reads, diese Art den Speicher auszulesen ist um einiges langsamer als bei einem sortierten Speicher. Dies entsteht durch, dass lesen von Speicheradressen die nicht zusammenhängend sind sondern einen hohen Abstand besitzen.
+Durch diesen unsortierten Speicher entstehen scattered reads, diese Art den Speicher auszulesen ist um einiges langsamer als bei einem sortierten Speicher. Dies entsteht durch, den Zugriff auf Speicheradressen die einen großen Abstand besitzen.
 \newline
 Dieses Verfahren ist allerdings noch um einiges schneller als die Brute-Force-Methode.
 
@@ -523,6 +529,7 @@ Dieses Verfahren ist allerdings noch um einiges schneller als die Brute-Force-Me
 
 \subsection{Sortierverfahren}\label{sortieren}
 Um das Problem der scattered reads zu beheben, müssen die Speicherpositionen nach dem Grid sortiert werden \ref{tab:Speichersorted}, damit ein Speicherzugriff erfolgen kann der möglichst kompakt ist. Dafür wird aber ein Sortieralgorithmus benötigt. Ein sequentieller Algorithmus würde aufgrund der Architektur der GPU sich dafür nicht eignen, da diese zwar viele Kerne besitzt, die gemeinsam eine große Rechenleistung, aber einzeln nur eine geringe besitzen. Dort wäre es effizienter die Daten wieder auf die CPU zu übertragen und dort sortieren zu lassen.
+
 \begin{figure}[H]
 	\centering
 	\begin{tabular}{ | c || c | c | c | c | c | c | c | c | c |}
@@ -534,13 +541,15 @@ Um das Problem der scattered reads zu beheben, müssen die Speicherpositionen na
 	\caption{sortierter Speicher nach Sortieralgorithmus}
 	\label{tab:Speichersorted}
 \end{figure}
-Es wird ein paralleler Sortieralgorithmus benötigt, Hoetzlein \cite{nvidia} stellt dabei zwei Sortierverfahren gegenüber. Der erste ist RadixSort, dieser Sortieralgorithmus bezieht sich auf das betrachten der einzelnen Stellen einer Zahl und sortiert anhand dessen. Dadurch, dass jeder Kern eine einzelne Zahl betrachten und diese dann einordnen kann, mach diesen Sortieralgorithmus parallelisierbar.
-RadixSort hat einen Aufwand von $O(l n)$, wobei l für die Anzahl der Stellen steht. Laut diesem Aufwand ist er damit schneller als der zweite Algorithmus CountingSort mit einem Aufwand von $O(n log(n))$. Jedoch benötigt laut Hoetzlein \cite{nvidia} RadixSort 15 Kernel calls und CountingSort nur 4 Kernel calls pro Frame. Dadurch ist CountingSort trotz größerem Aufwand der schnellere Algorithmus,auf wessen Theorie und Implementation in Abschnitt \ref{counting}  näher eingegangen wird.
+
+Da das Sortieren auf der CPU aber sequentiell ist, würde es wertvolle Laufzeit verbrauchen, ebenfalls das Übertragen der Daten auf die CPU. Deshalb wird ein paralleler Sortieralgorithmus auf der GPU benötigt, Hoetzlein \cite{nvidia} stellt dabei zwei Sortierverfahren gegenüber. Der erste ist RadixSort, dieser Sortieralgorithmus bezieht sich auf das betrachten der einzelnen Stellen einer Zahl und sortiert anhand dessen. Dadurch, dass jeder Kern eine einzelne Zahl betrachten und diese dann einordnen kann, mach diesen Sortieralgorithmus parallelisierbar.
+RadixSort hat einen Aufwand von $O(l n)$, wobei l für die Anzahl der Stellen steht. Laut diesem Aufwand ist er damit schneller als der zweite Algorithmus CountingSort mit einem Aufwand von $O(n log(n))$. Jedoch benötigt laut Hoetzlein \cite{nvidia} RadixSort 15 Kernel calls und CountingSort nur 4 Kernel calls pro Frame. Dadurch ist CountingSort trotz größerem Aufwand der schnellere Algorithmus, auf wessen Theorie und Implementation im folgenden Abschnitt näher eingegangen wird.
 
 %-------------------------------------------------------------------------------
 
 \subsection{Countigsort}\label{counting}
-Countingsort ist ein nicht vergleichsbasierter Algorithmus, dies erlaubt eine parallele Implementation bei der die Laufzeit unabhängig von der Zuordnung des Arrays ist und damit eine festen Aufwand hat.
+Countingsort ist ein nicht vergleichsbasierter Algorithmus, sondern ist adressenbasiert. Dabei dürfen nur natürliche Zahlen, als Schlüsselwert, in dem Array vorkommen welche mit einem maximalen Wert begrenzt werden.
+Dies erlaubt eine parallele Implementation bei der die Laufzeit unabhängig von der Zuordnung des Arrays ist und damit eine festen Aufwand hat.
 Die einzelnen Schritte des Sortieralgorithmus erfolgen nach Demaine \cite{counting}.
 \newline
 Für den Countigsort wird ein Array mit den zu sortierenden Zahlen wie in der Tabelle \ref{tab:Counting1} benötigt, dabei muss die maximale Größe des Wertes im Array bekannt sein.
@@ -600,7 +609,6 @@ Zu Letzt wird über die Werte des initialen Array iteriert und der Wert an die A
 	\label{tab:Counting4}
 \end{figure}
 
-\newpage
 %Implementierung
 %-------------------------------------------------------------------------------
 
@@ -646,9 +654,8 @@ end computeshader 6
 	\caption{Aufbau des Implementierten Countingsort}
 	\label{code:Counting}
 \end{figure}
-\newpage
 
-Der Sortieralgorithmus beginnt mit dem zurücksetzen des Grid-SSBO \ref{img:GridStruct}. Dies dient dazu, dass die  Berechnung des vorherigen Frames keinen Einfluss hat. Dabei werden alle Variablen bis auf die $id$ zurückgesetzt, wobei die $id$ und der $previousSortOutPut$ Füllervariablen sind um die 16 Byte zu erreichen, sie haben aber noch einen Mehrwert im Debugging.
+Der Sortieralgorithmus beginnt mit dem Zurücksetzen des Grid-SSBOs \ref{img:GridStruct}. Dies dient dazu, dass die  Berechnung des vorherigen Frames keinen Einfluss hat. Dabei werden alle Variablen bis auf die ID zurückgesetzt, wobei die ID und der $previousSortOutPut$ Füllervariablen sind um die 16 Byte zu erreichen, sie haben aber noch einen Mehrwert im Debugging.
 
 \begin{figure}[H]
 	\centering
@@ -657,7 +664,7 @@ Der Sortieralgorithmus beginnt mit dem zurücksetzen des Grid-SSBO \ref{img:Grid
 	\label{img:GridStruct}
 \end{figure}
 
-Im Folgenden wird wie in Abbildung \ref{img:lable} in Zeile 60 zu sehen die Anzahl der Partikel in einem Grid gespeichtert, die Zugehörigkeit zum Grid wird über die CubeID-Funktion ermittelt. Eine atomicAdd-Funktion wird dabei durchgeführt und es wird der Wert $grid[temp].particlesInGrid$ um 1 erhöht. In $outParticle[id].memoryPosition$ wird der Wert vor der Addition gespeichert und dieser sagt aus als wievielter sich dieser Partikel im Grid registriert hat. Die Abwandelung mit dieser Variable spart beim $rearrange Particles$-Schritt kostbare Laufzeit.
+Im Folgenden wird die Anzahl der Partikel in einem Grid gespeichtert, die Zugehörigkeit zum Grid wird über die CubeID-Funktion ermittelt, welches in Abbildung \ref{img:lable} in Zeile 60 zu sehen ist. Eine atomicAdd-Funktion wird dabei durchgeführt und es wird der Wert $grid[temp].particlesInGrid$ um 1 erhöht. In $outParticle[id].memoryPosition$ wird der Wert vor der Addition gespeichert und dieser sagt aus als wievielter sich dieser Partikel im Grid registriert hat. Die Abwandelung mit dieser Variable spart beim $rearrange Particles$-Schritt kostbare Laufzeit.
 
 \begin{figure}[H]
 	\centering
@@ -678,11 +685,11 @@ Zum Berechnen der Prefixsum wird der parallele Scan von Nav\"{i}e nach Harris \c
 Um den ersten Schritt zu vereinfachen und keinen Zugriff auf Variablen zu haben, die überschrieben werden könnten, wird der Algorithmus damit initialisiert, dass die Anzahl der Partikel die sich im Grid befinden in den $currentSortOutPut$ sowie in den Gridbuffer geschrieben wird.
 \newline
 Der Gridbuffer dient in dem Fall als temporärer Buffer, der bloß eine Float-Variable speichert, damit nicht gleichzeitig aus einem Buffer die gleiche Variable gelesen und beschrieben wird.
-Dafür werden die ComputeShader zu Berechnung der Prefixsum und zum updaten des Gridbuffers im wechsel $log_2(Particleanzahl)-1$ durchgeführt. Bei der Prefixsum wird aus dem Gridbuffer die aktuelle Summe plus die Summe des $i - 2^d$ Nachbarn addiert und in dem $currentSortOutPut$ des Grid-SSBOs gespeichert. Daraufhin wird der Gridbuffer aktualisiert und es wird die Summe die in der $currentSortOutPut$ Variable steht übertragen.
+Dafür werden die Compute-Shader zu Berechnung der Prefixsum und zum updaten des Gridbuffers im wechsel $log_2(Particleanzahl)-1$ durchgeführt. Bei der Prefixsum wird aus dem Gridbuffer die aktuelle Summe plus die Summe des $i - 2^d$ Nachbarn addiert und in dem $currentSortOutPut$ des Grid-SSBOs gespeichert. Daraufhin wird der Gridbuffer aktualisiert und es wird die Summe die in der $currentSortOutPut$ Variable steht übertragen.
 \newline
 Im letzten Schritt müssen die Partikel nur noch neu angeordnet werden. Dies müsste nach dem Algorithmus für jedes Grid sequentiell ablaufen, damit sich die Partikel nacheinander an die richtige Position schreiben. Dies entspricht dem Schritt von \ref{tab:Counting3} zu \ref{tab:Counting4}.
 \newline
-Um diesen sequentiellen Prozess zum umgehen wurde aber im Vorhinein bereits in der $outParticle[id].memoryPosition$ die Position des Partikels im Grid bestimmt. Deshalb können die Partikel wie in \ref{img:rearrange} zu sehen, sich bloß an die entsprechende Speicherstelle schreiben. Dadurch befinden sich nun alle Partikel die in einem Grid sind in aufeinanderfolgenden Speicherplätzen und verhindert damit scattered reads.
+Um diesen sequentiellen Prozess zum umgehen wurde aber im Vornherein bereits in der $outParticle[id].memoryPosition$ die Position des Partikels im Grid bestimmt. Deshalb können die Partikel wie in \ref{img:rearrange} zu sehen, sich bloß an die entsprechende Speicherstelle schreiben, diese Anpassung spart ca. 0,1ms pro Frame bei 65.000 Partikeln. Dadurch befinden sich nun alle Partikel die in einem Grid sind in aufeinanderfolgenden Speicherplätzen und verhindert damit scattered reads.
 
 \begin{figure}[H]
 	\centering
@@ -704,20 +711,20 @@ Das Aufrufen der Nachbarpartikel erfolgt daraufhin wie zum Beispiel bei der Norm
 
 \subsection{Vergleich}\label{vergleich}
 
-Die beiden Beschleunigungsverfahren bieten auf Kosten von Speicherplatz oder Laufzeit für das Sortieren eine sehr starke Verkürzung der Laufzeit. Im folgenden werden beide Beschleunigungsverfahren gegenübergestellt und mit einander auf Vor- und Nachteile untersucht.
+Die beiden Beschleunigungsverfahren bieten auf Kosten von Speicherplatz und Laufzeit eine sehr starke Verkürzung der Laufzeit. Im folgenden werden beide Beschleunigungsverfahren gegenübergestellt und mit einander auf Vor- und Nachteile untersucht.
 \newline
 Damit bei beiden Verfahren über gleich viele Partikel iteriert wird und dies damit keinen Einfluss auf die Beschleunigung hat wurde der Countingsort ebenfalls auf 16 Partikel pro Grid beschränkt \ref{img:normal}. Als Standardwerte für die Partikelanzahl wird $65.536$ und für die Gridgröße $50x50x50$ angesehen, welche bei speziellen Tests für die Partikel oder das Grid dann variieren können.
 \newline
-Die Tests wurden auf einem Desktop-Pc mit einer Intel(R) Core(TM) i5-9600k CPU @ 4.0 GHz und einer Nvidia GeForece GTX 1660 Ti Grafikkarte durchgeführt. Bei den Tests wurden die Durchschnittswerte von 20s Laufzeit pro Simulation, die jeder 10 mal wiederholt wurden, ausgewertet. Bei den zeitlichen Angaben handelt es sich um Millisekunden pro Frame.
+Die Tests wurden auf einem Desktop-Pc mit einer Intel(R) Core(TM) i5-9600k CPU @ 4.0 GHz und einer Nvidia GeForce GTX 1660 Ti Grafikkarte durchgeführt. Bei den Tests wurden die Durchschnittswerte von 20s Laufzeit pro Simulation, die jeder 10 mal wiederholt wurden, ausgewertet. Bei den zeitlichen Angaben handelt es sich um Millisekunden pro Frame.
 \newline
-Beim Vergleich der Sortieralgorithmen bei steigender Partikelanzahl \ref{tab:particle} haben beide eine ähnliche Berechnungsdauer bei einer niedrigen Anzahl, dabei ist aber der Countingsort bereits ein wenig schneller. Besonders bemerkbar macht sich der Unterschied bei hoher Partikelanzahl bei dem das Speicherverfahren fast die doppelte Laufzeit pro Frame besitzt. Dies ist ganz klar auf die scattered reads zurückzuführen, die das Speicherverfahren, trotz weniger Kernal calls, erheblich verlangsamen.
+Beim Vergleich der Sortieralgorithmen bei steigender Partikelanzahl \ref{tab:particle} haben beide eine ähnliche Berechnungsdauer bei einer niedrigen Anzahl, dabei ist aber der Countingsort bereits ein wenig schneller. Besonders bemerkbar macht sich der Unterschied bei hoher Partikelanzahl bei dem das Speicherverfahren fast die doppelte Laufzeit pro Frame besitzt. Dies ist ganz klar auf die scattered reads zurückzuführen, die das Speicherverfahren, trotz weniger Kernal calls, erheblich verlangsamen. Beim Countingsort deutet es einen linearen Verlauf der Laufzeit an, wie es Hoetzlein \cite{nvidia} beschreibt. Diese Linearität scheint aber zwischen 525.000 und 1.000.000 nicht mehr gegeben zu sein. Dies scheint aber an der Datenübertragungsrate der Grafikkarte zu liegen. Da es bei einer mit höherer Datenübertragungsrate und vergleichbar vielen Kernen zwar ebenfalls keine perfekte Linearität aufwies, aber eine deutlich besseren Verlauf zeigte. Leider konnten keine eindeutigeren Tests auf dieser Grafikkarte durchgeführt werden, da diese nur kurz zur Verfügung stand.  
 \newline
 
 \begin{figure}[H]
 	\centering
 	\begin{tabular}{ | c || c | c | c | c | c | c | c | c |}
 		\hline
-		Partikel			&  8.912 & 16.384 & 32.768 & 65.536 & 131.072 & 262.144 & 524.288 & 1.048.576	\\ \hline
+		Partikel			&  8.912 & 16k & 32k & 65k & 131k & 262k & 524k & 1kk	\\ \hline
 		Countingsort														\\ \hline
 		Laufzeit(ms)		&   0,72 &  1,27 &  2,13 &  4,12 &  12,71 &  27,81 &  56,72 &  142,56		 	\\ \hline
 		
@@ -729,8 +736,7 @@ Beim Vergleich der Sortieralgorithmen bei steigender Partikelanzahl \ref{tab:par
 	\label{tab:particle}
 \end{figure}
 
-Einen Einfluss auf die Laufzeit hat auch die Griddimension, wobei dieser sehr viel geringer ausfällt als die der Partikelanzahl. Wie in Abbildung \ref{tab:Grid} zu sehen, ist auch hier der Countingsort schneller und bei diesem haben die Griddimensionen auch weniger Einfluss auf die Laufzeit, als beim Speicherverfahren. Beim Speicherverfahren steigt die Laufzeit stärker an, obwohl dieser anstieg sich nicht signifikant von dem des Countingsort unterscheidet.
-\newline
+Einen Einfluss auf die Laufzeit hat auch die Griddimension, wobei dieser sehr viel geringer ausfällt als die der Partikelanzahl. Wie in Abbildung \ref{tab:Grid} zu sehen, ist auch hier der Countingsort schneller und bei diesem haben die Griddimensionen auch weniger Einfluss auf die Laufzeit, als beim Speicherverfahren. Bei dem Speicherverfahren steigt die Laufzeit stärker an, obwohl dieser Anstieg sich nicht signifikant von dem des Countingsort unterscheidet.
 
 \begin{figure}[H]
 	\centering
@@ -748,7 +754,7 @@ Einen Einfluss auf die Laufzeit hat auch die Griddimension, wobei dieser sehr vi
 	\label{tab:Grid}
 \end{figure}
 
-Das Sinken und anschließende Steigen aus Abbildung \ref{tab:Grid} lässt sich durch das stärkere verteilen der Partikel erklären, da sich in einem kleineren Raum mehr Partikel in einem Grid befinden und sich dadurch mehr atomicAdd-Funktionen bei den einzelnen Grids stauen.
+Das Sinken und anschließende Steigen aus Abbildung \ref{tab:Grid} lässt sich durch das stärkere Verteilen der Partikel erklären, da sich in einem kleineren Raum mehr Partikel in einem Grid befinden und sich dadurch mehr atomicAdd-Funktionen bei den einzelnen Grids stauen.
 
 \begin{figure}[H]
 	\centering
@@ -763,7 +769,7 @@ Das Sinken und anschließende Steigen aus Abbildung \ref{tab:Grid} lässt sich d
 		coordinates {
 			(20,26.681) (30,28.237) (40,31.271) (50,36.276) (60,43.740) (70,54.158) (80,68.021) (90,85.823) (100,108.053)
 		};
-		\addlegendentry{Speicher}
+		\addlegendentry{Speicherverfahren}
 		\end{axis}
 	\end{tikzpicture}
 	\caption{Speicherverbrauch in Kb auf der Y-Achse und Griddimensionen auf der X-Achse }
@@ -772,50 +778,58 @@ Das Sinken und anschließende Steigen aus Abbildung \ref{tab:Grid} lässt sich d
 
 Da der Speicherplatz der Grafikkarte nicht unbegrenzt ist, lohnt es sich ebenfalls einen Blick auf diesen zu werfen in Verbindung mit den Griddimensionen, da diese sich bei den Sortieralgorithmen im nutzenden Speicher unterscheiden \ref{dia:speicher}.
 \newline
-Zunächst hat das Speicherverfahren einen geringeren Verbrauch, welcher daraus resultiert, dass für den Countingsort neben dem Grid-SSBO noch der temporäre Gridbuffer als SSBO existiert. Doch Beim Speicherverfahren steigt der benötigte Speicherplatz sehr viel stärker an als beim Countigsort. Bei diesem ist nur ein geringer anstieg zu verzeichnen.
+Zunächst hat das Speicherverfahren einen geringeren Verbrauch, welcher daraus resultiert, dass für den Countingsort neben dem Grid-SSBO noch der temporäre Gridbuffer als SSBO existiert. Doch Beim Speicherverfahren steigt der benötigte Speicherplatz sehr viel stärker an als beim Countigsort. Bei diesem ist nur ein geringer Anstieg zu verzeichnen.
 
 %-------------------------------------------------------------------------------
+\newpage
 
 \section{Ergebnis}\label{ergebnis}
 
-In der Studienarbeit wurde gezeigt, dass eine Rauchsimulation die nur auf einem Partikelsystem basiert schwer in der Realisierung von Wirbelkräften ist. Diese lassen sich nicht über simple Partikelinteraktionen simulieren und bedürfen für eine realistische Simulation eine Erweiterung in Form eines Vektorfeldes oder einer ähnlichen Technik. Eine eigen kreierte Physik zu Realisierung von Wirbelkräften in einem Partikelsystem bedarf einer Einarbeitung und Umsetzung in dieser Thematik die zu umfangreich Zeitaufwändig gewesen wäre.
+In der Studienarbeit wurde gezeigt, dass eine Realisierung Rauchsimulation in einem Partikelsystem bedingt möglich ist.
+Hierbei weißt das simulierte Fluid einige Eigenschaften von Rauch auf. Der Auftrieb, so wie Druck und Viskosität verhalten sich physikalisch korrekt. Die Wirbelkräfte in einer Rauchsimulation zu realisieren, welche auf einem Partikelsystem basiert, benötigt jedoch eine komplexere Berechnung. Diese lassen sich nicht über simple Partikelinteraktionen simulieren und bedürfen für eine realistische Simulation eine Erweiterung. Eine eigens kreierte Physik zu Realisierung von Wirbelkräften in einem Partikelsystem bedarf einer Einarbeitung und Umsetzung in dieser Thematik, die zu Zeitaufwändig gewesen wäre.
 \newline
 Die Simulation kann durch das Anpassen der Variablen ebenfalls für andere Simulationen genutzt werden, wie zum Beispiel Wasser oder andere Flüssigkeiten deren Physik rein auf der Partikelinteraktion in einem Partikelsystem basieren kann.
 \newline
-Die Beschleunigung des Systems war besonders erfolgreich. Die Implementation beider Beschleunigungsverfahren erzielte ihre Vorgabe, sodass das Partikelsystem in Echtzeit simuliert werden konnte. Dabei erwies sich der Countingsort mit den persönlichen Anpassungen als performanter bei einer hohen Partikelanzahl, sowie effizienter im Speicherverbrauch als das Speicherverfahren. Außerdem besitzt der Countingsort eine stabilere Laufzeit als das Speicherverfahren, da dieses durch die scattered reads teilweise sehr starke Schwankungen in der Performance aufweisen.
+Die Beschleunigung des Systems war besonders erfolgreich. Die Implementation beider Beschleunigungsverfahren erzielte ihre Vorgabe, sodass das Partikelsystem in Echtzeit simuliert werden konnte. Dabei erwies sich der Countingsort mit den persönlichen Anpassungen als performanter bei einer hohen Partikelanzahl, sowie effizienter im Speicherverbrauch als das Speicherverfahren. Außerdem besitzt der Countingsort eine stabilere Laufzeit als das Speicherverfahren, da dieses durch die scattered reads teilweise sehr starke Schwankungen in der Performance aufweisen. 
 \newline
 Das Integrieren der Simulation in eine Engine  wäre deshalb mit dem Countingsort möglich und empfehlenswert.
 \newline
-Die vorliegende Fluidsimulation bietet viele Möglichkeiten zur Erweiterung. Eine angedachte wäre die Realisierung einer Technik zur besseren Berechnung der Wirbelkraft, da diese einen großen optischen Einfluss auf die Simulation hat.
-\newline
-Außerdem wurden bisher nur Point-Sprites gerendert, welche zwar einen Vorteil für die Berechnung bieten, aber nicht besonders optisch ansprechend sind. Deshalb würde sich hier ein realistisches Rendern der Partikel anbieten.
-\newline
-Die Performance ebenfalls noch ausbaufähig, hier sollte man noch andere Beschleunigungsverfahren in Betracht ziehen und gegeneinander abwägen. Außerdem sollten weitere Anpassungen beim Countingsort in Zukunft sich positiv auf dessen Beschleunigung des Systems auswirken.
-\newline
-In Abbildung \ref{img:particle1} und \ref{img:particle2} sieht man die Ausbreitung der Partikel welcher durch den Druck und die Viskosität entsteht. Außerdem steigen die Partikel durch eine hohe Temperatur auf, welche in Abbildung \ref{img:particle3} abkühlt und zum absinken der gesamten Partikel führt.
-
+In den folgenden Bildern sieht man die initiale Ausbreitung der Partikel. Diese wurden in Form einer Kugel im unteren Drittel gesetzt. Da die Partikel eine hohe Temperatur besitzen und sich wegen der Dichte zunächst aufheizen, steigen sie auf. Außerdem breiten sie sich auf Grund der Druckkraft aus und bewegen sich wegen der Viskosität in die gleiche Richtung. Nach dem Aufprallen an der Decke sammeln sich die Partikel zunächst an dieser, bevor sie wegen zu geringer Dichte an Temperatur verlieren und mit der Zeit absinken.
 %-------------------------------------------------------------------------------
 
 \begin{figure}[H]
-	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/1.jpg}}
-	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/2.jpg}}
-	\caption{Aufstieg und Ausbreitung der Partikel}
-	\label{img:particle1}
+	\centering
+	\includegraphics[width=1\columnwidth]{Bilder/1.jpg}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\columnwidth]{Bilder/2.jpg}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\columnwidth]{Bilder/3.jpg}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\columnwidth]{Bilder/4.jpg}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\columnwidth]{Bilder/5.jpg}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\columnwidth]{Bilder/6.jpg}
+	\caption{Simulationsverlauf des Rauches}
 \end{figure}
 
-\begin{figure}[H]
-	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/3.jpg}}
-	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/4.jpg}}
-	\caption{Ausbreitung der Partikel}
-		\label{img:particle2}
-\end{figure}
+\section{Ausblick}\label{ausblick}
 
-\begin{figure}[H]
-	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/5.jpg}}
-	\subfigure{\includegraphics[width=0.49\textwidth]{Bilder/6.jpg}}
-	\caption{Absinken der Partikel nach einiger Zeit}
-		\label{img:particle3}
-\end{figure}
+Die vorliegende Fluidsimulation bietet viele Möglichkeiten zur Erweiterung. Eine angedachte wäre die Realisierung einer Technik zur besseren Berechnung der Wirbelkraft, da diese einen großen optischen Einfluss auf die Simulation hat. Diese könnte durch das Einbringen von Vektorfeldern oder einer ähnlichen Technik erfolgen. Vorteilhaft wäre es, wenn diese als Coroutine, unabhängig von der der Berechnung der Partikelinteraktionen, berechnet werden könnte. Dadurch müsste diese nicht bei jedem Frame berechnet werden, sondern könnte in einem festen Intervall berechnet werden, um entsprechend Leitung zu sparen.
+\newline
+Außerdem wurden bisher nur Point-Sprites gerendert, welche kein aufwendiges Rendering benötigen, aber nicht besonders optisch ansprechend sind. Deshalb würde sich hier ein realistisches Rendern der Partikel anbieten. Dabei könnten die Point-Sprites durch Texturen ersetzt werden, wie es bei Partikelsimulationen in Unity üblich ist. Eine übliche Art des Renderings bei Fluiden wäre ein marching-cubes-Algorithmus, welcher ein Mesh erstellen würde. Dies bedarf aber einen hohen Aufwand beim erstellen des Meshes. Müller \cite{muller2007screen} schlägt aber alternativ ein Screen-Space-Fluid-Rendering vor welches nur die nächstgelegen Oberfläche, zur Kamera, rendern würde. Dabei könnte gegenüber dem marching-cubes-Algorithmus wichtige Laufzeit gespart werden.
+\newline
+Um weitere Verbesserungen in der Performance zu erreichen sollte man noch andere Beschleunigungsverfahren in Betracht ziehen und gegeneinander abwägen. Außerdem sollten weitere Anpassungen beim Countingsort in Zukunft sich positiv auf dessen Beschleunigung des Systems auswirken. Da dieser keine lineare Laufzeit, in Relation zur Partikelanzahl, hat. Die genaue Ursache für diese Abweichung könnte untersucht und behoben werden.
 
 \newpage
 \listoffigures

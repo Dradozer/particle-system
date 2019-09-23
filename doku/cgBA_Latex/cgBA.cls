@@ -59,7 +59,7 @@
 \RequirePackage[T1]{fontenc}					% Umlaute korrekt codieren
 \RequirePackage{graphicx}					% fuer Einbindung von Grafiken
 \RequirePackage{tabularx}					% flexible Gestaltung von Tabellen
-\RequirePackage[hang,small,bf]{caption}			% Bildunterschriften mit Optionen
+\RequirePackage[small,bf]{caption}			% Bildunterschriften mit Optionen
 \RequirePackage{amsfonts}						%
 \RequirePackage{amssymb}						%	Mathe-Zeugs
 \RequirePackage{amsmath}						%
