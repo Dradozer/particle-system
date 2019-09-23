@@ -2,8 +2,8 @@
 \contentsline {figure}{\numberline {1}{\ignorespaces Fluidsimulation in Form des Vektorfeldverfahren \newline Quelle:\url {https://thumbs.gfycat.com/CelebratedElasticHartebeest-poster.jpg}}}{4}{figure.caption.3}% 
 \contentsline {figure}{\numberline {2}{\ignorespaces Partikelsimulation von Wasser \newline \url {https://i.ytimg.com/vi/DhNt_A3k4B4/maxresdefault.jpg}}}{5}{figure.caption.4}% 
 \contentsline {figure}{\numberline {3}{\ignorespaces Updateschleife der Physik\relax }}{6}{figure.caption.5}% 
-\contentsline {figure}{\numberline {4}{\ignorespaces Bedeutung aller Symbole der Berechnungen\relax }}{7}{figure.caption.6}% 
-\contentsline {figure}{\numberline {5}{\ignorespaces Die Gewichtungsfunktionen $W_{poly6}$, $W_{spiky}$, $W_{visc}$ nach \cite {muller2003particle} mit einem Radius von 1\relax }}{9}{figure.caption.7}% 
+\contentsline {figure}{\numberline {4}{\ignorespaces Bedeutung aller Symbole aller der Berechnungen\relax }}{7}{figure.caption.6}% 
+\contentsline {figure}{\numberline {5}{\ignorespaces Die Gewichtungsfunktionen $W_{poly6}$, $W_{spiky}$, $W_{visc}$ nach \cite {muller2003particle} mit einem Radius von eins\relax }}{9}{figure.caption.7}% 
 \contentsline {figure}{\numberline {6}{\ignorespaces Implementation der SPH Kernel\relax }}{9}{figure.caption.8}% 
 \contentsline {figure}{\numberline {7}{\ignorespaces Implementation der Dichtefunktion\relax }}{11}{figure.caption.9}% 
 \contentsline {figure}{\numberline {8}{\ignorespaces Anpassbare Variablen per ImGui\relax }}{15}{figure.caption.10}% 

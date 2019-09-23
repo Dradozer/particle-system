@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.18)  23 SEP 2019 15:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.18)  24 SEP 2019 01:53
 entering extended mode
 **./BA.tex
 (BA.tex
@@ -1063,12 +1063,6 @@ ter-sucht Rauch
  []
 
 
-Underfull \hbox (badness 1831) in paragraph at lines 45--48
-\T1/ppl/m/n/10.95 zu be-schleu-ni-gen. Dar-auf-hin wur-den zwei Be-schleu-ni-gu
-ngs-ver-fah-ren
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 45--48
 
  []
@@ -1105,6 +1099,12 @@ n Mül-ler
 [1
 
 ]
+Underfull \hbox (badness 1297) in paragraph at lines 89--95
+\T1/ppl/m/n/10.95 Die Si-mu-la-ti-on zur Dar-stel-lung von Flui-den, ist ein ja
+h-re-lan-ge Her-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 89--95
 
  []
@@ -1133,15 +1133,9 @@ Package pdftex.def Info: Bilder/partikelsystem.jpg  used on input line 124.
 (pdftex.def)             Requested size: 251.9989pt x 198.07594pt.
  [4 <./Bilder/vektorfeld.jpg>] [5 <./Bilder/partikelsystem.jpg>]
 [6]
-Underfull \hbox (badness 1845) in paragraph at lines 231--239
-\T1/ppl/m/n/10.95 kei-nen Ein-fluss mehr. Ge-wich-tungs-funk-tio-nen die-nen da
--zu um ei-ne
- []
-
-
-Underfull \hbox (badness 2205) in paragraph at lines 231--239
-\T1/ppl/m/n/10.95 stei-gen-dem Ab-stand, die-se Funk-ti-on wird als Stan-dard f
-ür jeg-li-che
+Underfull \hbox (badness 1708) in paragraph at lines 231--239
+\T1/ppl/m/n/10.95 Die $\OML/cmm/m/it/10.95 W[]$\T1/ppl/m/n/10.95 -Funktion ([]1
+[]) bie-tet einen wei-chen ab-fal-len-den Ver-lauf bei
  []
 
 
@@ -1154,56 +1148,61 @@ Underfull \hbox (badness 10000) in paragraph at lines 231--239
 
  []
 
-[7] [8]
-<Bilder/kernel.jpg, id=269, 793.46437pt x 331.2375pt>
+[7]
+<Bilder/kernel.jpg, id=256, 793.46437pt x 331.2375pt>
 File: Bilder/kernel.jpg Graphic file (type jpg)
 <use Bilder/kernel.jpg>
-Package pdftex.def Info: Bilder/kernel.jpg  used on input line 284.
+Package pdftex.def Info: Bilder/kernel.jpg  used on input line 282.
 (pdftex.def)             Requested size: 251.9989pt x 105.19958pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
+
+ []
+
+[8]
 <Bilder/impKernel.jpg, id=274, 680.5425pt x 457.71pt>
 File: Bilder/impKernel.jpg Graphic file (type jpg)
 <use Bilder/impKernel.jpg>
-Package pdftex.def Info: Bilder/impKernel.jpg  used on input line 292.
+Package pdftex.def Info: Bilder/impKernel.jpg  used on input line 291.
 (pdftex.def)             Requested size: 486.0022pt x 326.86906pt.
 
-Overfull \hbox (126.0022pt too wide) in paragraph at lines 292--293
+Overfull \hbox (126.0022pt too wide) in paragraph at lines 291--292
  [][] 
  []
 
 [9 <./Bilder/kernel.jpg> <./Bilder/impKernel.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 313--317
+Underfull \hbox (badness 10000) in paragraph at lines 312--316
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 313--317
+Underfull \hbox (badness 10000) in paragraph at lines 312--316
 
  []
 
 <Bilder/dichte.jpg, id=290, 674.52pt x 255.20343pt>
 File: Bilder/dichte.jpg Graphic file (type jpg)
 <use Bilder/dichte.jpg>
-Package pdftex.def Info: Bilder/dichte.jpg  used on input line 320.
+Package pdftex.def Info: Bilder/dichte.jpg  used on input line 319.
 (pdftex.def)             Requested size: 486.0022pt x 183.88261pt.
 
-Overfull \hbox (126.0022pt too wide) in paragraph at lines 320--321
+Overfull \hbox (126.0022pt too wide) in paragraph at lines 319--320
  [][] 
  []
 
-[10] [11 <./Bilder/dichte.jpg>] [12] [13]
-Underfull \hbox (badness 1024) in paragraph at lines 410--412
-\T1/ppl/m/n/10.95 Abschlieÿend wer-den al-le Kräf-te zu-sam-men ge-rech-net und
- zum Ge-
+[10] [11 <./Bilder/dichte.jpg>]
+Underfull \hbox (badness 1331) in paragraph at lines 359--366
+\T1/ppl/m/n/10.95 rech-nen. Da-bei be-schreibt $\OML/cmm/m/it/10.95 b$ \T1/ppl/
+m/n/10.95 einen Up-Vektor und $\OML/cmm/m/it/10.95 C[]$ \T1/ppl/m/n/10.95 den A
+uftriebs-
  []
 
-
-Underfull \hbox (badness 5359) in paragraph at lines 410--412
-\T1/ppl/m/n/10.95 schwin-dig-keits-vek-tor hin-zu-ge-fügt []18[]. Ein Spe-zi-al
--fall da-bei ist die
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 410--412
+[12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 409--411
 
  []
 
@@ -1211,16 +1210,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 410--412
 <Bilder/external.jpg, id=356, 264.99pt x 297.36093pt>
 File: Bilder/external.jpg Graphic file (type jpg)
 <use Bilder/external.jpg>
-Package pdftex.def Info: Bilder/external.jpg  used on input line 429.
+Package pdftex.def Info: Bilder/external.jpg  used on input line 428.
 (pdftex.def)             Requested size: 126.0022pt x 141.3931pt.
  [15 <./Bilder/external.jpg>]
 <Bilder/Flipflop.jpg, id=367, 666.99188pt x 137.01187pt>
 File: Bilder/Flipflop.jpg Graphic file (type jpg)
 <use Bilder/Flipflop.jpg>
-Package pdftex.def Info: Bilder/Flipflop.jpg  used on input line 446.
+Package pdftex.def Info: Bilder/Flipflop.jpg  used on input line 445.
 (pdftex.def)             Requested size: 468.0011pt x 96.13762pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 446--447
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 445--446
  [][] 
  []
 
@@ -1228,42 +1227,48 @@ Overfull \hbox (108.0011pt too wide) in paragraph at lines 446--447
 <Bilder/grid.jpg, id=378, 721.69624pt x 270.00874pt>
 File: Bilder/grid.jpg Graphic file (type jpg)
 <use Bilder/grid.jpg>
-Package pdftex.def Info: Bilder/grid.jpg  used on input line 482.
+Package pdftex.def Info: Bilder/grid.jpg  used on input line 481.
 (pdftex.def)             Requested size: 360.0pt x 134.68678pt.
  [17] [18 <./Bilder/grid.jpg>]
 <Bilder/StoringLable.jpg, id=400, 674.52pt x 306.39468pt>
 File: Bilder/StoringLable.jpg Graphic file (type jpg)
 <use Bilder/StoringLable.jpg>
-Package pdftex.def Info: Bilder/StoringLable.jpg  used on input line 505.
+Package pdftex.def Info: Bilder/StoringLable.jpg  used on input line 504.
 (pdftex.def)             Requested size: 468.0011pt x 212.59071pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 505--506
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 504--505
  [][] 
  []
 
 [19 <./Bilder/StoringLable.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 551--557
+Underfull \hbox (badness 10000) in paragraph at lines 550--556
 
  []
 
 [20]
-Underfull \hbox (badness 1436) in paragraph at lines 570--572
+Underfull \hbox (badness 1436) in paragraph at lines 569--571
 []\T1/ppl/m/n/10.95 Zunächst wer-den dann in ei-nem Hilfsar-ray die An-zahl der
  vor-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 570--572
+Underfull \hbox (badness 10000) in paragraph at lines 569--571
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 597--599
+Underfull \hbox (badness 10000) in paragraph at lines 596--598
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 615--617
+Underfull \hbox (badness 2197) in paragraph at lines 614--616
+\T1/ppl/m/n/10.95 le-re und sta-bi-le-re Im-ple-men-ta-ti-on des Sor-tieral-go-
+rith-mus, au-ÿer-dem
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 614--616
 
  []
 
@@ -1271,10 +1276,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 615--617
 <Bilder/GridStruct.jpg, id=435, 663.98062pt x 91.09032pt>
 File: Bilder/GridStruct.jpg Graphic file (type jpg)
 <use Bilder/GridStruct.jpg>
-Package pdftex.def Info: Bilder/GridStruct.jpg  used on input line 662.
+Package pdftex.def Info: Bilder/GridStruct.jpg  used on input line 661.
 (pdftex.def)             Requested size: 468.0011pt x 64.20476pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 662--663
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 661--662
  [][] 
  []
 
@@ -1282,26 +1287,26 @@ Overfull \hbox (108.0011pt too wide) in paragraph at lines 662--663
 <Bilder/lable.jpg, id=475, 675.27281pt x 287.57437pt>
 File: Bilder/lable.jpg Graphic file (type jpg)
 <use Bilder/lable.jpg>
-Package pdftex.def Info: Bilder/lable.jpg  used on input line 671.
+Package pdftex.def Info: Bilder/lable.jpg  used on input line 670.
 (pdftex.def)             Requested size: 468.0011pt x 199.30852pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 671--672
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 670--671
  [][] 
  []
 
 <Bilder/PrefixSum.jpg, id=477, 450.18187pt x 223.58531pt>
 File: Bilder/PrefixSum.jpg Graphic file (type jpg)
 <use Bilder/PrefixSum.jpg>
-Package pdftex.def Info: Bilder/PrefixSum.jpg  used on input line 680.
+Package pdftex.def Info: Bilder/PrefixSum.jpg  used on input line 679.
 (pdftex.def)             Requested size: 360.0pt x 178.80365pt.
 [23 <./Bilder/GridStruct.jpg> <./Bilder/lable.jpg>]
 <Bilder/rearrange.jpg, id=488, 663.98062pt x 63.98906pt>
 File: Bilder/rearrange.jpg Graphic file (type jpg)
 <use Bilder/rearrange.jpg>
-Package pdftex.def Info: Bilder/rearrange.jpg  used on input line 696.
+Package pdftex.def Info: Bilder/rearrange.jpg  used on input line 695.
 (pdftex.def)             Requested size: 468.0011pt x 45.10251pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 696--697
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 695--696
  [][] 
  []
 
@@ -1309,78 +1314,72 @@ Overfull \hbox (108.0011pt too wide) in paragraph at lines 696--697
 <Bilder/normal.jpg, id=496, 659.46375pt x 275.52937pt>
 File: Bilder/normal.jpg Graphic file (type jpg)
 <use Bilder/normal.jpg>
-Package pdftex.def Info: Bilder/normal.jpg  used on input line 705.
+Package pdftex.def Info: Bilder/normal.jpg  used on input line 704.
 (pdftex.def)             Requested size: 468.0011pt x 195.53893pt.
 
-Overfull \hbox (108.0011pt too wide) in paragraph at lines 705--706
+Overfull \hbox (108.0011pt too wide) in paragraph at lines 704--705
  [][] 
  []
 
 
-Underfull \hbox (badness 2080) in paragraph at lines 714--722
+Underfull \hbox (badness 2080) in paragraph at lines 713--721
 \T1/ppl/m/n/10.95 ver-fah-ren, trotz we-ni-ger Ker-nal calls, er-heb-lich ver-l
 ang-sa-men. Beim
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 714--722
+Underfull \hbox (badness 1478) in paragraph at lines 713--721
 \T1/ppl/m/n/10.95 Hoetz-lein [[]] be-schreibt. Die-se Li-nea-ri-tät scheint abe
 r zwi-schen
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 714--722
-\T1/ppl/m/n/10.95 hö-he-rer Da-ten-über-tra-gungs-ra-te und ver-gleich-bar vie-
-len Ker-nen zwar
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 714--722
+Underfull \hbox (badness 10000) in paragraph at lines 713--721
 
  []
 
 [25 <./Bilder/rearrange.jpg> <./Bilder/normal.jpg>]
-Overfull \hbox (10.47542pt too wide) in paragraph at lines 725--735
+Overfull \hbox (10.47542pt too wide) in paragraph at lines 724--734
  [][] 
  []
 
 
-Overfull \hbox (9.18794pt too wide) in paragraph at lines 743--753
+Overfull \hbox (9.18794pt too wide) in paragraph at lines 742--752
  [][] 
  []
 
 [26] [27]
-<Bilder/1.jpg, id=519, 242.8272pt x 173.448pt>
+<Bilder/1.jpg, id=520, 242.8272pt x 173.448pt>
 File: Bilder/1.jpg Graphic file (type jpg)
 <use Bilder/1.jpg>
-Package pdftex.def Info: Bilder/1.jpg  used on input line 802.
+Package pdftex.def Info: Bilder/1.jpg  used on input line 800.
 (pdftex.def)             Requested size: 360.0pt x 257.15688pt.
-<Bilder/2.jpg, id=520, 242.8272pt x 173.448pt>
+<Bilder/2.jpg, id=521, 242.8272pt x 173.448pt>
 File: Bilder/2.jpg Graphic file (type jpg)
 <use Bilder/2.jpg>
-Package pdftex.def Info: Bilder/2.jpg  used on input line 806.
+Package pdftex.def Info: Bilder/2.jpg  used on input line 804.
 (pdftex.def)             Requested size: 360.0pt x 257.15688pt.
  [28]
-<Bilder/3.jpg, id=525, 242.8272pt x 173.448pt>
+<Bilder/3.jpg, id=526, 242.8272pt x 173.448pt>
 File: Bilder/3.jpg Graphic file (type jpg)
 <use Bilder/3.jpg>
-Package pdftex.def Info: Bilder/3.jpg  used on input line 810.
+Package pdftex.def Info: Bilder/3.jpg  used on input line 808.
 (pdftex.def)             Requested size: 360.0pt x 257.15688pt.
-<Bilder/4.jpg, id=526, 242.8272pt x 173.448pt>
+<Bilder/4.jpg, id=527, 242.8272pt x 173.448pt>
 File: Bilder/4.jpg Graphic file (type jpg)
 <use Bilder/4.jpg>
-Package pdftex.def Info: Bilder/4.jpg  used on input line 814.
+Package pdftex.def Info: Bilder/4.jpg  used on input line 812.
 (pdftex.def)             Requested size: 360.0pt x 257.15688pt.
  [29 <./Bilder/1.jpg> <./Bilder/2.jpg>]
-<Bilder/5.jpg, id=533, 242.8272pt x 173.448pt>
+<Bilder/5.jpg, id=534, 242.8272pt x 173.448pt>
 File: Bilder/5.jpg Graphic file (type jpg)
 <use Bilder/5.jpg>
-Package pdftex.def Info: Bilder/5.jpg  used on input line 818.
+Package pdftex.def Info: Bilder/5.jpg  used on input line 816.
 (pdftex.def)             Requested size: 360.0pt x 257.15688pt.
-<Bilder/6.jpg, id=534, 242.8272pt x 173.448pt>
+<Bilder/6.jpg, id=535, 242.8272pt x 173.448pt>
 File: Bilder/6.jpg Graphic file (type jpg)
 <use Bilder/6.jpg>
-Package pdftex.def Info: Bilder/6.jpg  used on input line 822.
+Package pdftex.def Info: Bilder/6.jpg  used on input line 820.
 (pdftex.def)             Requested size: 360.0pt x 257.15688pt.
  [30 <./Bilder/3.jpg> <./Bilder/4.jpg>] [31 <./Bilder/5.jpg> <./Bilder/6.jpg>] 
 [32] (BA.lof
@@ -1457,23 +1456,23 @@ Underfull \hbox (badness 2582) in paragraph at lines 82--89
  []
 
 ) [35]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 839.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 839.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 837.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 837.
  (BA.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 839.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 839.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 837.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 837.
 Package rerunfilecheck Info: File `BA.out' has not changed.
 (rerunfilecheck)             Checksum: 4B4C548C54D52D9882BA005B3E429274;1292.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 839.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 837.
  ) 
 Here is how much of TeX's memory you used:
  31335 strings out of 492895
- 727013 string characters out of 3122334
- 1088910 words of memory out of 3000000
+ 727017 string characters out of 3122334
+ 1088909 words of memory out of 3000000
  34501 multiletter control sequences out of 15000+200000
  30765 words of font info for 61 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 74i,19n,127p,1117b,2280s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 74i,19n,127p,1122b,2280s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.
 enc}<C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
 fonts/cm/cmex10.pfb><C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/
@@ -1491,9 +1490,9 @@ s/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/palatino/uplbi8a.p
 fb><C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/palatin
 o/uplr8a.pfb><C:/Users/Dradozer/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/u
 rw/palatino/uplri8a.pfb>
-Output written on BA.pdf (39 pages, 1616603 bytes).
+Output written on BA.pdf (39 pages, 1617604 bytes).
 PDF statistics:
- 705 PDF objects out of 1000 (max. 8388607)
+ 706 PDF objects out of 1000 (max. 8388607)
  201 named destinations out of 1000 (max. 500000)
  294 words of extra memory for PDF output out of 10000 (max. 10000000)
 
