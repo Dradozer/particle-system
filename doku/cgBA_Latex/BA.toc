@@ -19,5 +19,5 @@
 \contentsline {subsection}{\numberline {6.3}Sortierverfahren}{20}{subsection.6.3}% 
 \contentsline {subsection}{\numberline {6.4}Countigsort}{20}{subsection.6.4}% 
 \contentsline {subsection}{\numberline {6.5}Vergleich}{25}{subsection.6.5}% 
-\contentsline {section}{\numberline {7}Ergebnis}{28}{section.7}% 
-\contentsline {section}{\numberline {8}Ausblick}{32}{section.8}% 
+\contentsline {section}{\numberline {7}Ergebnis}{29}{section.7}% 
+\contentsline {section}{\numberline {8}Ausblick}{33}{section.8}% 

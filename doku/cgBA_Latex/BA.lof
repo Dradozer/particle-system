@@ -3,7 +3,7 @@
 \contentsline {figure}{\numberline {2}{\ignorespaces Partikelsimulation von Wasser \newline \url {https://i.ytimg.com/vi/DhNt_A3k4B4/maxresdefault.jpg}}}{5}{figure.caption.4}% 
 \contentsline {figure}{\numberline {3}{\ignorespaces Updateschleife der Physik\relax }}{6}{figure.caption.5}% 
 \contentsline {figure}{\numberline {4}{\ignorespaces Bedeutung aller Symbole aller der Berechnungen\relax }}{7}{figure.caption.6}% 
-\contentsline {figure}{\numberline {5}{\ignorespaces Die Gewichtungsfunktionen $W_{poly6}$, $W_{spiky}$, $W_{visc}$ nach \cite {muller2003particle} mit einem Radius von eins\relax }}{9}{figure.caption.7}% 
+\contentsline {figure}{\numberline {5}{\ignorespaces Die Gewichtungsfunktionen $W_{poly6}$, $W_{spiky}$, $W_{visc}$ nach \cite {muller2003particle} mit einem Radius von 1\relax }}{9}{figure.caption.7}% 
 \contentsline {figure}{\numberline {6}{\ignorespaces Implementation der SPH Kernel\relax }}{9}{figure.caption.8}% 
 \contentsline {figure}{\numberline {7}{\ignorespaces Implementation der Dichtefunktion\relax }}{11}{figure.caption.9}% 
 \contentsline {figure}{\numberline {8}{\ignorespaces Anpassbare Variablen per ImGui\relax }}{15}{figure.caption.10}% 
@@ -23,6 +23,6 @@
 \contentsline {figure}{\numberline {22}{\ignorespaces umorganisieren der Partikel im Speicher\relax }}{25}{figure.caption.24}% 
 \contentsline {figure}{\numberline {23}{\ignorespaces Berechnung der Normalen einen Partikel\relax }}{25}{figure.caption.25}% 
 \contentsline {figure}{\numberline {24}{\ignorespaces Laufzeit in Relation zur Partikelanzahl\relax }}{26}{figure.caption.26}% 
-\contentsline {figure}{\numberline {25}{\ignorespaces Laufzeit in Relation zur den Griddimensionen\relax }}{26}{figure.caption.27}% 
+\contentsline {figure}{\numberline {25}{\ignorespaces Laufzeit in Relation zur den Griddimensionen\relax }}{27}{figure.caption.27}% 
 \contentsline {figure}{\numberline {26}{\ignorespaces Speicherverbrauch in Kb auf der Y-Achse und Griddimensionen auf der X-Achse \relax }}{27}{figure.caption.28}% 
-\contentsline {figure}{\numberline {27}{\ignorespaces Simulationsverlauf des Rauches\relax }}{31}{figure.caption.34}% 
+\contentsline {figure}{\numberline {27}{\ignorespaces Simulationsverlauf des Rauches\relax }}{32}{figure.caption.34}% 
