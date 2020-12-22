@@ -308,17 +308,17 @@ if(m_imguiUi == true){
                         "CS Swapping:  \t%.8f ms\n"
                         "CS Collision: \t%.8f ms\n"
                         "Renderer:     \t%.8f ms\n",
-                        m_fps->getTimestamp(0) * 1000, m_fps->getTimestamp(1) * 1000, m_fps->getTimestamp(2) * 1000,
-                        m_fps->getTimestamp(3) * 1000, m_fps->getTimestamp(4) * 1000, m_fps->getTimestamp(5) * 1000,
-                        m_fps->getTimestamp(6) * 1000, m_fps->getTimestamp(7) * 1000, m_fps->getTimestamp(8) * 1000,
-                        m_fps->getTimestamp(9) * 1000);
+                        m_fps->getTimestamp(0) * 100, m_fps->getTimestamp(1) * 100, m_fps->getTimestamp(2) * 100,
+                        m_fps->getTimestamp(3) * 100, m_fps->getTimestamp(4) * 100, m_fps->getTimestamp(5) * 100,
+                        m_fps->getTimestamp(6) * 100, m_fps->getTimestamp(7) * 100, m_fps->getTimestamp(8) * 100,
+                        m_fps->getTimestamp(9) * 100);
             ImGui::Text("-----------------------------------------------");
         }
 
         ImGui::SetWindowSize(ImVec2(350, 150 * m_imgui_applications), 0);
         if (m_running == true)
         {
-            ImGui::Text("Application average %.4f ms/frame (%.i FPS)", 1000.f / m_fps->getFPS(),
+            ImGui::Text("Application average %.4f ms/frame (%.i FPS)", 100.f / m_fps->getFPS(),
                         m_fps->getFPS());
         }
         ImGui::End();

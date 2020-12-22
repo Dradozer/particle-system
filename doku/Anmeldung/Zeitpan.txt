@@ -1,8 +1,0 @@
-1. Recherche
-2. Framework erstellen und Techniken erlernen
-3. Implementation des Partikelsystems
-4. Peformanceverbesserungen
-5. Abwägen des Erreichten und Vergleich mit anderen Partikelsystemen
-6. Ausarbeitung schreiben
-
-https://online.officetimeline.com/app/#/file/d1e8f431-ef49-456b-afd2-0084f1f94cd5/gantt-view

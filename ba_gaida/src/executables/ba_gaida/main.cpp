@@ -136,7 +136,7 @@ int main()
     glViewport(0, 0, WIDTH, HEIGTH);
     if ((glError = glGetError()) != GL_NO_ERROR)
     {
-        std::cout << "2.OpenGL-Error: " << glError << std::endl;
+        std::cout << "OpenGL-Error: " << glError << std::endl;
     }
     double time = glfwGetTime();
     double deltaTime;
