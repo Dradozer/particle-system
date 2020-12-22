@@ -111,7 +111,7 @@ namespace ba_gaida
         GLuint m_prefixSumExcludeID[4];
         GLuint m_rearrangingParticlesID[4];
         GLuint m_densityID[8];
-        GLuint m_arbitraryID[8];
+        GLuint m_normalID[8];
         GLuint m_calcForcesID[8];
         GLuint m_swapParticlesID[4];
         GLuint m_updateForceID[6];

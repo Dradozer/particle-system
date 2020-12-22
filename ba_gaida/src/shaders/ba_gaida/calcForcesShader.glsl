@@ -46,10 +46,7 @@ uniform ivec4 gridSize;
 uniform vec4 externalForce;
 uniform vec4 particleSettings;
 uniform float heatFlow;
-//float mass;
-//float restingDensity;
-//float stiffness;
-//float radius;
+
 
 const float kinematicViscosity  = 0.25f;// uniform testen
 const float PI = 3.14159265f;
@@ -60,18 +57,19 @@ float Weight(vec3 relativePosition)
 {
     float relativePosition_2 = dot(relativePosition, relativePosition);
     float radius_2 = particleSettings.w * particleSettings.w;
-
     float temp = 315.0 / (64.0 * PI * pow(particleSettings.w, 9));
+
     return temp * pow(radius_2 - relativePosition_2, 3) * float(relativePosition_2 <= radius_2);
 }
 
 vec3 gradientWeight(vec3 relativePosition)
 {
-    float c = -45.0 / PI /  pow(particleSettings.w, 6);
+    float temp = -45.0 /(PI * pow(particleSettings.w, 6));
 
-    float l = max(length(relativePosition), 0.0001);
+    float vektorlength = max(length(relativePosition), 0.0001);
 
-    return c*relativePosition / l*pow(abs(particleSettings.w - l), 2.0)*float(l <= particleSettings.w);
+    return (temp*relativePosition / vektorlength) * pow(abs(particleSettings.w - vektorlength), 2.0)
+    *float(vektorlength <= particleSettings.w);
 }
 
 float laplaceWeight (vec3 relativePosition)
@@ -81,14 +79,13 @@ float laplaceWeight (vec3 relativePosition)
     float radius_6 = radius_3 * radius_3;
 
     float temp = 45.f /(PI * radius_6);
+    float vektorlength = length(relativePosition);
 
-    float length = length(relativePosition);
-
-    return temp * (particleSettings.w - length) * float(length <= particleSettings.w);
+    return temp * (particleSettings.w - vektorlength) * float(vektorlength <= particleSettings.w);
 }
 
 float thermalCon (float temperatureDiff){
-    return heatFlow /(particleSettings.w * temperatureDiff);
+    return heatFlow  * temperatureDiff;
 }
 
 uint cubeID(vec4 position){
@@ -128,6 +125,9 @@ void main(void) {
                         * ((inParticle[j].velocity.xyz - inParticle[id].velocity.xyz)/ inParticle[j].density)
                         * laplaceWeight(inParticle[id].position.xyz - inParticle[j].position.xyz);
 
+                        vorticity += (cross(inParticle[j].vorticity.xyz, inParticle[id].position.xyz - inParticle[j].position.xyz))
+                        * Weight(inParticle[id].position.xyz - inParticle[j].position.xyz);
+
                         if (inParticle[id].density > 28){
                             temperature += ((particleSettings.x / (inParticle[id].density * inParticle[j].density))
                             * heatFlow
@@ -150,7 +150,6 @@ void main(void) {
         }
 
         outParticle[id].temperature = temperature;
-//        buoyancy = buoyCoeff * 10.5 * upDirection * inParticle[id].density;
         buoyancy = buoyCoeff * temperature * upDirection * inParticle[id].density;
         viscosity *= kinematicViscosity;
         outParticle[id].velocity = inParticle[id].velocity + vec4(deltaTime * ( vorticity + pressure +  viscosity + (buoyancy + externalForce.xyz * inParticle[id].density)* 0.1), 0.f);

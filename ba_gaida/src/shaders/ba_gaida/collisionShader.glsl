@@ -34,7 +34,7 @@ uniform ivec4 origin = ivec4(1);
 
 void main(void) {
     uint id = gl_GlobalInvocationID.x;
-    const float energyloss = 0.2;
+    const float energyloss = 0.5;
     if(id >= particleCount)
     {
         return;
